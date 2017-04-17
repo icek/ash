@@ -38,7 +38,7 @@ export class WaitForStartView extends SVGView {
 
     private removeClickListener = () => {
         window.removeEventListener( 'click', this.dispatchClick );
-        this.gameOver.setContent('<h1>GAME OVER</h1>');
+        this.gameOver.setContent('<text class="h1">GAME OVER</text>');
     };
 
 }
