@@ -68,7 +68,7 @@ export class SystemList {
         this.tail = null;
     }
 
-    public get<TSystem extends System>( type:{ new( ..._:any[] ):TSystem } ):TSystem {
+    public get<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem {
         for( let system:System = this.head; system; system = system.next ) {
             if( system instanceof type ) {
                 return <TSystem>system;

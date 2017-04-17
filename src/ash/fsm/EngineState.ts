@@ -35,7 +35,7 @@ export class EngineState
      * mapping is used.
      * @return This StateSystemMapping, so more modifications can be applied
      */
-    public addSingleton<TSystem extends System>( type:{new( ..._:any[] ):TSystem} ):StateSystemMapping<TSystem>
+    public addSingleton<TSystem extends System>( type:{new( ...args:any[] ):TSystem} ):StateSystemMapping<TSystem>
     {
         return this.addProvider( new SystemSingletonProvider<TSystem>( type ) );
     }

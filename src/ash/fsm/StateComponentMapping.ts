@@ -10,7 +10,7 @@ import { IComponentProvider } from './IComponentProvider';
  */
 export class StateComponentMapping<TComponent>
 {
-    private componentType:{new( ..._:any[] ):TComponent};
+    private componentType:{new( ...args:any[] ):TComponent};
     private creatingState:EntityState;
     private provider:IComponentProvider<TComponent>;
 
@@ -22,7 +22,7 @@ export class StateComponentMapping<TComponent>
      * @param creatingState The EntityState that the mapping will belong to
      * @param type The component type for the mapping
      */
-    constructor( creatingState:EntityState, type:{new( ..._:any[] ):TComponent} )
+    constructor( creatingState:EntityState, type:{new( ...args:any[] ):TComponent} )
     {
         this.creatingState = creatingState;
         this.componentType = type;
@@ -50,7 +50,7 @@ export class StateComponentMapping<TComponent>
      * @param type The type of components to be created by this mapping
      * @return This ComponentMapping, so more modifications can be applied
      */
-    public withType( type:{new( ..._:any[] ):TComponent} ):this
+    public withType( type:{new( ...args:any[] ):TComponent} ):this
     {
         this.setProvider( new ComponentTypeProvider( type ) );
         return this;
@@ -66,7 +66,7 @@ export class StateComponentMapping<TComponent>
      * mapping is used.
      * @return This ComponentMapping, so more modifications can be applied
      */
-    public withSingleton( type:{new( ..._:any[] ):any} = null ):this
+    public withSingleton( type:{new( ...args:any[] ):any} = null ):this
     {
         if( !type )
         {
@@ -111,7 +111,7 @@ export class StateComponentMapping<TComponent>
      * @param type The type of component to add a mapping to the state for
      * @return The new ComponentMapping for that type
      */
-    public add<TComponent>( type:{new( ..._:any[] ):TComponent} ):StateComponentMapping<TComponent>
+    public add<TComponent>( type:{new( ...args:any[] ):TComponent} ):StateComponentMapping<TComponent>
     {
         return this.creatingState.add( type );
     }

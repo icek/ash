@@ -123,7 +123,7 @@ export class Engine {
     /**
      * @private
      */
-    private componentAdded = <T>( entity:Entity, componentClass:{ new( ..._:any[] ):T } ) => {
+    private componentAdded = <T>( entity:Entity, componentClass:{ new( ...args:any[] ):T } ) => {
         for( let family of this.families.values() ) {
             family.componentAddedToEntity( entity, componentClass );
         }
@@ -132,7 +132,7 @@ export class Engine {
     /**
      * @private
      */
-    private componentRemoved = <T>( entity:Entity, componentClass:{ new( ..._:any[] ):T } ) => {
+    private componentRemoved = <T>( entity:Entity, componentClass:{ new( ...args:any[] ):T } ) => {
         for( let family of this.families.values() ) {
             family.componentRemovedFromEntity( entity, componentClass );
         }
@@ -161,20 +161,6 @@ export class Engine {
         }
         return family.nodeList;
     }
-
-    /*
-     getNodeList2({ point: Point, matrix: Matrix }):NodeList<Node & { point:Point, matrix:Matrix }>
-     */
-    // public getNodeList2<TNode extends Node<any>>( components:Object ):NodeList<TNode>
-    // {
-    //    var keys = Object.keys(components);
-    //    for( var Class of keys )
-    //    {
-    //
-    //    }
-    //    return null;
-    // }
-
 
     /**
      * If a NodeList is no longer required, this method will stop the engine updating
@@ -218,7 +204,7 @@ export class Engine {
      * @return The instance of the system type that is in the engine, or
      * null if no systems of this type are in the engine.
      */
-    public getSystem<TSystem extends System>( type:{ new( ..._:any[] ):TSystem } ):TSystem {
+    public getSystem<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem {
         return this.systemList.get( type );
     }
 

@@ -25,7 +25,7 @@ export class Node<TNode> {
     public next:TNode = null;
 }
 
-export function keep( type:{ new( ..._:any[] ):any } ):Function {
+export function keep( type:{ new( ...args:any[] ):any } ):Function {
     return ( target:Object, propertyKey:string, descriptor:TypedPropertyDescriptor<any> ) => {
         let ctor = target.constructor;
         let map:Object;

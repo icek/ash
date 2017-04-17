@@ -6,14 +6,14 @@ import { IComponentProvider } from './IComponentProvider';
  */
 export class ComponentTypeProvider<TComponent> implements IComponentProvider<TComponent>
 {
-    private componentType:{new( ..._:any[] ):TComponent};
+    private componentType:{new( ...args:any[] ):TComponent};
 
     /**
      * Constructor
      *
      * @param type The type of the instances to be created
      */
-    constructor( type:{new( ..._:any[] ):TComponent} )
+    constructor( type:{new( ...args:any[] ):TComponent} )
     {
         this.componentType = type;
     }

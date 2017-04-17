@@ -23,19 +23,15 @@ import { ClassMap } from '../ClassMap';
  *
  * <p>ComponentPool.dispose( entity.remove( component ) );</p>
  */
-export class ComponentPool
-{
-    private static pools:ClassMap<{new():any}, any[]> = new ClassMap<{new():any}, any[]>();
+export class ComponentPool {
+    private static pools:ClassMap<{ new():any }, any[]> = new ClassMap<{ new():any }, any[]>();
 
-    private static getPool<T>( componentClass:{new():T} ):T[]
-    {
+    private static getPool<T>( componentClass:{ new():T } ):T[] {
 
-        if( ComponentPool.pools.has( componentClass ) )
-        {
+        if( ComponentPool.pools.has( componentClass ) ) {
             return ComponentPool.pools.get( componentClass );
         }
-        else
-        {
+        else {
             let ret:T[] = [];
             ComponentPool.pools.set( componentClass, ret );
             return ret;
@@ -48,15 +44,12 @@ export class ComponentPool
      * @param componentClass The type of component wanted.
      * @return The component.
      */
-    public static get<T>( componentClass:{new():T} ):T
-    {
+    public static get<T>( componentClass:{ new():T } ):T {
         let pool:T[] = ComponentPool.getPool( componentClass );
-        if( pool.length > 0 )
-        {
+        if( pool.length > 0 ) {
             return pool.pop();
         }
-        else
-        {
+        else {
             return new componentClass();
         }
     }
@@ -66,10 +59,8 @@ export class ComponentPool
      *
      * @param component The component to return to the pool.
      */
-    public static dispose<T>( component:T ):void
-    {
-        if( component )
-        {
+    public static dispose<T>( component:T ):void {
+        if( component ) {
             let type:{ new( ...args:any[] ):T } = component.constructor.prototype.constructor;
             let pool:T[] = ComponentPool.getPool( type );
             pool[ pool.length ] = component;
@@ -79,8 +70,7 @@ export class ComponentPool
     /**
      * Dispose of all pooled resources, freeing them for garbage collection.
      */
-    public static empty():void
-    {
-        ComponentPool.pools = new ClassMap<{new(..._:any[]):any}, any[]>();
+    public static empty():void {
+        ComponentPool.pools = new ClassMap<{ new( ...args:any[] ):any }, any[]>();
     }
 }

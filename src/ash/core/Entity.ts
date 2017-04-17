@@ -28,11 +28,11 @@ export class Entity {
     /**
      * This signal is dispatched when a component is added to the entity.
      */
-    public componentAdded:Signal2<Entity, { new( ..._:any[] ):any; }>;
+    public componentAdded:Signal2<Entity, { new( ...args:any[] ):any; }>;
     /**
      * This signal is dispatched when a component is removed from the entity.
      */
-    public componentRemoved:Signal2<Entity, { new( ..._:any[] ):any; }>;
+    public componentRemoved:Signal2<Entity, { new( ...args:any[] ):any; }>;
     /**
      * Dispatched when the name of the entity changes. Used internally by the engine to track entities based on their names.
      */
@@ -40,7 +40,7 @@ export class Entity {
 
     public previous:Entity;
     public next:Entity;
-    public components:ClassMap<{ new( ..._:any[] ):any }, any>;
+    public components:ClassMap<{ new( ...args:any[] ):any }, any>;
 
     /**
      * The constructor
@@ -51,7 +51,7 @@ export class Entity {
         this.componentAdded = new Signal2();
         this.componentRemoved = new Signal2();
         this.nameChanged = new Signal2();
-        this.components = new ClassMap<{ new( ..._:any[] ):any }, any>();
+        this.components = new ClassMap<{ new( ...args:any[] ):any }, any>();
         if( name ) {
             this._name = name;
         }
@@ -92,7 +92,7 @@ export class Entity {
      *     .add( new Display( new PlayerClip() );</code>
      */
 
-    public add<T>( component:T, componentClass:{ new( ..._:any[] ):T; } = null ):this {
+    public add<T>( component:T, componentClass:{ new( ...args:any[] ):T; } = null ):this {
         if( !componentClass ) {
             componentClass = component.constructor.prototype.constructor; // weird but works!
         }
@@ -112,7 +112,7 @@ export class Entity {
      * @param componentClass The class of the component to be removed.
      * @return the component, or null if the component doesn't exist in the entity
      */
-    public remove<T>( componentClass:{ new( ..._:any[] ):T; } ):T {
+    public remove<T>( componentClass:{ new( ...args:any[] ):T; } ):T {
         let component:any = this.components.get( componentClass );
         if( component ) {
             this.components.remove( componentClass );
@@ -128,7 +128,7 @@ export class Entity {
      * @param componentClass The class of the component requested.
      * @return The component, or null if none was found.
      */
-    public get<T>( componentClass:{ new( ..._:any[] ):T; } ):T {
+    public get<T>( componentClass:{ new( ...args:any[] ):T; } ):T {
         return this.components.get( componentClass );
     }
 
@@ -151,7 +151,7 @@ export class Entity {
      * @param componentClass The class of the component sought.
      * @return true if the entity has a component of the type, false if not.
      */
-    public has<T>( componentClass:{ new( ..._:any[] ):T; } ):boolean {
+    public has<T>( componentClass:{ new( ...args:any[] ):T; } ):boolean {
         return this.components.has( componentClass );
     }
 }

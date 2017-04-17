@@ -55,7 +55,7 @@ export class StateSystemMapping<TSystem extends System>
      * mapping is used.
      * @return This StateSystemMapping, so more modifications can be applied
      */
-    public addSingleton( type:{new( ..._:any[] ):TSystem} ):StateSystemMapping<TSystem>
+    public addSingleton( type:{new( ...args:any[] ):TSystem} ):StateSystemMapping<TSystem>
     {
         return this.creatingState.addSingleton( type );
 

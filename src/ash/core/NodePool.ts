@@ -12,12 +12,12 @@ export class NodePool<TNode extends Node<any>> {
     private tail:TNode;
     private nodeClass:{ new():TNode };
     private cacheTail:TNode;
-    private components:ClassMap<{ new( ..._:any[] ):any }, string>;
+    private components:ClassMap<{ new( ...args:any[] ):any }, string>;
 
     /**
      * Creates a pool for the given node class.
      */
-    constructor( nodeClass:{ new():TNode }, components:ClassMap<{ new( ..._:any[] ):any }, string> ) {
+    constructor( nodeClass:{ new():TNode }, components:ClassMap<{ new( ...args:any[] ):any }, string> ) {
         this.nodeClass = nodeClass;
         this.components = components;
     }
