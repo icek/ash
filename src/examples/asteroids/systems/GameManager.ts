@@ -26,7 +26,7 @@ export class GameManager extends System {
         this.bullets = engine.getNodeList( BulletCollisionNode );
     }
 
-    public update( time:Number ):void {
+    public update( time:number ):void {
         let node:GameNode = this.gameNodes.head;
         if( node && node.state.playing ) {
             if( this.spaceships.empty ) {

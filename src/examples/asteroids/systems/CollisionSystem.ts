@@ -24,7 +24,7 @@ export class CollisionSystem extends System {
         this.bullets = engine.getNodeList( BulletCollisionNode );
     }
 
-    public update( time:Number ):void {
+    public update( time:number ):void {
         let bullet:BulletCollisionNode;
         let asteroid:AsteroidCollisionNode;
         let spaceship:SpaceshipCollisionNode;

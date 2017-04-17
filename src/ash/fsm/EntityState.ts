@@ -39,7 +39,7 @@ export class EntityState {
      * @param type The type of component to look for a provider for
      * @return true if there is a provider for the given type, false otherwise
      */
-    public has<TComponent>( type:{ new( ...args:any[] ):TComponent } ):Boolean {
+    public has<TComponent>( type:{ new( ...args:any[] ):TComponent } ):boolean {
         return this.providers.has( type );
     }
 }

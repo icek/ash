@@ -93,7 +93,7 @@ export class NodeList<TNode extends Node<any>> {
     /**
      * true if the list is empty, false otherwise.
      */
-    public get empty():Boolean {
+    public get empty():boolean {
         return this.head == null;
     }
 
