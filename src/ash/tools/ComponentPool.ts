@@ -70,7 +70,7 @@ export class ComponentPool
     {
         if( component )
         {
-            let type:{ new( ..._:any[] ):T } = component.constructor.prototype;
+            let type:{ new( ...args:any[] ):T } = component.constructor.prototype.constructor;
             let pool:T[] = ComponentPool.getPool( type );
             pool[ pool.length ] = component;
         }
