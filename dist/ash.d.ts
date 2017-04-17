@@ -79,10 +79,10 @@ declare module 'ash/core/ComponentMatchingFamily' {
         readonly nodeList: NodeList<TNode>;
         newEntity(entity: Entity): void;
         componentAddedToEntity(entity: Entity, componentClass: {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }): void;
         componentRemovedFromEntity(entity: Entity, componentClass: {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }): void;
         removeEntity(entity: Entity): void;
         cleanUp(): void;
@@ -113,7 +113,7 @@ declare module 'ash/core/Engine' {
         }): void;
         addSystem(system: System, priority: number): void;
         getSystem<TSystem extends System>(type: {
-            new (..._: any[]): TSystem;
+            new (...args: any[]): TSystem;
         }): TSystem;
         readonly systems: System[];
         removeSystem(system: System): void;
@@ -127,31 +127,31 @@ declare module 'ash/core/Entity' {
     import { ClassMap } from "ash/ClassMap";
     export class Entity {
         componentAdded: Signal2<Entity, {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }>;
         componentRemoved: Signal2<Entity, {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }>;
         nameChanged: Signal2<Entity, string>;
         previous: Entity;
         next: Entity;
         components: ClassMap<{
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }, any>;
         constructor(name?: string);
         name: string;
         add<T>(component: T, componentClass?: {
-            new (..._: any[]): T;
+            new (...args: any[]): T;
         }): this;
         remove<T>(componentClass: {
-            new (..._: any[]): T;
+            new (...args: any[]): T;
         }): T;
         get<T>(componentClass: {
-            new (..._: any[]): T;
+            new (...args: any[]): T;
         }): T;
         getAll(): any[];
         has<T>(componentClass: {
-            new (..._: any[]): T;
+            new (...args: any[]): T;
         }): boolean;
     }
 }
@@ -165,10 +165,10 @@ declare module 'ash/core/IFamily' {
         newEntity(entity: Entity): void;
         removeEntity(entity: Entity): void;
         componentAddedToEntity(entity: Entity, componentClass: {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }): void;
         componentRemovedFromEntity(entity: Entity, componentClass: {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }): void;
         cleanUp(): void;
     }
@@ -182,7 +182,7 @@ declare module 'ash/core/Node' {
         next: TNode;
     }
     export function keep(type: {
-        new (..._: any[]): any;
+        new (...args: any[]): any;
     }): Function;
 }
 
@@ -212,7 +212,7 @@ declare module 'ash/core/NodePool' {
         constructor(nodeClass: {
             new (): TNode;
         }, components: ClassMap<{
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }, string>);
         get(): TNode;
         dispose(node: TNode): void;
@@ -260,8 +260,8 @@ declare module 'ash/fsm/EngineStateMachine' {
 declare module 'ash/tick/ITickProvider' {
     export interface ITickProvider {
         playing: boolean;
-        add(listener: Function): void;
-        remove(listener: Function): void;
+        add(listener: (delta: number) => void): void;
+        remove(listener: (delta: number) => void): void;
         start(): void;
         stop(): void;
     }
@@ -293,17 +293,15 @@ declare module 'ash/tools/ListIteratingSystem' {
     import { Node } from 'ash/core/Node';
     import { NodeList } from 'ash/core/NodeList';
     import { System } from 'ash/core/System';
-    export interface ListIteratingSystem<TNode extends Node<any>> {
-        nodeAdded?(node: Node<TNode>): void;
-        nodeRemoved?(node: Node<TNode>): void;
-    }
     export abstract class ListIteratingSystem<TNode extends Node<any>> extends System {
         protected nodeList: NodeList<TNode>;
         protected nodeClass: {
             new (): TNode;
         };
+        protected nodeAdded: (node: Node<TNode>) => void;
+        protected nodeRemoved: (node: Node<TNode>) => void;
         constructor(nodeClass: {
-            new (..._: any[]): TNode;
+            new (...args: any[]): TNode;
         });
         addToEngine(engine: Engine): void;
         removeFromEngine(engine: Engine): void;
@@ -335,16 +333,16 @@ declare module 'ash/fsm/EntityState' {
     import { ClassMap } from 'ash/ClassMap';
     export class EntityState {
         providers: ClassMap<{
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }, any>;
         add<TComponent>(type: {
-            new (..._: any[]): TComponent;
+            new (...args: any[]): TComponent;
         }): StateComponentMapping<TComponent>;
         get<TComponent>(type: {
-            new (..._: any[]): TComponent;
+            new (...args: any[]): TComponent;
         }): IComponentProvider<TComponent>;
         has<TComponent>(type: {
-            new (..._: any[]): TComponent;
+            new (...args: any[]): TComponent;
         }): Boolean;
     }
 }
@@ -357,7 +355,7 @@ declare module 'ash/fsm/EngineState' {
         providers: ISystemProvider<any>[];
         addInstance<TSystem extends System>(system: TSystem): StateSystemMapping<TSystem>;
         addSingleton<TSystem extends System>(type: {
-            new (..._: any[]): TSystem;
+            new (...args: any[]): TSystem;
         }): StateSystemMapping<TSystem>;
         addMethod<TSystem extends System>(method: () => TSystem): StateSystemMapping<TSystem>;
         addProvider<TSystem extends System>(provider: ISystemProvider<TSystem>): StateSystemMapping<TSystem>;
@@ -385,19 +383,19 @@ declare module 'ash/fsm/StateComponentMapping' {
     import { IComponentProvider } from 'ash/fsm/IComponentProvider';
     export class StateComponentMapping<TComponent> {
         constructor(creatingState: EntityState, type: {
-            new (..._: any[]): TComponent;
+            new (...args: any[]): TComponent;
         });
         withInstance(component: TComponent): this;
         withType(type: {
-            new (..._: any[]): TComponent;
+            new (...args: any[]): TComponent;
         }): this;
         withSingleton(type?: {
-            new (..._: any[]): any;
+            new (...args: any[]): any;
         }): this;
         withMethod(method: () => TComponent): this;
         withProvider(provider: IComponentProvider<TComponent>): this;
         add<TComponent>(type: {
-            new (..._: any[]): TComponent;
+            new (...args: any[]): TComponent;
         }): StateComponentMapping<TComponent>;
     }
 }
@@ -420,7 +418,7 @@ declare module 'ash/fsm/StateSystemMapping' {
         withPriority(priority: number): StateSystemMapping<TSystem>;
         addInstance(system: TSystem): StateSystemMapping<TSystem>;
         addSingleton(type: {
-            new (..._: any[]): TSystem;
+            new (...args: any[]): TSystem;
         }): StateSystemMapping<TSystem>;
         addMethod(method: () => TSystem): StateSystemMapping<TSystem>;
         addProvider(provider: ISystemProvider<TSystem>): StateSystemMapping<TSystem>;
