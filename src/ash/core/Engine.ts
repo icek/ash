@@ -17,7 +17,7 @@ export class Engine {
     private entityNames:Entity[];
     private entityList:EntityList;
     private systemList:SystemList;
-    private families:ClassMap<{ new( ..._:any[] ):any }, IFamily<any>>;
+    private families:ClassMap<{ new():Node<any> }, IFamily<any>>;
 
     /**
      * Indicates if the engine is currently in its update loop.
@@ -44,7 +44,7 @@ export class Engine {
         this.entityList = new EntityList();
         this.entityNames = [];
         this.systemList = new SystemList();
-        this.families = new ClassMap<{ new( ..._:any[] ):any }, IFamily<any>>();
+        this.families = new ClassMap<{ new():Node<any> }, IFamily<any>>();
         this.updateComplete = new Signal0();
     }
 
