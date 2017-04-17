@@ -1,4 +1,4 @@
-import { ClassMap } from "../ClassMap";
+import { Dictionary } from "../Dictionary";
 import { Engine } from "./Engine";
 import { Entity } from "./Entity";
 import { IFamily } from "./IFamily";
@@ -14,9 +14,9 @@ import { NodePool } from "./NodePool";
  */
 export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily<TNode> {
     private nodes:NodeList<TNode>;
-    private entities:ClassMap<Entity, TNode>;
+    private entities:Dictionary<Entity, TNode>;
     private nodeClass:{ new():TNode };
-    public components:ClassMap<{ new():any }, string>;
+    public components:Dictionary<{ new():any }, string>;
     private nodePool:NodePool<TNode>;
     private engine:Engine;
 
@@ -39,8 +39,8 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
      */
     private init():void {
         this.nodes = new NodeList<TNode>();
-        this.entities = new ClassMap<Entity, TNode>();
-        this.components = new ClassMap<{ new( ...args:any[] ):any }, string>();
+        this.entities = new Dictionary<Entity, TNode>();
+        this.components = new Dictionary<{ new( ...args:any[] ):any }, string>();
         this.nodePool = new NodePool<TNode>( this.nodeClass, this.components );
 
         let dummyNode:TNode = this.nodePool.get();

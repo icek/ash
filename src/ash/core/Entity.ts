@@ -1,5 +1,5 @@
 import { Signal2 } from "../signals/Signal2";
-import { ClassMap } from "../ClassMap";
+import { Dictionary } from "../Dictionary";
 /**
  * An entity is composed from components. As such, it is essentially a collection object for components.
  * Sometimes, the entities in a game will mirror the actual characters and objects in the game, but this
@@ -40,7 +40,7 @@ export class Entity {
 
     public previous:Entity;
     public next:Entity;
-    public components:ClassMap<{ new( ...args:any[] ):any }, any>;
+    public components:Dictionary<{ new( ...args:any[] ):any }, any>;
 
     /**
      * The constructor
@@ -51,7 +51,7 @@ export class Entity {
         this.componentAdded = new Signal2();
         this.componentRemoved = new Signal2();
         this.nameChanged = new Signal2();
-        this.components = new ClassMap<{ new( ...args:any[] ):any }, any>();
+        this.components = new Dictionary<{ new( ...args:any[] ):any }, any>();
         if( name ) {
             this._name = name;
         }

@@ -1,4 +1,4 @@
-import { ClassMap } from "../ClassMap";
+import { Dictionary } from "../Dictionary";
 import { ComponentMatchingFamily } from "./ComponentMatchingFamily";
 import { Entity } from "./Entity";
 import { EntityList } from "./EntityList";
@@ -17,7 +17,7 @@ export class Engine {
     private entityNames:Entity[];
     private entityList:EntityList;
     private systemList:SystemList;
-    private families:ClassMap<{ new():Node<any> }, IFamily<any>>;
+    private families:Dictionary<{ new():Node<any> }, IFamily<any>>;
 
     /**
      * Indicates if the engine is currently in its update loop.
@@ -44,7 +44,7 @@ export class Engine {
         this.entityList = new EntityList();
         this.entityNames = [];
         this.systemList = new SystemList();
-        this.families = new ClassMap<{ new():Node<any> }, IFamily<any>>();
+        this.families = new Dictionary<{ new():Node<any> }, IFamily<any>>();
         this.updateComplete = new Signal0();
     }
 

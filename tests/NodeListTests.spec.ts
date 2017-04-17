@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { NodeList, Node, NodePool, ClassMap, keep } from '../src/ash';
+import { NodeList, Node, NodePool, Dictionary, keep } from '../src/ash';
 
 class Point {
     public x:number;
@@ -102,7 +102,7 @@ describe( 'NodeList tests', () => {
     } );
 
     it( 'NodePoll works', () => {
-        let cmps = new ClassMap<{ new():any }, string>();
+        let cmps = new Dictionary<{ new():any }, string>();
         let poll = new NodePool<MockNode>( MockNode, cmps );
         let m = poll.get();
         let o = new MockNode();

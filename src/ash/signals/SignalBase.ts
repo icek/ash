@@ -3,7 +3,7 @@
  */
 
 import { ListenerNode } from "./ListenerNode";
-import { ClassMap } from "../ClassMap";
+import { Dictionary } from "../Dictionary";
 import { ListenerNodePool } from "./ListenerNodePool";
 /**
  * The base class for all the signal classes.
@@ -13,7 +13,7 @@ export class SignalBase<TListener> {
     protected head:ListenerNode<TListener>;
     protected tail:ListenerNode<TListener>;
 
-    private nodes:ClassMap<TListener, ListenerNode<TListener>>;
+    private nodes:Dictionary<TListener, ListenerNode<TListener>>;
     private listenerNodePool:ListenerNodePool<TListener>;
     private toAddHead:ListenerNode<TListener>;
     private toAddTail:ListenerNode<TListener>;
@@ -21,7 +21,7 @@ export class SignalBase<TListener> {
     private _numListeners:number = 0;
 
     constructor() {
-        this.nodes = new ClassMap<TListener, ListenerNode<TListener>>();
+        this.nodes = new Dictionary<TListener, ListenerNode<TListener>>();
         this.listenerNodePool = new ListenerNodePool<TListener>();
     }
 

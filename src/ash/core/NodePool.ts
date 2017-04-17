@@ -1,4 +1,4 @@
-import { ClassMap } from "../ClassMap";
+import { Dictionary } from "../Dictionary";
 import { Node } from "./Node";
 /**
  * This internal class maintains a pool of deleted nodes for reuse by the framework. This reduces the overhead
@@ -12,12 +12,12 @@ export class NodePool<TNode extends Node<any>> {
     private tail:TNode;
     private nodeClass:{ new():TNode };
     private cacheTail:TNode;
-    private components:ClassMap<{ new( ...args:any[] ):any }, string>;
+    private components:Dictionary<{ new( ...args:any[] ):any }, string>;
 
     /**
      * Creates a pool for the given node class.
      */
-    constructor( nodeClass:{ new():TNode }, components:ClassMap<{ new( ...args:any[] ):any }, string> ) {
+    constructor( nodeClass:{ new():TNode }, components:Dictionary<{ new( ...args:any[] ):any }, string> ) {
         this.nodeClass = nodeClass;
         this.components = components;
     }

@@ -1,6 +1,6 @@
 import { IComponentProvider } from './IComponentProvider';
 import { StateComponentMapping } from './StateComponentMapping';
-import { ClassMap } from '../ClassMap';
+import { Dictionary } from '../Dictionary';
 
 /**
  * Represents a state for an EntityStateMachine. The state contains any number of ComponentProviders which
@@ -10,7 +10,7 @@ export class EntityState {
     /**
      * @private
      */
-    public providers:ClassMap<{ new( ...args:any[] ):any }, any> = new ClassMap<{ new( ...args:any[] ):any }, any>();
+    public providers:Dictionary<{ new( ...args:any[] ):any }, any> = new Dictionary<{ new( ...args:any[] ):any }, any>();
 
     /**
      * Add a new ComponentMapping to this state. The mapping is a utility class that is used to

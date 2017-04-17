@@ -1,4 +1,4 @@
-export { ClassMap } from './ClassMap';
+export { Dictionary } from './Dictionary';
 
 export { Signal0 } from './signals/Signal0';
 export { Signal1 } from './signals/Signal1';

@@ -1,4 +1,4 @@
-import { ClassMap } from '../ClassMap';
+import { Dictionary } from '../Dictionary';
 
 /**
  * An object pool for re-using components. This is not integrated in to Ash but is used dierectly by
@@ -24,7 +24,7 @@ import { ClassMap } from '../ClassMap';
  * <p>ComponentPool.dispose( entity.remove( component ) );</p>
  */
 export class ComponentPool {
-    private static pools:ClassMap<{ new():any }, any[]> = new ClassMap<{ new():any }, any[]>();
+    private static pools:Dictionary<{ new():any }, any[]> = new Dictionary<{ new():any }, any[]>();
 
     private static getPool<T>( componentClass:{ new():T } ):T[] {
 
@@ -71,6 +71,6 @@ export class ComponentPool {
      * Dispose of all pooled resources, freeing them for garbage collection.
      */
     public static empty():void {
-        ComponentPool.pools = new ClassMap<{ new( ...args:any[] ):any }, any[]>();
+        ComponentPool.pools = new Dictionary<{ new( ...args:any[] ):any }, any[]>();
     }
 }

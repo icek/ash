@@ -1,4 +1,4 @@
-export class ClassMap<TKey, TValue> {
+export class Dictionary<TKey, TValue> {
     private _keys:TKey[];
     private _values:TValue[];
 

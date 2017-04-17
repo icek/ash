@@ -1,11 +1,11 @@
 import { assert } from 'chai';
-import { ClassMap } from "../src/ash";
+import { Dictionary } from "../src/ash";
 
-describe( 'ClassMap tests', () =>
+describe( 'Dictionary tests', () =>
 {
     it( 'string key, string value', () =>
     {
-        let m = new ClassMap<string, string>();
+        let m = new Dictionary<string, string>();
         m.set("aaa", "bbb");
 
         assert.equal( m.get("aaa"), "bbb");
@@ -13,7 +13,7 @@ describe( 'ClassMap tests', () =>
 
     it( 'class key, string value', () =>
     {
-        let m = new ClassMap<TC, string>();
+        let m = new Dictionary<TC, string>();
         let c = new TC();
         m.set(c, "aaa");
 
@@ -22,7 +22,7 @@ describe( 'ClassMap tests', () =>
 
     it( 'class key, string value 2', () =>
     {
-        let m = new ClassMap<TC, string>();
+        let m = new Dictionary<TC, string>();
         let c = new TC();
         let d = new TC();
         m.set(c, "aaa");
@@ -33,7 +33,7 @@ describe( 'ClassMap tests', () =>
 
     it( 'type key, string value', () =>
     {
-        let m = new ClassMap<{ new():any }, string>();
+        let m = new Dictionary<{ new():any }, string>();
         m.set(TC, "aaa");
 
         assert.equal( m.get(TC), "aaa");
@@ -41,7 +41,7 @@ describe( 'ClassMap tests', () =>
 
     it( 'type key, string value 2', () =>
     {
-        let m = new ClassMap<{ new():any }, string>();
+        let m = new Dictionary<{ new():any }, string>();
         m.set(TC, "aaa");
         m.set(TC2, "bbb");
 
@@ -51,7 +51,7 @@ describe( 'ClassMap tests', () =>
 
     it( 'type key, object value', () =>
     {
-        let m = new ClassMap<{ new():any }, any>();
+        let m = new Dictionary<{ new():any }, any>();
         let a = new TC();
         let b = new TC2();
         m.set(TC, a);
@@ -63,7 +63,7 @@ describe( 'ClassMap tests', () =>
 
     it( 'type key, object value 2', () =>
     {
-        let m = new ClassMap<{ new():any }, any>();
+        let m = new Dictionary<{ new():any }, any>();
         let a = new TC();
         let b = new TC2();
         m.set(TC, a);

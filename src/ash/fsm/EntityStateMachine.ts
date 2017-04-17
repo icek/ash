@@ -1,7 +1,7 @@
 import { Entity } from '../core/Entity';
 import { EntityState } from './EntityState';
 import { IComponentProvider } from './IComponentProvider';
-import { ClassMap } from '../ClassMap';
+import { Dictionary } from '../Dictionary';
 
 /**
  * This is a state machine for an entity. The state machine manages a set of states,
@@ -67,10 +67,10 @@ export class EntityStateMachine {
             newState = null;
             return;
         }
-        let toAdd:ClassMap<{ new():any }, any>;
+        let toAdd:Dictionary<{ new():any }, any>;
 
         if( this.currentState ) {
-            toAdd = new ClassMap<{ new():any }, any>();
+            toAdd = new Dictionary<{ new():any }, any>();
             for( let type of newState.providers.keys() ) {
                 toAdd.set( type, newState.providers.get( type ) );
             }
