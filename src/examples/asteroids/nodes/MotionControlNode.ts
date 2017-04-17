@@ -1,0 +1,12 @@
+import { Node, keep } from "../ash";
+import { Motion, MotionControls, Position } from "../components/index";
+
+export class MotionControlNode extends Node<MotionControlNode>
+{
+    @keep(MotionControls)
+    public control:MotionControls;
+    @keep(Position)
+    public position:Position;
+    @keep(Motion)
+    public motion:Motion;
+}

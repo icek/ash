@@ -1,0 +1,59 @@
+# ash.ts
+A Typescript port of Ash Framework, an Actionscript 3 entity framework for game development
+
+
+# Original README:
+
+# Ash: An entity framework for Actionscript games
+
+Ash is an Actionscript 3 entity framework for game development
+
+### Source Code
+
+- [Ash](http://github.com/richardlord/Ash)
+
+### Examples
+
+- [Asteroids](http://github.com/richardlord/Asteroids)
+
+### Documentation
+
+There is no formal documentation as yet, but much of the source code contains as-doc comments.
+
+I've also written a few blog posts explaining how Ash works.
+
+- [Ash - a new entity framework for Actionscript games.](http://www.richardlord.net/blog/ecs/introducing-ash.html)
+- [What is an entity framework for game development.](http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html)
+- [Why use an entity framework for game development.](http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html)
+
+### Join the discussion
+
+There is a (new) [Google group for discussing Ash](https://groups.google.com/forum/?fromgroups=#!forum/ash-framework) , how to use it and how to make it better. Everyone who uses Ash or is interested in using Ash is welcome. 
+
+### Developers
+
+- [Richard Lord](http://www.richardlord.net/)
+    - [Richard on Twitter](http://twitter.com/Richard_Lord)
+    - [Richard on Github](http://github.com/richardlord)
+
+### Thank you
+
+- Tom Davies, for [Ember](https://github.com/tdavies/Ember) and [Ember2](https://github.com/tdavies/Ember2) and for the many discussions we've had about entity systems.
+- Alec McEachran, for [Xember](https://github.com/alecmce/xember) and the discussions we've had about entity systems, particularly at [try{harder}](http://www.tryharder.org.uk/)
+
+## License
+
+Ash - an entity framework for Actionscript games  
+................................................
+
+Author: Richard Lord  
+Copyright (c) Richard Lord 2011-2012  
+http://www.richardlord.net
+
+Licence Agreement (The MIT License)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

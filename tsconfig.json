@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+
+    "declaration": true,
+    "removeComments": true,
+    "sourceMap": true,
+
+    "noImplicitUseStrict": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+
+    "suppressImplicitAnyIndexErrors": true,
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules",
+    "./tests",
+    "./src/ash/io",
+    "./src/examples"
+  ]
+}
