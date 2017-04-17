@@ -26,18 +26,13 @@ import { System } from '../core/System';
  * }</code>
  */
 
-export interface ListIteratingSystem<TNode extends Node<any>> {
-
-    nodeAdded?( node:Node<TNode> ):void;
-
-    nodeRemoved?( node:Node<TNode> ):void;
-}
-
 export abstract class ListIteratingSystem<TNode extends Node<any>> extends System {
     protected nodeList:NodeList<TNode>;
     protected nodeClass:{ new():TNode };
+    protected nodeAdded:( node:Node<TNode> ) => void;
+    protected nodeRemoved:( node:Node<TNode> ) => void;
 
-    constructor( nodeClass:{ new( ..._:any[] ):TNode } ) {
+    constructor( nodeClass:{ new( ...args:any[] ):TNode } ) {
         super();
 
         this.nodeClass = nodeClass;
