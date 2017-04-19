@@ -1,4 +1,6 @@
 import { Entity } from "./Entity";
+import { ClassType } from "../Types";
+
 /**
  * The base class for a node.
  *
@@ -25,7 +27,7 @@ export class Node<TNode> {
     public next:TNode = null;
 }
 
-export function keep( type:{ new( ...args:any[] ):any } ):Function {
+export function keep( type:ClassType<any> ):Function {
     return ( target:Object, propertyKey:string, descriptor:TypedPropertyDescriptor<any> ) => {
         let ctor = target.constructor;
         let map:Object;

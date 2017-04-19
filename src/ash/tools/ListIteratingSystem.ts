@@ -32,7 +32,7 @@ export abstract class ListIteratingSystem<TNode extends Node<any>> extends Syste
     protected nodeAdded:( node:Node<TNode> ) => void;
     protected nodeRemoved:( node:Node<TNode> ) => void;
 
-    constructor( nodeClass:{ new( ...args:any[] ):TNode } ) {
+    constructor( nodeClass:{ new():TNode } ) {
         super();
 
         this.nodeClass = nodeClass;

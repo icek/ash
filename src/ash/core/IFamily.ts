@@ -1,6 +1,7 @@
 import { Entity } from "./Entity";
 import { Node } from "./Node";
 import { NodeList } from "./NodeList";
+import { ClassType } from "../Types";
 /**
  * The interface for classes that are used to manage NodeLists (set as the familyClass property
  * in the Engine object). Most developers don't need to use this since the default implementation
@@ -28,12 +29,12 @@ export interface IFamily<TNode extends Node<any>> {
      * A component has been added to an entity. Test whether the entity's inclusion in this family's
      * NodeList should be modified.
      */
-    componentAddedToEntity( entity:Entity, componentClass:{ new( ...args:any[] ):any } ):void;
+    componentAddedToEntity( entity:Entity, componentClass:ClassType<any> ):void;
     /**
      * A component has been removed from an entity. Test whether the entity's inclusion in this family's
      * NodeList should be modified.
      */
-    componentRemovedFromEntity( entity:Entity, componentClass:{ new( ...args:any[] ):any } ):void;
+    componentRemovedFromEntity( entity:Entity, componentClass:ClassType<any> ):void;
     /**
      * The family is about to be discarded. Clean up all properties as necessary. Usually, you will
      * want to empty the NodeList at this time.

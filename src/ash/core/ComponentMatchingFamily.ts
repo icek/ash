@@ -5,6 +5,7 @@ import { IFamily } from "./IFamily";
 import { Node } from "./Node";
 import { NodeList } from "./NodeList";
 import { NodePool } from "./NodePool";
+import { ClassType } from "../Types";
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
  * nodes to/from the list as the entities and the components in the engine change.
@@ -16,7 +17,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     private nodes:NodeList<TNode>;
     private entities:Dictionary<Entity, TNode>;
     private nodeClass:{ new():TNode };
-    public components:Dictionary<{ new():any }, string>;
+    public components:Dictionary<ClassType<any>, string>;
     private nodePool:NodePool<TNode>;
     private engine:Engine;
 
@@ -40,7 +41,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     private init():void {
         this.nodes = new NodeList<TNode>();
         this.entities = new Dictionary<Entity, TNode>();
-        this.components = new Dictionary<{ new( ...args:any[] ):any }, string>();
+        this.components = new Dictionary<ClassType<any>, string>();
         this.nodePool = new NodePool<TNode>( this.nodeClass, this.components );
 
         let dummyNode:TNode = this.nodePool.get();
@@ -76,7 +77,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
      * Called by the engine when a component has been added to an entity. We check if the entity is not in
      * this family's NodeList and should be, and add it if appropriate.
      */
-    public componentAddedToEntity( entity:Entity, componentClass:{ new( ...args:any[] ):any } ):void {
+    public componentAddedToEntity( entity:Entity, componentClass:ClassType<any> ):void {
         this.addIfMatch( entity );
     }
 
@@ -85,7 +86,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
      * is required by this family's NodeList and if so, we check if the entity is in this this NodeList and
      * remove it if so.
      */
-    public componentRemovedFromEntity( entity:Entity, componentClass:{ new( ...args:any[] ):any } ):void {
+    public componentRemovedFromEntity( entity:Entity, componentClass:ClassType<any> ):void {
         if( this.components.has( componentClass ) ) {
             this.removeIfMatch( entity );
         }

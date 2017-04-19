@@ -8,6 +8,8 @@ import { NodeList } from "./NodeList";
 import { SystemList } from "./SystemList";
 import { Signal0 } from "../signals/Signal0";
 import { System } from "./System";
+import { ClassType } from "../Types";
+
 
 /**
  * The Engine class is the central point for creating and managing your game state. Add
@@ -123,7 +125,7 @@ export class Engine {
     /**
      * @private
      */
-    private componentAdded = <T>( entity:Entity, componentClass:{ new( ...args:any[] ):T } ) => {
+    private componentAdded = ( entity:Entity, componentClass:ClassType<any> ) => {
         for( let family of this.families.values() ) {
             family.componentAddedToEntity( entity, componentClass );
         }
@@ -132,7 +134,7 @@ export class Engine {
     /**
      * @private
      */
-    private componentRemoved = <T>( entity:Entity, componentClass:{ new( ...args:any[] ):T } ) => {
+    private componentRemoved = ( entity:Entity, componentClass:ClassType<any> ) => {
         for( let family of this.families.values() ) {
             family.componentRemovedFromEntity( entity, componentClass );
         }
