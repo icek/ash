@@ -1,8 +1,8 @@
-import { Node, keep } from "../ash";
-import { Audio } from "../components";
+import { Node, keep } from '../ash';
+import { Audio } from '../components';
 
 export class AudioNode extends Node<AudioNode>
 {
-    @keep(Audio)
+    @keep( Audio )
     public audio:Audio;
 }

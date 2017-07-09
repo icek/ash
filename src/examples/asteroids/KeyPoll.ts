@@ -1,20 +1,23 @@
 const WORD_SIZE = 32;
 
-export class KeyPoll {
-
+export class KeyPoll
+{
     private _keys:Int32Array = new Int32Array( 4 );
 
-    constructor() {
+    constructor()
+    {
         window.addEventListener( 'keyup', this.keyUpHandler );
         window.addEventListener( 'keydown', this.keyDownHandler );
     }
 
-    public isDown( key:number ):boolean {
+    public isDown( key:number ):boolean
+    {
         let i = Math.floor( key / WORD_SIZE );
         return (this._keys[ i ] & (1 << key - i * WORD_SIZE)) != 0;
     }
 
-    public isUp( key:number ):boolean {
+    public isUp( key:number ):boolean
+    {
         return !this.isDown( key );
     }
 

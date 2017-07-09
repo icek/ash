@@ -1,13 +1,13 @@
-import { Node, keep } from "../ash";
-import { Bullet, Collision, Position } from "../components";
+import { Node, keep } from '../ash';
+import { Bullet, Collision, Position } from '../components';
 
 export class BulletCollisionNode extends Node<BulletCollisionNode>
 {
-    @keep(Bullet)
+    @keep( Bullet )
     public bullet:Bullet;
-    @keep(Position)
+    @keep( Position )
     public position:Position;
-    @keep(Collision)
+    @keep( Collision )
     public collision:Collision;
 
 }

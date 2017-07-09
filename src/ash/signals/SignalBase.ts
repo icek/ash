@@ -2,14 +2,16 @@
  * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
  */
 
-import { ListenerNode } from "./ListenerNode";
-import { Dictionary } from "../Dictionary";
-import { ListenerNodePool } from "./ListenerNodePool";
+import { ListenerNode } from './ListenerNode';
+import { Dictionary } from '../Dictionary';
+import { ListenerNodePool } from './ListenerNodePool';
+
 /**
  * The base class for all the signal classes.
  */
 
-export class SignalBase<TListener> {
+export class SignalBase<TListener>
+{
     protected head:ListenerNode<TListener>;
     protected tail:ListenerNode<TListener>;
 
@@ -20,23 +22,29 @@ export class SignalBase<TListener> {
     private dispatching:boolean;
     private _numListeners:number = 0;
 
-    constructor() {
+    constructor()
+    {
         this.nodes = new Dictionary<TListener, ListenerNode<TListener>>();
         this.listenerNodePool = new ListenerNodePool<TListener>();
     }
 
-    protected startDispatch():void {
+    protected startDispatch():void
+    {
         this.dispatching = true;
     }
 
-    protected endDispatch():void {
+    protected endDispatch():void
+    {
         this.dispatching = false;
-        if( this.toAddHead ) {
-            if( !this.head ) {
+        if( this.toAddHead )
+        {
+            if( !this.head )
+            {
                 this.head = this.toAddHead;
                 this.tail = this.toAddTail;
             }
-            else {
+            else
+            {
                 this.tail.next = this.toAddHead;
                 this.toAddHead.previous = this.tail;
                 this.tail = this.toAddTail;
@@ -47,12 +55,15 @@ export class SignalBase<TListener> {
         this.listenerNodePool.releaseCache();
     }
 
-    public get numListeners():number {
+    public get numListeners():number
+    {
         return this._numListeners;
     }
 
-    public add( listener:TListener ):void {
-        if( this.nodes.has( listener ) ) {
+    public add( listener:TListener ):void
+    {
+        if( this.nodes.has( listener ) )
+        {
             return;
         }
 
@@ -62,8 +73,10 @@ export class SignalBase<TListener> {
         this.addNode( node );
     }
 
-    public addOnce( listener:TListener ):void {
-        if( this.nodes.has( listener ) ) {
+    public addOnce( listener:TListener ):void
+    {
+        if( this.nodes.has( listener ) )
+        {
             return;
         }
 
@@ -74,22 +87,29 @@ export class SignalBase<TListener> {
         this.addNode( node );
     }
 
-    protected addNode( node:ListenerNode<TListener> ):void {
-        if( this.dispatching ) {
-            if( !this.toAddHead ) {
+    protected addNode( node:ListenerNode<TListener> ):void
+    {
+        if( this.dispatching )
+        {
+            if( !this.toAddHead )
+            {
                 this.toAddHead = this.toAddTail = node;
             }
-            else {
+            else
+            {
                 this.toAddTail.next = node;
                 node.previous = this.toAddTail;
                 this.toAddTail = node;
             }
         }
-        else {
-            if( !this.head ) {
+        else
+        {
+            if( !this.head )
+            {
                 this.head = this.tail = node;
             }
-            else {
+            else
+            {
                 this.tail.next = node;
                 node.previous = this.tail;
                 this.tail = node;
@@ -98,40 +118,52 @@ export class SignalBase<TListener> {
         this._numListeners++;
     }
 
-    public remove( listener:TListener ):void {
+    public remove( listener:TListener ):void
+    {
         let node:ListenerNode<TListener> = this.nodes.get( listener );
-        if( node ) {
-            if( this.head === node ) {
+        if( node )
+        {
+            if( this.head === node )
+            {
                 this.head = this.head.next;
             }
-            if( this.tail === node ) {
+            if( this.tail === node )
+            {
                 this.tail = this.tail.previous;
             }
-            if( this.toAddHead === node ) {
+            if( this.toAddHead === node )
+            {
                 this.toAddHead = this.toAddHead.next;
             }
-            if( this.toAddTail === node ) {
+            if( this.toAddTail === node )
+            {
                 this.toAddTail = this.toAddTail.previous;
             }
-            if( node.previous ) {
+            if( node.previous )
+            {
                 node.previous.next = node.next;
             }
-            if( node.next ) {
+            if( node.next )
+            {
                 node.next.previous = node.previous;
             }
             this.nodes.remove( listener );
-            if( this.dispatching ) {
+            if( this.dispatching )
+            {
                 this.listenerNodePool.cache( node );
             }
-            else {
+            else
+            {
                 this.listenerNodePool.dispose( node );
             }
             this._numListeners--;
         }
     }
 
-    public removeAll():void {
-        while( this.head ) {
+    public removeAll():void
+    {
+        while( this.head )
+        {
             let node:ListenerNode<TListener> = this.head;
             this.head = this.head.next;
             this.nodes.remove( node.listener );

@@ -3,8 +3,8 @@ import { GameState, Hud } from '../components';
 
 export class HudNode extends Node<HudNode>
 {
-    @keep(GameState)
+    @keep( GameState )
     public state:GameState;
-    @keep(Hud)
+    @keep( Hud )
     public hud:Hud;
 }

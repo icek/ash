@@ -1,6 +1,8 @@
-import { SVGView } from "../graphics/index";
+import { SVGView } from '../graphics';
 
-export class Display {
-    constructor( public displayObject:SVGView ) {
+export class Display
+{
+    constructor( public displayObject:SVGView )
+    {
     }
 }

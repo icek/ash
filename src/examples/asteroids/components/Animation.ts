@@ -1,7 +1,9 @@
-import { Animatable } from "../graphics/Animatable"
+import { Animatable } from '../graphics'
 
-export class Animation {
-    constructor( public animation:Animatable ) {
+export class Animation
+{
+    constructor( public animation:Animatable )
+    {
 
     }
 }

@@ -1,16 +1,19 @@
 import { Signal1 } from '../signals/Signal1';
 import { ITickProvider } from './ITickProvider';
 
-export class RAFTickProvider extends Signal1<number> implements ITickProvider {
+export class RAFTickProvider extends Signal1<number> implements ITickProvider
+{
     private rafId:number;
     private previousTime:number;
     public playing:boolean;
 
-    constructor() {
+    constructor()
+    {
         super();
     }
 
-    public start():void {
+    public start():void
+    {
         this.previousTime = Date.now();
         this.playing = true;
         this.rafId = requestAnimationFrame( this.update );
@@ -23,7 +26,8 @@ export class RAFTickProvider extends Signal1<number> implements ITickProvider {
         this.previousTime = time;
     };
 
-    public stop():void {
+    public stop():void
+    {
         cancelAnimationFrame( this.rafId );
     }
 }

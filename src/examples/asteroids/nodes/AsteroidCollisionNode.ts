@@ -1,14 +1,14 @@
-import { Node, keep } from "../ash";
-import { Asteroid, Audio, Collision, Position } from "../components";
+import { Node, keep } from '../ash';
+import { Asteroid, Audio, Collision, Position } from '../components';
 
 export class AsteroidCollisionNode extends Node<AsteroidCollisionNode>
 {
-    @keep(Asteroid)
+    @keep( Asteroid )
     public asteroid:Asteroid;
-    @keep(Position)
+    @keep( Position )
     public position:Position;
-    @keep(Collision)
+    @keep( Collision )
     public collision:Collision;
-    @keep(Audio)
+    @keep( Audio )
     public audio:Audio;
 }

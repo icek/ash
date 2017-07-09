@@ -1,6 +1,7 @@
-import { Signal2 } from "../signals/Signal2";
-import { Dictionary } from "../Dictionary";
-import { ClassType } from "../Types";
+import { Signal2 } from '../signals/Signal2';
+import { Dictionary } from '../Dictionary';
+import { ClassType } from '../Types';
+
 /**
  * An entity is composed from components. As such, it is essentially a collection object for components.
  * Sometimes, the entities in a game will mirror the actual characters and objects in the game, but this
@@ -19,7 +20,8 @@ import { ClassType } from "../Types";
  * <p>All entities that have a position in the game world, will have an instance of the
  * position component. Systems operate on entities based on the components they have.</p>
  */
-export class Entity {
+export class Entity
+{
     private static nameCount:number = 0;
 
     /**
@@ -48,15 +50,18 @@ export class Entity {
      *
      * @param name The name for the entity. If left blank, a default name is assigned with the form _entityN where N is an integer.
      */
-    constructor( name:string = '' ) {
+    constructor( name:string = '' )
+    {
         this.componentAdded = new Signal2();
         this.componentRemoved = new Signal2();
         this.nameChanged = new Signal2();
         this.components = new Dictionary<ClassType<any>, any>();
-        if( name ) {
+        if( name )
+        {
             this._name = name;
         }
-        else {
+        else
+        {
             this._name = '_entity' + (++Entity.nameCount);
         }
     }
@@ -65,12 +70,15 @@ export class Entity {
      * All entities have a name. If no name is set, a default name is used. Names are used to
      * fetch specific entities from the engine, and can also help to identify an entity when debugging.
      */
-    public get name():string {
+    public get name():string
+    {
         return this._name;
     }
 
-    public set name( value:string ) {
-        if( this._name !== value ) {
+    public set name( value:string )
+    {
+        if( this._name !== value )
+        {
             let previous:string = this._name;
             this._name = value;
             this.nameChanged.dispatch( this, previous );
@@ -93,12 +101,15 @@ export class Entity {
      *     .add( new Display( new PlayerClip() );</code>
      */
 
-    public add<T>( component:T, componentClass:ClassType<T> = null ):this {
-        if( !componentClass ) {
+    public add<T>( component:T, componentClass:ClassType<T> = null ):this
+    {
+        if( !componentClass )
+        {
             componentClass = component.constructor.prototype.constructor; // weird but works!
         }
 
-        if( this.components.has( componentClass ) ) {
+        if( this.components.has( componentClass ) )
+        {
             this.remove( componentClass );
         }
 
@@ -113,9 +124,11 @@ export class Entity {
      * @param componentClass The class of the component to be removed.
      * @return the component, or null if the component doesn't exist in the entity
      */
-    public remove<T>( componentClass:ClassType<T> ):T {
+    public remove<T>( componentClass:ClassType<T> ):T
+    {
         let component:any = this.components.get( componentClass );
-        if( component ) {
+        if( component )
+        {
             this.components.remove( componentClass );
             this.componentRemoved.dispatch( this, componentClass );
             return component;
@@ -129,7 +142,8 @@ export class Entity {
      * @param componentClass The class of the component requested.
      * @return The component, or null if none was found.
      */
-    public get<T>( componentClass:ClassType<T> ):T {
+    public get<T>( componentClass:ClassType<T> ):T
+    {
         return this.components.get( componentClass );
     }
 
@@ -138,9 +152,11 @@ export class Entity {
      *
      * @return An array containing all the components that are on the entity.
      */
-    public getAll():any[] {
+    public getAll():any[]
+    {
         let componentArray:any[] = [];
-        for( let value of this.components.values() ) {
+        for( let value of this.components.values() )
+        {
             componentArray[ componentArray.length ] = value;
         }
         return componentArray;
@@ -152,7 +168,8 @@ export class Entity {
      * @param componentClass The class of the component sought.
      * @return true if the entity has a component of the type, false if not.
      */
-    public has<T>( componentClass:ClassType<T> ):boolean {
+    public has<T>( componentClass:ClassType<T> ):boolean
+    {
         return this.components.has( componentClass );
     }
 }

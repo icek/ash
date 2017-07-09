@@ -1,4 +1,5 @@
-export enum Keyboard {
+export enum Keyboard
+{
     NUMBER_0 = 48,
     NUMBER_1 = 49,
     NUMBER_2 = 50,

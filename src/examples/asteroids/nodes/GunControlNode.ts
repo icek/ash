@@ -3,12 +3,12 @@ import { Audio, Gun, GunControls, Position } from '../components';
 
 export class GunControlNode extends Node<GunControlNode>
 {
-    @keep(GunControls)
+    @keep( GunControls )
     public control:GunControls;
-    @keep(Gun)
+    @keep( Gun )
     public gun:Gun;
-    @keep(Position)
+    @keep( Position )
     public position:Position;
-    @keep(Audio)
+    @keep( Audio )
     public audio:Audio;
 }

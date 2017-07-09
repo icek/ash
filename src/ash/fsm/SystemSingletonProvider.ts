@@ -7,7 +7,7 @@ import { ISystemProvider } from './ISystemProvider';
  */
 export class SystemSingletonProvider<TSystem extends System> implements ISystemProvider<TSystem>
 {
-    private componentType:{new( ...args:any[] ):TSystem};
+    private componentType:{ new( ...args:any[] ):TSystem };
     private instance:TSystem;
     private systemPriority:number = 0;
 
@@ -16,7 +16,7 @@ export class SystemSingletonProvider<TSystem extends System> implements ISystemP
      *
      * @param type The type of the single System instance
      */
-    constructor( type:{new( ...args:any[] ):TSystem} )
+    constructor( type:{ new( ...args:any[] ):TSystem } )
     {
         this.componentType = type;
     }

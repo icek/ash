@@ -1,21 +1,22 @@
-import { Dictionary } from "../Dictionary";
-import { ComponentMatchingFamily } from "./ComponentMatchingFamily";
-import { Entity } from "./Entity";
-import { EntityList } from "./EntityList";
-import { IFamily } from "./IFamily";
-import { Node } from "./Node";
-import { NodeList } from "./NodeList";
-import { SystemList } from "./SystemList";
-import { Signal0 } from "../signals/Signal0";
-import { System } from "./System";
-import { ClassType } from "../Types";
+import { Dictionary } from '../Dictionary';
+import { ComponentMatchingFamily } from './ComponentMatchingFamily';
+import { Entity } from './Entity';
+import { EntityList } from './EntityList';
+import { IFamily } from './IFamily';
+import { Node } from './Node';
+import { NodeList } from './NodeList';
+import { SystemList } from './SystemList';
+import { Signal0 } from '../signals/Signal0';
+import { System } from './System';
+import { ClassType } from '../Types';
 
 
 /**
  * The Engine class is the central point for creating and managing your game state. Add
  * entities and systems to the engine, and fetch families of nodes from the engine.
  */
-export class Engine {
+export class Engine
+{
     private entityNames:Entity[];
     private entityList:EntityList;
     private systemList:SystemList;
@@ -42,7 +43,8 @@ export class Engine {
      */
     public familyClass:any = ComponentMatchingFamily;
 
-    constructor() {
+    constructor()
+    {
         this.entityList = new EntityList();
         this.entityNames = [];
         this.systemList = new SystemList();
@@ -55,8 +57,10 @@ export class Engine {
      *
      * @param entity The entity to add.
      */
-    public addEntity( entity:Entity ):void {
-        if( this.entityNames[ entity.name ] ) {
+    public addEntity( entity:Entity ):void
+    {
+        if( this.entityNames[ entity.name ] )
+        {
             throw new Error( 'The entity name ' + entity.name + ' is already in use by another entity.' );
         }
         this.entityList.add( entity );
@@ -64,7 +68,8 @@ export class Engine {
         entity.componentAdded.add( this.componentAdded );
         entity.componentRemoved.add( this.componentRemoved );
         entity.nameChanged.add( this.entityNameChanged );
-        for( let family of this.families.values() ) {
+        for( let family of this.families.values() )
+        {
             family.newEntity( entity );
         }
     }
@@ -74,11 +79,13 @@ export class Engine {
      *
      * @param entity The entity to remove.
      */
-    public removeEntity( entity:Entity ):void {
+    public removeEntity( entity:Entity ):void
+    {
         entity.componentAdded.remove( this.componentAdded );
         entity.componentRemoved.remove( this.componentRemoved );
         entity.nameChanged.remove( this.entityNameChanged );
-        for( let family of this.families.values() ) {
+        for( let family of this.families.values() )
+        {
             family.removeEntity( entity );
         }
         this.entityNames[ entity.name ] = null;
@@ -86,7 +93,8 @@ export class Engine {
     }
 
     private entityNameChanged = ( entity:Entity, oldName:string ) => {
-        if( this.entityNames[ oldName ] === entity ) {
+        if( this.entityNames[ oldName ] === entity )
+        {
             this.entityNames[ oldName ] = null;
             this.entityNames[ entity.name ] = entity;
         }
@@ -98,15 +106,18 @@ export class Engine {
      * @param name The name of the entity
      * @return The entity, or null if no entity with that name exists on the engine
      */
-    public getEntityByName( name:string ):Entity {
+    public getEntityByName( name:string ):Entity
+    {
         return this.entityNames[ name ];
     }
 
     /**
      * Remove all entities from the engine.
      */
-    public removeAllEntities():void {
-        while( this.entityList.head ) {
+    public removeAllEntities():void
+    {
+        while( this.entityList.head )
+        {
             this.removeEntity( this.entityList.head );
         }
     }
@@ -114,9 +125,11 @@ export class Engine {
     /**
      * Returns a vector containing all the entities in the engine.
      */
-    public get entities():Entity[] {
+    public get entities():Entity[]
+    {
         let entities:Entity[] = [];
-        for( let entity:Entity = this.entityList.head; entity; entity = entity.next ) {
+        for( let entity:Entity = this.entityList.head; entity; entity = entity.next )
+        {
             entities[ entities.length ] = entity;
         }
         return entities;
@@ -126,7 +139,8 @@ export class Engine {
      * @private
      */
     private componentAdded = ( entity:Entity, componentClass:ClassType<any> ) => {
-        for( let family of this.families.values() ) {
+        for( let family of this.families.values() )
+        {
             family.componentAddedToEntity( entity, componentClass );
         }
     };
@@ -135,7 +149,8 @@ export class Engine {
      * @private
      */
     private componentRemoved = ( entity:Entity, componentClass:ClassType<any> ) => {
-        for( let family of this.families.values() ) {
+        for( let family of this.families.values() )
+        {
             family.componentRemovedFromEntity( entity, componentClass );
         }
     };
@@ -152,13 +167,16 @@ export class Engine {
      * @param nodeClass The type of node required.
      * @return A linked list of all nodes of this type from all entities in the engine.
      */
-    public getNodeList<TNode extends Node<any>>( nodeClass:{ new():TNode } ):NodeList<TNode> {
-        if( this.families.has( nodeClass ) ) {
+    public getNodeList<TNode extends Node<any>>( nodeClass:{ new():TNode } ):NodeList<TNode>
+    {
+        if( this.families.has( nodeClass ) )
+        {
             return this.families.get( nodeClass ).nodeList;
         }
         let family:IFamily<TNode> = new this.familyClass( nodeClass, this );
         this.families.set( nodeClass, family );
-        for( let entity:Entity = this.entityList.head; entity; entity = entity.next ) {
+        for( let entity:Entity = this.entityList.head; entity; entity = entity.next )
+        {
             family.newEntity( entity );
         }
         return family.nodeList;
@@ -174,8 +192,10 @@ export class Engine {
      *
      * @param nodeClass The type of the node class if the list to be released.
      */
-    public releaseNodeList<TNode extends Node<any>>( nodeClass:{ new():TNode } ):void {
-        if( this.families.has( nodeClass ) ) {
+    public releaseNodeList<TNode extends Node<any>>( nodeClass:{ new():TNode } ):void
+    {
+        if( this.families.has( nodeClass ) )
+        {
             this.families.get( nodeClass ).cleanUp();
         }
         this.families.remove( nodeClass );
@@ -193,7 +213,8 @@ export class Engine {
      * @param priority The priority for updating the systems during the engine loop. A
      * lower number means the system is updated sooner.
      */
-    public addSystem( system:System, priority:number ):void {
+    public addSystem( system:System, priority:number ):void
+    {
         system.priority = priority;
         system.addToEngine( this );
         this.systemList.add( system );
@@ -206,16 +227,19 @@ export class Engine {
      * @return The instance of the system type that is in the engine, or
      * null if no systems of this type are in the engine.
      */
-    public getSystem<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem {
+    public getSystem<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem
+    {
         return this.systemList.get( type );
     }
 
     /**
      * Returns a vector containing all the systems in the engine.
      */
-    public get systems():System[] {
+    public get systems():System[]
+    {
         let systems:System[] = [];
-        for( let system:System = this.systemList.head; system; system = system.next ) {
+        for( let system:System = this.systemList.head; system; system = system.next )
+        {
             systems[ systems.length ] = system;
         }
         return systems;
@@ -226,7 +250,8 @@ export class Engine {
      *
      * @param system The system to remove from the engine.
      */
-    public removeSystem( system:System ):void {
+    public removeSystem( system:System ):void
+    {
         this.systemList.remove( system );
         system.removeFromEngine( this );
     }
@@ -234,8 +259,10 @@ export class Engine {
     /**
      * Remove all systems from the engine.
      */
-    public removeAllSystems():void {
-        while( this.systemList.head ) {
+    public removeAllSystems():void
+    {
+        while( this.systemList.head )
+        {
             let system:System = this.systemList.head;
             this.systemList.head = this.systemList.head.next;
             system.previous = null;
@@ -254,9 +281,11 @@ export class Engine {
      *
      * @time The duration, in seconds, of this update step.
      */
-    public update( time:number ):void {
+    public update( time:number ):void
+    {
         this.updating = true;
-        for( let system:System = this.systemList.head; system; system = system.next ) {
+        for( let system:System = this.systemList.head; system; system = system.next )
+        {
             system.update( time );
         }
         this.updating = false;

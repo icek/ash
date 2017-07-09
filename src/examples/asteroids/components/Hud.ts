@@ -1,4 +1,5 @@
-import { HudView } from "../graphics/index";
+import { HudView } from '../graphics';
+
 export class Hud
 {
     constructor( public view:HudView )

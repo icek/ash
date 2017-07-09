@@ -1,10 +1,12 @@
-import { WaitForStartView } from "../graphics/index";
+import { WaitForStartView } from '../graphics';
 
-export class WaitForStart {
+export class WaitForStart
+{
     public waitForStart:WaitForStartView;
     public startGame:boolean;
 
-    constructor( waitForStart:WaitForStartView ) {
+    constructor( waitForStart:WaitForStartView )
+    {
         this.waitForStart = waitForStart;
         waitForStart.click.add( () => this.startGame = true );
     }

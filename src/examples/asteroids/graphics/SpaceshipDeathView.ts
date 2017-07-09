@@ -1,6 +1,8 @@
-import { Animatable } from "./Animatable";
-import { SVGView } from "./SVGView";
-export class SpaceshipDeathView extends SVGView implements Animatable {
+import { Animatable } from './Animatable';
+import { SVGView } from './SVGView';
+
+export class SpaceshipDeathView extends SVGView implements Animatable
+{
     private shape1:SVGView;
     private shape2:SVGView;
     private vel1x:number;
@@ -10,7 +12,8 @@ export class SpaceshipDeathView extends SVGView implements Animatable {
     private rot1:number;
     private rot2:number;
 
-    constructor() {
+    constructor()
+    {
         super( 20, 20 );
 
         this.shape1 = new SVGView( 20, 20 ).setContent( '<path d="M10 0 L-7 7 L-4 0 L10 0" fill="#fff"/>' );
@@ -27,7 +30,8 @@ export class SpaceshipDeathView extends SVGView implements Animatable {
         this.rot2 = Math.random() * 3 - 1.5;
     }
 
-    public animate( time:number ):void {
+    public animate( time:number ):void
+    {
         let { shape1, shape2 } = this;
         shape1.setTransform( shape1.x + this.vel1x * time, shape1.y + this.vel1y * time, shape1.r + this.rot1 * time );
         shape2.setTransform( shape2.x + this.vel2x * time, shape2.y + this.vel2y * time, shape2.r + this.rot2 * time );

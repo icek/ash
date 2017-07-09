@@ -1,12 +1,13 @@
-export class SVGView {
-
+export class SVGView
+{
     public element:SVGElement;
 
     public x:number = 0;
     public y:number = 0;
     public r:number = 0;
 
-    constructor( width:number = 100, height:number = 100 ) {
+    constructor( width:number = 100, height:number = 100 )
+    {
         this.element = document.createElementNS( 'http://www.w3.org/2000/svg', 'g' );
         let { style } = this.element;
         // style.position = 'absolute';
@@ -14,7 +15,7 @@ export class SVGView {
         //     .setAttribute( 'height', `${height}` )
         //     .setAttribute( 'padding-left', `${-width/2}` )
         //     .setAttribute( 'y', `${-height/2}` )
-            // .setAttribute('transform-origin', `${width / 2} ${height / 2}`);
+        // .setAttribute('transform-origin', `${width / 2} ${height / 2}`);
         // style.position = 'absolute';
         // style.left = `-${width / 2}px`;
         // style.top = `-${height / 2}px`;
@@ -23,7 +24,8 @@ export class SVGView {
         // style.transformOrigin = `${width / 2}px ${height / 2}px`;
     }
 
-    public setTransform( x:number = 0, y:number = 0, r:number = 0 ):this {
+    public setTransform( x:number = 0, y:number = 0, r:number = 0 ):this
+    {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -31,7 +33,8 @@ export class SVGView {
         // return this;
     }
 
-    public setContent( content:string ):this {
+    public setContent( content:string ):this
+    {
         // let doc = new DOMParser().parseFromString( content, 'text/xml' );
 
         // this.element.appendChild( this.element.ownerDocument.importNode( doc.documentElement, true ) );
@@ -40,16 +43,19 @@ export class SVGView {
         return this;
     }
 
-    public setAttribute( key:string, value:string ):this {
+    public setAttribute( key:string, value:string ):this
+    {
         this.element.setAttribute( key, value );
         return this;
     }
 
-    public addChild( child:SVGView ) {
+    public addChild( child:SVGView )
+    {
         this.element.appendChild( child.element );
     }
 
-    public removeChild( child:SVGView ) {
+    public removeChild( child:SVGView )
+    {
         this.element.removeChild( child.element );
     }
 }

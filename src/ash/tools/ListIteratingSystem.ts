@@ -26,43 +26,54 @@ import { System } from '../core/System';
  * }</code>
  */
 
-export abstract class ListIteratingSystem<TNode extends Node<any>> extends System {
+export abstract class ListIteratingSystem<TNode extends Node<any>> extends System
+{
     protected nodeList:NodeList<TNode>;
     protected nodeClass:{ new():TNode };
     protected nodeAdded:( node:Node<TNode> ) => void;
     protected nodeRemoved:( node:Node<TNode> ) => void;
 
-    constructor( nodeClass:{ new():TNode } ) {
+    constructor( nodeClass:{ new():TNode } )
+    {
         super();
 
         this.nodeClass = nodeClass;
     }
 
-    public addToEngine( engine:Engine ):void {
+    public addToEngine( engine:Engine ):void
+    {
         this.nodeList = engine.getNodeList<TNode>( this.nodeClass );
-        if( this.nodeAdded ) {
-            for( let node:Node<TNode> = this.nodeList.head; node; node = node.next ) {
+        if( this.nodeAdded )
+        {
+            for( let node:Node<TNode> = this.nodeList.head; node; node = node.next )
+            {
                 this.nodeAdded( node );
             }
             this.nodeList.nodeAdded.add( this.nodeAdded );
         }
-        if( this.nodeRemoved ) {
+        if( this.nodeRemoved )
+        {
             this.nodeList.nodeRemoved.add( this.nodeRemoved );
         }
     }
 
-    public removeFromEngine( engine:Engine ):void {
-        if( this.nodeAdded ) {
+    public removeFromEngine( engine:Engine ):void
+    {
+        if( this.nodeAdded )
+        {
             this.nodeList.nodeAdded.remove( this.nodeAdded );
         }
-        if( this.nodeRemoved ) {
+        if( this.nodeRemoved )
+        {
             this.nodeList.nodeRemoved.remove( this.nodeRemoved );
         }
         this.nodeList = null;
     }
 
-    public update( time:number ):void {
-        for( let node:Node<TNode> = this.nodeList.head; node; node = node.next ) {
+    public update( time:number ):void
+    {
+        for( let node:Node<TNode> = this.nodeList.head; node; node = node.next )
+        {
             this.updateNode( node, time );
         }
     }

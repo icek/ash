@@ -1,8 +1,9 @@
-export class Bullet {
-
+export class Bullet
+{
     public lifeRemaining:number;
 
-    constructor( lifeTime:number ) {
+    constructor( lifeTime:number )
+    {
         this.lifeRemaining = lifeTime;
     }
 }

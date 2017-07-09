@@ -6,7 +6,7 @@ import { IComponentProvider } from './IComponentProvider';
  */
 export class ComponentSingletonProvider<TComponent> implements IComponentProvider<TComponent>
 {
-    private componentType:{new( ...args:any[] ):TComponent};
+    private componentType:{ new( ...args:any[] ):TComponent };
     private instance:TComponent;
 
     /**
@@ -14,7 +14,7 @@ export class ComponentSingletonProvider<TComponent> implements IComponentProvide
      *
      * @param type The type of the single instance
      */
-    constructor( type:{new( ...args:any[] ):TComponent} )
+    constructor( type:{ new( ...args:any[] ):TComponent } )
     {
         this.componentType = type;
     }

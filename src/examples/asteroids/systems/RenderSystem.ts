@@ -1,20 +1,23 @@
-import { Engine, NodeList, System } from "../ash";
-import { RenderNode } from "../nodes";
-import { Display, Position } from "../components";
-import { SVGView } from "../graphics";
+import { Engine, NodeList, System } from '../ash';
+import { RenderNode } from '../nodes';
+import { Display, Position } from '../components';
+import { SVGView } from '../graphics';
 
-export class RenderSystem extends System {
-
+export class RenderSystem extends System
+{
     private nodes:NodeList<RenderNode>;
 
-    constructor( public container:HTMLElement ) {
+    constructor( public container:HTMLElement )
+    {
         super();
         this.container = container;
     }
 
-    public addToEngine( engine:Engine ):void {
+    public addToEngine( engine:Engine ):void
+    {
         this.nodes = engine.getNodeList( RenderNode );
-        for( let node:RenderNode = this.nodes.head; node; node = node.next ) {
+        for( let node:RenderNode = this.nodes.head; node; node = node.next )
+        {
             this.addToDisplay( node );
         }
         this.nodes.nodeAdded.add( this.addToDisplay );
@@ -29,13 +32,15 @@ export class RenderSystem extends System {
         this.container.removeChild( node.display.displayObject.element );
     };
 
-    public update( time:number ):void {
+    public update( time:number ):void
+    {
         let node:RenderNode;
         let position:Position;
         let display:Display;
         let displayObject:SVGView;
 
-        for( node = this.nodes.head; node; node = node.next ) {
+        for( node = this.nodes.head; node; node = node.next )
+        {
             display = node.display;
             displayObject = display.displayObject;
             position = node.position;
@@ -43,7 +48,8 @@ export class RenderSystem extends System {
         }
     }
 
-    public removeFromEngine( engine:Engine ):void {
+    public removeFromEngine( engine:Engine ):void
+    {
         this.nodes = null;
     }
 

@@ -1,8 +1,8 @@
-import { Node, keep } from "../ash";
-import { WaitForStart } from "../components/index";
+import { Node, keep } from '../ash';
+import { WaitForStart } from '../components';
 
 export class WaitForStartNode extends Node<WaitForStartNode>
 {
-    @keep(WaitForStart)
+    @keep( WaitForStart )
     public wait:WaitForStart;
 }

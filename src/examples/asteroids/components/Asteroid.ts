@@ -1,7 +1,9 @@
-import { EntityStateMachine } from "../ash";
+import { EntityStateMachine } from '../ash';
 
-export class Asteroid {
-    constructor( public fsm:EntityStateMachine ) {
+export class Asteroid
+{
+    constructor( public fsm:EntityStateMachine )
+    {
 
     }
 }

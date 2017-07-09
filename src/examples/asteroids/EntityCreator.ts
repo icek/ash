@@ -1,30 +1,34 @@
-import { Engine, Entity, EntityStateMachine } from "./ash";
+import { Engine, Entity, EntityStateMachine } from './ash';
 import {
     Animation, Asteroid, Audio, Bullet, Collision, DeathThroes, Display, GameState, Gun, GunControls,
     Hud, Motion, MotionControls, Position, Spaceship, WaitForStart
-} from "./components/index";
-import { Keyboard } from "./Keyboard";
+} from './components';
+import { Keyboard } from './Keyboard';
 
 import {
     AsteroidView, AsteroidDeathView, BulletView, HudView, SpaceshipView, SpaceshipDeathView, WaitForStartView
-} from "./graphics/index";
+} from './graphics';
 
-export class EntityCreator {
+export class EntityCreator
+{
     private engine:Engine;
     private waitEntity:Entity;
 
-    constructor( engine:Engine ) {
+    constructor( engine:Engine )
+    {
         this.engine = engine;
     }
 
-    public destroyEntity( entity:Entity ):void {
+    public destroyEntity( entity:Entity ):void
+    {
         this.engine.removeEntity( entity );
     }
 
-    public createGame():Entity {
+    public createGame():Entity
+    {
         let hud:HudView = new HudView();
 
-        let gameEntity:Entity = new Entity( "game" )
+        let gameEntity:Entity = new Entity( 'game' )
             .add( new GameState() )
             .add( new Hud( hud ) )
             .add( new Display( hud ) )
@@ -33,11 +37,13 @@ export class EntityCreator {
         return gameEntity;
     }
 
-    public createWaitForClick():Entity {
-        if( !this.waitEntity ) {
+    public createWaitForClick():Entity
+    {
+        if( !this.waitEntity )
+        {
             let waitView:WaitForStartView = new WaitForStartView();
 
-            this.waitEntity = new Entity( "wait" )
+            this.waitEntity = new Entity( 'wait' )
                 .add( new WaitForStart( waitView ) )
                 .add( new Display( waitView ) )
                 .add( new Position( 400, 300, 0 ) );
@@ -47,7 +53,8 @@ export class EntityCreator {
         return this.waitEntity;
     }
 
-    public createAsteroid( radius:number, x:number, y:number ):Entity {
+    public createAsteroid( radius:number, x:number, y:number ):Entity
+    {
         let asteroid:Entity = new Entity();
 
         let fsm:EntityStateMachine = new EntityStateMachine( asteroid );
@@ -73,7 +80,8 @@ export class EntityCreator {
         return asteroid;
     }
 
-    public createSpaceship():Entity {
+    public createSpaceship():Entity
+    {
         let spaceship:Entity = new Entity();
         let fsm:EntityStateMachine = new EntityStateMachine( spaceship );
 
@@ -101,7 +109,8 @@ export class EntityCreator {
         return spaceship;
     }
 
-    public createUserBullet( gun:Gun, parentPosition:Position ):Entity {
+    public createUserBullet( gun:Gun, parentPosition:Position ):Entity
+    {
         let cos:number = Math.cos( parentPosition.rotation );
         let sin:number = Math.sin( parentPosition.rotation );
         let bullet:Entity = new Entity()

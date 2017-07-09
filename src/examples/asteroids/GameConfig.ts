@@ -1,5 +1,7 @@
-export class GameConfig {
-    constructor( public width:number, public height:number ) {
+export class GameConfig
+{
+    constructor( public width:number, public height:number )
+    {
 
     }
 }

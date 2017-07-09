@@ -1,13 +1,15 @@
-import { SVGView } from "./SVGView";
-import { Signal0 } from "../ash";
+import { SVGView } from './SVGView';
+import { Signal0 } from '../ash';
 
-export class WaitForStartView extends SVGView {
+export class WaitForStartView extends SVGView
+{
     private gameOver:SVGView;
     private clickToStart:SVGView;
 
     public click:Signal0 = new Signal0();
 
-    constructor() {
+    constructor()
+    {
         super( 400, 300 );
 
         // GAME OVER
@@ -24,8 +26,8 @@ export class WaitForStartView extends SVGView {
         this.addChild( this.clickToStart );
 
         // EVENTS
-        this.element.addEventListener( "DOMNodeInsertedIntoDocument", this.addClickListener );
-        this.element.addEventListener( "DOMNodeRemovedFromDocument", this.removeClickListener );
+        this.element.addEventListener( 'DOMNodeInsertedIntoDocument', this.addClickListener );
+        this.element.addEventListener( 'DOMNodeRemovedFromDocument', this.removeClickListener );
     }
 
     private dispatchClick = () => {
@@ -38,7 +40,7 @@ export class WaitForStartView extends SVGView {
 
     private removeClickListener = () => {
         window.removeEventListener( 'click', this.dispatchClick );
-        this.gameOver.setContent('<text class="h1">GAME OVER</text>');
+        this.gameOver.setContent( '<text class="h1">GAME OVER</text>' );
     };
 
 }
