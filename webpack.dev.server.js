@@ -22,7 +22,8 @@ const HOST = process.env.HOST || 'localhost';
 const PORT = +process.env.DEV_PORT || 3000;
 
 const serverOptions = {
-    contentBase: 'http://' + HOST + ':' + PORT,
+    contentBase: `http://${HOST}:${PORT}`,
+    publicPath: config.length === 1 ? `/${config[0].name}` : '/',
     hot: true,
     inline: true,
     lazy: false,
@@ -34,7 +35,7 @@ new Express()
     .use( devMiddleware( compiler, serverOptions ) )
     .use( hotMiddleware( compiler ) )
 
-    .listen( PORT, HOST, ( err ) => {
+    .listen( PORT, HOST, err => {
         if( err ) return console.error( err );
         console.log( `Webpack development server listening on port ${PORT}` );
     } );
