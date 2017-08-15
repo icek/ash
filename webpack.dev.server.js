@@ -23,7 +23,7 @@ const PORT = +process.env.DEV_PORT || 3000;
 
 const serverOptions = {
     contentBase: `http://${HOST}:${PORT}`,
-    publicPath: config.length === 1 ? `/${config[0].name}` : '/',
+    publicPath: config.length === 1 ? `/${config[ 0 ].name}` : '/',
     hot: true,
     inline: true,
     lazy: false,
@@ -32,6 +32,9 @@ const serverOptions = {
 };
 
 new Express()
+    .set( 'view engine', 'ejs' )
+    .set( 'views', './src/examples' )
+    .get( '/', ( req, res ) => res.render( 'index', { examples: config.map(config => config.name) } ) )
     .use( devMiddleware( compiler, serverOptions ) )
     .use( hotMiddleware( compiler ) )
 
