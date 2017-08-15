@@ -1,4 +1,4 @@
-import { EntityStateMachine } from '../ash';
+import { EntityStateMachine } from 'ash';
 
 export class Asteroid
 {

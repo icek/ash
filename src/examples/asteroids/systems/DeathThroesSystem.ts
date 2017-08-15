@@ -1,7 +1,7 @@
 import { EntityCreator } from '../EntityCreator';
 import { DeathThroesNode } from '../nodes';
 
-import { ListIteratingSystem } from '../ash';
+import { ListIteratingSystem } from 'ash';
 
 export class DeathThroesSystem extends ListIteratingSystem<DeathThroesNode>
 {

@@ -1,4 +1,4 @@
-import { Node, keep } from '../ash';
+import { Node, keep } from 'ash';
 import { DeathThroes } from '../components';
 
 export class DeathThroesNode extends Node<DeathThroesNode>

@@ -1,6 +1,6 @@
 import { Motion, MotionControls, Position } from '../components';
 import { MotionControlNode } from '../nodes';
-import { ListIteratingSystem } from '../ash';
+import { ListIteratingSystem } from 'ash';
 import { KeyPoll } from '../KeyPoll';
 
 export class MotionControlSystem extends ListIteratingSystem<MotionControlNode>

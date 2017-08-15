@@ -1,4 +1,4 @@
-import { ListIteratingSystem } from '../ash';
+import { ListIteratingSystem } from 'ash';
 import { AudioNode } from '../nodes';
 
 export class AudioSystem extends ListIteratingSystem<AudioNode>

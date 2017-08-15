@@ -1,4 +1,4 @@
-import { Engine, RAFTickProvider } from './ash';
+import { Engine, RAFTickProvider } from 'ash';
 
 import { EntityCreator } from './EntityCreator';
 import { GameConfig } from './GameConfig';

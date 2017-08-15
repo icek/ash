@@ -10,24 +10,22 @@
  *
  */
 
-const path = require( 'path' );
 const Express = require( 'express' );
 const webpack = require( 'webpack' );
 const devMiddleware = require( 'webpack-dev-middleware' );
 const hotMiddleware = require( 'webpack-hot-middleware' );
-const config = require( './webpack.config.asteroids' );
+const config = require( './webpack.config.examples' );
 
 const compiler = webpack( config );
 
-const host = process.env.HOST || 'localhost';
-const port = +process.env.DEV_PORT || 3000;
+const HOST = process.env.HOST || 'localhost';
+const PORT = +process.env.DEV_PORT || 3000;
 
 const serverOptions = {
-    contentBase: 'http://' + host + ':' + port,
-    hot: false,
+    contentBase: 'http://' + HOST + ':' + PORT,
+    hot: true,
     inline: true,
     lazy: false,
-    publicPath: config.output.publicPath,
     headers: { 'Access-Control-Allow-Origin': '*' },
     stats: { colors: true }
 };
@@ -35,9 +33,8 @@ const serverOptions = {
 new Express()
     .use( devMiddleware( compiler, serverOptions ) )
     .use( hotMiddleware( compiler ) )
-    .use( ( req, res ) => res.sendFile( path.resolve( __dirname, 'dist/index.html' ) ) )
 
-    .listen( port, host, ( err ) => {
+    .listen( PORT, HOST, ( err ) => {
         if( err ) return console.error( err );
-        console.log( 'Webpack development server listening on port %s', port );
+        console.log( `Webpack development server listening on port ${PORT}` );
     } );

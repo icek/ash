@@ -1,4 +1,4 @@
-import { Node, keep } from '../ash';
+import { Node, keep } from 'ash';
 import { Display, Position } from '../components';
 
 export class RenderNode extends Node<RenderNode>

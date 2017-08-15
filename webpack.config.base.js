@@ -11,7 +11,6 @@
  */
 
 const path = require( 'path' );
-const file = require( 'file' );
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 
 const DIST = 'dist';
@@ -40,7 +39,10 @@ module.exports = {
     },
 
     resolve: {
-        extensions: [ '.js', '.ts' ]
+        extensions: [ '.js', '.ts' ],
+        alias: {
+            ash: path.resolve( __dirname, 'src', 'ash' )
+        }
     },
 
     module: {

@@ -1,4 +1,4 @@
-import { Node, keep } from '../ash';
+import { Node, keep } from 'ash';
 import { Audio, Collision, Position, Spaceship } from '../components';
 
 export class SpaceshipCollisionNode extends Node<SpaceshipCollisionNode>

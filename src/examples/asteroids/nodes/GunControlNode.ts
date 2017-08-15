@@ -1,4 +1,4 @@
-import { Node, keep } from '../ash';
+import { Node, keep } from 'ash';
 import { Audio, Gun, GunControls, Position } from '../components';
 
 export class GunControlNode extends Node<GunControlNode>

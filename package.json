@@ -38,7 +38,6 @@
     "dts-bundle": "^0.7.2",
     "express": "^4.15.2",
     "file": "^0.2.2",
-    "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.28.0",
     "karma": "^1.6.0",
     "karma-chai": "^0.1.0",
@@ -59,7 +58,7 @@
     "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "^2.2.2",
     "webpack": "^2.4.1",
-    "webpack-dev-middleware": "^1.10.1",
+    "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.0"
   }
 }

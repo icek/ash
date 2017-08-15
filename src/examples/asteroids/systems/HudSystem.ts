@@ -1,4 +1,4 @@
-import { ListIteratingSystem } from '../ash';
+import { ListIteratingSystem } from 'ash';
 import { HudNode } from '../nodes';
 
 export class HudSystem extends ListIteratingSystem<HudNode>

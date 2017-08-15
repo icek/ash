@@ -1,4 +1,4 @@
-import { ListIteratingSystem } from '../ash';
+import { ListIteratingSystem } from 'ash';
 import { GameConfig } from '../GameConfig';
 import { MovementNode } from '../nodes';
 
