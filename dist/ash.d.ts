@@ -35,66 +35,61 @@ declare module 'ash/Dictionary' {
 }
 
 declare module 'ash/signals/Signal0' {
-    import { SignalBase } from "ash/signals/SignalBase";
+    import { SignalBase } from 'ash/signals/SignalBase';
     export class Signal0 extends SignalBase<() => void> {
         dispatch(): void;
     }
 }
 
 declare module 'ash/signals/Signal1' {
-    import { SignalBase } from "ash/signals/SignalBase";
+    import { SignalBase } from 'ash/signals/SignalBase';
     export class Signal1<T> extends SignalBase<(a: T) => void> {
         dispatch(object: T): void;
     }
 }
 
 declare module 'ash/signals/Signal2' {
-    import { SignalBase } from "ash/signals/SignalBase";
+    import { SignalBase } from 'ash/signals/SignalBase';
     export class Signal2<T1, T2> extends SignalBase<(a: T1, b: T2) => void> {
         dispatch(object1: T1, object2: T2): void;
     }
 }
 
 declare module 'ash/signals/Signal3' {
-    import { SignalBase } from "ash/signals/SignalBase";
+    import { SignalBase } from 'ash/signals/SignalBase';
     export class Signal3<T1, T2, T3> extends SignalBase<(a: T1, b: T2, c: T3) => void> {
         dispatch(object1: T1, object2: T2, object3: T3): void;
     }
 }
 
 declare module 'ash/core/ComponentMatchingFamily' {
-    import { Dictionary } from "ash/Dictionary";
-    import { Engine } from "ash/core/Engine";
-    import { Entity } from "ash/core/Entity";
-    import { IFamily } from "ash/core/IFamily";
-    import { Node } from "ash/core/Node";
-    import { NodeList } from "ash/core/NodeList";
+    import { Dictionary } from 'ash/Dictionary';
+    import { Engine } from 'ash/core/Engine';
+    import { Entity } from 'ash/core/Entity';
+    import { IFamily } from 'ash/core/IFamily';
+    import { Node } from 'ash/core/Node';
+    import { NodeList } from 'ash/core/NodeList';
+    import { ClassType } from 'ash/Types';
     export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily<TNode> {
-        components: Dictionary<{
-            new (): any;
-        }, string>;
+        components: Dictionary<ClassType<any>, string>;
         constructor(nodeClass: {
             new (): TNode;
         }, engine: Engine);
         readonly nodeList: NodeList<TNode>;
         newEntity(entity: Entity): void;
-        componentAddedToEntity(entity: Entity, componentClass: {
-            new (...args: any[]): any;
-        }): void;
-        componentRemovedFromEntity(entity: Entity, componentClass: {
-            new (...args: any[]): any;
-        }): void;
+        componentAddedToEntity(entity: Entity, componentClass: ClassType<any>): void;
+        componentRemovedFromEntity(entity: Entity, componentClass: ClassType<any>): void;
         removeEntity(entity: Entity): void;
         cleanUp(): void;
     }
 }
 
 declare module 'ash/core/Engine' {
-    import { Entity } from "ash/core/Entity";
-    import { Node } from "ash/core/Node";
-    import { NodeList } from "ash/core/NodeList";
-    import { Signal0 } from "ash/signals/Signal0";
-    import { System } from "ash/core/System";
+    import { Entity } from 'ash/core/Entity';
+    import { Node } from 'ash/core/Node';
+    import { NodeList } from 'ash/core/NodeList';
+    import { Signal0 } from 'ash/signals/Signal0';
+    import { System } from 'ash/core/System';
     export class Engine {
         updating: boolean;
         updateComplete: Signal0;
@@ -123,71 +118,54 @@ declare module 'ash/core/Engine' {
 }
 
 declare module 'ash/core/Entity' {
-    import { Signal2 } from "ash/signals/Signal2";
-    import { Dictionary } from "ash/Dictionary";
+    import { Signal2 } from 'ash/signals/Signal2';
+    import { Dictionary } from 'ash/Dictionary';
+    import { ClassType } from 'ash/Types';
     export class Entity {
-        componentAdded: Signal2<Entity, {
-            new (...args: any[]): any;
-        }>;
-        componentRemoved: Signal2<Entity, {
-            new (...args: any[]): any;
-        }>;
+        componentAdded: Signal2<Entity, ClassType<any>>;
+        componentRemoved: Signal2<Entity, ClassType<any>>;
         nameChanged: Signal2<Entity, string>;
         previous: Entity;
         next: Entity;
-        components: Dictionary<{
-            new (...args: any[]): any;
-        }, any>;
+        components: Dictionary<ClassType<any>, any>;
         constructor(name?: string);
         name: string;
-        add<T>(component: T, componentClass?: {
-            new (...args: any[]): T;
-        }): this;
-        remove<T>(componentClass: {
-            new (...args: any[]): T;
-        }): T;
-        get<T>(componentClass: {
-            new (...args: any[]): T;
-        }): T;
+        add<T>(component: T, componentClass?: ClassType<T>): this;
+        remove<T>(componentClass: ClassType<T>): T;
+        get<T>(componentClass: ClassType<T>): T;
         getAll(): any[];
-        has<T>(componentClass: {
-            new (...args: any[]): T;
-        }): boolean;
+        has<T>(componentClass: ClassType<T>): boolean;
     }
 }
 
 declare module 'ash/core/IFamily' {
-    import { Entity } from "ash/core/Entity";
-    import { Node } from "ash/core/Node";
-    import { NodeList } from "ash/core/NodeList";
+    import { Entity } from 'ash/core/Entity';
+    import { Node } from 'ash/core/Node';
+    import { NodeList } from 'ash/core/NodeList';
+    import { ClassType } from 'ash/Types';
     export interface IFamily<TNode extends Node<any>> {
         nodeList: NodeList<TNode>;
         newEntity(entity: Entity): void;
         removeEntity(entity: Entity): void;
-        componentAddedToEntity(entity: Entity, componentClass: {
-            new (...args: any[]): any;
-        }): void;
-        componentRemovedFromEntity(entity: Entity, componentClass: {
-            new (...args: any[]): any;
-        }): void;
+        componentAddedToEntity(entity: Entity, componentClass: ClassType<any>): void;
+        componentRemovedFromEntity(entity: Entity, componentClass: ClassType<any>): void;
         cleanUp(): void;
     }
 }
 
 declare module 'ash/core/Node' {
-    import { Entity } from "ash/core/Entity";
+    import { Entity } from 'ash/core/Entity';
+    import { ClassType } from 'ash/Types';
     export class Node<TNode> {
         entity: Entity;
         previous: TNode;
         next: TNode;
     }
-    export function keep(type: {
-        new (...args: any[]): any;
-    }): Function;
+    export function keep(type: ClassType<any>): Function;
 }
 
 declare module 'ash/core/NodeList' {
-    import { Signal1 } from "ash/signals/Signal1";
+    import { Signal1 } from 'ash/signals/Signal1';
     import { Node } from 'ash/core/Node';
     export class NodeList<TNode extends Node<any>> {
         head: TNode;
@@ -198,7 +176,7 @@ declare module 'ash/core/NodeList' {
         add(node: TNode): void;
         remove(node: TNode): void;
         removeAll(): void;
-        readonly empty: Boolean;
+        readonly empty: boolean;
         swap(node1: TNode, node2: TNode): void;
         insertionSort(sortFunction: Function): void;
         mergeSort(sortFunction: (a: TNode, b: TNode) => number): void;
@@ -206,14 +184,13 @@ declare module 'ash/core/NodeList' {
 }
 
 declare module 'ash/core/NodePool' {
-    import { Dictionary } from "ash/Dictionary";
-    import { Node } from "ash/core/Node";
+    import { Dictionary } from 'ash/Dictionary';
+    import { Node } from 'ash/core/Node';
+    import { ClassType } from 'ash/Types';
     export class NodePool<TNode extends Node<any>> {
         constructor(nodeClass: {
             new (): TNode;
-        }, components: Dictionary<{
-            new (...args: any[]): any;
-        }, string>);
+        }, components: Dictionary<ClassType<any>, string>);
         get(): TNode;
         dispose(node: TNode): void;
         cache(node: TNode): void;
@@ -222,7 +199,7 @@ declare module 'ash/core/NodePool' {
 }
 
 declare module 'ash/core/System' {
-    import { Engine } from "ash/core/Engine";
+    import { Engine } from 'ash/core/Engine';
     export abstract class System {
         previous: System;
         next: System;
@@ -301,7 +278,7 @@ declare module 'ash/tools/ListIteratingSystem' {
         protected nodeAdded: (node: Node<TNode>) => void;
         protected nodeRemoved: (node: Node<TNode>) => void;
         constructor(nodeClass: {
-            new (...args: any[]): TNode;
+            new (): TNode;
         });
         addToEngine(engine: Engine): void;
         removeFromEngine(engine: Engine): void;
@@ -311,7 +288,7 @@ declare module 'ash/tools/ListIteratingSystem' {
 }
 
 declare module 'ash/signals/SignalBase' {
-    import { ListenerNode } from "ash/signals/ListenerNode";
+    import { ListenerNode } from 'ash/signals/ListenerNode';
     export class SignalBase<TListener> {
         protected head: ListenerNode<TListener>;
         protected tail: ListenerNode<TListener>;
@@ -327,23 +304,26 @@ declare module 'ash/signals/SignalBase' {
     }
 }
 
+declare module 'ash/Types' {
+    export type ClassType<T> = {
+        new (...args: any[]): T;
+    };
+    export type ClassMap = {
+        [key: string]: ClassType<any>;
+    };
+    export type NativeType = string | number | boolean;
+}
+
 declare module 'ash/fsm/EntityState' {
     import { IComponentProvider } from 'ash/fsm/IComponentProvider';
     import { StateComponentMapping } from 'ash/fsm/StateComponentMapping';
     import { Dictionary } from 'ash/Dictionary';
+    import { ClassType } from 'ash/Types';
     export class EntityState {
-        providers: Dictionary<{
-            new (...args: any[]): any;
-        }, any>;
-        add<TComponent>(type: {
-            new (...args: any[]): TComponent;
-        }): StateComponentMapping<TComponent>;
-        get<TComponent>(type: {
-            new (...args: any[]): TComponent;
-        }): IComponentProvider<TComponent>;
-        has<TComponent>(type: {
-            new (...args: any[]): TComponent;
-        }): Boolean;
+        providers: Dictionary<ClassType<any>, IComponentProvider<any>>;
+        add<TComponent>(type: ClassType<TComponent>): StateComponentMapping<TComponent>;
+        get<TComponent>(type: ClassType<TComponent>): IComponentProvider<TComponent>;
+        has<TComponent>(type: ClassType<TComponent>): boolean;
     }
 }
 

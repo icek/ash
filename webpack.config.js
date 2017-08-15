@@ -25,6 +25,7 @@ config.plugins.push(
         filename: 'ash.js',
         minChunks: module => module.context && (module.context.indexOf( 'ash' ) !== -1)
     } ),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin( {
         compress: {
             warnings: false,
