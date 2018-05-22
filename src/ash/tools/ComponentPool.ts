@@ -32,7 +32,7 @@ export class ComponentPool
 
         if( ComponentPool.pools.has( componentClass ) )
         {
-            return ComponentPool.pools.get( componentClass );
+            return ComponentPool.pools.get( componentClass )!;
         }
         else
         {
@@ -53,7 +53,7 @@ export class ComponentPool
         let pool:T[] = ComponentPool.getPool( componentClass );
         if( pool.length > 0 )
         {
-            return pool.pop();
+            return pool.pop()!;
         }
         else
         {

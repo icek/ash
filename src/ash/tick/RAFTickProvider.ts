@@ -3,9 +3,9 @@ import { ITickProvider } from './ITickProvider';
 
 export class RAFTickProvider extends Signal1<number> implements ITickProvider
 {
-    private rafId:number;
-    private previousTime:number;
-    public playing:boolean;
+    private rafId:number = 0;
+    private previousTime:number = 0;
+    public playing:boolean = false;
 
     constructor()
     {

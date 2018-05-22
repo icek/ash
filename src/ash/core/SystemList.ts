@@ -5,8 +5,8 @@ import { System } from './System';
  */
 export class SystemList
 {
-    public head:System;
-    public tail:System;
+    public head:System | null = null;
+    public tail:System | null = null;
 
     public add( system:System ):void
     {
@@ -17,7 +17,7 @@ export class SystemList
         }
         else
         {
-            let node:System;
+            let node:System | null;
             for( node = this.tail; node; node = node.previous )
             {
                 if( node.priority <= system.priority )
@@ -27,7 +27,7 @@ export class SystemList
             }
             if( node === this.tail )
             {
-                this.tail.next = system;
+                this.tail!.next = system;
                 system.previous = this.tail;
                 system.next = null;
                 this.tail = system;
@@ -43,7 +43,7 @@ export class SystemList
             {
                 system.next = node.next;
                 system.previous = node;
-                node.next.previous = system;
+                node.next!.previous = system;
                 node.next = system;
             }
         }
@@ -85,9 +85,9 @@ export class SystemList
         this.tail = null;
     }
 
-    public get<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem
+    public get<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem | null
     {
-        for( let system:System = this.head; system; system = system.next )
+        for( let system:System | null = this.head; system; system = system.next )
         {
             if( system instanceof type )
             {

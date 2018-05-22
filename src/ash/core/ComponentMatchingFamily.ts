@@ -16,11 +16,11 @@ import { ClassType } from '../Types';
  */
 export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily<TNode>
 {
-    private nodes:NodeList<TNode>;
-    private entities:Dictionary<Entity, TNode>;
+    private nodes!:NodeList<TNode>;
+    private entities!:Dictionary<Entity, TNode>;
     private nodeClass:{ new():TNode };
-    public components:Dictionary<ClassType<any>, string>;
-    private nodePool:NodePool<TNode>;
+    public components!:Dictionary<ClassType<any>, string>;
+    private nodePool!:NodePool<TNode>;
     private engine:Engine;
 
     /**
@@ -51,7 +51,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
         let dummyNode:TNode = this.nodePool.get();
         this.nodePool.dispose( dummyNode );
 
-        let types = dummyNode.constructor[ '__ash_types__' ];
+        let types = (<any>dummyNode.constructor)[ '__ash_types__' ];
 
         for( let type in types )
         {
@@ -132,7 +132,9 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
             node.entity = entity;
             for( let componentClass of this.components.keys() )
             {
-                node[ this.components.get( componentClass ) ] = entity.get( componentClass );
+                let cmp = this.components.get( componentClass );
+                if (cmp)
+                    (<any>node)[ cmp ] = entity.get( componentClass );
             }
 
             this.entities.set( entity, node );
@@ -147,7 +149,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     {
         if( this.entities.has( entity ) )
         {
-            let node:TNode = this.entities.get( entity );
+            let node:TNode = this.entities.get( entity )!;
             this.entities.remove( entity );
             this.nodes.remove( node );
             if( this.engine.updating )
@@ -176,7 +178,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
      */
     public cleanUp():void
     {
-        for( let node:Node<TNode> = this.nodes.head; node; node = node.next )
+        for( let node:Node<TNode> | null = this.nodes.head; node; node = node.next )
         {
             this.entities.remove( node.entity );
         }

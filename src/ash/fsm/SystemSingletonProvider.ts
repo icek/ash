@@ -8,7 +8,7 @@ import { ISystemProvider } from './ISystemProvider';
 export class SystemSingletonProvider<TSystem extends System> implements ISystemProvider<TSystem>
 {
     private componentType:{ new( ...args:any[] ):TSystem };
-    private instance:TSystem;
+    private instance?:TSystem;
     private systemPriority:number = 0;
 
     /**

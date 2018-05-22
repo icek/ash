@@ -13,13 +13,13 @@ export class Signal1<T> extends SignalBase<( a:T ) => void>
     public dispatch( object:T ):void
     {
         this.startDispatch();
-        let node:ListenerNode<( a:T ) => void>;
+        let node:ListenerNode<( a:T ) => void> | null;
         for( node = this.head; node; node = node.next )
         {
-            node.listener.call( node, object );
+            node.listener!.call( node, object );
             if( node.once )
             {
-                this.remove( node.listener );
+                this.remove( node.listener! );
             }
         }
         this.endDispatch();

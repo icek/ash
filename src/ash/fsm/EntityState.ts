@@ -32,7 +32,7 @@ export class EntityState
      * @param type The type of component to get the provider for
      * @return The ComponentProvider
      */
-    public get<TComponent>( type:ClassType<TComponent> ):IComponentProvider<TComponent>
+    public get<TComponent>( type:ClassType<TComponent> ):IComponentProvider<TComponent> | null
     {
         return this.providers.get( type );
     }

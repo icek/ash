@@ -11,11 +11,11 @@ import { ClassType } from '../Types';
  */
 export class EntityStateMachine
 {
-    private states:EntityState[];
+    private states:Map<string, EntityState>;
     /**
      * The current state of the state machine.
      */
-    private currentState:EntityState;
+    private currentState?:EntityState;
     /**
      * The entity whose state machine this is
      */
@@ -27,7 +27,7 @@ export class EntityStateMachine
     constructor( entity:Entity )
     {
         this.entity = entity;
-        this.states = [];
+        this.states = new Map();
     }
 
     /**
@@ -39,7 +39,7 @@ export class EntityStateMachine
      */
     public addState( name:string, state:EntityState ):this
     {
-        this.states[ name ] = state;
+        this.states.set(name, state);
         return this;
     }
 
@@ -53,7 +53,7 @@ export class EntityStateMachine
     public createState( name:string ):EntityState
     {
         let state:EntityState = new EntityState();
-        this.states[ name ] = state;
+        this.states.set(name, state);
         return state;
     }
 
@@ -65,7 +65,7 @@ export class EntityStateMachine
      */
     public changeState( name:string ):void
     {
-        let newState:EntityState = this.states[ name ];
+        let newState:EntityState | null = this.states.get(name);
         if( !newState )
         {
             throw( new Error( `Entity state ${name} doesn't exist` ) );
@@ -82,13 +82,13 @@ export class EntityStateMachine
             toAdd = new Dictionary<ClassType<any>, IComponentProvider<any>>();
             for( let type of newState.providers.keys() )
             {
-                toAdd.set( type, newState.providers.get( type ) );
+                toAdd.set( type, newState.providers.get( type )! );
             }
             for( let type of this.currentState.providers.keys() )
             {
-                let other:IComponentProvider<any> = toAdd.get( type );
+                let other:IComponentProvider<any> | null = toAdd.get( type );
 
-                if( other && other.identifier === this.currentState.providers.get( type ).identifier )
+                if( other && other.identifier === this.currentState!.providers.get( type )!.identifier )
                 {
                     toAdd.remove( type );
                 }
@@ -104,7 +104,7 @@ export class EntityStateMachine
         }
         for( let type of toAdd.keys() )
         {
-            this.entity.add( <IComponentProvider<any>>( toAdd.get( type ) ).getComponent(), type );
+            this.entity.add( <IComponentProvider<any>>( toAdd.get( type )! ).getComponent(), type );
         }
         this.currentState = newState;
     }

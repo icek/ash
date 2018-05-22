@@ -25,7 +25,7 @@ export class Dictionary<TKey, TValue>
         return value;
     }
 
-    public get( key:TKey ):TValue
+    public get( key:TKey ):TValue | null
     {
         let index = this._keys.indexOf( key );
         if( index < 0 )
@@ -43,7 +43,7 @@ export class Dictionary<TKey, TValue>
         return !(this._keys.indexOf( key ) < 0);
     }
 
-    public remove( key:TKey ):TValue
+    public remove( key:TKey ):TValue | null
     {
         let index = this._keys.indexOf( key );
         if( index < 0 )

@@ -12,7 +12,7 @@ export class StateComponentMapping<TComponent>
 {
     private componentType:{ new( ...args:any[] ):TComponent };
     private creatingState:EntityState;
-    private provider:IComponentProvider<TComponent>;
+    private provider!:IComponentProvider<TComponent>;
 
     /**
      * Used internally, the constructor creates a component mapping. The constructor
@@ -66,7 +66,7 @@ export class StateComponentMapping<TComponent>
      * mapping is used.
      * @return This ComponentMapping, so more modifications can be applied
      */
-    public withSingleton( type:{ new( ...args:any[] ):any } = null ):this
+    public withSingleton( type?:{ new( ...args:any[] ):any } ):this
     {
         if( !type )
         {

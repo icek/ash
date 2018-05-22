@@ -28,10 +28,10 @@ import { System } from '../core/System';
 
 export abstract class ListIteratingSystem<TNode extends Node<any>> extends System
 {
-    protected nodeList:NodeList<TNode>;
+    protected nodeList:NodeList<TNode> | null = null;
     protected nodeClass:{ new():TNode };
-    protected nodeAdded:( node:Node<TNode> ) => void;
-    protected nodeRemoved:( node:Node<TNode> ) => void;
+    protected nodeAdded?:( node:Node<TNode> ) => void;
+    protected nodeRemoved?:( node:Node<TNode> ) => void;
 
     constructor( nodeClass:{ new():TNode } )
     {
@@ -45,7 +45,7 @@ export abstract class ListIteratingSystem<TNode extends Node<any>> extends Syste
         this.nodeList = engine.getNodeList<TNode>( this.nodeClass );
         if( this.nodeAdded )
         {
-            for( let node:Node<TNode> = this.nodeList.head; node; node = node.next )
+            for( let node:Node<TNode> | null = this.nodeList.head; node; node = node.next )
             {
                 this.nodeAdded( node );
             }
@@ -59,20 +59,23 @@ export abstract class ListIteratingSystem<TNode extends Node<any>> extends Syste
 
     public removeFromEngine( engine:Engine ):void
     {
+        if (!this.nodeList)
+            return;
+
         if( this.nodeAdded )
         {
-            this.nodeList.nodeAdded.remove( this.nodeAdded );
+            this.nodeList!.nodeAdded.remove( this.nodeAdded );
         }
         if( this.nodeRemoved )
         {
-            this.nodeList.nodeRemoved.remove( this.nodeRemoved );
+            this.nodeList!.nodeRemoved.remove( this.nodeRemoved );
         }
         this.nodeList = null;
     }
 
     public update( time:number ):void
     {
-        for( let node:Node<TNode> = this.nodeList.head; node; node = node.next )
+        for( let node:Node<TNode> | null = this.nodeList!.head; node; node = node.next )
         {
             this.updateNode( node, time );
         }
