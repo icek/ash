@@ -11,7 +11,7 @@ import { ClassType } from '../Types';
  */
 export class EntityStateMachine
 {
-    private states:Map<string, EntityState>;
+    private states:{[key:string]: EntityState}
     /**
      * The current state of the state machine.
      */
@@ -27,7 +27,7 @@ export class EntityStateMachine
     constructor( entity:Entity )
     {
         this.entity = entity;
-        this.states = new Map();
+        this.states = {};
     }
 
     /**
@@ -39,7 +39,7 @@ export class EntityStateMachine
      */
     public addState( name:string, state:EntityState ):this
     {
-        this.states.set(name, state);
+        this.states[ name ] = state;
         return this;
     }
 
@@ -53,7 +53,7 @@ export class EntityStateMachine
     public createState( name:string ):EntityState
     {
         let state:EntityState = new EntityState();
-        this.states.set(name, state);
+        this.states[ name ] = state;
         return state;
     }
 
@@ -65,7 +65,7 @@ export class EntityStateMachine
      */
     public changeState( name:string ):void
     {
-        let newState:EntityState | null = this.states.get(name);
+        let newState:EntityState | null = this.states[ name ];
         if( !newState )
         {
             throw( new Error( `Entity state ${name} doesn't exist` ) );

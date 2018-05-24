@@ -10,7 +10,7 @@ import { Engine } from '../core/Engine';
 export class EngineStateMachine
 {
     public engine:Engine;
-    private states:Map<string, EngineState>;
+    private states:{[key:string]:EngineState};
     private currentState?:EngineState;
 
     /**
@@ -19,7 +19,7 @@ export class EngineStateMachine
     constructor( engine:Engine )
     {
         this.engine = engine;
-        this.states = new Map();
+        this.states = {};
     }
 
     /**
@@ -31,7 +31,7 @@ export class EngineStateMachine
      */
     public addState( name:string, state:EngineState ):this
     {
-        this.states.set(name, state);
+        this.states[ name ] = state;
         return this;
     }
 
@@ -45,7 +45,7 @@ export class EngineStateMachine
     public createState( name:string ):EngineState
     {
         let state:EngineState = new EngineState();
-        this.states.set(name, state);
+        this.states[ name ] = state;
         return state;
     }
 
@@ -57,7 +57,7 @@ export class EngineStateMachine
      */
     public changeState( name:string ):void
     {
-        let newState:EngineState | null = this.states.get(name);
+        let newState:EngineState | null = this.states[ name ];
         if( !newState )
         {
             throw( new Error( `Engine state ${name} doesn't exist` ) );

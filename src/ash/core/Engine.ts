@@ -17,9 +17,7 @@ import { ClassType } from '../Types';
  */
 export class Engine
 {
-
-
-    private entityNames:Map<string, Entity>;
+    private entityNames:{[key:string]:Entity | null};
     private entityList:EntityList;
     private systemList:SystemList;
     private families:Dictionary<{ new():Node<any> }, IFamily<any>>;
@@ -48,7 +46,7 @@ export class Engine
     constructor()
     {
         this.entityList = new EntityList();
-        this.entityNames = new Map();
+        this.entityNames = {};
         this.systemList = new SystemList();
         this.families = new Dictionary<{ new():Node<any> }, IFamily<any>>();
         this.updateComplete = new Signal0();
@@ -61,12 +59,12 @@ export class Engine
      */
     public addEntity( entity:Entity ):void
     {
-        if( this.entityNames.has(entity.name) )
+        if( this.entityNames[ entity.name ] )
         {
             throw new Error( 'The entity name ' + entity.name + ' is already in use by another entity.' );
         }
         this.entityList.add( entity );
-        this.entityNames.set( entity.name, entity) ;
+        this.entityNames[ entity.name ] = entity;
         entity.componentAdded.add( this.componentAdded );
         entity.componentRemoved.add( this.componentRemoved );
         entity.nameChanged.add( this.entityNameChanged );
@@ -90,15 +88,15 @@ export class Engine
         {
             family.removeEntity( entity );
         }
-        this.entityNames.delete(entity.name);
+        this.entityNames[ entity.name ] = null;
         this.entityList.remove( entity );
     }
 
     private entityNameChanged = ( entity:Entity, oldName:string ) => {
-        if( this.entityNames.get(oldName) === entity )
+        if( this.entityNames[ oldName ] === entity )
         {
-            this.entityNames.delete(oldName);
-            this.entityNames.set( entity.name, entity) ;
+            this.entityNames[ oldName ] = null;
+            this.entityNames[ entity.name ] = entity;
         }
     };
 
@@ -108,9 +106,9 @@ export class Engine
      * @param name The name of the entity
      * @return The entity, or null if no entity with that name exists on the engine
      */
-    public getEntityByName( name:string ):Entity
+    public getEntityByName( name:string ):Entity | null
     {
-        return this.entityNames.get(name);
+        return this.entityNames[ name ];
     }
 
     /**
