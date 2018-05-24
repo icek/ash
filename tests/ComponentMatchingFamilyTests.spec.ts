@@ -44,7 +44,7 @@ describe( 'ComponentMatchingFamily tests', () =>
     it( 'NodeList is initially empty', () =>
     {
         let nodes:NodeList<MockNode> = family.nodeList;
-        assert.isUndefined(nodes.head);
+        assert.isNull(nodes.head);
     } );
 
     it( 'matching Entity is added when access NodeList test 1', () =>
@@ -90,7 +90,7 @@ describe( 'ComponentMatchingFamily tests', () =>
         let entity:Entity = new Entity();
         family.newEntity( entity );
         let nodes:NodeList<MockNode> = family.nodeList;
-        assert.isUndefined( nodes.head );
+        assert.isNull( nodes.head );
     } );
 
     it( 'non matching Entity is not added when Component added', () =>
@@ -99,7 +99,7 @@ describe( 'ComponentMatchingFamily tests', () =>
         entity.add( new Matrix() );
         family.componentAddedToEntity( entity, Matrix );
         let nodes:NodeList<MockNode> = family.nodeList;
-        assert.isUndefined( nodes.head );
+        assert.isNull( nodes.head );
     } );
 
     it( 'Entity is removed when access NodeList first', () =>
