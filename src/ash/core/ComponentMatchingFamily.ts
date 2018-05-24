@@ -132,9 +132,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
             node.entity = entity;
             for( let componentClass of this.components.keys() )
             {
-                let cmp = this.components.get( componentClass );
-                if (cmp)
-                    (<any>node)[ cmp ] = entity.get( componentClass );
+                (<any>node)[ this.components.get( componentClass )! ] = entity.get( componentClass );
             }
 
             this.entities.set( entity, node );

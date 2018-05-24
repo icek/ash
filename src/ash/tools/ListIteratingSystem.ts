@@ -59,9 +59,6 @@ export abstract class ListIteratingSystem<TNode extends Node<any>> extends Syste
 
     public removeFromEngine( engine:Engine ):void
     {
-        if (!this.nodeList)
-            return;
-
         if( this.nodeAdded )
         {
             this.nodeList!.nodeAdded.remove( this.nodeAdded );
