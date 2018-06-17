@@ -6,7 +6,7 @@
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "repository": "https://github.com/icek/ash.ts",
   "main": "dist/ash.js",
-  "typings": "dist/ash.d.ts",
+  "types": "dist/ash.d.ts",
   "typescript": {
     "main": "src/ash/index.ts"
   },
