@@ -21,11 +21,11 @@ import { WaitForStartSystem } from './systems/WaitForStartSystem';
 
 export class Asteroids
 {
-    private engine:Engine;
-    private tickProvider:RAFTickProvider;
-    private creator:EntityCreator;
-    private keyPoll:KeyPoll;
-    private config:GameConfig;
+    private engine!:Engine;
+    private tickProvider!:RAFTickProvider;
+    private creator!:EntityCreator;
+    private keyPoll!:KeyPoll;
+    private config!:GameConfig;
 
     constructor( private container:HTMLElement, width:number, height:number )
     {

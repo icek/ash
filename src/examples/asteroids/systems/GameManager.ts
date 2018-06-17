@@ -9,10 +9,10 @@ export class GameManager extends System
     private config:GameConfig;
     private creator:EntityCreator;
 
-    private gameNodes:NodeList<GameNode>;
-    private spaceships:NodeList<SpaceshipNode>;
-    private asteroids:NodeList<AsteroidCollisionNode>;
-    private bullets:NodeList<BulletCollisionNode>;
+    private games!:NodeList<GameNode> | null;
+    private spaceships!:NodeList<SpaceshipNode> | null;
+    private asteroids!:NodeList<AsteroidCollisionNode> | null;
+    private bullets!:NodeList<BulletCollisionNode> | null;
 
     constructor( creator:EntityCreator, config:GameConfig )
     {
@@ -23,7 +23,7 @@ export class GameManager extends System
 
     public addToEngine( engine:Engine ):void
     {
-        this.gameNodes = engine.getNodeList( GameNode );
+        this.games = engine.getNodeList( GameNode );
         this.spaceships = engine.getNodeList( SpaceshipNode );
         this.asteroids = engine.getNodeList( AsteroidCollisionNode );
         this.bullets = engine.getNodeList( BulletCollisionNode );
@@ -31,7 +31,11 @@ export class GameManager extends System
 
     public update( time:number ):void
     {
-        let node:GameNode = this.gameNodes.head;
+        if(!this.bullets || !this.asteroids || !this.spaceships || !this.games) {
+            return;
+        }
+
+        let node:GameNode | null = this.games.head;
         if( node && node.state.playing )
         {
             if( this.spaceships.empty )
@@ -41,7 +45,7 @@ export class GameManager extends System
                     let newSpaceshipPositionX = this.config.width * 0.5;
                     let newSpaceshipPositionY = this.config.height * 0.5;
                     let clearToAddSpaceship:boolean = true;
-                    for( let asteroid:AsteroidCollisionNode = this.asteroids.head; asteroid; asteroid = asteroid.next )
+                    for( let asteroid:AsteroidCollisionNode | null = this.asteroids.head; asteroid; asteroid = asteroid.next )
                     {
                         if( Position.distance( asteroid.position.x, asteroid.position.y, newSpaceshipPositionX, newSpaceshipPositionY ) <= asteroid.collision.radius + 50 )
                         {
@@ -61,10 +65,10 @@ export class GameManager extends System
                 }
             }
 
-            if( this.asteroids.empty && this.bullets.empty && !this.spaceships.empty )
+            if( this.asteroids.empty && this.bullets.empty && this.spaceships.head )
             {
                 // next level
-                let spaceship:SpaceshipNode = this.spaceships.head;
+                let spaceship:SpaceshipNode | null = this.spaceships.head;
                 node.state.level++;
                 let asteroidCount:number = 2 + node.state.level;
                 for( let i:number = 0; i < asteroidCount; ++i )
@@ -86,7 +90,7 @@ export class GameManager extends System
 
     public removeFromEngine( engine:Engine ):void
     {
-        this.gameNodes = null;
+        this.games = null;
         this.spaceships = null;
         this.asteroids = null;
         this.bullets = null;

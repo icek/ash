@@ -8,10 +8,10 @@ export class CollisionSystem extends System
 {
     private creator:EntityCreator;
 
-    private games:NodeList<GameNode>;
-    private spaceships:NodeList<SpaceshipCollisionNode>;
-    private asteroids:NodeList<AsteroidCollisionNode>;
-    private bullets:NodeList<BulletCollisionNode>;
+    private games!:NodeList<GameNode> | null;
+    private spaceships!:NodeList<SpaceshipCollisionNode> | null;
+    private asteroids!:NodeList<AsteroidCollisionNode> | null;
+    private bullets!:NodeList<BulletCollisionNode> | null;
 
     constructor( creator:EntityCreator )
     {
@@ -29,9 +29,13 @@ export class CollisionSystem extends System
 
     public update( time:number ):void
     {
-        let bullet:BulletCollisionNode;
-        let asteroid:AsteroidCollisionNode;
-        let spaceship:SpaceshipCollisionNode;
+        let bullet:BulletCollisionNode | null;
+        let asteroid:AsteroidCollisionNode | null;
+        let spaceship:SpaceshipCollisionNode | null;
+
+        if(!this.bullets || !this.asteroids || !this.games) {
+            return;
+        }
 
         for( bullet = this.bullets.head; bullet; bullet = bullet.next )
         {
@@ -56,6 +60,10 @@ export class CollisionSystem extends System
             }
         }
 
+        if(!this.spaceships) {
+            return;
+        }
+
         for( spaceship = this.spaceships.head; spaceship; spaceship = spaceship.next )
         {
             for( asteroid = this.asteroids.head; asteroid; asteroid = asteroid.next )
@@ -76,6 +84,7 @@ export class CollisionSystem extends System
 
     public removeFromEngine( engine:Engine ):void
     {
+        this.games = null;
         this.spaceships = null;
         this.asteroids = null;
         this.bullets = null;

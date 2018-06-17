@@ -4,7 +4,7 @@ import { Motion, Position } from '../components';
 export class MovementNode extends Node<MovementNode>
 {
     @keep( Position )
-    public position:Position;
+    public position!:Position;
     @keep( Motion )
-    public motion:Motion;
+    public motion!:Motion;
 }

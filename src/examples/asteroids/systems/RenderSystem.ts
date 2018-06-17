@@ -5,7 +5,7 @@ import { SVGView } from '../graphics';
 
 export class RenderSystem extends System
 {
-    private nodes:NodeList<RenderNode>;
+    private nodes!:NodeList<RenderNode> | null;
 
     constructor( public container:HTMLElement )
     {
@@ -16,7 +16,7 @@ export class RenderSystem extends System
     public addToEngine( engine:Engine ):void
     {
         this.nodes = engine.getNodeList( RenderNode );
-        for( let node:RenderNode = this.nodes.head; node; node = node.next )
+        for( let node:RenderNode | null = this.nodes.head; node; node = node.next )
         {
             this.addToDisplay( node );
         }
@@ -34,11 +34,14 @@ export class RenderSystem extends System
 
     public update( time:number ):void
     {
-        let node:RenderNode;
+        let node:RenderNode | null;
         let position:Position;
         let display:Display;
         let displayObject:SVGView;
 
+        if(!this.nodes) {
+            return;
+        }
         for( node = this.nodes.head; node; node = node.next )
         {
             display = node.display;

@@ -4,5 +4,5 @@ import { WaitForStart } from '../components';
 export class WaitForStartNode extends Node<WaitForStartNode>
 {
     @keep( WaitForStart )
-    public wait:WaitForStart;
+    public wait!:WaitForStart;
 }

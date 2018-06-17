@@ -4,12 +4,12 @@ import { EntityCreator } from '../EntityCreator';
 
 export class WaitForStartSystem extends System
 {
-    private engine:Engine;
+    private engine!:Engine;
     private creator:EntityCreator;
 
-    private gameNodes:NodeList<GameNode>;
-    private waitNodes:NodeList<WaitForStartNode>;
-    private asteroids:NodeList<AsteroidCollisionNode>;
+    private gameNodes!:NodeList<GameNode> | null;
+    private waitNodes!:NodeList<WaitForStartNode> | null;
+    private asteroids!:NodeList<AsteroidCollisionNode> | null;
 
     constructor( creator:EntityCreator )
     {
@@ -27,11 +27,15 @@ export class WaitForStartSystem extends System
 
     public update( time:number ):void
     {
-        let node:WaitForStartNode = this.waitNodes.head;
-        let game:GameNode = this.gameNodes.head;
+        if(!this.waitNodes || ! this.gameNodes || !this.asteroids) {
+            return;
+        }
+
+        let node:WaitForStartNode | null = this.waitNodes.head;
+        let game:GameNode | null = this.gameNodes.head;
         if( node && node.wait.startGame && game )
         {
-            for( let asteroid:AsteroidCollisionNode = this.asteroids.head; asteroid; asteroid = asteroid.next )
+            for( let asteroid:AsteroidCollisionNode | null = this.asteroids.head; asteroid; asteroid = asteroid.next )
             {
                 this.creator.destroyEntity( asteroid.entity );
             }
@@ -46,5 +50,6 @@ export class WaitForStartSystem extends System
     {
         this.gameNodes = null;
         this.waitNodes = null;
+        this.asteroids = null;
     }
 }

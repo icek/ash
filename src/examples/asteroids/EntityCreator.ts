@@ -12,7 +12,7 @@ import {
 export class EntityCreator
 {
     private engine:Engine;
-    private waitEntity:Entity;
+    private waitEntity!:Entity;
 
     constructor( engine:Engine )
     {
