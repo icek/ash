@@ -44,7 +44,7 @@ config.plugins.push(
         },
     } ),
     new DtsBundlePlugin( {
-        name: 'ash',
+        name: 'ash.ts',
         main: 'dist/src/ash',
         baseDir: 'dist/src/ash',
         out: '../../ash.d.ts',

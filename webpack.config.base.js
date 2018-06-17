@@ -21,7 +21,7 @@ module.exports = {
     },
 
     output: {
-        library: 'ash',
+        library: 'ash.ts',
 
         libraryTarget: 'umd',
 
