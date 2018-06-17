@@ -10,15 +10,11 @@
     "removeComments": true,
     "sourceMap": true,
 
-    "noImplicitUseStrict": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
-
-    "suppressImplicitAnyIndexErrors": true,
-
+    "strict": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+
+    "baseUrl": "src"
   },
   "exclude": [
     "node_modules",
