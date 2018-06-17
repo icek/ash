@@ -6,8 +6,8 @@ import { ListenerNode } from './ListenerNode';
  */
 export class ListenerNodePool<TListener>
 {
-    private tail:ListenerNode<TListener>;
-    private cacheTail:ListenerNode<TListener>;
+    private tail:ListenerNode<TListener> | null = null;
+    private cacheTail:ListenerNode<TListener> | null = null;
 
     public get():ListenerNode<TListener>
     {

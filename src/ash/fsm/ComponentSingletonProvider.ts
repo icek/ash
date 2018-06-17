@@ -7,7 +7,7 @@ import { IComponentProvider } from './IComponentProvider';
 export class ComponentSingletonProvider<TComponent> implements IComponentProvider<TComponent>
 {
     private componentType:{ new( ...args:any[] ):TComponent };
-    private instance:TComponent;
+    private instance?:TComponent;
 
     /**
      * Constructor

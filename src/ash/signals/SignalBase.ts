@@ -12,14 +12,14 @@ import { ListenerNodePool } from './ListenerNodePool';
 
 export class SignalBase<TListener>
 {
-    protected head:ListenerNode<TListener>;
-    protected tail:ListenerNode<TListener>;
+    protected head:ListenerNode<TListener> | null = null;
+    protected tail:ListenerNode<TListener> | null = null;
 
     private nodes:Dictionary<TListener, ListenerNode<TListener>>;
     private listenerNodePool:ListenerNodePool<TListener>;
-    private toAddHead:ListenerNode<TListener>;
-    private toAddTail:ListenerNode<TListener>;
-    private dispatching:boolean;
+    private toAddHead:ListenerNode<TListener> | null = null;
+    private toAddTail:ListenerNode<TListener> | null = null;
+    private dispatching:boolean = false;
     private _numListeners:number = 0;
 
     constructor()
@@ -45,7 +45,7 @@ export class SignalBase<TListener>
             }
             else
             {
-                this.tail.next = this.toAddHead;
+                this.tail!.next = this.toAddHead;
                 this.toAddHead.previous = this.tail;
                 this.tail = this.toAddTail;
             }
@@ -97,7 +97,7 @@ export class SignalBase<TListener>
             }
             else
             {
-                this.toAddTail.next = node;
+                this.toAddTail!.next = node;
                 node.previous = this.toAddTail;
                 this.toAddTail = node;
             }
@@ -110,7 +110,7 @@ export class SignalBase<TListener>
             }
             else
             {
-                this.tail.next = node;
+                this.tail!.next = node;
                 node.previous = this.tail;
                 this.tail = node;
             }
@@ -120,7 +120,7 @@ export class SignalBase<TListener>
 
     public remove( listener:TListener ):void
     {
-        let node:ListenerNode<TListener> = this.nodes.get( listener );
+        let node:ListenerNode<TListener> | null = this.nodes.get( listener );
         if( node )
         {
             if( this.head === node )
@@ -166,7 +166,7 @@ export class SignalBase<TListener>
         {
             let node:ListenerNode<TListener> = this.head;
             this.head = this.head.next;
-            this.nodes.remove( node.listener );
+            this.nodes.remove( node.listener! );
             this.listenerNodePool.dispose( node );
         }
         this.tail = null;

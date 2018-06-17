@@ -17,7 +17,7 @@ import { ClassType } from '../Types';
  */
 export class Engine
 {
-    private entityNames:Entity[];
+    private entityNames:{[key:string]:Entity | null};
     private entityList:EntityList;
     private systemList:SystemList;
     private families:Dictionary<{ new():Node<any> }, IFamily<any>>;
@@ -25,7 +25,7 @@ export class Engine
     /**
      * Indicates if the engine is currently in its update loop.
      */
-    public updating:boolean;
+    public updating:boolean = false;
 
     /**
      * Dispatched when the update loop ends. If you want to add and remove systems from the
@@ -46,7 +46,7 @@ export class Engine
     constructor()
     {
         this.entityList = new EntityList();
-        this.entityNames = [];
+        this.entityNames = {};
         this.systemList = new SystemList();
         this.families = new Dictionary<{ new():Node<any> }, IFamily<any>>();
         this.updateComplete = new Signal0();
@@ -106,7 +106,7 @@ export class Engine
      * @param name The name of the entity
      * @return The entity, or null if no entity with that name exists on the engine
      */
-    public getEntityByName( name:string ):Entity
+    public getEntityByName( name:string ):Entity | null
     {
         return this.entityNames[ name ];
     }
@@ -128,7 +128,7 @@ export class Engine
     public get entities():Entity[]
     {
         let entities:Entity[] = [];
-        for( let entity:Entity = this.entityList.head; entity; entity = entity.next )
+        for( let entity:Entity | null = this.entityList.head; entity; entity = entity.next )
         {
             entities[ entities.length ] = entity;
         }
@@ -171,11 +171,11 @@ export class Engine
     {
         if( this.families.has( nodeClass ) )
         {
-            return this.families.get( nodeClass ).nodeList;
+            return this.families.get( nodeClass )!.nodeList;
         }
         let family:IFamily<TNode> = new this.familyClass( nodeClass, this );
         this.families.set( nodeClass, family );
-        for( let entity:Entity = this.entityList.head; entity; entity = entity.next )
+        for( let entity:Entity | null = this.entityList.head; entity; entity = entity.next )
         {
             family.newEntity( entity );
         }
@@ -196,7 +196,7 @@ export class Engine
     {
         if( this.families.has( nodeClass ) )
         {
-            this.families.get( nodeClass ).cleanUp();
+            this.families.get( nodeClass )!.cleanUp();
         }
         this.families.remove( nodeClass );
     }
@@ -227,7 +227,7 @@ export class Engine
      * @return The instance of the system type that is in the engine, or
      * null if no systems of this type are in the engine.
      */
-    public getSystem<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem
+    public getSystem<TSystem extends System>( type:{ new( ...args:any[] ):TSystem } ):TSystem | null
     {
         return this.systemList.get( type );
     }
@@ -238,7 +238,7 @@ export class Engine
     public get systems():System[]
     {
         let systems:System[] = [];
-        for( let system:System = this.systemList.head; system; system = system.next )
+        for( let system:System | null = this.systemList.head; system; system = system.next )
         {
             systems[ systems.length ] = system;
         }
@@ -284,7 +284,7 @@ export class Engine
     public update( time:number ):void
     {
         this.updating = true;
-        for( let system:System = this.systemList.head; system; system = system.next )
+        for( let system:System | null = this.systemList.head; system; system = system.next )
         {
             system.update( time );
         }

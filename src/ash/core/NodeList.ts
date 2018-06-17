@@ -23,11 +23,11 @@ export class NodeList<TNode extends Node<any>>
     /**
      * The first item in the node list, or null if the list contains no nodes.
      */
-    public head:TNode;
+    public head:TNode | null = null;
     /**
      * The last item in the node list, or null if the list contains no nodes.
      */
-    public tail:TNode;
+    public tail:TNode | null = null;
 
     /**
      * A signal that is dispatched whenever a node is added to the node list.
@@ -57,7 +57,7 @@ export class NodeList<TNode extends Node<any>>
         }
         else
         {
-            this.tail.next = node;
+            this.tail!.next = node;
             node.previous = this.tail;
             node.next = null;
             this.tail = node;
@@ -193,7 +193,7 @@ export class NodeList<TNode extends Node<any>>
         {
             return;
         }
-        let remains:TNode = this.head.next;
+        let remains:TNode = this.head!.next;
         for( let node:TNode = remains; node; node = remains )
         {
             let other:TNode;
@@ -238,7 +238,7 @@ export class NodeList<TNode extends Node<any>>
                 }
                 // insert at head
                 node.next = this.head;
-                this.head.previous = node;
+                this.head!.previous = node;
                 node.previous = null;
                 this.head = node;
             }
@@ -266,7 +266,7 @@ export class NodeList<TNode extends Node<any>>
         }
         let lists:TNode[] = [];
         // disassemble the list
-        let start:TNode = this.head;
+        let start:TNode | null = this.head;
         let end:TNode;
         while( start )
         {
@@ -283,13 +283,13 @@ export class NodeList<TNode extends Node<any>>
         // reassemble it in order
         while( lists.length > 1 )
         {
-            lists.push( this.merge( lists.shift(), lists.shift(), sortFunction ) );
+            lists.push( this.merge( lists.shift()!, lists.shift()!, sortFunction ) );
         }
         // find the tail
         this.tail = this.head = lists[ 0 ];
-        while( this.tail.next )
+        while( this.tail!.next )
         {
-            this.tail = this.tail.next;
+            this.tail = this.tail!.next;
         }
     }
 

@@ -6,8 +6,8 @@ import { Entity } from './Entity';
  */
 export class EntityList
 {
-    public head:Entity;
-    public tail:Entity;
+    public head:Entity | null = null;
+    public tail:Entity | null = null;
 
     public add( entity:Entity ):void
     {
@@ -18,7 +18,7 @@ export class EntityList
         }
         else
         {
-            this.tail.next = entity;
+            this.tail!.next = entity;
             entity.previous = this.tail;
             entity.next = null;
             this.tail = entity;

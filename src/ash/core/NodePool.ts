@@ -12,9 +12,9 @@ import { ClassType } from '../Types';
  */
 export class NodePool<TNode extends Node<any>>
 {
-    private tail:TNode;
+    private tail:TNode | null = null;
     private nodeClass:{ new():TNode };
-    private cacheTail:TNode;
+    private cacheTail:TNode | null = null;
     private components:Dictionary<ClassType<any>, string>;
 
     /**
@@ -51,9 +51,9 @@ export class NodePool<TNode extends Node<any>>
     {
         for( let val of this.components.values() )
         {
-            node[ val ] = null;
+            (<any>node)[ val ] = null;
         }
-        node.entity = null;
+        (<any>node.entity) = null;
 
         node.next = null;
         node.previous = this.tail;

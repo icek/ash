@@ -15,17 +15,17 @@ export class Node<TNode>
     /**
      * The entity whose components are included in the node.
      */
-    public entity:Entity = null;
+    public entity!:Entity;
 
     /**
      * Used by the NodeList class. The previous node in a node list.
      */
-    public previous:TNode = null;
+    public previous:TNode | null = null;
 
     /**
      * Used by the NodeList class. The next node in a node list.
      */
-    public next:TNode = null;
+    public next:TNode | null = null;
 }
 
 export function keep( type:ClassType<any> ):Function
@@ -36,7 +36,7 @@ export function keep( type:ClassType<any> ):Function
         let ashProp:string = '__ash_types__';
         if( ctor.hasOwnProperty( ashProp ) )
         {
-            map = ctor[ ashProp ];
+            map = (<any>ctor)[ ashProp ];
         }
         else
         {
@@ -47,7 +47,7 @@ export function keep( type:ClassType<any> ):Function
             } );
         }
 
-        map[ propertyKey ] = type;
+        (<any>map)[ propertyKey ] = type;
 
         return descriptor;
     };

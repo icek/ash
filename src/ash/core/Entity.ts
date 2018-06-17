@@ -41,8 +41,8 @@ export class Entity
      */
     public nameChanged:Signal2<Entity, string>;
 
-    public previous:Entity;
-    public next:Entity;
+    public previous:Entity | null = null;
+    public next:Entity | null = null;
     public components:Dictionary<ClassType<any>, any>;
 
     /**
@@ -101,20 +101,20 @@ export class Entity
      *     .add( new Display( new PlayerClip() );</code>
      */
 
-    public add<T>( component:T, componentClass:ClassType<T> = null ):this
+    public add<T>( component:T, componentClass:ClassType<T> | null = null ):this
     {
         if( !componentClass )
         {
             componentClass = component.constructor.prototype.constructor; // weird but works!
         }
 
-        if( this.components.has( componentClass ) )
+        if( this.components.has( componentClass! ) )
         {
-            this.remove( componentClass );
+            this.remove( componentClass! );
         }
 
-        this.components.set( componentClass, component );
-        this.componentAdded.dispatch( this, componentClass );
+        this.components.set( componentClass!, component );
+        this.componentAdded.dispatch( this, componentClass! );
         return this;
     }
 
@@ -124,7 +124,7 @@ export class Entity
      * @param componentClass The class of the component to be removed.
      * @return the component, or null if the component doesn't exist in the entity
      */
-    public remove<T>( componentClass:ClassType<T> ):T
+    public remove<T>( componentClass:ClassType<T> ):T | null
     {
         let component:any = this.components.get( componentClass );
         if( component )
