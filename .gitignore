@@ -1,5 +1,7 @@
 # Folders
 /node_modules
+.cache
+.rpt2_cache
 
 # Files
 npm-debug.log
