@@ -6,7 +6,8 @@
     "module": "es2015",
     "moduleResolution": "node",
 
-    "declaration": true,
+    "declaration": false,
+
     "removeComments": true,
     "sourceMap": true,
 
@@ -14,12 +15,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
 
-    "baseUrl": "src"
-  },
-  "exclude": [
-    "node_modules",
-    "./tests",
-    "./src/ash/io",
-    "./src/examples"
-  ]
+    "baseUrl": ".",
+    "paths": {
+      "ash.ts": ["../../ash"]
+    }
+  }
 }

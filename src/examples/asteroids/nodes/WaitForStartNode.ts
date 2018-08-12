@@ -1,4 +1,4 @@
-import { Node, keep } from 'ash';
+import { Node, keep } from 'ash.ts';
 import { WaitForStart } from '../components';
 
 export class WaitForStartNode extends Node<WaitForStartNode>

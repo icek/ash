@@ -1,7 +1,7 @@
 import { EntityCreator } from '../EntityCreator';
 import { Bullet } from '../components';
 import { BulletAgeNode } from '../nodes';
-import { ListIteratingSystem } from 'ash';
+import { ListIteratingSystem } from 'ash.ts';
 
 export class BulletAgeSystem extends ListIteratingSystem<BulletAgeNode>
 {

@@ -1,4 +1,4 @@
-import { Node, keep } from 'ash';
+import { Node, keep } from 'ash.ts';
 import { GameState } from '../components';
 
 export class GameNode extends Node<GameNode>

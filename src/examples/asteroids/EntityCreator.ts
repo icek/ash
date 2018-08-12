@@ -1,4 +1,4 @@
-import { Engine, Entity, EntityStateMachine } from 'ash';
+import { Engine, Entity, EntityStateMachine } from 'ash.ts';
 import {
     Animation, Asteroid, Audio, Bullet, Collision, DeathThroes, Display, GameState, Gun, GunControls,
     Hud, Motion, MotionControls, Position, Spaceship, WaitForStart

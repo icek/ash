@@ -1,4 +1,4 @@
-import { Engine, NodeList, System } from 'ash';
+import { Engine, NodeList, System } from 'ash.ts';
 import { RenderNode } from '../nodes';
 import { Display, Position } from '../components';
 import { SVGView } from '../graphics';

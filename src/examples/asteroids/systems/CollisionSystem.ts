@@ -1,4 +1,4 @@
-import { Engine, NodeList, System } from 'ash';
+import { Engine, NodeList, System } from 'ash.ts';
 import { EntityCreator } from '../EntityCreator';
 import { Position } from '../components';
 import { Sounds } from '../Sounds';

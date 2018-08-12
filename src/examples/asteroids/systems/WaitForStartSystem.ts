@@ -1,4 +1,4 @@
-import { Engine, NodeList, System } from 'ash';
+import { Engine, NodeList, System } from 'ash.ts';
 import { AsteroidCollisionNode, GameNode, WaitForStartNode } from '../nodes';
 import { EntityCreator } from '../EntityCreator';
 

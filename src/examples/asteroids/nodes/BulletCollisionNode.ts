@@ -1,4 +1,4 @@
-import { Node, keep } from 'ash';
+import { Node, keep } from 'ash.ts';
 import { Bullet, Collision, Position } from '../components';
 
 export class BulletCollisionNode extends Node<BulletCollisionNode>

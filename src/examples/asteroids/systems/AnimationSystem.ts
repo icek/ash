@@ -1,5 +1,5 @@
 import { AnimationNode } from '../nodes';
-import { ListIteratingSystem } from 'ash';
+import { ListIteratingSystem } from 'ash.ts';
 
 export class AnimationSystem extends ListIteratingSystem<AnimationNode>
 {

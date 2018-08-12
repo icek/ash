@@ -2,7 +2,7 @@ import { Gun, GunControls, Position } from '../components';
 import { GunControlNode } from '../nodes';
 import { EntityCreator } from '../EntityCreator';
 
-import { ListIteratingSystem } from 'ash';
+import { ListIteratingSystem } from 'ash.ts';
 import { KeyPoll } from '../KeyPoll';
 import { Sounds } from '../Sounds';
 
