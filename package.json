@@ -14,7 +14,7 @@
     "dts:bundle": "dts-bundle --configJson dtsbundle.json",
     "dts:cleanup": "prettier --write ./dist/ash.ts.d.ts && rimraf dist/types",
     "dts": "npm run dts:bundle && npm run dts:cleanup",
-    "docs": "typedoc --options typedoc.js ./ash/index.ts",
+    "docs": "typedoc --options typedoc.js ./ash/index.ts && touch docs/.nojekyll",
     "publish": "npm run clean && npm run build && npm run dts && npm run docs",
     "lint": "tslint -p ash/tsconfig.json",
     "test": "karma start ./karma.conf.js"
@@ -48,9 +48,10 @@
     "rollup-plugin-terser": "^1.0.1",
     "rollup-plugin-typescript2": "^0.16.1",
     "sinon": "^6.1.5",
+    "touch": "^3.1.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb-base": "^0.2.0",
-    "typedoc": "^0.11.1",
+    "typedoc": "^0.12.0",
     "typescript": "^3.0.1"
   }
 }

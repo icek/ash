@@ -1,5 +1,7 @@
 module.exports = {
   mode: 'modules',
+  module: 'ESNext',
+  target: 'ES6',
   out: 'docs',
   exclude: ['./tests/**/*', './node_modules/**/*'],
   theme: 'default',
