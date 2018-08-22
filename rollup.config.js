@@ -5,7 +5,7 @@ import clean from 'rollup-plugin-clean';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: 'src/ash/index.ts',
+  input: 'ash/index.ts',
   output: {
     name: 'ash',
     dir: 'dist',
@@ -15,7 +15,7 @@ export default {
   },
   plugins: [
     clean(),
-    typescript({ tsconfig: 'src/ash/tsconfig.json', useTsconfigDeclarationDir: true }),
+    typescript({ tsconfig: 'ash/tsconfig.json', useTsconfigDeclarationDir: true }),
     resolve({ jsnext: true }),
     commonjs(),
     terser()
