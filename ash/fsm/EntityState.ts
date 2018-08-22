@@ -1,6 +1,5 @@
 import { IComponentProvider } from './IComponentProvider';
 import { StateComponentMapping } from './StateComponentMapping';
-import { Dictionary } from '../Dictionary';
 import { ClassType } from '../Types';
 
 /**
@@ -12,7 +11,7 @@ export class EntityState
     /**
      * @private
      */
-    public providers:Dictionary<ClassType<any>, IComponentProvider<any>> = new Dictionary<ClassType<any>, IComponentProvider<any>>();
+    public providers:Map<ClassType<any>, IComponentProvider<any>> = new Map<ClassType<any>, IComponentProvider<any>>();
 
     /**
      * Add a new ComponentMapping to this state. The mapping is a utility class that is used to
@@ -34,7 +33,7 @@ export class EntityState
      */
     public get<TComponent>( type:ClassType<TComponent> ):IComponentProvider<TComponent> | null
     {
-        return this.providers.get( type );
+        return this.providers.get( type ) || null;
     }
 
     /**

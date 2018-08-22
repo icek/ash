@@ -3,7 +3,6 @@
  */
 
 import { ListenerNode } from './ListenerNode';
-import { Dictionary } from '../Dictionary';
 import { ListenerNodePool } from './ListenerNodePool';
 
 /**
@@ -15,7 +14,7 @@ export class SignalBase<TListener>
     protected head:ListenerNode<TListener> | null = null;
     protected tail:ListenerNode<TListener> | null = null;
 
-    private nodes:Dictionary<TListener, ListenerNode<TListener>>;
+    private nodes:Map<TListener, ListenerNode<TListener>>;
     private listenerNodePool:ListenerNodePool<TListener>;
     private toAddHead:ListenerNode<TListener> | null = null;
     private toAddTail:ListenerNode<TListener> | null = null;
@@ -24,7 +23,7 @@ export class SignalBase<TListener>
 
     constructor()
     {
-        this.nodes = new Dictionary<TListener, ListenerNode<TListener>>();
+        this.nodes = new Map<TListener, ListenerNode<TListener>>();
         this.listenerNodePool = new ListenerNodePool<TListener>();
     }
 
@@ -120,7 +119,7 @@ export class SignalBase<TListener>
 
     public remove( listener:TListener ):void
     {
-        let node:ListenerNode<TListener> | null = this.nodes.get( listener );
+        let node:ListenerNode<TListener> | null = this.nodes.get( listener ) || null;
         if( node )
         {
             if( this.head === node )
@@ -147,7 +146,7 @@ export class SignalBase<TListener>
             {
                 node.next.previous = node.previous;
             }
-            this.nodes.remove( listener );
+            this.nodes.delete( listener );
             if( this.dispatching )
             {
                 this.listenerNodePool.cache( node );
@@ -166,7 +165,7 @@ export class SignalBase<TListener>
         {
             let node:ListenerNode<TListener> = this.head;
             this.head = this.head.next;
-            this.nodes.remove( node.listener! );
+            this.nodes.delete( node.listener! );
             this.listenerNodePool.dispose( node );
         }
         this.tail = null;

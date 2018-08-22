@@ -1,5 +1,3 @@
-import { Dictionary } from '../Dictionary';
-
 /**
  * An object pool for re-using components. This is not integrated in to Ash but is used dierectly by
  * the developer. It expects components to not require any parameters in their constructor.
@@ -25,7 +23,7 @@ import { Dictionary } from '../Dictionary';
  */
 export class ComponentPool
 {
-    private static pools:Dictionary<{ new():any }, any[]> = new Dictionary<{ new():any }, any[]>();
+    private static pools:Map<{ new():any }, any[]> = new Map<{ new():any }, any[]>();
 
     private static getPool<T>( componentClass:{ new():T } ):T[]
     {
@@ -81,6 +79,6 @@ export class ComponentPool
      */
     public static empty():void
     {
-        ComponentPool.pools = new Dictionary<{ new( ...args:any[] ):any }, any[]>();
+        ComponentPool.pools = new Map<{ new( ...args:any[] ):any }, any[]>();
     }
 }

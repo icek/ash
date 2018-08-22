@@ -1,4 +1,3 @@
-import { Dictionary } from '../Dictionary';
 import { ComponentMatchingFamily } from './ComponentMatchingFamily';
 import { Entity } from './Entity';
 import { EntityList } from './EntityList';
@@ -20,7 +19,7 @@ export class Engine
     private entityNames:{[key:string]:Entity | null};
     private entityList:EntityList;
     private systemList:SystemList;
-    private families:Dictionary<{ new():Node<any> }, IFamily<any>>;
+    private families:Map<{ new():Node<any> }, IFamily<any>>;
 
     /**
      * Indicates if the engine is currently in its update loop.
@@ -48,7 +47,7 @@ export class Engine
         this.entityList = new EntityList();
         this.entityNames = {};
         this.systemList = new SystemList();
-        this.families = new Dictionary<{ new():Node<any> }, IFamily<any>>();
+        this.families = new Map<{ new():Node<any> }, IFamily<any>>();
         this.updateComplete = new Signal0();
     }
 
@@ -198,7 +197,7 @@ export class Engine
         {
             this.families.get( nodeClass )!.cleanUp();
         }
-        this.families.remove( nodeClass );
+        this.families.delete( nodeClass );
     }
 
     /**

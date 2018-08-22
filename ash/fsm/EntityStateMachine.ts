@@ -1,7 +1,6 @@
 import { Entity } from '../core/Entity';
 import { EntityState } from './EntityState';
 import { IComponentProvider } from './IComponentProvider';
-import { Dictionary } from '../Dictionary';
 import { ClassType } from '../Types';
 
 /**
@@ -75,22 +74,22 @@ export class EntityStateMachine
             newState = null;
             return;
         }
-        let toAdd:Dictionary<ClassType<any>, IComponentProvider<any>>;
+        let toAdd:Map<ClassType<any>, IComponentProvider<any>>;
 
         if( this.currentState )
         {
-            toAdd = new Dictionary<ClassType<any>, IComponentProvider<any>>();
+            toAdd = new Map<ClassType<any>, IComponentProvider<any>>();
             for( let type of newState.providers.keys() )
             {
                 toAdd.set( type, newState.providers.get( type )! );
             }
             for( let type of this.currentState.providers.keys() )
             {
-                let other:IComponentProvider<any> | null = toAdd.get( type );
+                let other:IComponentProvider<any> | null = toAdd.get( type ) || null;
 
                 if( other && other.identifier === this.currentState!.providers.get( type )!.identifier )
                 {
-                    toAdd.remove( type );
+                    toAdd.delete( type );
                 }
                 else
                 {

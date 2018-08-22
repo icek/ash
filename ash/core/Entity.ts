@@ -1,5 +1,4 @@
 import { Signal2 } from '../signals/Signal2';
-import { Dictionary } from '../Dictionary';
 import { ClassType } from '../Types';
 
 /**
@@ -43,7 +42,7 @@ export class Entity
 
     public previous:Entity | null = null;
     public next:Entity | null = null;
-    public components:Dictionary<ClassType<any>, any>;
+    public components:Map<ClassType<any>, any>;
 
     /**
      * The constructor
@@ -55,7 +54,7 @@ export class Entity
         this.componentAdded = new Signal2();
         this.componentRemoved = new Signal2();
         this.nameChanged = new Signal2();
-        this.components = new Dictionary<ClassType<any>, any>();
+        this.components = new Map<ClassType<any>, any>();
         if( name )
         {
             this._name = name;
@@ -129,7 +128,7 @@ export class Entity
         let component:any = this.components.get( componentClass );
         if( component )
         {
-            this.components.remove( componentClass );
+            this.components.delete( componentClass );
             this.componentRemoved.dispatch( this, componentClass );
             return component;
         }

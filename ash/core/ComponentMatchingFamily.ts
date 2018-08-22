@@ -1,4 +1,3 @@
-import { Dictionary } from '../Dictionary';
 import { Engine } from './Engine';
 import { Entity } from './Entity';
 import { IFamily } from './IFamily';
@@ -17,9 +16,9 @@ import { ClassType } from '../Types';
 export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily<TNode>
 {
     private nodes!:NodeList<TNode>;
-    private entities!:Dictionary<Entity, TNode>;
+    private entities!:Map<Entity, TNode>;
     private nodeClass:{ new():TNode };
-    public components!:Dictionary<ClassType<any>, string>;
+    public components!:Map<ClassType<any>, string>;
     private nodePool!:NodePool<TNode>;
     private engine:Engine;
 
@@ -44,8 +43,8 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     private init():void
     {
         this.nodes = new NodeList<TNode>();
-        this.entities = new Dictionary<Entity, TNode>();
-        this.components = new Dictionary<ClassType<any>, string>();
+        this.entities = new Map<Entity, TNode>();
+        this.components = new Map<ClassType<any>, string>();
         this.nodePool = new NodePool<TNode>( this.nodeClass, this.components );
 
         let dummyNode:TNode = this.nodePool.get();
@@ -148,7 +147,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
         if( this.entities.has( entity ) )
         {
             let node:TNode = this.entities.get( entity )!;
-            this.entities.remove( entity );
+            this.entities.delete( entity );
             this.nodes.remove( node );
             if( this.engine.updating )
             {
@@ -178,7 +177,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     {
         for( let node:Node<TNode> | null = this.nodes.head; node; node = node.next )
         {
-            this.entities.remove( node.entity );
+            this.entities.delete( node.entity );
         }
         this.nodes.removeAll();
     }

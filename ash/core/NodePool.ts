@@ -1,4 +1,3 @@
-import { Dictionary } from '../Dictionary';
 import { Node } from './Node';
 import { ClassType } from '../Types';
 
@@ -15,12 +14,12 @@ export class NodePool<TNode extends Node<any>>
     private tail:TNode | null = null;
     private nodeClass:{ new():TNode };
     private cacheTail:TNode | null = null;
-    private components:Dictionary<ClassType<any>, string>;
+    private components:Map<ClassType<any>, string>;
 
     /**
      * Creates a pool for the given node class.
      */
-    constructor( nodeClass:{ new():TNode }, components:Dictionary<ClassType<any>, string> )
+    constructor( nodeClass:{ new():TNode }, components:Map<ClassType<any>, string> )
     {
         this.nodeClass = nodeClass;
         this.components = components;
