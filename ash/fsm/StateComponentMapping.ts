@@ -103,7 +103,7 @@ export class StateComponentMapping<TComponent> {
    * @param type The type of component to add a mapping to the state for
    * @return The new ComponentMapping for that type
    */
-  public add<TComponent>(type:{ new(...args:any[]):TComponent }):StateComponentMapping<TComponent> {
+  public add<TNextComponent>(type:{ new(...args:any[]):TNextComponent }):StateComponentMapping<TNextComponent> {
     return this.creatingState.add(type);
   }
 

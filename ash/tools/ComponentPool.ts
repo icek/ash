@@ -28,11 +28,11 @@ export class ComponentPool {
 
     if(ComponentPool.pools.has(componentClass)) {
       return ComponentPool.pools.get(componentClass)!;
-    } else {
-      const ret:T[] = [];
-      ComponentPool.pools.set(componentClass, ret);
-      return ret;
     }
+
+    const ret:T[] = [];
+    ComponentPool.pools.set(componentClass, ret);
+    return ret;
   }
 
   /**
@@ -45,9 +45,9 @@ export class ComponentPool {
     const pool:T[] = ComponentPool.getPool(componentClass);
     if(pool.length > 0) {
       return pool.pop()!;
-    } else {
-      return new componentClass();
     }
+
+    return new componentClass();
   }
 
   /**

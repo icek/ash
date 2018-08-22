@@ -15,9 +15,8 @@ export class ListenerNodePool<TListener> {
       node.previous = null;
       return node;
     }
-    else {
-      return new ListenerNode<TListener>();
-    }
+
+    return new ListenerNode<TListener>();
   }
 
   public dispose(node:ListenerNode<TListener>):void {
