@@ -10,45 +10,41 @@ import { ClassType } from '../Types';
  * to the list obtained by the system. The engine keeps the list up to date as entities are added
  * to and removed from the engine and as the components on entities change.</p>
  */
-export class Node<TNode>
-{
-    /**
-     * The entity whose components are included in the node.
-     */
-    public entity!:Entity;
+export class Node<TNode> {
+  /**
+   * The entity whose components are included in the node.
+   */
+  public entity!:Entity;
 
-    /**
-     * Used by the NodeList class. The previous node in a node list.
-     */
-    public previous:TNode | null = null;
+  /**
+   * Used by the NodeList class. The previous node in a node list.
+   */
+  public previous:TNode | null = null;
 
-    /**
-     * Used by the NodeList class. The next node in a node list.
-     */
-    public next:TNode | null = null;
+  /**
+   * Used by the NodeList class. The next node in a node list.
+   */
+  public next:TNode | null = null;
 }
 
-export function keep( type:ClassType<any> ):Function
-{
-    return ( target:Object, propertyKey:string, descriptor:TypedPropertyDescriptor<any> ) => {
-        let ctor = target.constructor;
-        let map:Object;
-        let ashProp:string = '__ash_types__';
-        if( ctor.hasOwnProperty( ashProp ) )
-        {
-            map = (<any>ctor)[ ashProp ];
-        }
-        else
-        {
-            map = {};
-            Object.defineProperty( ctor, ashProp, {
-                enumerable: true,
-                value: map
-            } );
-        }
+export function keep(type:ClassType<any>):Function {
+  return (target:Object, propertyKey:string, descriptor:TypedPropertyDescriptor<any>) => {
+    const ctor = target.constructor;
+    let map:Object;
+    const ashProp:string = '__ash_types__';
+    if(ctor.hasOwnProperty(ashProp)) {
+      map = (<any>ctor)[ashProp];
+    }
+    else {
+      map = {};
+      Object.defineProperty(ctor, ashProp, {
+        enumerable: true,
+        value: map
+      });
+    }
 
-        (<any>map)[ propertyKey ] = type;
+    (<any>map)[propertyKey] = type;
 
-        return descriptor;
-    };
+    return descriptor;
+  };
 }

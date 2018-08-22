@@ -21,64 +21,52 @@
  *
  * <p>ComponentPool.dispose( entity.remove( component ) );</p>
  */
-export class ComponentPool
-{
-    private static pools:Map<{ new():any }, any[]> = new Map<{ new():any }, any[]>();
+export class ComponentPool {
+  private static pools:Map<{ new():any }, any[]> = new Map<{ new():any }, any[]>();
 
-    private static getPool<T>( componentClass:{ new():T } ):T[]
-    {
+  private static getPool<T>(componentClass:{ new():T }):T[] {
 
-        if( ComponentPool.pools.has( componentClass ) )
-        {
-            return ComponentPool.pools.get( componentClass )!;
-        }
-        else
-        {
-            let ret:T[] = [];
-            ComponentPool.pools.set( componentClass, ret );
-            return ret;
-        }
+    if(ComponentPool.pools.has(componentClass)) {
+      return ComponentPool.pools.get(componentClass)!;
+    } else {
+      const ret:T[] = [];
+      ComponentPool.pools.set(componentClass, ret);
+      return ret;
     }
+  }
 
-    /**
-     * Get an object from the pool.
-     *
-     * @param componentClass The type of component wanted.
-     * @return The component.
-     */
-    public static get<T>( componentClass:{ new():T } ):T
-    {
-        let pool:T[] = ComponentPool.getPool( componentClass );
-        if( pool.length > 0 )
-        {
-            return pool.pop()!;
-        }
-        else
-        {
-            return new componentClass();
-        }
+  /**
+   * Get an object from the pool.
+   *
+   * @param componentClass The type of component wanted.
+   * @return The component.
+   */
+  public static get<T>(componentClass:{ new():T }):T {
+    const pool:T[] = ComponentPool.getPool(componentClass);
+    if(pool.length > 0) {
+      return pool.pop()!;
+    } else {
+      return new componentClass();
     }
+  }
 
-    /**
-     * Return an object to the pool for reuse.
-     *
-     * @param component The component to return to the pool.
-     */
-    public static dispose<T>( component:T ):void
-    {
-        if( component )
-        {
-            let type:{ new( ...args:any[] ):T } = component.constructor.prototype.constructor;
-            let pool:T[] = ComponentPool.getPool( type );
-            pool[ pool.length ] = component;
-        }
+  /**
+   * Return an object to the pool for reuse.
+   *
+   * @param component The component to return to the pool.
+   */
+  public static dispose<T>(component:T):void {
+    if(component) {
+      const type:{ new(...args:any[]):T } = component.constructor.prototype.constructor;
+      const pool:T[] = ComponentPool.getPool(type);
+      pool[pool.length] = component;
     }
+  }
 
-    /**
-     * Dispose of all pooled resources, freeing them for garbage collection.
-     */
-    public static empty():void
-    {
-        ComponentPool.pools = new Map<{ new( ...args:any[] ):any }, any[]>();
-    }
+  /**
+   * Dispose of all pooled resources, freeing them for garbage collection.
+   */
+  public static empty():void {
+    ComponentPool.pools = new Map<{ new(...args:any[]):any }, any[]>();
+  }
 }

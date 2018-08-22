@@ -1,10 +1,9 @@
 import { System } from '../core/System';
 
-export interface ISystemProvider<TSystem extends System>
-{
-    getSystem():TSystem;
+export interface ISystemProvider<TSystem extends System> {
+  getSystem():TSystem;
 
-    identifier:any;
+  identifier:any;
 
-    priority:number;
+  priority:number;
 }
