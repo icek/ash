@@ -1,7 +1,6 @@
 {
   "extends": [
-    "tslint-config-airbnb-base",
-    "tslint-config-prettier"
+    "tslint-config-airbnb-base"
   ],
   "rules": {
     "semicolon": [true, "always", "ignore-bound-class-methods"],
