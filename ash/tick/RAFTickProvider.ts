@@ -19,7 +19,8 @@ export class RAFTickProvider extends Signal1<number> implements ITickProvider {
   private update = () => {
     this.rafId = requestAnimationFrame(this.update);
     const time = Date.now();
-    this.dispatch((time - this.previousTime) / 1000);
+    const second = 1000;
+    this.dispatch((time - this.previousTime) / second);
     this.previousTime = time;
   };
 

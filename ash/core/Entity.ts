@@ -25,7 +25,7 @@ export class Entity {
   /**
    * Optional, give the entity a name. This can help with debugging and with serialising the entity.
    */
-  private _name:string;
+  private pName:string;
   /**
    * This signal is dispatched when a component is added to the entity.
    */
@@ -54,9 +54,10 @@ export class Entity {
     this.nameChanged = new Signal2();
     this.components = new Map<ClassType<any>, any>();
     if(name) {
-      this._name = name;
+      this.pName = name;
     } else {
-      this._name = '_entity' + (++Entity.nameCount);
+      Entity.nameCount += 1;
+      this.pName = '_entity' + Entity.nameCount;
     }
   }
 
@@ -65,13 +66,13 @@ export class Entity {
    * fetch specific entities from the engine, and can also help to identify an entity when debugging.
    */
   public get name():string {
-    return this._name;
+    return this.pName;
   }
 
   public set name(value:string) {
-    if(this._name !== value) {
-      const previous:string = this._name;
-      this._name = value;
+    if(this.pName !== value) {
+      const previous:string = this.pName;
+      this.pName = value;
       this.nameChanged.dispatch(this, previous);
     }
   }

@@ -18,7 +18,7 @@ export class SignalBase<TListener> {
   private toAddHead:ListenerNode<TListener> | null = null;
   private toAddTail:ListenerNode<TListener> | null = null;
   private dispatching:boolean = false;
-  private _numListeners:number = 0;
+  private pNumListeners:number = 0;
 
   constructor() {
     this.nodes = new Map<TListener, ListenerNode<TListener>>();
@@ -48,7 +48,7 @@ export class SignalBase<TListener> {
   }
 
   public get numListeners():number {
-    return this._numListeners;
+    return this.pNumListeners;
   }
 
   public add(listener:TListener):void {
@@ -95,7 +95,7 @@ export class SignalBase<TListener> {
         this.tail = node;
       }
     }
-    this._numListeners++;
+    this.pNumListeners += 1;
   }
 
   public remove(listener:TListener):void {
@@ -126,7 +126,7 @@ export class SignalBase<TListener> {
       else {
         this.listenerNodePool.dispose(node);
       }
-      this._numListeners--;
+      this.pNumListeners -= 1;
     }
   }
 
@@ -140,6 +140,6 @@ export class SignalBase<TListener> {
     this.tail = null;
     this.toAddHead = null;
     this.toAddTail = null;
-    this._numListeners = 0;
+    this.pNumListeners = 0;
   }
 }

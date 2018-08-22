@@ -5,7 +5,7 @@ import { IComponentProvider } from './IComponentProvider';
  * return a single component of the appropriate type.
  */
 export class DynamicComponentProvider<TComponent> implements IComponentProvider<TComponent> {
-  private _closure:() => TComponent;
+  private closure:() => TComponent;
 
   /**
    * Constructor
@@ -13,7 +13,7 @@ export class DynamicComponentProvider<TComponent> implements IComponentProvider<
    * @param closure The function that will return the component instance when called.
    */
   constructor(closure:() => TComponent) {
-    this._closure = closure;
+    this.closure = closure;
   }
 
   /**
@@ -22,7 +22,7 @@ export class DynamicComponentProvider<TComponent> implements IComponentProvider<
    * @return The instance returned by calling the function
    */
   public getComponent():TComponent {
-    return this._closure();
+    return this.closure();
   }
 
   /**
@@ -32,7 +32,7 @@ export class DynamicComponentProvider<TComponent> implements IComponentProvider<
    * @return The function
    */
   public get identifier():any {
-    return this._closure;
+    return this.closure;
   }
 
 }

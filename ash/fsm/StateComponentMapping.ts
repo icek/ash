@@ -11,6 +11,7 @@ import { IComponentProvider } from './IComponentProvider';
 export class StateComponentMapping<TComponent> {
   private componentType:{ new(...args:any[]):TComponent };
   private creatingState:EntityState;
+  // tslint:disable-next-line:no-unused-variable
   private provider!:IComponentProvider<TComponent>;
 
   /**
