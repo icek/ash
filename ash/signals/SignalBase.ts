@@ -35,8 +35,7 @@ export class SignalBase<TListener> {
       if(!this.head) {
         this.head = this.toAddHead;
         this.tail = this.toAddTail;
-      }
-      else {
+      } else {
         this.tail!.next = this.toAddHead;
         this.toAddHead.previous = this.tail;
         this.tail = this.toAddTail;
@@ -78,18 +77,15 @@ export class SignalBase<TListener> {
     if(this.dispatching) {
       if(!this.toAddHead) {
         this.toAddHead = this.toAddTail = node;
-      }
-      else {
+      } else {
         this.toAddTail!.next = node;
         node.previous = this.toAddTail;
         this.toAddTail = node;
       }
-    }
-    else {
+    } else {
       if(!this.head) {
         this.head = this.tail = node;
-      }
-      else {
+      } else {
         this.tail!.next = node;
         node.previous = this.tail;
         this.tail = node;
@@ -122,8 +118,7 @@ export class SignalBase<TListener> {
       this.nodes.delete(listener);
       if(this.dispatching) {
         this.listenerNodePool.cache(node);
-      }
-      else {
+      } else {
         this.listenerNodePool.dispose(node);
       }
       this.pNumListeners -= 1;

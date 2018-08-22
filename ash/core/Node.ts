@@ -34,12 +34,11 @@ export function keep(type:ClassType<any>):Function {
     const ashProp:string = '__ash_types__';
     if(ctor.hasOwnProperty(ashProp)) {
       map = (<any>ctor)[ashProp];
-    }
-    else {
+    } else {
       map = {};
       Object.defineProperty(ctor, ashProp, {
         enumerable: true,
-        value: map
+        value: map,
       });
     }
 

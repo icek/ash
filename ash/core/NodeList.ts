@@ -50,8 +50,7 @@ export class NodeList<TNode extends Node<any>> {
     if(!this.head) {
       this.head = this.tail = node;
       node.next = node.previous = null;
-    }
-    else {
+    } else {
       this.tail!.next = node;
       node.previous = this.tail;
       node.next = null;
@@ -107,14 +106,12 @@ export class NodeList<TNode extends Node<any>> {
       node2.previous = node1;
       node2.next = node1.next;
       node1.next = node2;
-    }
-    else if(node2.previous === node1) {
+    } else if(node2.previous === node1) {
       node2.previous = node1.previous;
       node1.previous = node2;
       node1.next = node2.next;
       node2.next = node1;
-    }
-    else {
+    } else {
       let temp:TNode = node1.previous;
       node1.previous = node2.previous;
       node2.previous = temp;
@@ -124,14 +121,12 @@ export class NodeList<TNode extends Node<any>> {
     }
     if(this.head === node1) {
       this.head = node2;
-    }
-    else if(this.head === node2) {
+    } else if(this.head === node2) {
       this.head = node1;
     }
     if(this.tail === node1) {
       this.tail = node2;
-    }
-    else if(this.tail === node2) {
+    } else if(this.tail === node2) {
       this.tail = node1;
     }
     if(node1.previous) {
@@ -191,8 +186,7 @@ export class NodeList<TNode extends Node<any>> {
           break; // exit the inner for loop
         }
       }
-      if(!other) // the node belongs at the start of the list
-      {
+      if(!other) { // the node belongs at the start of the list
         // remove from place
         if(this.tail === node) {
           this.tail = node.previous;
@@ -258,8 +252,7 @@ export class NodeList<TNode extends Node<any>> {
     if(sortFunction(head1, head2) <= 0) {
       head = node = head1;
       head1 = head1.next;
-    }
-    else {
+    } else {
       head = node = head2;
       head2 = head2.next;
     }
@@ -269,8 +262,7 @@ export class NodeList<TNode extends Node<any>> {
         head1.previous = node;
         node = head1;
         head1 = head1.next;
-      }
-      else {
+      } else {
         node.next = head2;
         head2.previous = node;
         node = head2;
@@ -280,8 +272,7 @@ export class NodeList<TNode extends Node<any>> {
     if(head1) {
       node.next = head1;
       head1.previous = node;
-    }
-    else {
+    } else {
       node.next = head2;
       head2.previous = node;
     }

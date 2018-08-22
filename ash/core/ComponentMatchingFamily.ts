@@ -134,8 +134,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
       if(this.engine.updating) {
         this.nodePool.cache(node);
         this.engine.updateComplete.add(this.releaseNodePoolCache);
-      }
-      else {
+      } else {
         this.nodePool.dispose(node);
       }
     }

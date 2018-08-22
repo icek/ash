@@ -73,8 +73,7 @@ export class EngineStateMachine {
 
         if(other) {
           delete toAdd[id];
-        }
-        else {
+        } else {
           this.engine.removeSystem(provider.getSystem());
         }
       }

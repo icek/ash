@@ -79,13 +79,11 @@ export class EntityStateMachine {
 
         if(other && other.identifier === this.currentState!.providers.get(type)!.identifier) {
           toAdd.delete(type);
-        }
-        else {
+        } else {
           this.entity.remove(type);
         }
       }
-    }
-    else {
+    } else {
       toAdd = newState.providers;
     }
     for(const type of toAdd.keys()) {

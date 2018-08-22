@@ -12,8 +12,7 @@ export class EntityList {
     if(!this.head) {
       this.head = this.tail = entity;
       entity.next = entity.previous = null;
-    }
-    else {
+    } else {
       this.tail!.next = entity;
       entity.previous = this.tail;
       entity.next = null;

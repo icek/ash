@@ -24,14 +24,12 @@ export class SystemList {
         system.previous = this.tail;
         system.next = null;
         this.tail = system;
-      }
-      else if(!node) {
+      } else if(!node) {
         system.next = this.head;
         system.previous = null;
         this.head.previous = system;
         this.head = system;
-      }
-      else {
+      } else {
         system.next = node.next;
         system.previous = node;
         node.next!.previous = system;
