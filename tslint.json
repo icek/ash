@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "tslint-config-airbnb-base",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "ter-max-len": [
+      true, 160, 2, {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
+  }
+}
