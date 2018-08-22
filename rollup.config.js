@@ -1,23 +1,14 @@
 import typescript from 'rollup-plugin-typescript2';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import clean from 'rollup-plugin-clean';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
   input: 'ash/index.ts',
-  output: {
-    name: 'ash',
-    dir: 'dist',
-    file: 'dist/ash.js',
-    format: 'umd',
-    sourcemap: false
-  },
+  output: [
+    { format: 'umd', file: 'dist/ash.ts.umd.js', name: 'ash-ts' },
+    { format: 'esm', file: 'dist/ash.ts.esm.js', name: 'ash-ts' }
+  ],
   plugins: [
-    clean(),
     typescript({ tsconfig: 'ash/tsconfig.json', useTsconfigDeclarationDir: true }),
-    resolve({ jsnext: true }),
-    commonjs(),
     terser()
   ]
 };

@@ -1,7 +1,0 @@
-{
-  "name": "ash.ts",
-  "main": "dist/types/index.d.ts",
-  "baseDir": "dist/types",
-  "out": "../ash.d.ts",
-  "outputAsModuleFolder": false
-}

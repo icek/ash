@@ -2,8 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
 
-    "target": "es5",
-    "module": "es2015",
+    "target": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
 
     "declaration": true,
@@ -16,7 +16,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
 
-    "baseUrl": "."
+    "baseUrl": ".",
+    "lib": ["esnext", "dom"]
   },
   "exclude": [
     "./io"
