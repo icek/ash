@@ -94,8 +94,6 @@ export class StateComponentMapping<TComponent> {
   public withProvider(provider:IComponentProvider<TComponent>):this {
     this.setProvider(provider);
     return this;
-
-
   }
 
   /**
@@ -113,5 +111,4 @@ export class StateComponentMapping<TComponent> {
     this.provider = provider;
     this.creatingState.providers.set(this.componentType, provider);
   }
-
 }

@@ -34,5 +34,4 @@ export class DynamicComponentProvider<TComponent> implements IComponentProvider<
   public get identifier():any {
     return this.closure;
   }
-
 }

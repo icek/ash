@@ -27,7 +27,6 @@ export class ComponentPool {
   private static pools:Map<ClassType<any>, any[]> = new Map<ClassType<any>, any[]>();
 
   private static getPool<T>(componentClass:{ new():T }):T[] {
-
     if(ComponentPool.pools.has(componentClass)) {
       return ComponentPool.pools.get(componentClass)!;
     }

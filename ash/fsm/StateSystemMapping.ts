@@ -54,7 +54,6 @@ export class StateSystemMapping<TSystem extends System> {
    */
   public addSingleton(type:ClassType<TSystem>):StateSystemMapping<TSystem> {
     return this.creatingState.addSingleton(type);
-
   }
 
   /**
