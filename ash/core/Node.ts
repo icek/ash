@@ -1,5 +1,5 @@
 import { Entity } from './Entity';
-import { ClassType } from '../Types';
+import { ClassType } from '../types';
 
 /**
  * The base class for a node.

@@ -1,5 +1,5 @@
 import { Signal2 } from '../signals/Signal2';
-import { ClassType } from '../Types';
+import { ClassType } from '../types';
 
 /**
  * An entity is composed from components. As such, it is essentially a collection object for components.

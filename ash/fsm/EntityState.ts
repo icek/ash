@@ -1,6 +1,6 @@
 import { IComponentProvider } from './IComponentProvider';
 import { StateComponentMapping } from './StateComponentMapping';
-import { ClassType } from '../Types';
+import { ClassType } from '../types';
 
 /**
  * Represents a state for an EntityStateMachine. The state contains any number of ComponentProviders which

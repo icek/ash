@@ -1,3 +1,4 @@
+export { ClassType } from './types';
 
 export { Signal0 } from './signals/Signal0';
 export { Signal1 } from './signals/Signal1';

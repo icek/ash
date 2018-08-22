@@ -4,7 +4,7 @@ import { IFamily } from './IFamily';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
-import { ClassType } from '../Types';
+import { ClassType } from '../types';
 
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes

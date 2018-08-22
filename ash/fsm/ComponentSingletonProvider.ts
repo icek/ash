@@ -1,3 +1,4 @@
+import { ClassType } from '../types';
 import { IComponentProvider } from './IComponentProvider';
 
 /**
@@ -5,7 +6,7 @@ import { IComponentProvider } from './IComponentProvider';
  * is created when first required and is of the type passed in to the constructor.
  */
 export class ComponentSingletonProvider<TComponent> implements IComponentProvider<TComponent> {
-  private componentType:{ new(...args:any[]):TComponent };
+  private componentType:ClassType<TComponent>;
   private instance?:TComponent;
 
   /**
@@ -13,7 +14,7 @@ export class ComponentSingletonProvider<TComponent> implements IComponentProvide
    *
    * @param type The type of the single instance
    */
-  constructor(type:{ new(...args:any[]):TComponent }) {
+  constructor(type:ClassType<TComponent>) {
     this.componentType = type;
   }
 

@@ -7,7 +7,7 @@ import { NodeList } from './NodeList';
 import { SystemList } from './SystemList';
 import { Signal0 } from '../signals/Signal0';
 import { System } from './System';
-import { ClassType } from '../Types';
+import { ClassType } from '../types';
 
 
 /**
@@ -205,7 +205,7 @@ export class Engine {
    * @return The instance of the system type that is in the engine, or
    * null if no systems of this type are in the engine.
    */
-  public getSystem<TSystem extends System>(type:{ new(...args:any[]):TSystem }):TSystem | null {
+  public getSystem<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
     return this.systemList.get(type);
   }
 

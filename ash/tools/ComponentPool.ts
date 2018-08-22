@@ -21,8 +21,10 @@
  *
  * <p>ComponentPool.dispose( entity.remove( component ) );</p>
  */
+import { ClassType } from '../types';
+
 export class ComponentPool {
-  private static pools:Map<{ new():any }, any[]> = new Map<{ new():any }, any[]>();
+  private static pools:Map<ClassType<any>, any[]> = new Map<ClassType<any>, any[]>();
 
   private static getPool<T>(componentClass:{ new():T }):T[] {
 
@@ -57,7 +59,7 @@ export class ComponentPool {
    */
   public static dispose<T>(component:T):void {
     if(component) {
-      const type:{ new(...args:any[]):T } = component.constructor.prototype.constructor;
+      const type:ClassType<T> = component.constructor.prototype.constructor;
       const pool:T[] = ComponentPool.getPool(type);
       pool[pool.length] = component;
     }
@@ -67,6 +69,6 @@ export class ComponentPool {
    * Dispose of all pooled resources, freeing them for garbage collection.
    */
   public static empty():void {
-    ComponentPool.pools = new Map<{ new(...args:any[]):any }, any[]>();
+    ComponentPool.pools = new Map<ClassType<any>, any[]>();
   }
 }

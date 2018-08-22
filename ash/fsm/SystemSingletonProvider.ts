@@ -1,4 +1,5 @@
 import { System } from '../core/System';
+import { ClassType } from '../types';
 import { ISystemProvider } from './ISystemProvider';
 
 /**
@@ -6,7 +7,7 @@ import { ISystemProvider } from './ISystemProvider';
  * is created when first required and is of the type passed in to the constructor.
  */
 export class SystemSingletonProvider<TSystem extends System> implements ISystemProvider<TSystem> {
-  private componentType:{ new(...args:any[]):TSystem };
+  private componentType:ClassType<TSystem>;
   private instance?:TSystem;
   private systemPriority:number = 0;
 
@@ -15,7 +16,7 @@ export class SystemSingletonProvider<TSystem extends System> implements ISystemP
    *
    * @param type The type of the single System instance
    */
-  constructor(type:{ new(...args:any[]):TSystem }) {
+  constructor(type:ClassType<TSystem>) {
     this.componentType = type;
   }
 

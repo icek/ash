@@ -1,3 +1,4 @@
+import { ClassType } from '../types';
 import { DynamicSystemProvider } from './DynamicSystemProvider';
 import { ISystemProvider } from './ISystemProvider';
 import { StateSystemMapping } from './StateSystemMapping';
@@ -33,7 +34,7 @@ export class EngineState {
    * mapping is used.
    * @return This StateSystemMapping, so more modifications can be applied
    */
-  public addSingleton<TSystem extends System>(type:{ new(...args:any[]):TSystem }):StateSystemMapping<TSystem> {
+  public addSingleton<TSystem extends System>(type:ClassType<TSystem>):StateSystemMapping<TSystem> {
     return this.addProvider(new SystemSingletonProvider<TSystem>(type));
   }
 

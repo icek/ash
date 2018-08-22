@@ -1,3 +1,4 @@
+import { ClassType } from '../types';
 import { System } from './System';
 
 /**
@@ -68,7 +69,7 @@ export class SystemList {
     this.tail = null;
   }
 
-  public get<TSystem extends System>(type:{ new(...args:any[]):TSystem }):TSystem | null {
+  public get<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
     for(let system:System | null = this.head; system; system = system.next) {
       if(system instanceof type) {
         return <TSystem>system;
