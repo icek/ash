@@ -1,152 +1,131 @@
 import { assert } from 'chai';
-import { NodeList, Node, NodePool, Dictionary, keep } from '../src/ash';
+import { NodeList, Node, NodePool, keep } from 'ash.ts';
+import { MockNode } from '../mocks';
 
-class Point {
-    public x:number;
-    public y:number;
+describe('NodeList tests', () => {
+  let nodes:NodeList<MockNode>;
 
-    constructor() {
+  beforeEach(() => {
+    nodes = new NodeList<MockNode>();
+  });
 
+  afterEach(() => {
+    nodes = null;
+  });
+
+  it('adding Node triggers added Signal', () => {
+    const node:MockNode = new MockNode();
+    nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
+      assert.equal(signalNode, node);
+    });
+    nodes.add(node);
+  });
+
+  it('removing Node triggers removed Signal', () => {
+    const node:MockNode = new MockNode();
+    nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
+      assert.equal(signalNode, node);
+    });
+    nodes.add(node);
+    nodes.remove(node);
+  });
+
+  it('all Nodes are covered during iteration', () => {
+    let node:MockNode;
+    const nodeArray:Array<MockNode> = [];
+    const numNodes = 5;
+    for(let i:number = 0; i < numNodes; ++i) {
+      node = new MockNode();
+      nodeArray.push(node);
+      nodes.add(node);
     }
-}
 
-class MockNode extends Node<MockNode> {
-    @keep( Point )
-    public point:Point;
-}
+    for(node = nodes.head; node; node = node.next) {
+      const index:number = nodeArray.indexOf(node);
+      nodeArray.splice(index, 1);
+    }
 
+    assert.equal(nodeArray.length, 0);
+  });
 
-describe( 'NodeList tests', () => {
-    let nodes:NodeList<MockNode>;
+  it('removing current Node during iteration is valid', () => {
+    let node:MockNode;
+    const nodeArray:Array<MockNode> = [];
+    const numNodes = 5;
+    for(let i:number = 0; i < numNodes; ++i) {
+      node = new MockNode();
+      nodeArray.push(node);
+      nodes.add(node);
+    }
 
-    beforeEach( () => {
-        nodes = new NodeList<MockNode>();
-    } );
+    let count:number = 0;
+    for(node = nodes.head; node; node = node.next) {
+      const index:number = nodeArray.indexOf(node);
+      nodeArray.splice(index, 1);
+      if(++count === 2) {
+        nodes.remove(node);
+      }
+    }
+    assert.equal(nodeArray.length, 0);
+  });
 
-    afterEach( () => {
-        nodes = null;
-    } );
+  it('removing next Node during iteration is valid', () => {
+    let node:MockNode;
+    const nodeArray:Array<MockNode> = [];
+    for(let i:number = 0; i < 5; ++i) {
+      node = new MockNode();
+      nodeArray.push(node);
+      nodes.add(node);
+    }
 
-    it( 'adding Node triggers added Signal', () => {
-        let node:MockNode = new MockNode();
-        nodes.nodeAdded.add( ( signalNode:Node<MockNode> ) => {
-            assert.equal( signalNode, node );
-        } );
-        nodes.add( node );
-    } );
+    let count:number = 0;
+    for(node = nodes.head; node; node = node.next) {
+      const index:number = nodeArray.indexOf(node);
+      nodeArray.splice(index, 1);
+      if(++count === 2) {
+        nodes.remove(node.next);
+      }
+    }
+    assert.equal(nodeArray.length, 1);
+  });
 
-    it( 'removing Node triggers removed Signal', () => {
-        let node:MockNode = new MockNode();
-        nodes.nodeRemoved.add( ( signalNode:Node<MockNode> ) => {
-            assert.equal( signalNode, node );
-        } );
-        nodes.add( node );
-        nodes.remove( node );
-    } );
+  it('NodePoll works', () => {
+    const cmps = new Map<{ new():any }, string>();
+    const poll = new NodePool<MockNode>(MockNode, cmps);
+    let m = poll.get();
+    let o = new MockNode();
+    assert.instanceOf(m, MockNode);
+  });
 
-    it( 'all Nodes are covered during iteration', () => {
-        let node:MockNode;
-        let nodeArray:Array<MockNode> = [];
-        for( let i:number = 0; i < 5; ++i ) {
-            node = new MockNode();
-            nodeArray.push( node );
-            nodes.add( node );
-        }
+  // let tempNode:Node;
 
-        for( node = nodes.head; node; node = node.next ) {
-            let index:number = nodeArray.indexOf( node );
-            nodeArray.splice( index, 1 );
-        }
+  // it('component Added Signal Contains Correct Parameters', () => {
+  //   tempNode = new MockNode();
+  //   nodes.nodeAdded.add(async.add(testSignalContent, 10));
+  //   nodes.add(tempNode);
+  // });
+  //
+  // it('component Removed Signal Contains Correct Parameters', () => {
+  //   tempNode = new MockNode();
+  //   nodes.add(tempNode);
+  //   nodes.nodeRemoved.add(async.add(testSignalContent, 10));
+  //   nodes.remove(tempNode);
+  // });
 
-        assert.equal( nodeArray.length, 0 );
-    } );
+  // function testSignalContent(signalNode:Node):void {
+  //   assert.equal(signalNode, tempNode);
+  // }
+  //
+  // it('nodesInitiallySortedInOrderOfAddition', () => {
+  //   const node1:MockNode = new MockNode();
+  //   const node2:MockNode = new MockNode();
+  //   const node3:MockNode = new MockNode();
+  //   nodes.add(node1);
+  //   nodes.add(node2);
+  //   nodes.add(node3);
+  //   assert.equal(nodes, nodeList(node1, node2, node3));
+  // });
 
-    it( 'removing current Node during iteration is valid', () => {
-        let node:MockNode;
-        let nodeArray:Array<MockNode> = [];
-        for( let i:number = 0; i < 5; ++i ) {
-            node = new MockNode();
-            nodeArray.push( node );
-            nodes.add( node );
-        }
-
-        let count:number = 0;
-        for( node = nodes.head; node; node = node.next ) {
-            let index:number = nodeArray.indexOf( node );
-            nodeArray.splice( index, 1 );
-            if( ++count == 2 ) {
-                nodes.remove( node );
-            }
-        }
-        assert.equal( nodeArray.length, 0 );
-    } );
-
-    it( 'removing next Node during iteration is valid', () => {
-        let node:MockNode;
-        let nodeArray:Array<MockNode> = [];
-        for( let i:number = 0; i < 5; ++i ) {
-            node = new MockNode();
-            nodeArray.push( node );
-            nodes.add( node );
-        }
-
-        let count:number = 0;
-        for( node = nodes.head; node; node = node.next ) {
-            let index:number = nodeArray.indexOf( node );
-            nodeArray.splice( index, 1 );
-            if( ++count == 2 ) {
-                nodes.remove( node.next );
-            }
-        }
-        assert.equal( nodeArray.length, 1 );
-    } );
-
-    it( 'NodePoll works', () => {
-        let cmps = new Dictionary<{ new():any }, string>();
-        let poll = new NodePool<MockNode>( MockNode, cmps );
-        let m = poll.get();
-        let o = new MockNode();
-        assert.instanceOf( m, MockNode );
-    } );
-//
-//private var tempNode : Node;
-//
-//[Test]
-//public function componentAddedSignalContainsCorrectParameters() : void
-//{
-//    tempNode = new MockNode();
-//    nodes.nodeAdded.add( async.add( testSignalContent, 10 ) );
-//    nodes.add( tempNode );
-//}
-//
-//[Test]
-//public function componentRemovedSignalContainsCorrectParameters() : void
-//{
-//    tempNode = new MockNode();
-//    nodes.add( tempNode );
-//    nodes.nodeRemoved.add( async.add( testSignalContent, 10 ) );
-//    nodes.remove( tempNode );
-//}
-//
-//private function testSignalContent( signalNode : Node ) : void
-//{
-//    assertThat( signalNode, sameInstance( tempNode ) );
-//}
-//
-
-//[Test]
-//public function nodesInitiallySortedInOrderOfAddition() : void
-//{
-//    var node1 : MockNode = new MockNode();
-//    var node2 : MockNode = new MockNode();
-//    var node3 : MockNode = new MockNode();
-//    nodes.add( node1 );
-//    nodes.add( node2 );
-//    nodes.add( node3 );
-//    assertThat( nodes, nodeList( node1, node2, node3 ) );
-//}
-//
-//[Test]
 //public function swappingOnlyTwoNodesChangesTheirOrder() : void
 //{
 //    var node1 : MockNode = new MockNode();
@@ -313,12 +292,12 @@ describe( 'NodeList tests', () => {
 //    assertThat( nodes, nodeList( node1, node2, node3, node4, node5 ) );
 //}
 //
-//private function sortFunction( node1 : MockNode, node2 : MockNode ) : Number
-//{
-//    return node1.pos - node2.pos;
-//}
+//   function sortFunction(node1:MockNode, node2:MockNode):number {
+//     return node1.pos - node2.pos;
+//   }
+
 //}
 //}
 //
 
-} );
+});

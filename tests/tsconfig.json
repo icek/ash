@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
 
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
 
@@ -10,20 +10,25 @@
     "removeComments": true,
     "sourceMap": true,
 
-    "noImplicitUseStrict": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
+    "strict": false,
 
     "suppressImplicitAnyIndexErrors": true,
 
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+
+    "baseUrl": ".",
+
+    "paths": {
+      "ash.ts": ["../ash"]
+    }
   },
-  "files": [
-    "../node_modules/@types/mocha/index.d.ts",
-    "../node_modules/@types/chai/index.d.ts",
-    "../src/ash/index.ts",
-    "ComponentMatchingFamilyTests.spec.ts"
+  "include": [
+    "../ash/**/*.ts",
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "../ash/io/**/*.ts",
+    "./io/**/*.ts"
   ]
 }

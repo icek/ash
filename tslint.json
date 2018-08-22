@@ -14,5 +14,10 @@
         "ignoreTemplateLiterals": true
       }
     ]
+  },
+  "cliOptions": {
+    "exclude": [
+      "tests"
+    ]
   }
 }
