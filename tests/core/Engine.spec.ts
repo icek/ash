@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash.ts';
+import { Engine, Entity } from 'ash.ts';
 import { MockFamily, MockNode, MockNode2, Point } from '../mocks';
 
 describe('Engine tests', () => {
