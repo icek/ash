@@ -1,4 +1,4 @@
-import { keep, Node, IFamily, Engine, ClassType, NodeList, Entity } from 'ash.ts';
+import { keep, Node, IFamily, Engine, ClassType, NodeList, Entity, System } from 'ash.ts';
 
 export class MockFamily implements IFamily<MockNode> {
   public static instances:MockFamily[] = [];
@@ -64,6 +64,8 @@ export class MockNode extends Node<MockNode> {
 }
 
 export class MockNode2 extends Node<MockNode2> {
+  @keep(Point)
+  public point:Point = null;
   @keep(Matrix)
   public matrix:Matrix = null;
 }
@@ -104,6 +106,45 @@ export class MockComponent2 {
   public constructor(x:number = 0, y:number = 0) {
     this.x = x;
     this.y = y;
+  }
+}
+
+export class MockSystem extends System {
+  constructor() {
+    super();
+  }
+
+  public addToEngine(engine:Engine):void {
+  }
+
+  public removeFromEngine(engine:Engine):void {
+  }
+
+  public update(time:Number):void {
+  }
+}
+
+export class MockSystem2 extends System {
+  private mockObject;
+
+  constructor(mockObject:any) {
+    super();
+    this.mockObject = mockObject;
+  }
+
+  public addToEngine(engine:Engine):void {
+    if(this.mockObject && this.mockObject.asyncCallback)
+      this.mockObject.asyncCallback(this, 'added', engine);
+  }
+
+  public removeFromEngine(engine:Engine):void {
+    if(this.mockObject && this.mockObject.asyncCallback)
+      this.mockObject.asyncCallback(this, 'removed', engine);
+  }
+
+  public update(time:Number):void {
+    if(this.mockObject && this.mockObject.asyncCallback)
+      this.mockObject.asyncCallback(this, 'update', time);
   }
 }
 

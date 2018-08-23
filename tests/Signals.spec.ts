@@ -26,24 +26,24 @@ describe('Signals tests', () => {
   //   dispatchSignal();
   // });
 //
-  it('should add listener then listeners count is one', () => {
+  it('add listener then listeners count is one', () => {
     signal.add(newEmptyHandler());
     assert.equal(signal.numListeners, 1);
   });
 
-  it('should add listener then remove then dispatch should not call listener', () => {
+  it('add listener then remove then dispatch should not call listener', () => {
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
     dispatchSignal();
   });
 
-  it('should add listener then remove then listeners count is zero', () => {
+  it('add listener then remove then listeners count is zero', () => {
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
     assert.equal(signal.numListeners, 0);
   });
 
-  it('shoukd remove function notInListenersShouldNotThrowError', () => {
+  it('remove function not in listeners should not throw Error', () => {
     signal.remove(newEmptyHandler());
     dispatchSignal();
   });
@@ -60,7 +60,7 @@ describe('Signals tests', () => {
   //   dispatchSignal();
   // });
 
-  it(' add2ListenersThenListenersCountIsTwo', () => {
+  it('add 2 listeners then listeners count is two', () => {
     signal.add(newEmptyHandler());
     signal.add(newEmptyHandler());
     const numListeners = 2;
@@ -83,14 +83,14 @@ describe('Signals tests', () => {
 //        }
 //    );
 
-  it(' add2ListenersThenRemove1ThenListenersCountIsOne', () => {
+  it('add 2 listeners then remove1 then listeners count is one', () => {
     signal.add(newEmptyHandler());
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
     assert.equal(signal.numListeners, 1);
   });
 
-  it(' addSameListenerTwiceShouldOnlyAddItOnce', () => {
+  it('add same listener twice should only add it once', () => {
     let count:number = 0;
     const func = () => ++count;
     signal.add(func);
@@ -99,13 +99,13 @@ describe('Signals tests', () => {
     assert.equal(count, 1);
   });
 
-  it(' addTheSameListenerTwiceShouldNotThrowError', () => {
+  it('add the same listener twice should mot throw Error', () => {
     const listener = newEmptyHandler();
     signal.add(listener);
     signal.add(listener);
   });
 
-  it(' addSameListenerTwiceThenListenersCountIsOne', () => {
+  it('add same listener twice then listeners count is one', () => {
     signal.add(failIfCalled);
     signal.add(failIfCalled);
     assert.equal(signal.numListeners, 1);
@@ -137,7 +137,7 @@ describe('Signals tests', () => {
   }
 
 
-  it(' addingAListenerDuringDispatchIncrementsListenersCount', () => {
+  it('adding a listener during dispatch increments listeners count', () => {
     signal.add(addListenerDuringDispatchToTestCount);
     dispatchSignal();
     assert.equal(signal.numListeners, 2);
