@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'modules',
+  mode: 'file',
   module: 'ESNext',
   target: 'ES6',
   out: 'docs',

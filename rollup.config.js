@@ -24,8 +24,8 @@ export default [
   {
     input: 'ash/index.ts',
     output: [
-      { format: 'umd', file: 'dist/ash.ts.js', name: 'ash.ts' },
-      { format: 'esm', file: 'dist/ash.ts.mjs', name: 'ash.ts' }
+      { format: 'umd', file: 'dist/ash.ts.js', name: 'ash' },
+      { format: 'esm', file: 'dist/ash.ts.mjs' }
     ],
     plugins: [
       typescript(typescriptConfig)
@@ -33,8 +33,8 @@ export default [
   }, {
     input: 'ash/index.ts',
     output: [
-      { format: 'umd', file: 'dist/ash.ts.min.js', name: 'ash.ts' },
-      { format: 'esm', file: 'dist/ash.ts.min.mjs', name: 'ash.ts' }
+      { format: 'umd', file: 'dist/ash.ts.min.js', name: 'ash' },
+      { format: 'esm', file: 'dist/ash.ts.min.mjs' }
     ],
     plugins: [
       typescript(typescriptConfig),
@@ -43,7 +43,7 @@ export default [
   }, {
     input: 'ash/index.ts',
     output: [
-      { format: 'umd', file: 'dist/ash.ts.es5.js', name: 'ash.ts' }
+      { format: 'umd', file: 'dist/ash.ts.es5.js', name: 'ash' }
     ],
     plugins: [
       typescript({ ...typescriptConfig, tsconfigOverride }),
@@ -51,7 +51,7 @@ export default [
   }, {
     input: 'ash/index.ts',
     output: [
-      { format: 'umd', file: 'dist/ash.ts.es5.min.js', name: 'ash.ts' }
+      { format: 'umd', file: 'dist/ash.ts.es5.min.js', name: 'ash' }
     ],
     plugins: [
       typescript({ ...typescriptConfig, tsconfigOverride }),
