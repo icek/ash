@@ -1,6 +1,6 @@
 import { keep, Node, IFamily, Engine, ClassType, NodeList, Entity } from 'ash.ts';
 
-class MockFamily implements IFamily<MockNode> {
+export class MockFamily implements IFamily<MockNode> {
   public static instances:MockFamily[] = [];
 
   public newEntityCalls:number = 0;
@@ -61,6 +61,11 @@ export class Matrix extends Point {
 export class MockNode extends Node<MockNode> {
   @keep(Point)
   public point:Point = null;
+}
+
+export class MockNode2 extends Node<MockNode2> {
+  @keep(Matrix)
+  public matrix:Matrix = null;
 }
 
 export class MockComponent {

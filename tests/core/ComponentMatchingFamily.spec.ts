@@ -70,21 +70,12 @@ describe('ComponentMatchingFamily tests', () => {
     assert.isNull(nodes.head);
   });
 
-  it('Entity is removed when access NodeList first', () => {
+  it('Entity is removed when access NodeList', () => {
     const entity:Entity = new Entity();
     entity.add(new Point());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
     family.removeEntity(entity);
-    assert.isNull(nodes.head);
-  });
-
-  it('Entity is removed when access NodeList second', () => {
-    const entity:Entity = new Entity();
-    entity.add(new Point());
-    family.newEntity(entity);
-    family.removeEntity(entity);
-    const nodes:NodeList<MockNode> = family.nodeList;
     assert.isNull(nodes.head);
   });
 
@@ -111,7 +102,7 @@ describe('ComponentMatchingFamily tests', () => {
 
     const nodes:NodeList<MockNode> = family.nodeList;
     for(let node:MockNode = nodes.head; node; node = node.next) {
-      // assertThat( entities, hasItem( node.entity ) );
+      assert.include(entities, node.entity);
     }
   });
 
