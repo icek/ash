@@ -1,0 +1,15 @@
+.idea
+.rpt2_cache
+docs
+tests
+reports
+.editorconfig
+.gitignore
+.npmignore
+.npmrc
+.prettierrc
+dtsbundle.json
+karma.conf.js
+rollup.config.js
+tslint.json
+typedoc.js
