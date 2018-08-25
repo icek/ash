@@ -4,7 +4,7 @@ import { IFamily } from './IFamily';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
-import { ClassMap, ClassType } from '../types';
+import { ClassMap, ClassType, NodeClassType } from '../types';
 
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
@@ -13,10 +13,10 @@ import { ClassMap, ClassType } from '../types';
  * It uses the basic entity matching pattern of an entity system - entities are added to the list if
  * they contain components matching all the public properties of the node class.
  */
-export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily<TNode> {
+export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFamily<TNode> {
   private nodes!:NodeList<TNode>;
   private entities!:Map<Entity, TNode>;
-  private nodeClass:{ new():TNode };
+  private nodeClass:NodeClassType<TNode>;
   public components!:Map<ClassType<any>, string>;
   private nodePool!:NodePool<TNode>;
   private engine:Engine;
@@ -28,7 +28,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
    * @param nodeClass The type of node to create and manage a NodeList for.
    * @param engine The engine that this family is managing teh NodeList for.
    */
-  constructor(nodeClass:{ new():TNode }, engine:Engine) {
+  constructor(nodeClass:NodeClassType<TNode>, engine:Engine) {
     this.nodeClass = nodeClass;
     this.engine = engine;
     this.init();
@@ -47,10 +47,10 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
 
-    const types:ClassMap = (<any>dummyNode.constructor)['__ash_types__'];
+    const types:ClassMap = (dummyNode.constructor as any)['__ash_types__'];
 
     const keys = Object.keys(types);
-    for (let i = 0; i < keys.length; i++) {
+    for(let i = 0; i < keys.length; i++) {
       const type = keys[i];
       this.components.set(types[type], type);
     }
@@ -114,8 +114,9 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
 
       const node:TNode = this.nodePool.get();
       node.entity = entity;
+
       for(const componentClass of this.components.keys()) {
-        (<any>node)[this.components.get(componentClass)!] = entity.get(componentClass);
+        (node as { [key:string]:any })[this.components.get(componentClass)!] = entity.get(componentClass);
       }
 
       this.entities.set(entity, node);
@@ -154,7 +155,7 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
    */
   public cleanUp():void {
     for(let node:Node<TNode> | null = this.nodes.head; node; node = node.next) {
-      this.entities.delete(node.entity);
+      this.entities.delete(node.entity!);
     }
     this.nodes.removeAll();
   }

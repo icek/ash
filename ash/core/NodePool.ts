@@ -1,5 +1,5 @@
 import { Node } from './Node';
-import { ClassType } from '../types';
+import { ClassType, NodeClassType } from '../types';
 
 /**
  * This internal class maintains a pool of deleted nodes for reuse by the framework. This reduces the overhead
@@ -9,16 +9,16 @@ import { ClassType } from '../types';
  * while iterating through the NodeList, the pool also maintains a cache of nodes that are added to the pool
  * but should not be reused yet. They are then released into the pool by calling the releaseCache method.
  */
-export class NodePool<TNode extends Node<any>> {
+export class NodePool<TNode extends Node<TNode>> {
   private tail:TNode | null = null;
-  private nodeClass:{ new():TNode };
+  private nodeClass:NodeClassType<TNode>;
   private cacheTail:TNode | null = null;
   private components:Map<ClassType<any>, string>;
 
   /**
    * Creates a pool for the given node class.
    */
-  constructor(nodeClass:{ new():TNode }, components:Map<ClassType<any>, string>) {
+  constructor(nodeClass:NodeClassType<TNode>, components:Map<ClassType<any>, string>) {
     this.nodeClass = nodeClass;
     this.components = components;
   }
@@ -42,9 +42,9 @@ export class NodePool<TNode extends Node<any>> {
    */
   public dispose(node:TNode):void {
     for(const val of this.components.values()) {
-      (<any>node)[val] = null;
+      (node as any)[val] = null;
     }
-    (<any>node.entity) = null;
+    node.entity = null;
 
     node.next = null;
     node.previous = this.tail;

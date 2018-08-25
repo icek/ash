@@ -14,7 +14,7 @@ export abstract class Node<TNode> {
   /**
    * The entity whose components are included in the node.
    */
-  public entity!:Entity;
+  public entity:Entity | null = null;
 
   /**
    * Used by the NodeList class. The previous node in a node list.
@@ -33,7 +33,7 @@ export function keep(type:ClassType<any>):PropertyDecorator {
     let map:ClassMap;
     const ashProp:string = '__ash_types__';
     if(ctor.hasOwnProperty(ashProp)) {
-      map = (<any>ctor)[ashProp];
+      map = (ctor as any)[ashProp];
     } else {
       map = {};
       Object.defineProperty(ctor, ashProp, {

@@ -18,7 +18,7 @@ import { Node } from './Node';
  * NodeList it's previous and next properties still point to the nodes that were before and after
  * it in the NodeList just before it was removed.</p>
  */
-export class NodeList<TNode extends Node<any>> {
+export class NodeList<TNode extends Node<TNode>> {
   /**
    * The first item in the node list, or null if the list contains no nodes.
    */
@@ -112,10 +112,10 @@ export class NodeList<TNode extends Node<any>> {
       node1.next = node2.next;
       node2.next = node1;
     } else {
-      let temp:TNode = node1.previous;
+      let temp:TNode = node1.previous!;
       node1.previous = node2.previous;
       node2.previous = temp;
-      temp = node1.next;
+      temp = node1.next!;
       node1.next = node2.next;
       node2.next = temp;
     }
@@ -161,11 +161,11 @@ export class NodeList<TNode extends Node<any>> {
     if(this.head === this.tail) {
       return;
     }
-    let remains:TNode = this.head!.next;
+    let remains:TNode = this.head!.next!;
     for(let node:TNode = remains; node; node = remains) {
       let other:TNode;
-      remains = node.next;
-      for(other = node.previous; other; other = other.previous) {
+      remains = node.next!;
+      for(other = node.previous!; other; other = other.previous!) {
         if(sortFunction(node, other) >= 0) {
           // move node to after other
           if(node !== other.next) {
@@ -173,14 +173,14 @@ export class NodeList<TNode extends Node<any>> {
             if(this.tail === node) {
               this.tail = node.previous;
             }
-            node.previous.next = node.next;
+            node.previous!.next = node.next;
             if(node.next) {
               node.next.previous = node.previous;
             }
             // insert after other
             node.next = other.next;
             node.previous = other;
-            node.next.previous = node;
+            node.next!.previous = node;
             other.next = node;
           }
           break; // exit the inner for loop
@@ -191,7 +191,7 @@ export class NodeList<TNode extends Node<any>> {
         if(this.tail === node) {
           this.tail = node.previous;
         }
-        node.previous.next = node.next;
+        node.previous!.next = node.next;
         if(node.next) {
           node.next.previous = node.previous;
         }
@@ -230,7 +230,7 @@ export class NodeList<TNode extends Node<any>> {
       while(end.next && sortFunction(end, end.next) <= 0) {
         end = end.next;
       }
-      const next:TNode = end.next;
+      const next:TNode = end.next!;
       start.previous = end.next = null;
       lists[lists.length] = start;
       start = next;
@@ -251,22 +251,22 @@ export class NodeList<TNode extends Node<any>> {
     let head:TNode;
     if(sortFunction(head1, head2) <= 0) {
       head = node = head1;
-      head1 = head1.next;
+      head1 = head1.next!;
     } else {
       head = node = head2;
-      head2 = head2.next;
+      head2 = head2.next!;
     }
     while(head1 && head2) {
       if(sortFunction(head1, head2) <= 0) {
         node.next = head1;
         head1.previous = node;
         node = head1;
-        head1 = head1.next;
+        head1 = head1.next!;
       } else {
         node.next = head2;
         head2.previous = node;
         node = head2;
-        head2 = head2.next;
+        head2 = head2.next!;
       }
     }
     if(head1) {

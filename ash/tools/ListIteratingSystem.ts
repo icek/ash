@@ -2,6 +2,7 @@ import { Engine } from '../core/Engine';
 import { Node } from '../core/Node';
 import { NodeList } from '../core/NodeList';
 import { System } from '../core/System';
+import { NodeClassType } from '../types';
 
 /**
  * A useful class for systems which simply iterate over a set of nodes, performing the same action on each node. This
@@ -20,13 +21,13 @@ import { System } from '../core/System';
  * }</code>
  */
 
-export abstract class ListIteratingSystem<TNode extends Node<any>> extends System {
+export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
   protected nodeList:NodeList<TNode> | null = null;
-  protected nodeClass:{ new():TNode };
+  protected nodeClass:NodeClassType<TNode>;
   protected nodeAdded?:(node:Node<TNode>) => void;
   protected nodeRemoved?:(node:Node<TNode>) => void;
 
-  constructor(nodeClass:{ new():TNode }) {
+  constructor(nodeClass:NodeClassType<TNode>) {
     super();
 
     this.nodeClass = nodeClass;

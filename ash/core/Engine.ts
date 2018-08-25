@@ -1,13 +1,13 @@
+import { Signal0 } from '../signals/Signal0';
+import { ClassType, NodeClassType } from '../types';
 import { ComponentMatchingFamily } from './ComponentMatchingFamily';
 import { Entity } from './Entity';
 import { EntityList } from './EntityList';
 import { IFamily } from './IFamily';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
-import { SystemList } from './SystemList';
-import { Signal0 } from '../signals/Signal0';
 import { System } from './System';
-import { ClassType } from '../types';
+import { SystemList } from './SystemList';
 
 
 /**
@@ -18,7 +18,7 @@ export class Engine {
   private entityNames:Map<string, Entity>;
   private entityList:EntityList;
   private systemList:SystemList;
-  private families:Map<{ new():Node<any> }, IFamily<any>>;
+  private families:Map<NodeClassType<any>, IFamily<any>>;
 
   /**
    * Indicates if the engine is currently in its update loop.
@@ -45,7 +45,7 @@ export class Engine {
     this.entityList = new EntityList();
     this.entityNames = new Map<string, Entity>();
     this.systemList = new SystemList();
-    this.families = new Map<{ new():Node<any> }, IFamily<any>>();
+    this.families = new Map<NodeClassType<any>, IFamily<any>>();
     this.updateComplete = new Signal0();
   }
 
@@ -151,7 +151,7 @@ export class Engine {
    * @param nodeClass The type of node required.
    * @return A linked list of all nodes of this type from all entities in the engine.
    */
-  public getNodeList<TNode extends Node<any>>(nodeClass:{ new():TNode }):NodeList<TNode> {
+  public getNodeList<TNode extends Node<any>>(nodeClass:NodeClassType<TNode>):NodeList<TNode> {
     if(this.families.has(nodeClass)) {
       return this.families.get(nodeClass)!.nodeList;
     }
@@ -173,7 +173,7 @@ export class Engine {
    *
    * @param nodeClass The type of the node class if the list to be released.
    */
-  public releaseNodeList<TNode extends Node<any>>(nodeClass:{ new():TNode }):void {
+  public releaseNodeList<TNode extends Node<TNode>>(nodeClass:NodeClassType<TNode>):void {
     if(this.families.has(nodeClass)) {
       this.families.get(nodeClass)!.cleanUp();
     }

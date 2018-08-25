@@ -97,12 +97,14 @@ export class Entity {
       componentClass = component.constructor.prototype.constructor; // weird but works!
     }
 
-    if(this.components.has(componentClass!)) {
-      this.remove(componentClass!);
+    componentClass = componentClass!;
+
+    if(this.components.has(componentClass)) {
+      this.remove(componentClass);
     }
 
-    this.components.set(componentClass!, component);
-    this.componentAdded.dispatch(this, componentClass!);
+    this.components.set(componentClass, component);
+    this.componentAdded.dispatch(this, componentClass);
     return this;
   }
 

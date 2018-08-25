@@ -26,7 +26,7 @@ import { ClassType } from '../types';
 export class ComponentPool {
   private static pools:Map<ClassType<any>, any[]> = new Map<ClassType<any>, any[]>();
 
-  private static getPool<T>(componentClass:{ new():T }):T[] {
+  private static getPool<T>(componentClass:ClassType<T>):T[] {
     if(ComponentPool.pools.has(componentClass)) {
       return ComponentPool.pools.get(componentClass)!;
     }
@@ -42,7 +42,7 @@ export class ComponentPool {
    * @param componentClass The type of component wanted.
    * @return The component.
    */
-  public static get<T>(componentClass:{ new():T }):T {
+  public static get<T>(componentClass:ClassType<T>):T {
     const pool:T[] = ComponentPool.getPool(componentClass);
     if(pool.length > 0) {
       return pool.pop()!;

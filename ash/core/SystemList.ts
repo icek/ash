@@ -70,7 +70,7 @@ export class SystemList {
   public get<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
     for(let system:System | null = this.head; system; system = system.next) {
       if(system instanceof type) {
-        return <TSystem>system;
+        return system as TSystem;
       }
     }
     return null;
