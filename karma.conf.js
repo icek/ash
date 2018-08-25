@@ -114,7 +114,7 @@ module.exports = function(config) {
           directory: 'reports',
           subdirectory: browser => browser.name.toLowerCase().split(' ')[0].replace(/headless/, ''),
         },
-        text: '',
+        'text-summary': '',
       },
     },
 
