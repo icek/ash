@@ -4,7 +4,7 @@ import { IFamily } from './IFamily';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
-import { ClassType } from '../types';
+import { ClassMap, ClassType } from '../types';
 
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
@@ -47,12 +47,12 @@ export class ComponentMatchingFamily<TNode extends Node<any>> implements IFamily
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
 
-    const types = (<any>dummyNode.constructor)['__ash_types__'];
+    const types:ClassMap = (<any>dummyNode.constructor)['__ash_types__'];
 
-    for(const type in types) {
-      if(types.hasOwnProperty(type)) {
-        this.components.set(types[type], type);
-      }
+    const keys = Object.keys(types);
+    for (let i = 0; i < keys.length; i++) {
+      const type = keys[i];
+      this.components.set(types[type], type);
     }
   }
 

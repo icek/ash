@@ -1,5 +1,5 @@
 import { Entity } from './Entity';
-import { ClassType } from '../types';
+import { ClassMap, ClassType } from '../types';
 
 /**
  * The base class for a node.
@@ -10,7 +10,7 @@ import { ClassType } from '../types';
  * to the list obtained by the system. The engine keeps the list up to date as entities are added
  * to and removed from the engine and as the components on entities change.</p>
  */
-export class Node<TNode> {
+export abstract class Node<TNode> {
   /**
    * The entity whose components are included in the node.
    */
@@ -27,10 +27,10 @@ export class Node<TNode> {
   public next:TNode | null = null;
 }
 
-export function keep(type:ClassType<any>):Function {
-  return (target:Object, propertyKey:string, descriptor:TypedPropertyDescriptor<any>) => {
+export function keep(type:ClassType<any>):PropertyDecorator {
+  return (target:Object, propertyKey:string | symbol) => {
     const ctor = target.constructor;
-    let map:Object;
+    let map:ClassMap;
     const ashProp:string = '__ash_types__';
     if(ctor.hasOwnProperty(ashProp)) {
       map = (<any>ctor)[ashProp];
@@ -38,12 +38,10 @@ export function keep(type:ClassType<any>):Function {
       map = {};
       Object.defineProperty(ctor, ashProp, {
         enumerable: true,
-        value: map,
+        get: () => map,
       });
     }
 
-    (<any>map)[propertyKey] = type;
-
-    return descriptor;
+    map[propertyKey as string] = type;
   };
 }
