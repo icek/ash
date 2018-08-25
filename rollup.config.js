@@ -3,7 +3,9 @@ import { terser } from 'rollup-plugin-terser';
 
 const typescriptConfig = {
   tsconfig: 'ash/tsconfig.json',
-  useTsconfigDeclarationDir: true
+  useTsconfigDeclarationDir: true,
+  abortOnError: false,
+  clean: true,
 };
 
 const tsconfigOverride = {
@@ -13,9 +15,7 @@ const tsconfigOverride = {
     importHelpers: true,
     lib: [
       'dom',
-      'es5',
-      'es2015.collection',
-      'es2015.iterable'
+      'es6',
     ]
   }
 };
