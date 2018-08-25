@@ -5,23 +5,17 @@ import { System } from '../core/System';
 
 /**
  * A useful class for systems which simply iterate over a set of nodes, performing the same action on each node. This
- * class removes the need for a lot of boilerplate code in such systems. Extend this class and pass the node type and
- * a node update method into the constructor. The node update method will be called once per node on the update cycle
- * with the node instance and the frame time as parameters. e.g.
+ * class removes the need for a lot of boilerplate code in such systems. Extend this class and implement update method.
+ * The node update method will be called once per node on the update cycle with the node instance and the frame time as
+ * parameters. e.g.
  *
- * <code>package
- * {
- *   public class MySystem extends ListIteratingSystem
- *   {
- *     public function MySystem()
- *     {
- *       super( MyNode, updateNode );
- *     }
+ * <code>export class MySystem extends ListIteratingSystem {
+ *   constructor() {
+ *     super(MyNode);
+ *   }
  *
- *     private function updateNode( node : MyNode, time : Number ) : void
- *     {
- *       // process the node here
- *     }
+ *   updateNode(node:MyNode, time:number):void {
+ *     // process the node here
  *   }
  * }</code>
  */

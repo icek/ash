@@ -10,11 +10,10 @@ import { ClassType } from '../types';
  * with similar functionality will have instances of the same components. So we might have
  * a position component</p>
  *
- * <p><code>public class PositionComponent
- * {
- *      public var x : Number;
- *      public var y : Number;
- * }</code></p>
+ * <pre><code>class PositionComponent {
+ *   public x:number;
+ *   public y:number;
+ * }</code></pre>
  *
  * <p>All entities that have a position in the game world, will have an instance of the
  * position component. Systems operate on entities based on the components they have.</p>
@@ -88,9 +87,9 @@ export class Entity {
    * @return A reference to the entity. This enables the chaining of calls to add, to make
    * creating and configuring entities cleaner. e.g.
    *
-   * <code>var entity : Entity = new Entity()
-   *     .add( new Position( 100, 200 )
-   *     .add( new Display( new PlayerClip() );</code>
+   * <pre><code>var entity:Entity = new Entity()
+   *   .add<Position>(new Position(100, 200)
+   *   .add<Display>(new Display(new PlayerClip());</code></pre>
    */
 
   public add<T>(component:T, componentClass:ClassType<T> | null = null):this {

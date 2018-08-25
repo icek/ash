@@ -149,7 +149,7 @@ export class NodeList<TNode extends Node<any>> {
    *
    * <p>The sort function takes two nodes and returns a Number.</p>
    *
-   * <p><code>function sortFunction( node1 : MockNode, node2 : MockNode ) : Number</code></p>
+   * <p><code>function sortFunction(node1:MockNode, node2:MockNode):number</code></p>
    *
    * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter
@@ -157,7 +157,7 @@ export class NodeList<TNode extends Node<any>> {
    *
    * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
    */
-  public insertionSort(sortFunction:Function):void {
+  public insertionSort(sortFunction:(node1:Node<any>, node2:Node<any>) => number):void {
     if(this.head === this.tail) {
       return;
     }
@@ -210,7 +210,7 @@ export class NodeList<TNode extends Node<any>> {
    *
    * <p>The sort function takes two nodes and returns a Number.</p>
    *
-   * <p><code>function sortFunction( node1 : MockNode, node2 : MockNode ) : Number</code></p>
+   * <p><code>function sortFunction(node1:MockNode, node2:MockNode):number</code></p>
    *
    * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
