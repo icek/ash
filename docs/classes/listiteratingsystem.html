@@ -68,23 +68,18 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>A useful class for systems which simply iterate over a set of nodes, performing the same action on each node. This
-							class removes the need for a lot of boilerplate code in such systems. Extend this class and pass the node type and
-							a node update method into the constructor. The node update method will be called once per node on the update cycle
-						with the node instance and the frame time as parameters. e.g.</p>
+							class removes the need for a lot of boilerplate code in such systems. Extend this class and implement update method.
+							The node update method will be called once per node on the update cycle with the node instance and the frame time as
+						parameters. e.g.</p>
 					</div>
-					<p><code>package
-{
-  public class MySystem extends ListIteratingSystem
-  {
-    public function MySystem()
-    {
-      super( MyNode, updateNode );
-    }</p>
-<pre><code>private function updateNode( <span class="hljs-keyword">node</span> <span class="hljs-title">: MyNode</span>, time : <span class="hljs-keyword">Number</span> ) : void
-{
-  // process the <span class="hljs-keyword">node</span> <span class="hljs-title">here</span>
-}</code></pre><p>  }
-						}</code></p>
+					<p><code>export class MySystem extends ListIteratingSystem {
+  constructor() {
+    super(MyNode);
+  }</p>
+<p>  updateNode(node:MyNode, time:number):void {
+    // process the node here
+  }
+}</code></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -154,7 +149,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L33">tools/ListIteratingSystem.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L27">tools/ListIteratingSystem.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -179,7 +174,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="system.html">System</a>.<a href="system.html#next">next</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/System.ts#L23">core/System.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/System.ts#L23">core/System.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,7 +189,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Added<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L32">tools/ListIteratingSystem.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L26">tools/ListIteratingSystem.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -225,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L31">tools/ListIteratingSystem.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L25">tools/ListIteratingSystem.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -240,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>List<span class="tsd-signature-symbol">:</span> <a href="nodelist.html" class="tsd-signature-type">NodeList</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TNode</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L30">tools/ListIteratingSystem.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L24">tools/ListIteratingSystem.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -250,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Removed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L33">tools/ListIteratingSystem.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L27">tools/ListIteratingSystem.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -282,7 +277,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="system.html">System</a>.<a href="system.html#previous">previous</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/System.ts#L19">core/System.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/System.ts#L19">core/System.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -298,7 +293,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="system.html">System</a>.<a href="system.html#priority">priority</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/System.ts#L28">core/System.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/System.ts#L28">core/System.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -322,7 +317,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="system.html">System</a>.<a href="system.html#addtoengine">addToEngine</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L41">tools/ListIteratingSystem.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L35">tools/ListIteratingSystem.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -346,7 +341,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="system.html">System</a>.<a href="system.html#removefromengine">removeFromEngine</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L54">tools/ListIteratingSystem.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L48">tools/ListIteratingSystem.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -370,7 +365,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="system.html">System</a>.<a href="system.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L64">tools/ListIteratingSystem.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L58">tools/ListIteratingSystem.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -393,7 +388,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/tools/ListIteratingSystem.ts#L70">tools/ListIteratingSystem.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/tools/ListIteratingSystem.ts#L64">tools/ListIteratingSystem.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

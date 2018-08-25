@@ -74,11 +74,10 @@
 					<p>Components are simple value objects that contain data relevant to the entity. Entities
 						with similar functionality will have instances of the same components. So we might have
 					a position component</p>
-					<p><code>public class PositionComponent
-{
-     public var x : Number;
-     public var y : Number;
-}</code></p>
+					<pre><code>class PositionComponent {
+  public x:number;
+  public y:number;
+}</code></pre>
 					<p>All entities that have a position in the game world, will have an instance of the
 					position component. Systems operate on entities based on the components they have.</p>
 				</div>
@@ -143,7 +142,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L44">core/Entity.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L43">core/Entity.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Added<span class="tsd-signature-symbol">:</span> <a href="signal2.html" class="tsd-signature-type">Signal2</a><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type">Entity</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#classtype" class="tsd-signature-type">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L32">core/Entity.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L31">core/Entity.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +189,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Removed<span class="tsd-signature-symbol">:</span> <a href="signal2.html" class="tsd-signature-type">Signal2</a><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type">Entity</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#classtype" class="tsd-signature-type">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L36">core/Entity.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L35">core/Entity.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -205,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">components<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#classtype" class="tsd-signature-type">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L44">core/Entity.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L43">core/Entity.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="signal2.html" class="tsd-signature-type">Signal2</a><span class="tsd-signature-symbol">&lt;</span><a href="entity.html" class="tsd-signature-type">Entity</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L40">core/Entity.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L39">core/Entity.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -230,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">:</span> <a href="entity.html" class="tsd-signature-type">Entity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L43">core/Entity.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L42">core/Entity.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -240,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">previous<span class="tsd-signature-symbol">:</span> <a href="entity.html" class="tsd-signature-type">Entity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L42">core/Entity.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L41">core/Entity.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,7 +257,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L68">core/Entity.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L67">core/Entity.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L72">core/Entity.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L71">core/Entity.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -304,7 +303,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L96">core/Entity.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L95">core/Entity.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -338,9 +337,9 @@
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 							<p>A reference to the entity. This enables the chaining of calls to add, to make
 							creating and configuring entities cleaner. e.g.</p>
-							<p><code>var entity : Entity = new Entity()
-    .add( new Position( 100, 200 )
-    .add( new Display( new PlayerClip() );</code></p>
+							<pre><code>var entity:Entity = new Entity()
+  .add<Position>(new Position(100, 200)
+  .add<Display>(new Display(new PlayerClip());</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -354,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L132">core/Entity.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L131">core/Entity.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -392,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L141">core/Entity.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L140">core/Entity.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -415,7 +414,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L155">core/Entity.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L154">core/Entity.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -453,7 +452,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4ae3e70/ash/core/Entity.ts#L116">core/Entity.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/4bdc9e4/ash/core/Entity.ts#L115">core/Entity.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

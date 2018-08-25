@@ -55,12 +55,12 @@ export declare class Entity {
 	getAll(): any[];
 	has<T>(componentClass: ClassType<T>): boolean;
 }
-export declare class Node<TNode> {
+export declare abstract class Node<TNode> {
 	entity: Entity;
 	previous: TNode | null;
 	next: TNode | null;
 }
-export declare function keep(type: ClassType<any>): Function;
+export declare function keep(type: ClassType<any>): PropertyDecorator;
 export declare class NodeList<TNode extends Node<any>> {
 	head: TNode | null;
 	tail: TNode | null;
@@ -72,7 +72,7 @@ export declare class NodeList<TNode extends Node<any>> {
 	removeAll(): void;
 	readonly empty: boolean;
 	swap(node1: TNode, node2: TNode): void;
-	insertionSort(sortFunction: Function): void;
+	insertionSort(sortFunction: (node1: Node<any>, node2: Node<any>) => number): void;
 	mergeSort(sortFunction: (a: TNode, b: TNode) => number): void;
 	private merge;
 }

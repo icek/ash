@@ -470,10 +470,10 @@
       const dummyNode = this.nodePool.get();
       this.nodePool.dispose(dummyNode);
       const types = dummyNode.constructor['__ash_types__'];
-      for (const type in types) {
-        if (types.hasOwnProperty(type)) {
-          this.components.set(types[type], type);
-        }
+      const keys = Object.keys(types);
+      for (let i = 0; i < keys.length; i++) {
+        const type = keys[i];
+        this.components.set(types[type], type);
       }
     }
     get nodeList() {
@@ -826,7 +826,7 @@
     }
   }
   function keep(type) {
-    return (target, propertyKey, descriptor) => {
+    return (target, propertyKey) => {
       const ctor = target.constructor;
       let map;
       const ashProp = '__ash_types__';
@@ -836,11 +836,10 @@
         map = {};
         Object.defineProperty(ctor, ashProp, {
           enumerable: true,
-          value: map
+          get: () => map
         });
       }
       map[propertyKey] = type;
-      return descriptor;
     };
   }
 
