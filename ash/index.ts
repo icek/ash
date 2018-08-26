@@ -19,6 +19,7 @@ export { EngineStateMachine } from './fsm/EngineStateMachine';
 
 export { ITickProvider } from './tick/ITickProvider';
 export { RAFTickProvider } from './tick/RAFTickProvider';
+export { IntervalTickProvider } from './tick/IntervalTickProvider';
 
 export { ComponentPool } from './tools/ComponentPool';
 export { ListIteratingSystem } from './tools/ListIteratingSystem';
