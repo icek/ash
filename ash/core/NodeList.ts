@@ -9,10 +9,11 @@ import { Node } from './Node';
  * over a NodeList, start from the head and step to the next on each loop, until the returned value
  * is null.</p>
  *
- * <p>for( var node : Node = nodeList.head; node; node = node.next )
- * {
+ * ```typescript
+ * for(let node:Node = nodeList.head; node; node = node.next) {
  *   // do stuff
- * }</p>
+ * }
+ * ```
  *
  * <p>It is safe to remove items from a nodelist during the loop. When a Node is removed form the
  * NodeList it's previous and next properties still point to the nodes that were before and after
@@ -149,7 +150,9 @@ export class NodeList<TNode extends Node<TNode>> {
    *
    * <p>The sort function takes two nodes and returns a Number.</p>
    *
-   * <p><code>function sortFunction(node1:MockNode, node2:MockNode):number</code></p>
+   * ```typescript
+   * function sortFunction(node1:MockNode, node2:MockNode):number
+   * ```
    *
    * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter
@@ -210,7 +213,9 @@ export class NodeList<TNode extends Node<TNode>> {
    *
    * <p>The sort function takes two nodes and returns a Number.</p>
    *
-   * <p><code>function sortFunction(node1:MockNode, node2:MockNode):number</code></p>
+   * ```typescript
+   * function sortFunction(node1:MockNode, node2:MockNode):number
+   * ```
    *
    * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>

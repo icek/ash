@@ -10,7 +10,10 @@ import { NodeClassType } from '../types';
  * The node update method will be called once per node on the update cycle with the node instance and the frame time as
  * parameters. e.g.
  *
- * <code>export class MySystem extends ListIteratingSystem {
+ * @example
+ * ```typescript
+ *
+ * export class MySystem extends ListIteratingSystem {
  *   constructor() {
  *     super(MyNode);
  *   }
@@ -18,7 +21,8 @@ import { NodeClassType } from '../types';
  *   updateNode(node:MyNode, time:number):void {
  *     // process the node here
  *   }
- * }</code>
+ * }
+ * ```
  */
 
 export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
