@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Signal3 | ash.ts</title>
+	<title>IntervalTickProvider | ash.ts</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,106 +54,102 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="signal3.html">Signal3</a>
+					<a href="intervaltickprovider.html">IntervalTickProvider</a>
 				</li>
 			</ul>
-			<h1>Class Signal3&lt;T1, T2, T3&gt;</h1>
+			<h1>Class IntervalTickProvider</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Provides a fast signal for use where three parameters are dispatched with the signal.</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T1</h4>
-					</li>
-					<li>
-						<h4>T2</h4>
-					</li>
-					<li>
-						<h4>T3</h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="signalbase.html" class="tsd-signature-type">SignalBase</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="signal1.html" class="tsd-signature-type">Signal1</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Signal3</span>
+								<span class="target">IntervalTickProvider</span>
 							</li>
 						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/itickprovider.html" class="tsd-signature-type">ITickProvider</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
+						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="signal3.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="intervaltickprovider.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="signal3.html#head" class="tsd-kind-icon">head</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="signal3.html#tail" class="tsd-kind-icon">tail</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="intervaltickprovider.html#head" class="tsd-kind-icon">head</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="intervaltickprovider.html#tail" class="tsd-kind-icon">tail</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
+						<section class="tsd-index-section tsd-is-external">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="signal3.html#numlisteners" class="tsd-kind-icon">num<wbr>Listeners</a></li>
+								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-external"><a href="intervaltickprovider.html#interval" class="tsd-kind-icon">interval</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="intervaltickprovider.html#inteval" class="tsd-kind-icon">inteval</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="intervaltickprovider.html#numlisteners" class="tsd-kind-icon">num<wbr>Listeners</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="intervaltickprovider.html#playing" class="tsd-kind-icon">playing</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="signal3.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="signal3.html#addnode" class="tsd-kind-icon">add<wbr>Node</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="signal3.html#addonce" class="tsd-kind-icon">add<wbr>Once</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="signal3.html#dispatch" class="tsd-kind-icon">dispatch</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="signal3.html#enddispatch" class="tsd-kind-icon">end<wbr>Dispatch</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="signal3.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="signal3.html#removeall" class="tsd-kind-icon">remove<wbr>All</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="signal3.html#startdispatch" class="tsd-kind-icon">start<wbr>Dispatch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="intervaltickprovider.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="intervaltickprovider.html#addnode" class="tsd-kind-icon">add<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="intervaltickprovider.html#addonce" class="tsd-kind-icon">add<wbr>Once</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="intervaltickprovider.html#dispatch" class="tsd-kind-icon">dispatch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="intervaltickprovider.html#enddispatch" class="tsd-kind-icon">end<wbr>Dispatch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="intervaltickprovider.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="intervaltickprovider.html#removeall" class="tsd-kind-icon">remove<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="intervaltickprovider.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="intervaltickprovider.html#startdispatch" class="tsd-kind-icon">start<wbr>Dispatch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="intervaltickprovider.html#stop" class="tsd-kind-icon">stop</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Signal3<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="signal3.html" class="tsd-signature-type">Signal3</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Interval<wbr>Tick<wbr>Provider<span class="tsd-signature-symbol">(</span>interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="intervaltickprovider.html" class="tsd-signature-type">IntervalTickProvider</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="signalbase.html">SignalBase</a>.<a href="signalbase.html#constructor">constructor</a></p>
+								<p>Overrides <a href="signalbase.html">SignalBase</a>.<a href="signalbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/signals/SignalBase.ts#L21">signals/SignalBase.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/tick/IntervalTickProvider.ts#L7">tick/IntervalTickProvider.ts:7</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="signal3.html" class="tsd-signature-type">Signal3</a></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="intervaltickprovider.html" class="tsd-signature-type">IntervalTickProvider</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -183,8 +179,48 @@
 					</aside>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+					<a name="interval" class="tsd-anchor"></a>
+					<h3>interval</h3>
+					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> interval<span class="tsd-signature-symbol">(</span>interval<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/tick/IntervalTickProvider.ts#L34">tick/IntervalTickProvider.ts:34</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>interval: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="inteval" class="tsd-anchor"></a>
+					<h3>inteval</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> inteval<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/tick/IntervalTickProvider.ts#L42">tick/IntervalTickProvider.ts:42</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="numlisteners" class="tsd-anchor"></a>
 					<h3>num<wbr>Listeners</h3>
@@ -200,6 +236,23 @@
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="playing" class="tsd-anchor"></a>
+					<h3>playing</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> playing<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/tick/IntervalTickProvider.ts#L46">tick/IntervalTickProvider.ts:46</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -227,20 +280,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T1</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T2</span>, c<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>a: <span class="tsd-signature-type">T1</span></h5>
-														</li>
-														<li>
-															<h5>b: <span class="tsd-signature-type">T2</span></h5>
-														</li>
-														<li>
-															<h5>c: <span class="tsd-signature-type">T3</span></h5>
+															<h5>a: <span class="tsd-signature-type">number</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -299,20 +346,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T1</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T2</span>, c<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>a: <span class="tsd-signature-type">T1</span></h5>
-														</li>
-														<li>
-															<h5>b: <span class="tsd-signature-type">T2</span></h5>
-														</li>
-														<li>
-															<h5>c: <span class="tsd-signature-type">T3</span></h5>
+															<h5>a: <span class="tsd-signature-type">number</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -326,29 +367,24 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="dispatch" class="tsd-anchor"></a>
 					<h3>dispatch</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">dispatch<span class="tsd-signature-symbol">(</span>object1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T1</span>, object2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T2</span>, object3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">dispatch<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="signal1.html">Signal1</a>.<a href="signal1.html#dispatch">dispatch</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/signals/Signal3.ts#L12">signals/Signal3.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/signals/Signal1.ts#L12">signals/Signal1.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>object1: <span class="tsd-signature-type">T1</span></h5>
-								</li>
-								<li>
-									<h5>object2: <span class="tsd-signature-type">T2</span></h5>
-								</li>
-								<li>
-									<h5>object3: <span class="tsd-signature-type">T3</span></h5>
+									<h5>object: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -394,20 +430,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T1</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T2</span>, c<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>a: <span class="tsd-signature-type">T1</span></h5>
-														</li>
-														<li>
-															<h5>b: <span class="tsd-signature-type">T2</span></h5>
-														</li>
-														<li>
-															<h5>c: <span class="tsd-signature-type">T3</span></h5>
+															<h5>a: <span class="tsd-signature-type">number</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -439,6 +469,24 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="start" class="tsd-anchor"></a>
+					<h3>start</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itickprovider.html">ITickProvider</a>.<a href="../interfaces/itickprovider.html#start">start</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/tick/IntervalTickProvider.ts#L17">tick/IntervalTickProvider.ts:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a name="startdispatch" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> start<wbr>Dispatch</h3>
@@ -451,6 +499,24 @@
 								<p>Inherited from <a href="signalbase.html">SignalBase</a>.<a href="signalbase.html#startdispatch">startDispatch</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/signals/SignalBase.ts#L28">signals/SignalBase.ts:28</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="stop" class="tsd-anchor"></a>
+					<h3>stop</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">stop<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itickprovider.html">ITickProvider</a>.<a href="../interfaces/itickprovider.html#stop">stop</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/icek/ash.ts/blob/490b634/ash/tick/IntervalTickProvider.ts#L29">tick/IntervalTickProvider.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -471,44 +537,59 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-has-type-parameter tsd-is-external">
-						<a href="signal3.html" class="tsd-kind-icon">Signal3</a>
+					<li class="current tsd-kind-class tsd-is-external">
+						<a href="intervaltickprovider.html" class="tsd-kind-icon">Interval<wbr>Tick<wbr>Provider</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="signal3.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+								<a href="intervaltickprovider.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-								<a href="signal3.html#head" class="tsd-kind-icon">head</a>
+								<a href="intervaltickprovider.html#head" class="tsd-kind-icon">head</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-								<a href="signal3.html#tail" class="tsd-kind-icon">tail</a>
+								<a href="intervaltickprovider.html#tail" class="tsd-kind-icon">tail</a>
+							</li>
+							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+								<a href="intervaltickprovider.html#interval" class="tsd-kind-icon">interval</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+								<a href="intervaltickprovider.html#inteval" class="tsd-kind-icon">inteval</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="signal3.html#numlisteners" class="tsd-kind-icon">num<wbr>Listeners</a>
+								<a href="intervaltickprovider.html#numlisteners" class="tsd-kind-icon">num<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+								<a href="intervaltickprovider.html#playing" class="tsd-kind-icon">playing</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="signal3.html#add" class="tsd-kind-icon">add</a>
+								<a href="intervaltickprovider.html#add" class="tsd-kind-icon">add</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-								<a href="signal3.html#addnode" class="tsd-kind-icon">add<wbr>Node</a>
+								<a href="intervaltickprovider.html#addnode" class="tsd-kind-icon">add<wbr>Node</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="signal3.html#addonce" class="tsd-kind-icon">add<wbr>Once</a>
+								<a href="intervaltickprovider.html#addonce" class="tsd-kind-icon">add<wbr>Once</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="intervaltickprovider.html#dispatch" class="tsd-kind-icon">dispatch</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+								<a href="intervaltickprovider.html#enddispatch" class="tsd-kind-icon">end<wbr>Dispatch</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="intervaltickprovider.html#remove" class="tsd-kind-icon">remove</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="intervaltickprovider.html#removeall" class="tsd-kind-icon">remove<wbr>All</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="signal3.html#dispatch" class="tsd-kind-icon">dispatch</a>
+								<a href="intervaltickprovider.html#start" class="tsd-kind-icon">start</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-								<a href="signal3.html#enddispatch" class="tsd-kind-icon">end<wbr>Dispatch</a>
+								<a href="intervaltickprovider.html#startdispatch" class="tsd-kind-icon">start<wbr>Dispatch</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="signal3.html#remove" class="tsd-kind-icon">remove</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="signal3.html#removeall" class="tsd-kind-icon">remove<wbr>All</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-								<a href="signal3.html#startdispatch" class="tsd-kind-icon">start<wbr>Dispatch</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="intervaltickprovider.html#stop" class="tsd-kind-icon">stop</a>
 							</li>
 						</ul>
 					</li>
