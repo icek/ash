@@ -37,7 +37,6 @@ describe('ComponentMatchingFamily tests', () => {
     assert.equal(nodes.head.entity, entity);
   });
 
-
   it('Node contains Entity properties', () => {
     const entity:Entity = new Entity();
     const point:Point = new Point();

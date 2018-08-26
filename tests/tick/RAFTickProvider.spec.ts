@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { RAFTickProvider } from 'ash.ts';
 
-describe('Dictionary tests', () => {
+describe('RAFTickProvider tests', () => {
   let tickProvider:RAFTickProvider;
 
   beforeEach(() => {

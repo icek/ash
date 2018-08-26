@@ -114,18 +114,15 @@ export class MockSystem extends System {
     super();
   }
 
-  public addToEngine(engine:Engine):void {
-  }
+  public addToEngine(engine:Engine):void {}
 
-  public removeFromEngine(engine:Engine):void {
-  }
+  public removeFromEngine(engine:Engine):void {}
 
-  public update(time:Number):void {
-  }
+  public update(time:Number):void {}
 }
 
 export class MockSystem2 extends System {
-  private mockObject;
+  private mockObject:any;
 
   constructor(mockObject:any) {
     super();
