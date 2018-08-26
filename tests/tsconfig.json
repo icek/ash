@@ -1,34 +1,19 @@
 {
-  "compileOnSave": false,
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-
-    "target": "es6",
     "module": "commonjs",
-    "moduleResolution": "node",
-
-    "declaration": true,
-    "removeComments": true,
-    "sourceMap": true,
-
     "strict": false,
-
-    "suppressImplicitAnyIndexErrors": true,
-
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-
     "baseUrl": ".",
-
     "paths": {
       "ash.ts": ["../ash"]
     }
   },
   "include": [
-    "../ash/**/*.ts",
-    "./**/*.ts"
+    "../ash",
+    "."
   ],
   "exclude": [
-    "../ash/io/**/*.ts",
-    "./io/**/*.ts"
+    "../ash/io",
+    "./io"
   ]
 }

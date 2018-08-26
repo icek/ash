@@ -1,26 +1,21 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-
     "target": "es6",
-    "module": "esnext",
+    "module": "es6",
     "moduleResolution": "node",
-
     "declaration": true,
-    "declarationDir": "../dist/types",
-
-    "removeComments": true,
+    "declarationDir": "dist/types",
     "sourceMap": true,
-
     "strict": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-
-    "baseUrl": ".",
-    "lib": ["DOM","ES6"],
+    "lib": ["DOM", "ES6"],
     "pretty": true
   },
+  "include": [
+    "./ash"
+  ],
   "exclude": [
-    "./io"
+    "./ash/io"
   ]
 }

@@ -10,5 +10,5 @@ module.exports = {
   excludeNotExported: true,
   preserveConstEnums: true,
   stripInternal: true,
-  tsconfig: 'ash/tsconfig.json'
+  tsconfig: './tsconfig.json',
 };
