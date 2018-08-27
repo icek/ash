@@ -5,11 +5,11 @@ export { Signal1 } from './signals/Signal1';
 export { Signal2 } from './signals/Signal2';
 export { Signal3 } from './signals/Signal3';
 
-export { ComponentMatchingFamily } from './core/ComponentMatchingFamily';
+export { ComponentMatchingFamily, keep } from './core/ComponentMatchingFamily';
 export { Engine } from './core/Engine';
 export { Entity } from './core/Entity';
 export { IFamily } from './core/IFamily';
-export { Node, keep } from './core/Node';
+export { Node } from './core/Node';
 export { NodeList } from './core/NodeList';
 export { NodePool } from './core/NodePool';
 export { System } from './core/System';

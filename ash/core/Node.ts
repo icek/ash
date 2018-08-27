@@ -1,5 +1,4 @@
 import { Entity } from './Entity';
-import { ClassMap, ClassType } from '../types';
 
 /**
  * The base class for a node.
@@ -25,23 +24,4 @@ export abstract class Node<TNode> {
    * Used by the NodeList class. The next node in a node list.
    */
   public next:TNode | null = null;
-}
-
-export function keep(type:ClassType<any>):PropertyDecorator {
-  return (target:Object, propertyKey:string | symbol) => {
-    const ctor = target.constructor;
-    let map:ClassMap;
-    const ashProp:string = '__ash_types__';
-    if(ctor.hasOwnProperty(ashProp)) {
-      map = (ctor as any)[ashProp];
-    } else {
-      map = {};
-      Object.defineProperty(ctor, ashProp, {
-        enumerable: true,
-        get: () => map,
-      });
-    }
-
-    map[propertyKey as string] = type;
-  };
 }

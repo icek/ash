@@ -4,8 +4,9 @@ import { IFamily } from './IFamily';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
-import { ClassMap, ClassType, NodeClassType } from '../types';
+import { ClassType, NodeClassType } from '../types';
 
+const ashProp:string = '__ash_types__';
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
  * nodes to/from the list as the entities and the components in the engine change.
@@ -47,12 +48,10 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
 
-    const types:ClassMap = (dummyNode.constructor as any)['__ash_types__'];
+    const types:Map<string, ClassType<any>> = (dummyNode.constructor as any)[ashProp];
 
-    const keys = Object.keys(types);
-    for(let i = 0; i < keys.length; i++) {
-      const type = keys[i];
-      this.components.set(types[type], type);
+    for(const [className, classType] of types) {
+      this.components.set(classType, className);
     }
   }
 
@@ -159,4 +158,22 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
     }
     this.nodes.removeAll();
   }
+}
+
+export function keep(type:ClassType<any>):PropertyDecorator {
+  return (target:Object, propertyKey:string | symbol) => {
+    const ctor = target.constructor;
+    let map:Map<string, ClassType<any>>;
+    if(ctor.hasOwnProperty(ashProp)) {
+      map = (ctor as any)[ashProp];
+    } else {
+      map = new Map<string, ClassType<any>>();
+      Object.defineProperty(ctor, ashProp, {
+        enumerable: true,
+        get: () => map,
+      });
+    }
+
+    map.set(propertyKey as string, type);
+  };
 }
