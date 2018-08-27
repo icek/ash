@@ -56,6 +56,27 @@
     };
   }
 
+  function __read(o, n) {
+    var m = typeof Symbol === 'function' && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o),
+      r,
+      ar = [],
+      e;
+    try {
+      while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    } catch (error) {
+      e = { error: error };
+    } finally {
+      try {
+        if (r && !r.done && (m = i['return'])) m.call(i);
+      } finally {
+        if (e) throw e.error;
+      }
+    }
+    return ar;
+  }
+
   /**
    * A node in the list of listeners in a signal.
    */
@@ -675,6 +696,7 @@
     return NodePool;
   })();
 
+  var ashProp = '__ash_types__';
   /**
    * The default class for managing a NodeList. This class creates the NodeList and adds and removes
    * nodes to/from the list as the entities and the components in the engine change.
@@ -709,17 +731,29 @@
      * what component types the node requires.
      */
     ComponentMatchingFamily.prototype.init = function() {
+      var e_1, _a;
       this.nodes = new NodeList();
       this.entities = new Map();
       this.components = new Map();
       this.nodePool = new NodePool(this.nodeClass, this.components);
       var dummyNode = this.nodePool.get();
       this.nodePool.dispose(dummyNode);
-      var types = dummyNode.constructor['__ash_types__'];
-      var keys = Object.keys(types);
-      for (var i = 0; i < keys.length; i++) {
-        var type = keys[i];
-        this.components.set(types[type], type);
+      var types = dummyNode.constructor[ashProp];
+      try {
+        for (var types_1 = __values(types), types_1_1 = types_1.next(); !types_1_1.done; types_1_1 = types_1.next()) {
+          var _b = __read(types_1_1.value, 2),
+            className = _b[0],
+            classType = _b[1];
+          this.components.set(classType, className);
+        }
+      } catch (e_1_1) {
+        e_1 = { error: e_1_1 };
+      } finally {
+        try {
+          if (types_1_1 && !types_1_1.done && (_a = types_1.return)) _a.call(types_1);
+        } finally {
+          if (e_1) throw e_1.error;
+        }
       }
     };
     Object.defineProperty(ComponentMatchingFamily.prototype, 'nodeList', {
@@ -770,7 +804,7 @@
      * if it should be in this NodeList and adds it if so.
      */
     ComponentMatchingFamily.prototype.addIfMatch = function(entity) {
-      var e_1, _a, e_2, _b;
+      var e_2, _a, e_3, _b;
       if (!this.entities.has(entity)) {
         try {
           for (var _c = __values(this.components.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
@@ -779,13 +813,13 @@
               return;
             }
           }
-        } catch (e_1_1) {
-          e_1 = { error: e_1_1 };
+        } catch (e_2_1) {
+          e_2 = { error: e_2_1 };
         } finally {
           try {
             if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
           } finally {
-            if (e_1) throw e_1.error;
+            if (e_2) throw e_2.error;
           }
         }
         var node = this.nodePool.get();
@@ -795,13 +829,13 @@
             var componentClass = _f.value;
             node[this.components.get(componentClass)] = entity.get(componentClass);
           }
-        } catch (e_2_1) {
-          e_2 = { error: e_2_1 };
+        } catch (e_3_1) {
+          e_3 = { error: e_3_1 };
         } finally {
           try {
             if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
           } finally {
-            if (e_2) throw e_2.error;
+            if (e_3) throw e_3.error;
           }
         }
         this.entities.set(entity, node);
@@ -835,6 +869,24 @@
     };
     return ComponentMatchingFamily;
   })();
+  function keep(type) {
+    return function(target, propertyKey) {
+      var ctor = target.constructor;
+      var map;
+      if (ctor.hasOwnProperty(ashProp)) {
+        map = ctor[ashProp];
+      } else {
+        map = new Map();
+        Object.defineProperty(ctor, ashProp, {
+          enumerable: true,
+          get: function() {
+            return map;
+          }
+        });
+      }
+      map.set(propertyKey, type);
+    };
+  }
 
   /**
    * An internal class for a linked list of entities. Used inside the framework for
@@ -1421,25 +1473,6 @@
     }
     return Node;
   })();
-  function keep(type) {
-    return function(target, propertyKey) {
-      var ctor = target.constructor;
-      var map;
-      var ashProp = '__ash_types__';
-      if (ctor.hasOwnProperty(ashProp)) {
-        map = ctor[ashProp];
-      } else {
-        map = {};
-        Object.defineProperty(ctor, ashProp, {
-          enumerable: true,
-          get: function() {
-            return map;
-          }
-        });
-      }
-      map[propertyKey] = type;
-    };
-  }
 
   /**
    * The base class for a system.
@@ -2462,10 +2495,10 @@
   exports.Signal2 = Signal2;
   exports.Signal3 = Signal3;
   exports.ComponentMatchingFamily = ComponentMatchingFamily;
+  exports.keep = keep;
   exports.Engine = Engine;
   exports.Entity = Entity;
   exports.Node = Node;
-  exports.keep = keep;
   exports.NodeList = NodeList;
   exports.NodePool = NodePool;
   exports.System = System;

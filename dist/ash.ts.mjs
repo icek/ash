@@ -572,6 +572,7 @@ class NodePool {
   }
 }
 
+const ashProp = '__ash_types__';
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
  * nodes to/from the list as the entities and the components in the engine change.
@@ -611,11 +612,9 @@ class ComponentMatchingFamily {
     this.nodePool = new NodePool(this.nodeClass, this.components);
     const dummyNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
-    const types = dummyNode.constructor['__ash_types__'];
-    const keys = Object.keys(types);
-    for (let i = 0; i < keys.length; i++) {
-      const type = keys[i];
-      this.components.set(types[type], type);
+    const types = dummyNode.constructor[ashProp];
+    for (const [className, classType] of types) {
+      this.components.set(classType, className);
     }
   }
   /**
@@ -702,6 +701,22 @@ class ComponentMatchingFamily {
     }
     this.nodes.removeAll();
   }
+}
+function keep(type) {
+  return (target, propertyKey) => {
+    const ctor = target.constructor;
+    let map;
+    if (ctor.hasOwnProperty(ashProp)) {
+      map = ctor[ashProp];
+    } else {
+      map = new Map();
+      Object.defineProperty(ctor, ashProp, {
+        enumerable: true,
+        get: () => map
+      });
+    }
+    map.set(propertyKey, type);
+  };
 }
 
 /**
@@ -1204,23 +1219,6 @@ class Node {
      */
     this.next = null;
   }
-}
-function keep(type) {
-  return (target, propertyKey) => {
-    const ctor = target.constructor;
-    let map;
-    const ashProp = '__ash_types__';
-    if (ctor.hasOwnProperty(ashProp)) {
-      map = ctor[ashProp];
-    } else {
-      map = {};
-      Object.defineProperty(ctor, ashProp, {
-        enumerable: true,
-        get: () => map
-      });
-    }
-    map[propertyKey] = type;
-  };
 }
 
 /**
@@ -2096,10 +2094,10 @@ export {
   Signal2,
   Signal3,
   ComponentMatchingFamily,
+  keep,
   Engine,
   Entity,
   Node,
-  keep,
   NodeList,
   NodePool,
   System,

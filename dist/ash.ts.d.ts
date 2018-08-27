@@ -177,7 +177,6 @@ export declare abstract class Node<TNode> {
 	 */
 	next: TNode | null;
 }
-export declare function keep(type: ClassType<any>): PropertyDecorator;
 /**
  * A collection of nodes.
  *
@@ -560,6 +559,7 @@ export declare class ComponentMatchingFamily<TNode extends Node<TNode>> implemen
 	 */
 	cleanUp(): void;
 }
+export declare function keep(type: ClassType<any>): PropertyDecorator;
 /**
  * This internal class maintains a pool of deleted nodes for reuse by the framework. This reduces the overhead
  * from object creation and garbage collection.

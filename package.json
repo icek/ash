@@ -1,7 +1,7 @@
 {
   "name": "ash.ts",
   "license": "MIT",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Typescript port of Ash - Entity Component System framework",
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "repository": {

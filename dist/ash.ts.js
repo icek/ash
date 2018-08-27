@@ -581,6 +581,7 @@
     }
   }
 
+  const ashProp = '__ash_types__';
   /**
    * The default class for managing a NodeList. This class creates the NodeList and adds and removes
    * nodes to/from the list as the entities and the components in the engine change.
@@ -620,11 +621,9 @@
       this.nodePool = new NodePool(this.nodeClass, this.components);
       const dummyNode = this.nodePool.get();
       this.nodePool.dispose(dummyNode);
-      const types = dummyNode.constructor['__ash_types__'];
-      const keys = Object.keys(types);
-      for (let i = 0; i < keys.length; i++) {
-        const type = keys[i];
-        this.components.set(types[type], type);
+      const types = dummyNode.constructor[ashProp];
+      for (const [className, classType] of types) {
+        this.components.set(classType, className);
       }
     }
     /**
@@ -711,6 +710,22 @@
       }
       this.nodes.removeAll();
     }
+  }
+  function keep(type) {
+    return (target, propertyKey) => {
+      const ctor = target.constructor;
+      let map;
+      if (ctor.hasOwnProperty(ashProp)) {
+        map = ctor[ashProp];
+      } else {
+        map = new Map();
+        Object.defineProperty(ctor, ashProp, {
+          enumerable: true,
+          get: () => map
+        });
+      }
+      map.set(propertyKey, type);
+    };
   }
 
   /**
@@ -1213,23 +1228,6 @@
        */
       this.next = null;
     }
-  }
-  function keep(type) {
-    return (target, propertyKey) => {
-      const ctor = target.constructor;
-      let map;
-      const ashProp = '__ash_types__';
-      if (ctor.hasOwnProperty(ashProp)) {
-        map = ctor[ashProp];
-      } else {
-        map = {};
-        Object.defineProperty(ctor, ashProp, {
-          enumerable: true,
-          get: () => map
-        });
-      }
-      map[propertyKey] = type;
-    };
   }
 
   /**
@@ -2104,10 +2102,10 @@
   exports.Signal2 = Signal2;
   exports.Signal3 = Signal3;
   exports.ComponentMatchingFamily = ComponentMatchingFamily;
+  exports.keep = keep;
   exports.Engine = Engine;
   exports.Entity = Entity;
   exports.Node = Node;
-  exports.keep = keep;
   exports.NodeList = NodeList;
   exports.NodePool = NodePool;
   exports.System = System;
