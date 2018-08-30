@@ -39,7 +39,7 @@ export class Engine {
    *
    * The class must implement the Family interface.
    */
-  public familyClass:any = ComponentMatchingFamily;
+  public familyClass:ClassType<IFamily<any>> = ComponentMatchingFamily;
 
   constructor() {
     this.entityList = new EntityList();

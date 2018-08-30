@@ -150,7 +150,7 @@ export class Entity {
   public getAll():any[] {
     const componentArray:any[] = [];
     for(const value of this.components.values()) {
-      componentArray[componentArray.length] = value;
+      componentArray.push(value);
     }
     return componentArray;
   }

@@ -163,17 +163,17 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
 export function keep(type:ClassType<any>):PropertyDecorator {
   return (target:Object, propertyKey:string | symbol) => {
     const ctor = target.constructor;
-    let map:Map<string, ClassType<any>>;
+    let map:Map<string | symbol, ClassType<any>>;
     if(ctor.hasOwnProperty(ashProp)) {
       map = (ctor as any)[ashProp];
     } else {
-      map = new Map<string, ClassType<any>>();
+      map = new Map();
       Object.defineProperty(ctor, ashProp, {
         enumerable: true,
         get: () => map,
       });
     }
 
-    map.set(propertyKey as string, type);
+    map.set(propertyKey, type);
   };
 }
