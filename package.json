@@ -3,11 +3,27 @@
   "license": "MIT",
   "version": "0.9.4",
   "description": "Typescript port of Ash - Entity Component System framework",
-  "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
+  "keywords": ["ash", "typescript", "framework", "game", "entity", "component", "system"],
+  "license": "MIT",
+  "homepage": "https://ash.ts.github.io",
   "repository": {
     "type": "git",
     "url": "https://github.com/icek/ash.ts"
   },
+  "bugs": {
+    "url": "https://github.com/icek/ash.ts/issues"
+  },
+  "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
+  "contributors": [
+  ],
+  "main": "dist/ash.ts.js",
+  "browser": "dist/ash.ts.min.js",
+  "module": "dist/ash.ts.mjs",
+  "types": "dist/ash.ts.d.ts",
+  "typings": "dist/ash.ts.d.ts",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "rollup -c",
@@ -23,16 +39,9 @@
     "postdocs": "touch docs/.nojekyll",
     "lint": "tslint -p tsconfig.json",
     "pretest": "rimraf reports",
-    "test": "karma start ./karma.conf.js"
+    "test": "karma start ./karma.conf.js",
+    "test-once": "karma start ./karma.conf.js --single-run --no-auto-watch"
   },
-  "main": "dist/ash.ts.js",
-  "browser": "dist/ash.ts.min.js",
-  "module": "dist/ash.ts.mjs",
-  "types": "dist/ash.ts.d.ts",
-  "typings": "dist/ash.ts.d.ts",
-  "files": [
-    "dist/*"
-  ],
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.5",
