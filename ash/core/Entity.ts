@@ -138,8 +138,8 @@ export class Entity {
    * @param componentClass The class of the component requested.
    * @return The component, or null if none was found.
    */
-  public get<T>(componentClass:ClassType<T>):T {
-    return this.components.get(componentClass);
+  public get<T>(componentClass:ClassType<T>):T | null {
+    return this.components.get(componentClass) || null;
   }
 
   /**
