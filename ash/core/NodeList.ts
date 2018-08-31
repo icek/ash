@@ -220,7 +220,7 @@ export class NodeList<TNode extends Node<TNode>> {
    * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
    *
-   * <p>This merge sort implementation creates and uses a single Vector during the sort operation.</p>
+   * <p>This merge sort implementation creates and uses a single array during the sort operation.</p>
    */
   public mergeSort(sortFunction:(a:TNode, b:TNode) => number):void {
     if(this.head === this.tail) {

@@ -111,7 +111,7 @@ export class Engine {
   }
 
   /**
-   * Returns a vector containing all the entities in the engine.
+   * Returns an array containing all the entities in the engine.
    */
   public get entities():Entity[] {
     const entities:Entity[] = [];
@@ -210,7 +210,7 @@ export class Engine {
   }
 
   /**
-   * Returns a vector containing all the systems in the engine.
+   * Returns an array containing all the systems in the engine.
    */
   public get systems():System[] {
     const systems:System[] = [];
