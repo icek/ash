@@ -10,5 +10,6 @@
   "excludeNotExported": true,
   "preserveConstEnums": true,
   "stripInternal": true,
-  "tsconfig": "./tsconfig.json"
+  "tsconfig": "./tsconfig.json",
+  "gitRevision": "master"
 }
