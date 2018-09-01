@@ -13,6 +13,7 @@ export class ListenerNodePool<TListener> {
       const node:ListenerNode<TListener> = this.tail;
       this.tail = this.tail.previous;
       node.previous = null;
+
       return node;
     }
 

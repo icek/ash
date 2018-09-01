@@ -281,6 +281,7 @@ export class NodeList<TNode extends Node<TNode>> {
       node.next = head2;
       head2.previous = node;
     }
+
     return head;
   }
 }

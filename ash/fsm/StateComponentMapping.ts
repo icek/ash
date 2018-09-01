@@ -38,6 +38,7 @@ export class StateComponentMapping<TComponent> {
    */
   public withInstance(component:TComponent):this {
     this.setProvider(new ComponentInstanceProvider(component));
+
     return this;
   }
 
@@ -51,6 +52,7 @@ export class StateComponentMapping<TComponent> {
    */
   public withType(type:ClassType<TComponent>):this {
     this.setProvider(new ComponentTypeProvider(type));
+
     return this;
   }
 
@@ -69,6 +71,7 @@ export class StateComponentMapping<TComponent> {
       type = this.componentType;
     }
     this.setProvider(new ComponentSingletonProvider(type));
+
     return this;
   }
 
@@ -82,6 +85,7 @@ export class StateComponentMapping<TComponent> {
    */
   public withMethod(method:() => TComponent):this {
     this.setProvider(new DynamicComponentProvider(method));
+
     return this;
   }
 
@@ -93,6 +97,7 @@ export class StateComponentMapping<TComponent> {
    */
   public withProvider(provider:IComponentProvider<TComponent>):this {
     this.setProvider(provider);
+
     return this;
   }
 

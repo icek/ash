@@ -12,6 +12,7 @@
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true
       }
-    ]
+    ],
+    "newline-before-return": true
   }
 }

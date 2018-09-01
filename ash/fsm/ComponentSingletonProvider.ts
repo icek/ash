@@ -27,6 +27,7 @@ export class ComponentSingletonProvider<TComponent> implements IComponentProvide
     if(!this.instance) {
       this.instance = new this.componentType();
     }
+
     return this.instance;
   }
 

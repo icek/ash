@@ -118,6 +118,7 @@ export class Engine {
     for(let entity:Entity | null = this.entityList.head; entity; entity = entity.next) {
       entities[entities.length] = entity;
     }
+
     return entities;
   }
 
@@ -160,6 +161,7 @@ export class Engine {
     for(let entity:Entity | null = this.entityList.head; entity; entity = entity.next) {
       family.newEntity(entity);
     }
+
     return family.nodeList;
   }
 
@@ -217,6 +219,7 @@ export class Engine {
     for(let system:System | null = this.systemList.head; system; system = system.next) {
       systems[systems.length] = system;
     }
+
     return systems;
   }
 

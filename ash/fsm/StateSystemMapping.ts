@@ -28,6 +28,7 @@ export class StateSystemMapping<TSystem extends System> {
    */
   public withPriority(priority:number):StateSystemMapping<TSystem> {
     this.provider.priority = priority;
+
     return this;
   }
 

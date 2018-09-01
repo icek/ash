@@ -73,6 +73,7 @@ export class SystemList {
         return system as TSystem;
       }
     }
+
     return null;
   }
 }

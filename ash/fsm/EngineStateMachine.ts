@@ -29,6 +29,7 @@ export class EngineStateMachine {
    */
   public addState(name:string, state:EngineState):this {
     this.states[name] = state;
+
     return this;
   }
 
@@ -42,6 +43,7 @@ export class EngineStateMachine {
   public createState(name:string):EngineState {
     const state:EngineState = new EngineState();
     this.states[name] = state;
+
     return state;
   }
 
@@ -58,6 +60,7 @@ export class EngineStateMachine {
     }
     if(newState === this.currentState) {
       newState = null;
+
       return;
     }
     const toAdd:ISystemProvider<any>[] = [];

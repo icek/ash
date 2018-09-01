@@ -36,6 +36,7 @@ export class EntityStateMachine {
    */
   public addState(name:string, state:EntityState):this {
     this.states[name] = state;
+
     return this;
   }
 
@@ -49,6 +50,7 @@ export class EntityStateMachine {
   public createState(name:string):EntityState {
     const state:EntityState = new EntityState();
     this.states[name] = state;
+
     return state;
   }
 
@@ -65,6 +67,7 @@ export class EntityStateMachine {
     }
     if(newState === this.currentState) {
       newState = null;
+
       return;
     }
     let toAdd:Map<ClassType<any>, IComponentProvider<any>>;

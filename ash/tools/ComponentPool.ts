@@ -33,6 +33,7 @@ export class ComponentPool {
 
     const ret:T[] = [];
     ComponentPool.pools.set(componentClass, ret);
+
     return ret;
   }
 

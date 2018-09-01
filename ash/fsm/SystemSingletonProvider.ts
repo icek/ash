@@ -29,6 +29,7 @@ export class SystemSingletonProvider<TSystem extends System> implements ISystemP
     if(!this.instance) {
       this.instance = new this.componentType();
     }
+
     return this.instance;
   }
 

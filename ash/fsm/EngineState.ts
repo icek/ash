@@ -59,6 +59,7 @@ export class EngineState {
   public addProvider<TSystem extends System>(provider:ISystemProvider<TSystem>):StateSystemMapping<TSystem> {
     const mapping:StateSystemMapping<TSystem> = new StateSystemMapping(this, provider);
     this.providers[this.providers.length] = provider;
+
     return mapping;
   }
 }

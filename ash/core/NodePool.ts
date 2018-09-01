@@ -31,6 +31,7 @@ export class NodePool<TNode extends Node<TNode>> {
       const node:TNode = this.tail;
       this.tail = this.tail.previous;
       node.previous = null;
+
       return node;
     }
 

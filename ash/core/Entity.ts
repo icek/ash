@@ -113,6 +113,7 @@ export class Entity {
 
     this.components.set(componentClass, component);
     this.componentAdded.dispatch(this, componentClass);
+
     return this;
   }
 
@@ -127,8 +128,10 @@ export class Entity {
     if(component) {
       this.components.delete(componentClass);
       this.componentRemoved.dispatch(this, componentClass);
+
       return component;
     }
+
     return null;
   }
 
@@ -152,6 +155,7 @@ export class Entity {
     for(const value of this.components.values()) {
       componentArray.push(value);
     }
+
     return componentArray;
   }
 
