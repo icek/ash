@@ -58,8 +58,8 @@ describe('Entity tests', () => {
     assert.equal(entity.get(MockComponent), component);
   });
 
-  it('get return undefined if no Component', () => {
-    assert.isUndefined(entity.get(MockComponent));
+  it('get return null if no Component', () => {
+    assert.isNull(entity.get(MockComponent));
   });
 
   it('will retrieve all Components', () => {
