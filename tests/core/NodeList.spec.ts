@@ -1,5 +1,6 @@
+// tslint:disable:no-magic-numbers
 import { assert } from 'chai';
-import { NodeList, Node, NodePool, keep } from 'ash.ts';
+import { NodeList, Node, NodePool } from 'ash.ts';
 import { MockNode } from '../mocks';
 
 describe('NodeList tests', () => {
@@ -92,8 +93,7 @@ describe('NodeList tests', () => {
   it('NodePoll works', () => {
     const cmps = new Map<{ new():any }, string>();
     const poll = new NodePool<MockNode>(MockNode, cmps);
-    let m = poll.get();
-    let o = new MockNode();
+    const m = poll.get();
     assert.instanceOf(m, MockNode);
   });
 
@@ -126,19 +126,19 @@ describe('NodeList tests', () => {
   //   assert.equal(nodes, nodeList(node1, node2, node3));
   // });
 
-//public function swappingOnlyTwoNodesChangesTheirOrder() : void
-//{
+// public function swappingOnlyTwoNodesChangesTheirOrder() : void
+// {
 //    var node1 : MockNode = new MockNode();
 //    var node2 : MockNode = new MockNode();
 //    nodes.add( node1 );
 //    nodes.add( node2 );
 //    nodes.swap( node1, node2 );
 //    assertThat( nodes, nodeList( node2, node1 ) );
-//}
+// }
 //
-//[Test]
-//public function swappingAdjacentNodesChangesTheirPositions() : void
-//{
+// [Test]
+// public function swappingAdjacentNodesChangesTheirPositions() : void
+// {
 //    var node1 : MockNode = new MockNode();
 //    var node2 : MockNode = new MockNode();
 //    var node3 : MockNode = new MockNode();
@@ -149,11 +149,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node4 );
 //    nodes.swap( node2, node3 );
 //    assertThat( nodes, nodeList( node1, node3, node2, node4 ) );
-//}
+// }
 //
-//[Test]
-//public function swappingNonAdjacentNodesChangesTheirPositions() : void
-//{
+// [Test]
+// public function swappingNonAdjacentNodesChangesTheirPositions() : void
+// {
 //    var node1 : MockNode = new MockNode();
 //    var node2 : MockNode = new MockNode();
 //    var node3 : MockNode = new MockNode();
@@ -166,11 +166,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node5 );
 //    nodes.swap( node2, node4 );
 //    assertThat( nodes, nodeList( node1, node4, node3, node2, node5 ) );
-//}
+// }
 //
-//[Test]
-//public function swappingEndNodesChangesTheirPositions() : void
-//{
+// [Test]
+// public function swappingEndNodesChangesTheirPositions() : void
+// {
 //    var node1 : MockNode = new MockNode();
 //    var node2 : MockNode = new MockNode();
 //    var node3 : MockNode = new MockNode();
@@ -179,11 +179,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node3 );
 //    nodes.swap( node1, node3 );
 //    assertThat( nodes, nodeList( node3, node2, node1 ) );
-//}
+// }
 //
-//[Test]
-//public function insertionSortCorrectlySortsSortedNodes() : void
-//{
+// [Test]
+// public function insertionSortCorrectlySortsSortedNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 2 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -194,11 +194,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node4 );
 //    nodes.insertionSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4 ) );
-//}
+// }
 //
-//[Test]
-//public function insertionSortCorrectlySortsReversedNodes() : void
-//{
+// [Test]
+// public function insertionSortCorrectlySortsReversedNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 2 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -209,11 +209,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node1 );
 //    nodes.insertionSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4 ) );
-//}
+// }
 //
-//[Test]
-//public function insertionSortCorrectlySortsMixedNodes() : void
-//{
+// [Test]
+// public function insertionSortCorrectlySortsMixedNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 2 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -226,11 +226,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node2 );
 //    nodes.insertionSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4, node5 ) );
-//}
+// }
 //
-//[Test]
-//public function insertionSortRetainsTheOrderOfEquivalentNodes() : void
-//{
+// [Test]
+// public function insertionSortRetainsTheOrderOfEquivalentNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 1 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -243,11 +243,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node2 );
 //    nodes.insertionSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4, node5 ) );
-//}
+// }
 //
-//[Test]
-//public function mergeSortCorrectlySortsSortedNodes() : void
-//{
+// [Test]
+// public function mergeSortCorrectlySortsSortedNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 2 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -258,11 +258,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node4 );
 //    nodes.mergeSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4 ) );
-//}
+// }
 //
-//[Test]
-//public function mergeSortCorrectlySortsReversedNodes() : void
-//{
+// [Test]
+// public function mergeSortCorrectlySortsReversedNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 2 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -273,11 +273,11 @@ describe('NodeList tests', () => {
 //    nodes.add( node1 );
 //    nodes.mergeSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4 ) );
-//}
+// }
 //
-//[Test]
-//public function mergeSortCorrectlySortsMixedNodes() : void
-//{
+// [Test]
+// public function mergeSortCorrectlySortsMixedNodes() : void
+// {
 //    var node1 : MockNode = new MockNode( 1 );
 //    var node2 : MockNode = new MockNode( 2 );
 //    var node3 : MockNode = new MockNode( 3 );
@@ -290,14 +290,12 @@ describe('NodeList tests', () => {
 //    nodes.add( node2 );
 //    nodes.mergeSort( sortFunction );
 //    assertThat( nodes, nodeList( node1, node2, node3, node4, node5 ) );
-//}
+// }
 //
 //   function sortFunction(node1:MockNode, node2:MockNode):number {
 //     return node1.pos - node2.pos;
 //   }
-
-//}
-//}
 //
-
+// }
+// }
 });

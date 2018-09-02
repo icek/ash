@@ -1,3 +1,4 @@
+// tslint:disable:no-magic-numbers
 import { Engine, System } from 'ash.ts';
 import { MockSystem, MockSystem2 } from '../mocks';
 import { assert } from 'chai';
@@ -5,11 +6,8 @@ import { assert } from 'chai';
 describe('System tests', () => {
   let engine:Engine;
   const mockObject = {
-    asyncCallback: null
+    asyncCallback: null,
   };
-
-  let system1:MockSystem;
-  let system2:MockSystem;
 
   beforeEach(() => {
     engine = new Engine();
@@ -158,34 +156,33 @@ describe('System tests', () => {
     assert.isNull(systemB.next);
   });
 
-  function addedCallbackMethod(system:System, action:String, systemEngine:Engine):void {
-    assert.strictEqual(action, 'added');
-    assert.strictEqual(systemEngine, engine);
-  }
+  // function addedCallbackMethod(system:System, action:String, systemEngine:Engine):void {
+  //   assert.strictEqual(action, 'added');
+  //   assert.strictEqual(systemEngine, engine);
+  // }
 
+  // function removedCallbackMethod(system:System, action:String, systemEngine:Engine):void {
+  //   assert.strictEqual(action, 'removed');
+  //   assert.strictEqual(systemEngine, engine);
+  // }
 
-  function removedCallbackMethod(system:System, action:String, systemEngine:Engine):void {
-    assert.strictEqual(action, 'removed');
-    assert.strictEqual(systemEngine, engine);
-  }
-
-  function updateCallbackMethod(system:System, action:string, time:number):void {
-    assert.strictEqual(action, 'update');
-    assert.strictEqual(time, 0.1);
-  }
+  // function updateCallbackMethod(system:System, action:string, time:number):void {
+  //   assert.strictEqual(action, 'update');
+  //   assert.strictEqual(time, 0.1);
+  // }
 
   // function updateCallbackMethod1(system:System, action:String, time:Number):void {
   // assert.strictEqual(system, system1);
   // asyncCallback = async.add(updateCallbackMethod2, 10);
   // }
 
-  function updateCallbackMethod2(system:System, action:string, payload:any):void {
-    assert.strictEqual(system, system2);
-  }
+  // function updateCallbackMethod2(system:System, action:string, payload:any):void {
+  //   assert.strictEqual(system, system2);
+  // }
 
-  function updatingIsFalseBeforeUpdate():void {
-    assert.isFalse(engine.updating);
-  }
+  // function updatingIsFalseBeforeUpdate():void {
+  //   assert.isFalse(engine.updating);
+  // }
 
   function assertsUpdatingIsTrue(system:System, action:string, payload:any):void {
     assert.isTrue(engine.updating);

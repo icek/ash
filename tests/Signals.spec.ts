@@ -1,3 +1,4 @@
+// tslint:disable:no-magic-numbers
 import { Signal0 } from 'ash.ts';
 import { assert } from 'chai';
 
@@ -123,18 +124,18 @@ describe('Signals tests', () => {
   //   dispatchSignal();
   // });
 
-  function selfRemover():void {
-    signal.remove(selfRemover);
-  }
+  // function selfRemover():void {
+  //   signal.remove(selfRemover);
+  // }
 
   // it(' addingAListenerDuringDispatchShouldNotCallIt', () => {
   //   signal.add(async.add(addListenerDuringDispatch, 10));
   //   dispatchSignal();
   // });
 
-  function addListenerDuringDispatch():void {
-    signal.add(failIfCalled);
-  }
+  // function addListenerDuringDispatch():void {
+  //   signal.add(failIfCalled);
+  // }
 
 
   it('adding a listener during dispatch increments listeners count', () => {

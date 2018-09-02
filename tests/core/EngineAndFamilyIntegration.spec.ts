@@ -1,3 +1,4 @@
+// tslint:disable:no-magic-numbers
 import { Engine, Entity, NodeList } from 'ash.ts';
 import { assert } from 'chai';
 import { Matrix, MockNode2, Point } from '../mocks';

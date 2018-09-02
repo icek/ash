@@ -1,5 +1,5 @@
+import { Entity } from 'ash.ts';
 import { assert } from 'chai';
-import { ClassType, Entity } from 'ash.ts';
 import { MockComponent, MockComponent2, MockComponentExtended } from '../mocks';
 
 describe('Entity tests', () => {
@@ -160,9 +160,9 @@ describe('Entity tests', () => {
     entity.name = 'otherThing';
   });
 
-  function testSignalContent(signalEntity:Entity, componentClass:ClassType<any>):void {
+  // function testSignalContent(signalEntity:Entity, componentClass:ClassType<any>):void {
     // sameInstance
-    assert.equal(signalEntity, entity);
-    assert.equal(componentClass, MockComponent);
-  }
+    // assert.equal(signalEntity, entity);
+    // assert.equal(componentClass, MockComponent);
+  // }
 });
