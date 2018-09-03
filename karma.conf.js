@@ -26,7 +26,7 @@ module.exports = function(config) {
     ],
 
     mime: {
-      'text/x-typescript': ['ts', 'tsx']
+      'text/x-typescript': ['ts', 'tsx'],
     },
 
     // preprocess matching files before serving them to the browser
@@ -62,7 +62,7 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
       'ChromeHeadless',
-      'FirefoxHeadless'
+      'FirefoxHeadless',
     ],
 
     // Continuous Integration mode
@@ -86,27 +86,23 @@ module.exports = function(config) {
     ],
 
     coverageReporter: {
-      type: 'in-memory'
+      type: 'in-memory',
     },
 
     karmaTypescriptConfig: {
       coverageOptions: {
         exclude: [
           /\.(d|spec)\.ts$/i,
-          /.*node_modules.*/
-        ]
+          /.*node_modules.*/,
+        ],
       },
       tsconfig: 'tests/tsconfig.json',
       bundlerOptions: {
         resolve: {
-          directories: [
-            'node_modules',
-            'ash',
-          ],
           alias: {
             'ash-ts': 'ash',
-          }
-        }
+          },
+        },
       },
       entrypoints: /\.spec\.ts$/,
       reports: {
