@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash.ts';
-import { Matrix, MockNode, Point } from '../mocks';
+import { MockComponent, MockComponent1 } from '../_mocks/MockComponent';
+import { MockNode } from '../_mocks/MockNode';
 
 describe('ComponentMatchingFamily tests', () => {
   let engine:Engine;
@@ -24,14 +25,14 @@ describe('ComponentMatchingFamily tests', () => {
   it('matching Entity is added when access NodeList test 1', () => {
     const nodes:NodeList<MockNode> = family.nodeList;
     const entity:Entity = new Entity();
-    entity.add(new Point());
+    entity.add(new MockComponent());
     family.newEntity(entity);
     assert.equal(nodes.head.entity, entity);
   });
 
   it('matching Entity is added when access NodeList test 2', () => {
     const entity:Entity = new Entity();
-    entity.add(new Point());
+    entity.add(new MockComponent());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
     assert.equal(nodes.head.entity, entity);
@@ -39,18 +40,18 @@ describe('ComponentMatchingFamily tests', () => {
 
   it('Node contains Entity properties', () => {
     const entity:Entity = new Entity();
-    const point:Point = new Point();
-    entity.add(point);
+    const component:MockComponent = new MockComponent();
+    entity.add(component);
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.equal(nodes.head.point, point);
+    assert.equal(nodes.head.component, component);
   });
 
   it('matching Entity is added when Component added', () => {
     const nodes:NodeList<MockNode> = family.nodeList;
     const entity:Entity = new Entity();
-    entity.add(new Point());
-    family.componentAddedToEntity(entity, Point);
+    entity.add(new MockComponent());
+    family.componentAddedToEntity(entity, MockComponent);
     assert.equal(nodes.head.entity, entity);
   });
 
@@ -63,15 +64,15 @@ describe('ComponentMatchingFamily tests', () => {
 
   it('non matching Entity is not added when Component added', () => {
     const entity:Entity = new Entity();
-    entity.add(new Matrix());
-    family.componentAddedToEntity(entity, Matrix);
+    entity.add(new MockComponent1());
+    family.componentAddedToEntity(entity, MockComponent1);
     const nodes:NodeList<MockNode> = family.nodeList;
     assert.isNull(nodes.head);
   });
 
   it('Entity is removed when access NodeList', () => {
     const entity:Entity = new Entity();
-    entity.add(new Point());
+    entity.add(new MockComponent());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
     family.removeEntity(entity);
@@ -80,10 +81,10 @@ describe('ComponentMatchingFamily tests', () => {
 
   it('Entity is removed when Component removed', () => {
     const entity:Entity = new Entity();
-    entity.add(new Point());
+    entity.add(new MockComponent());
     family.newEntity(entity);
-    entity.remove(Point);
-    family.componentRemovedFromEntity(entity, Point);
+    entity.remove(MockComponent);
+    family.componentRemovedFromEntity(entity, MockComponent);
     const nodes:NodeList<MockNode> = family.nodeList;
     assert.isNull(nodes.head);
   });
@@ -93,7 +94,7 @@ describe('ComponentMatchingFamily tests', () => {
     const numTimes = 5;
     for(let i = 0; i < numTimes; ++i) {
       const entity:Entity = new Entity();
-      entity.add(new Point());
+      entity.add(new MockComponent());
       entities.push(entity);
       family.newEntity(entity);
       family.newEntity(new Entity());
@@ -110,7 +111,7 @@ describe('ComponentMatchingFamily tests', () => {
     const numTimes = 5;
     for(let i = 0; i < numTimes; ++i) {
       const entity:Entity = new Entity();
-      entity.add(new Point());
+      entity.add(new MockComponent());
       entities.push(entity);
       family.newEntity(entity);
       family.newEntity(new Entity());
@@ -127,7 +128,7 @@ describe('ComponentMatchingFamily tests', () => {
 
   it('clean up empties NodeList', () => {
     const entity:Entity = new Entity();
-    entity.add(new Point());
+    entity.add(new MockComponent());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
     family.cleanUp();
@@ -139,7 +140,7 @@ describe('ComponentMatchingFamily tests', () => {
     const numTimes = 5;
     for(let i = 0; i < numTimes; ++i) {
       const entity:Entity = new Entity();
-      entity.add(new Point());
+      entity.add(new MockComponent());
       entities.push(entity);
       family.newEntity(entity);
     }

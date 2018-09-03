@@ -1,7 +1,10 @@
 // tslint:disable:no-magic-numbers
-import { assert } from 'chai';
+
 import { Engine, Entity } from 'ash.ts';
-import { MockFamily, MockNode, MockNode2, Point } from '../mocks';
+import { assert } from 'chai';
+import { MockComponent } from '../_mocks/MockComponent';
+import { MockFamily } from '../_mocks/MockFamily';
+import { MockNode, MockNode2 } from '../_mocks/MockNode';
 
 describe('Engine tests', () => {
   let engine:Engine = null;
@@ -81,7 +84,7 @@ describe('Engine tests', () => {
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
     engine.addEntity(entity);
-    entity.add(new Point());
+    entity.add(new MockComponent());
     assert.strictEqual(MockFamily.instances[0].componentAddedCalls, 1);
     assert.strictEqual(MockFamily.instances[1].componentAddedCalls, 1);
   });
@@ -91,8 +94,8 @@ describe('Engine tests', () => {
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
     engine.addEntity(entity);
-    entity.add(new Point());
-    entity.remove(Point);
+    entity.add(new MockComponent());
+    entity.remove(MockComponent);
     assert.strictEqual(MockFamily.instances[0].componentRemovedCalls, 1);
     assert.strictEqual(MockFamily.instances[1].componentRemovedCalls, 1);
   });

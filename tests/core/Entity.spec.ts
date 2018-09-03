@@ -1,6 +1,6 @@
 import { Entity } from 'ash.ts';
 import { assert } from 'chai';
-import { MockComponent, MockComponent2, MockComponentExtended } from '../mocks';
+import { MockComponent, MockComponent1, MockComponent2, MockComponentExtended } from '../_mocks/MockComponent';
 
 describe('Entity tests', () => {
   let entity:Entity;
@@ -26,11 +26,11 @@ describe('Entity tests', () => {
   });
 
   it('can store and retrieve multiple Components', () => {
-    const component1:MockComponent = new MockComponent();
+    const component1:MockComponent1 = new MockComponent1();
     entity.add(component1);
     const component2:MockComponent2 = new MockComponent2();
     entity.add(component2);
-    assert.equal(entity.get(MockComponent), component1);
+    assert.equal(entity.get(MockComponent1), component1);
     assert.equal(entity.get(MockComponent2), component2);
   });
 
@@ -63,7 +63,7 @@ describe('Entity tests', () => {
   });
 
   it('will retrieve all Components', () => {
-    const component1:MockComponent = new MockComponent();
+    const component1:MockComponent1 = new MockComponent1();
     entity.add(component1);
     const component2:MockComponent2 = new MockComponent2();
     entity.add(component2);
@@ -75,7 +75,7 @@ describe('Entity tests', () => {
 
   it('has Component is false if Component type not present', () => {
     entity.add(new MockComponent2());
-    assert.isFalse(entity.has(MockComponent));
+    assert.isFalse(entity.has(MockComponent1));
   });
 
   it('has Component is true if Component type is present', () => {
