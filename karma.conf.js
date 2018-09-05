@@ -89,6 +89,10 @@ module.exports = function(config) {
       type: 'in-memory',
     },
 
+    mochaReporter: {
+      output: 'autowatch',
+    },
+
     karmaTypescriptConfig: {
       coverageOptions: {
         exclude: [
