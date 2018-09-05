@@ -8,8 +8,7 @@ import { ListenerNodePool } from './ListenerNodePool';
 /**
  * The base class for all the signal classes.
  */
-
-export class SignalBase<TListener> {
+export abstract class SignalBase<TListener> {
   protected head:ListenerNode<TListener> | null = null;
   protected tail:ListenerNode<TListener> | null = null;
 
