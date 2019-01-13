@@ -117,6 +117,5 @@ module.exports = function(config) {
         'text-summary': '',
       },
     },
-
   });
 };
