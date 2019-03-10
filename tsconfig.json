@@ -13,9 +13,9 @@
     "pretty": true
   },
   "include": [
-    "./ash"
+    "./src"
   ],
   "exclude": [
-    "./ash/io"
+    "./src/io"
   ]
 }

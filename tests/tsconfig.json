@@ -5,15 +5,15 @@
     "strict": false,
     "baseUrl": ".",
     "paths": {
-      "ash.ts": ["../ash"]
+      "ash.ts": ["../src"]
     }
   },
   "include": [
-    "../ash",
+    "../src",
     "."
   ],
   "exclude": [
-    "../ash/io",
+    "../src/io",
     "./io"
   ]
 }

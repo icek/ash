@@ -46,7 +46,7 @@
     "postdist": "echo-cli '\n======= Build end ======='",
     "docs": "npm-run-all docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
-    "docs:typedoc": "typedoc --options typedoc.json --json dist/docs.json ./ash/index.ts",
+    "docs:typedoc": "typedoc --options typedoc.json ./src/index.ts",
     "tslint": "tslint -p tsconfig.json",
     "pretest": "rimraf reports",
     "test": "karma start ./karma.conf.js",

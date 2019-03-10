@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 
-const input = 'ash/index.ts';
+const input = 'src/index.ts';
 
 const typescriptConfig = {
   useTsconfigDeclarationDir: true,

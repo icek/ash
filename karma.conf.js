@@ -15,13 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'ash/**/*.ts',
+      'src/**/*.ts',
       'tests/**/*.ts',
     ],
 
     // list of files to exclude
     exclude: [
-      'ash/io/**/*',
+      'src/io/**/*',
       'tests/io/**/*',
     ],
 
@@ -33,7 +33,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'tests/**/*.ts': ['karma-typescript'],
-      'ash/**/*.ts': ['karma-typescript', 'sourcemap', 'coverage'],
+      'src/**/*.ts': ['karma-typescript', 'sourcemap', 'coverage'],
     },
 
     // test results reporter to use
@@ -104,7 +104,7 @@ module.exports = function(config) {
       bundlerOptions: {
         resolve: {
           alias: {
-            'ash-ts': 'ash',
+            'ash.ts': 'src',
           },
         },
       },
