@@ -13,7 +13,7 @@ export abstract class Node<TNode> {
   /**
    * The entity whose components are included in the node.
    */
-  public entity:Entity | null = null;
+  public entity!:Entity;
 
   /**
    * Used by the NodeList class. The previous node in a node list.

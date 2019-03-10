@@ -1,3 +1,4 @@
+import { Entity } from './Entity';
 import { Node } from './Node';
 import { ClassType, NodeClassType } from '../types';
 
@@ -45,7 +46,7 @@ export class NodePool<TNode extends Node<TNode>> {
     for(const val of this.components.values()) {
       (node as any)[val] = null;
     }
-    node.entity = null;
+    (node.entity as Entity | null) = null;
 
     node.next = null;
     node.previous = this.tail;
