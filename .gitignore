@@ -1,6 +1,7 @@
 # Folders
 node_modules
 .rpt2_cache
+docs
 reports
 dist/types
 
