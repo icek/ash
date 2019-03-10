@@ -2,8 +2,8 @@
   typeof exports === 'object' && typeof module !== 'undefined'
     ? factory(exports)
     : typeof define === 'function' && define.amd
-      ? define(['exports'], factory)
-      : factory((global.ash = {}));
+    ? define(['exports'], factory)
+    : ((global = global || self), factory((global.ash = {})));
 })(this, function(exports) {
   'use strict';
 
@@ -456,7 +456,7 @@
      * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
      * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
      *
-     * <p>This merge sort implementation creates and uses a single Vector during the sort operation.</p>
+     * <p>This merge sort implementation creates and uses a single array during the sort operation.</p>
      */
     mergeSort(sortFunction) {
       if (this.head === this.tail) {
@@ -944,7 +944,7 @@
       }
     }
     /**
-     * Returns a vector containing all the entities in the engine.
+     * Returns an array containing all the entities in the engine.
      */
     get entities() {
       const entities = [];
@@ -1020,7 +1020,7 @@
       return this.systemList.get(type);
     }
     /**
-     * Returns a vector containing all the systems in the engine.
+     * Returns an array containing all the systems in the engine.
      */
     get systems() {
       const systems = [];
@@ -1178,7 +1178,7 @@
      * @return The component, or null if none was found.
      */
     get(componentClass) {
-      return this.components.get(componentClass);
+      return this.components.get(componentClass) || null;
     }
     /**
      * Get all components from the entity.
@@ -1188,7 +1188,7 @@
     getAll() {
       const componentArray = [];
       for (const value of this.components.values()) {
-        componentArray[componentArray.length] = value;
+        componentArray.push(value);
       }
       return componentArray;
     }
@@ -1215,10 +1215,6 @@
    */
   class Node {
     constructor() {
-      /**
-       * The entity whose components are included in the node.
-       */
-      this.entity = null;
       /**
        * Used by the NodeList class. The previous node in a node list.
        */
@@ -2106,8 +2102,8 @@
   exports.Engine = Engine;
   exports.Entity = Entity;
   exports.Node = Node;
-  exports.NodeList = NodeList;
   exports.NodePool = NodePool;
+  exports.NodeList = NodeList;
   exports.System = System;
   exports.EntityStateMachine = EntityStateMachine;
   exports.EngineStateMachine = EngineStateMachine;

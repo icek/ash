@@ -2,8 +2,8 @@
   typeof exports === 'object' && typeof module !== 'undefined'
     ? factory(exports)
     : typeof define === 'function' && define.amd
-      ? define(['exports'], factory)
-      : factory((global.ash = {}));
+    ? define(['exports'], factory)
+    : ((global = global || self), factory((global.ash = {})));
 })(this, function(exports) {
   'use strict';
 
@@ -133,8 +133,8 @@
   })();
 
   /*
-     * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
-     */
+   * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
+   */
   /**
    * The base class for all the signal classes.
    */
@@ -282,8 +282,8 @@
   })(SignalBase);
 
   /*
-     * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
-     */
+   * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
+   */
   /**
    * Provides a fast signal for use where one parameter is dispatched with the signal.
    */
@@ -307,8 +307,8 @@
   })(SignalBase);
 
   /*
-     * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
-     */
+   * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
+   */
   /**
    * Provides a fast signal for use where two parameters are dispatched with the signal.
    */
@@ -332,8 +332,8 @@
   })(SignalBase);
 
   /*
-     * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
-     */
+   * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
+   */
   /**
    * Provides a fast signal for use where three parameters are dispatched with the signal.
    */
@@ -557,7 +557,7 @@
      * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
      * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
      *
-     * <p>This merge sort implementation creates and uses a single Vector during the sort operation.</p>
+     * <p>This merge sort implementation creates and uses a single array during the sort operation.</p>
      */
     NodeList.prototype.mergeSort = function(sortFunction) {
       if (this.head === this.tail) {
@@ -1156,7 +1156,7 @@
     };
     Object.defineProperty(Engine.prototype, 'entities', {
       /**
-       * Returns a vector containing all the entities in the engine.
+       * Returns an array containing all the entities in the engine.
        */
       get: function() {
         var entities = [];
@@ -1236,7 +1236,7 @@
     };
     Object.defineProperty(Engine.prototype, 'systems', {
       /**
-       * Returns a vector containing all the systems in the engine.
+       * Returns an array containing all the systems in the engine.
        */
       get: function() {
         var systems = [];
@@ -1408,7 +1408,7 @@
      * @return The component, or null if none was found.
      */
     Entity.prototype.get = function(componentClass) {
-      return this.components.get(componentClass);
+      return this.components.get(componentClass) || null;
     };
     /**
      * Get all components from the entity.
@@ -1421,7 +1421,7 @@
       try {
         for (var _b = __values(this.components.values()), _c = _b.next(); !_c.done; _c = _b.next()) {
           var value = _c.value;
-          componentArray[componentArray.length] = value;
+          componentArray.push(value);
         }
       } catch (e_1_1) {
         e_1 = { error: e_1_1 };
@@ -1458,10 +1458,6 @@
    */
   var Node = /** @class */ (function() {
     function Node() {
-      /**
-       * The entity whose components are included in the node.
-       */
-      this.entity = null;
       /**
        * Used by the NodeList class. The previous node in a node list.
        */
@@ -2499,8 +2495,8 @@
   exports.Engine = Engine;
   exports.Entity = Entity;
   exports.Node = Node;
-  exports.NodeList = NodeList;
   exports.NodePool = NodePool;
+  exports.NodeList = NodeList;
   exports.System = System;
   exports.EntityStateMachine = EntityStateMachine;
   exports.EngineStateMachine = EngineStateMachine;

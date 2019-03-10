@@ -447,7 +447,7 @@ class NodeList {
    * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
    *
-   * <p>This merge sort implementation creates and uses a single Vector during the sort operation.</p>
+   * <p>This merge sort implementation creates and uses a single array during the sort operation.</p>
    */
   mergeSort(sortFunction) {
     if (this.head === this.tail) {
@@ -935,7 +935,7 @@ class Engine {
     }
   }
   /**
-   * Returns a vector containing all the entities in the engine.
+   * Returns an array containing all the entities in the engine.
    */
   get entities() {
     const entities = [];
@@ -1011,7 +1011,7 @@ class Engine {
     return this.systemList.get(type);
   }
   /**
-   * Returns a vector containing all the systems in the engine.
+   * Returns an array containing all the systems in the engine.
    */
   get systems() {
     const systems = [];
@@ -1169,7 +1169,7 @@ class Entity {
    * @return The component, or null if none was found.
    */
   get(componentClass) {
-    return this.components.get(componentClass);
+    return this.components.get(componentClass) || null;
   }
   /**
    * Get all components from the entity.
@@ -1179,7 +1179,7 @@ class Entity {
   getAll() {
     const componentArray = [];
     for (const value of this.components.values()) {
-      componentArray[componentArray.length] = value;
+      componentArray.push(value);
     }
     return componentArray;
   }
@@ -1206,10 +1206,6 @@ Entity.nameCount = 0;
  */
 class Node {
   constructor() {
-    /**
-     * The entity whose components are included in the node.
-     */
-    this.entity = null;
     /**
      * Used by the NodeList class. The previous node in a node list.
      */
@@ -2098,8 +2094,8 @@ export {
   Engine,
   Entity,
   Node,
-  NodeList,
   NodePool,
+  NodeList,
   System,
   EntityStateMachine,
   EngineStateMachine,
