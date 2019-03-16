@@ -2,8 +2,8 @@
 
 import { Engine, Entity, NodeList } from 'ash.ts';
 import { assert } from 'chai';
-import { MockComponent1, MockComponent2 } from '../_mocks/MockComponent';
-import { MockNode2 } from '../_mocks/MockNode';
+import { MockComponent, MockComponent1, MockComponent2 } from '../_mocks/MockComponent';
+import { MockNode, MockNode2 } from '../_mocks/MockNode';
 
 describe('Engine and Family integration tests', () => {
   let engine:Engine = null;
@@ -117,7 +117,7 @@ describe('Engine and Family integration tests', () => {
 
   it('Family contains only matching Entities', () => {
     const entities:Entity[] = [];
-    for(let i:number = 0; i < 5; ++i) {
+    for(let i:number = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -134,7 +134,7 @@ describe('Engine and Family integration tests', () => {
 
   it('Family contains all matching Entities', () => {
     const entities:Entity[] = [];
-    for(let i:number = 0; i < 5; ++i) {
+    for(let i:number = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -151,51 +151,41 @@ describe('Engine and Family integration tests', () => {
     assert.isEmpty(entities);
   });
 
-  //   [Test]
-  //   public function releaseFamilyEmptiesNodeList() : void
-  // {
-  //   var entity : Entity = new Entity();
-  //   entity.add( new MockComponent() );
-  //   entity.add( new MockComponent1() );
-  //   engine.addEntity( entity );
-  //   var nodes : NodeList = engine.getNodeList( MockNode );
-  //   engine.releaseNodeList( MockNode );
-  //   assertThat( nodes.head, nullValue() );
-  // }
-  //
-  //   [Test]
-  //   public function releaseFamilySetsNextNodeToNull() : void
-  // {
-  //   var entities : Array = new Array();
-  //   for( var i : int = 0; i < 5; ++i )
-  //   {
-  //     var entity : Entity = new Entity();
-  //     entity.add( new MockComponent() );
-  //     entity.add( new MockComponent1() );
-  //     entities.push( entity );
-  //     engine.addEntity( entity );
-  //   }
-  //
-  //   var nodes : NodeList = engine.getNodeList( MockNode );
-  //   var node : MockNode = nodes.head.next;
-  //   engine.releaseNodeList( MockNode );
-  //   assertThat( node.next, nullValue() );
-  // }
-  //
-  //   [Test]
-  //   public function removeAllEntitiesDoesWhatItSays() : void
-  // {
-  //   var entity : Entity = new Entity();
-  //   entity.add( new MockComponent() );
-  //   entity.add( new MockComponent1() );
-  //   engine.addEntity( entity );
-  //   entity = new Entity();
-  //   entity.add( new MockComponent() );
-  //   entity.add( new MockComponent1() );
-  //   engine.addEntity( entity );
-  //   var nodes : NodeList = engine.getNodeList( MockNode );
-  //   engine.removeAllEntities();
-  //   assertThat( nodes.head, nullValue() );
-  // }
-  // }
+  it('release Family empties NodeList', () => {
+    const entity:Entity = new Entity();
+    entity.add(new MockComponent1());
+    entity.add(new MockComponent2());
+    engine.addEntity(entity);
+    const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
+    engine.releaseNodeList(MockNode2);
+    assert.isNull(nodes.head);
+  });
+
+  it('release Family sets next Node to null', () => {
+    for(let i:number = 0; i < 5; i += 1) {
+      const entity:Entity = new Entity();
+      entity.add(new MockComponent1());
+      entity.add(new MockComponent2());
+      engine.addEntity(entity);
+    }
+
+    const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
+    const node:MockNode2 = nodes.head.next;
+    engine.releaseNodeList(MockNode2);
+    assert.isNull(node.next);
+  });
+
+  it('removeAllEntities does what it says', () => {
+    let entity:Entity = new Entity();
+    entity.add(new MockComponent1());
+    entity.add(new MockComponent2());
+    engine.addEntity(entity);
+    entity = new Entity();
+    entity.add(new MockComponent1());
+    entity.add(new MockComponent2());
+    engine.addEntity(entity);
+    const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
+    engine.removeAllEntities();
+    assert.isNull(nodes.head);
+  });
 });
