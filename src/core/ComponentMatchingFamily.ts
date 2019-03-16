@@ -1,10 +1,10 @@
+import { ClassType, NodeClassType } from '../types';
 import { Engine } from './Engine';
 import { Entity } from './Entity';
 import { IFamily } from './IFamily';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
-import { ClassType, NodeClassType } from '../types';
 
 const ashProp:string = '__ash_types__';
 /**
@@ -15,11 +15,11 @@ const ashProp:string = '__ash_types__';
  * they contain components matching all the public properties of the node class.
  */
 export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFamily<TNode> {
-  private nodes!:NodeList<TNode>;
-  private entities!:Map<Entity, TNode>;
+  private nodes:NodeList<TNode>;
+  private entities:Map<Entity, TNode>;
   private nodeClass:NodeClassType<TNode>;
-  public components!:Map<ClassType<any>, string>;
-  private nodePool!:NodePool<TNode>;
+  public components:Map<ClassType<any>, string>;
+  private nodePool:NodePool<TNode>;
   private engine:Engine;
 
   /**
@@ -32,14 +32,6 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
   constructor(nodeClass:NodeClassType<TNode>, engine:Engine) {
     this.nodeClass = nodeClass;
     this.engine = engine;
-    this.init();
-  }
-
-  /**
-   * Initialises the class. Creates the nodelist and other tools. Analyses the node to determine
-   * what component types the node requires.
-   */
-  private init():void {
     this.nodes = new NodeList<TNode>();
     this.entities = new Map<Entity, TNode>();
     this.components = new Map<ClassType<any>, string>();
@@ -115,7 +107,8 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
       node.entity = entity;
 
       for(const componentClass of this.components.keys()) {
-        (node as { [key:string]:any })[this.components.get(componentClass)!] = entity.get(componentClass);
+        const key = this.components.get(componentClass)! as keyof TNode;
+        node[key] = entity.get(componentClass);
       }
 
       this.entities.set(entity, node);
@@ -154,7 +147,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
    */
   public cleanUp():void {
     for(let node:Node<TNode> | null = this.nodes.head; node; node = node.next) {
-      this.entities.delete(node.entity!);
+      this.entities.delete(node.entity);
     }
     this.nodes.removeAll();
   }

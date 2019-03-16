@@ -1,7 +1,7 @@
+import { ClassType } from '../types';
 import { Entity } from './Entity';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
-import { ClassType } from '../types';
 
 /**
  * The interface for classes that are used to manage NodeLists (set as the familyClass property

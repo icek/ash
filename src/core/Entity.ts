@@ -102,10 +102,12 @@ export class Entity {
 
   public add<T>(component:T, componentClass:ClassType<T> | null = null):this {
     if(!componentClass) {
-      componentClass = component.constructor.prototype.constructor; // weird but works!
+      componentClass = component.constructor.prototype.constructor;
     }
 
-    componentClass = componentClass!;
+    if(!componentClass) {
+      throw new Error(`Unable to get type of component: ${component}`);
+    }
 
     if(this.components.has(componentClass)) {
       this.remove(componentClass);

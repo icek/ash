@@ -113,10 +113,10 @@ export class NodeList<TNode extends Node<TNode>> {
       node1.next = node2.next;
       node2.next = node1;
     } else {
-      let temp:TNode = node1.previous!;
+      let temp:TNode | null = node1.previous;
       node1.previous = node2.previous;
       node2.previous = temp;
-      temp = node1.next!;
+      temp = node1.next;
       node1.next = node2.next;
       node2.next = temp;
     }
@@ -161,14 +161,14 @@ export class NodeList<TNode extends Node<TNode>> {
    * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
    */
   public insertionSort(sortFunction:(node1:Node<any>, node2:Node<any>) => number):void {
-    if(this.head === this.tail) {
+    if(!this.head || !this.tail || this.head === this.tail) {
       return;
     }
-    let remains:TNode = this.head!.next!;
-    for(let node:TNode = remains; node; node = remains) {
-      let other:TNode;
-      remains = node.next!;
-      for(other = node.previous!; other; other = other.previous!) {
+    let remains:TNode | null = this.head.next;
+    for(let node = remains; node; node = remains) {
+      let other:TNode | null;
+      remains = node.next;
+      for(other = node.previous; other; other = other.previous) {
         if(sortFunction(node, other) >= 0) {
           // move node to after other
           if(node !== other.next) {

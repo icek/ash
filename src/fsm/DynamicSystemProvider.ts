@@ -1,5 +1,5 @@
-import { ISystemProvider } from './ISystemProvider';
 import { System } from '../core/System';
+import { ISystemProvider } from './ISystemProvider';
 
 /**
  * This System provider returns results of a method call. The method

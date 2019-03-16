@@ -1,6 +1,6 @@
+import { ClassType, NodeClassType } from '../types';
 import { Entity } from './Entity';
 import { Node } from './Node';
-import { ClassType, NodeClassType } from '../types';
 
 /**
  * This internal class maintains a pool of deleted nodes for reuse by the framework. This reduces the overhead
