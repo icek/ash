@@ -9,7 +9,7 @@ import { ClassType } from '../types';
  * components associated with the previous state and adds components associated with the new state.
  */
 export class EntityStateMachine {
-  private states:{ [key:string]:EntityState };
+  private states:Map<string, EntityState>;
   /**
    * The current state of the state machine.
    */
@@ -24,7 +24,7 @@ export class EntityStateMachine {
    */
   constructor(entity:Entity) {
     this.entity = entity;
-    this.states = {};
+    this.states = new Map();
   }
 
   /**
@@ -35,7 +35,7 @@ export class EntityStateMachine {
    * @return This state machine, so methods can be chained.
    */
   public addState(name:string, state:EntityState):this {
-    this.states[name] = state;
+    this.states.set(name, state);
 
     return this;
   }
@@ -49,7 +49,7 @@ export class EntityStateMachine {
    */
   public createState(name:string):EntityState {
     const state:EntityState = new EntityState();
-    this.states[name] = state;
+    this.states.set(name, state);
 
     return state;
   }
@@ -61,13 +61,11 @@ export class EntityStateMachine {
    * @param name The name of the state to change to.
    */
   public changeState(name:string):void {
-    let newState:EntityState | null = this.states[name];
+    const newState:EntityState | undefined = this.states.get(name);
     if(!newState) {
       throw(new Error(`Entity state ${name} doesn't exist`));
     }
     if(newState === this.currentState) {
-      newState = null;
-
       return;
     }
     let toAdd:Map<ClassType<any>, IComponentProvider<any>>;
@@ -93,5 +91,9 @@ export class EntityStateMachine {
       this.entity.add(<IComponentProvider<any>>(toAdd.get(type)!).getComponent(), type);
     }
     this.currentState = newState;
+  }
+
+  public getStateNames():string[] {
+    return Object.keys(this.states);
   }
 }

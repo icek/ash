@@ -9,7 +9,7 @@ import { Engine } from '../core/Engine';
  */
 export class EngineStateMachine {
   public engine:Engine;
-  private states:{ [key:string]:EngineState };
+  private states:Map<string, EngineState>;
   private currentState?:EngineState;
 
   /**
@@ -17,7 +17,7 @@ export class EngineStateMachine {
    */
   constructor(engine:Engine) {
     this.engine = engine;
-    this.states = {};
+    this.states = new Map();
   }
 
   /**
@@ -28,7 +28,7 @@ export class EngineStateMachine {
    * @return This state machine, so methods can be chained.
    */
   public addState(name:string, state:EngineState):this {
-    this.states[name] = state;
+    this.states.set(name, state);
 
     return this;
   }
@@ -42,7 +42,7 @@ export class EngineStateMachine {
    */
   public createState(name:string):EngineState {
     const state:EngineState = new EngineState();
-    this.states[name] = state;
+    this.states.set(name, state);
 
     return state;
   }
@@ -54,13 +54,11 @@ export class EngineStateMachine {
    * @param name The name of the state to change to.
    */
   public changeState(name:string):void {
-    let newState:EngineState | null = this.states[name];
+    const newState:EngineState | undefined = this.states.get(name);
     if(!newState) {
       throw(new Error(`Engine state ${name} doesn't exist`));
     }
     if(newState === this.currentState) {
-      newState = null;
-
       return;
     }
     const toAdd:ISystemProvider<any>[] = [];
@@ -85,5 +83,9 @@ export class EngineStateMachine {
       this.engine.addSystem(provider.getSystem(), provider.priority);
     }
     this.currentState = newState;
+  }
+
+  public getStateNames():string[] {
+    return Object.keys(this.states);
   }
 }
