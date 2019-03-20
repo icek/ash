@@ -98,25 +98,31 @@ describe('NodeList tests', () => {
     assert.instanceOf(m, MockNode);
   });
 
-  // let tempNode:Node;
+  let tempNode:MockNode;
 
-  // it('component Added Signal Contains Correct Parameters', () => {
-  //   tempNode = new MockNode();
-  //   nodes.nodeAdded.add(async.add(testSignalContent, 10));
-  //   nodes.add(tempNode);
-  // });
-  //
-  // it('component Removed Signal Contains Correct Parameters', () => {
-  //   tempNode = new MockNode();
-  //   nodes.add(tempNode);
-  //   nodes.nodeRemoved.add(async.add(testSignalContent, 10));
-  //   nodes.remove(tempNode);
-  // });
+  it('component Added Signal Contains Correct Parameters', (done) => {
+    tempNode = new MockNode();
+    nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
+      setTimeout(() => {
+        assert.equal(signalNode, tempNode);
+        done();
+      });
+    });
+    nodes.add(tempNode);
+  });
 
-  // function testSignalContent(signalNode:Node):void {
-  //   assert.equal(signalNode, tempNode);
-  // }
-  //
+  it('component Removed Signal Contains Correct Parameters', (done) => {
+    tempNode = new MockNode();
+    nodes.add(tempNode);
+    nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
+      setTimeout(() => {
+        assert.equal(signalNode, tempNode);
+        done();
+      });
+    });
+    nodes.remove(tempNode);
+  });
+
   // it('nodesInitiallySortedInOrderOfAddition', () => {
   //   const node1:MockNode = new MockNode();
   //   const node2:MockNode = new MockNode();

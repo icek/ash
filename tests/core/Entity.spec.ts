@@ -1,4 +1,6 @@
-import { Entity } from 'ash.ts';
+// tslint:disable:no-magic-numbers
+
+import { ClassType, Entity } from 'ash.ts';
 import { assert } from 'chai';
 import { MockComponent, MockComponent1, MockComponent2, MockComponentExtended } from '../_mocks/MockComponent';
 
@@ -93,7 +95,7 @@ describe('Entity tests', () => {
 
   it('storing Component triggers added Signal', () => {
     const component:MockComponent = new MockComponent();
-    entity.componentAdded.add((signalEntity:Entity, componentClass:{ new(..._:any[]):any }) => {
+    entity.componentAdded.add((signalEntity:Entity, componentClass:ClassType<any>) => {
       assert.equal(signalEntity, entity);
       assert.equal(componentClass, MockComponent);
     });
@@ -102,7 +104,7 @@ describe('Entity tests', () => {
 
   it('removing Component triggers removed Signal', () => {
     const component:MockComponent = new MockComponent();
-    entity.componentRemoved.add((signalEntity:Entity, componentClass:{ new(..._:any[]):any }) => {
+    entity.componentRemoved.add((signalEntity:Entity, componentClass:ClassType<any>) => {
       assert.equal(signalEntity, entity);
       assert.equal(componentClass, MockComponent);
     });
@@ -112,7 +114,7 @@ describe('Entity tests', () => {
 
   it('removing Component triggers removed Signal', () => {
     const component:MockComponent = new MockComponent();
-    entity.componentRemoved.add((signalEntity:Entity, componentClass:{ new(..._:any[]):any }) => {
+    entity.componentRemoved.add((signalEntity:Entity, componentClass:ClassType<any>) => {
       assert.equal(signalEntity, entity);
       assert.equal(componentClass, MockComponent);
     });
@@ -120,18 +122,32 @@ describe('Entity tests', () => {
     entity.remove(MockComponent);
   });
 
-  // it('ComponentAddedSignal contains correct parameters', () => {
-  //   const component:MockComponent = new MockComponent();
-  //   entity.componentAdded.add(async.add(testSignalContent, 10));
-  //   entity.add(component);
-  // });
+  it('ComponentAddedSignal contains correct parameters', (done) => {
+    const component:MockComponent = new MockComponent();
+    entity.componentAdded.add((signalEntity:Entity, componentClass:ClassType<any>) => {
+      // sameInstance
+      setTimeout(() => {
+        assert.equal(signalEntity, entity);
+        assert.equal(componentClass, MockComponent);
+        done();
+      }, 10);
+    });
+    entity.add(component);
+  });
 
-  // it('componentRemovedSignalContainsCorrectParameters', () => {
-  //   const component:MockComponent = new MockComponent();
-  //   entity.add(component);
-  //   entity.componentRemoved.add(async.add(testSignalContent, 10));
-  //   entity.remove(MockComponent);
-  // });
+  it('componentRemovedSignalContainsCorrectParameters', (done) => {
+    const component:MockComponent = new MockComponent();
+    entity.add(component);
+    entity.componentRemoved.add((signalEntity:Entity, componentClass:ClassType<any>) => {
+      // sameInstance
+      setTimeout(() => {
+        assert.equal(signalEntity, entity);
+        assert.equal(componentClass, MockComponent);
+        done();
+      }, 10);
+    });
+    entity.remove(MockComponent);
+  });
 
   it('test Entity has name by default', () => {
     entity = new Entity();
@@ -159,10 +175,4 @@ describe('Entity tests', () => {
     });
     entity.name = 'otherThing';
   });
-
-  // function testSignalContent(signalEntity:Entity, componentClass:ClassType<any>):void {
-    // sameInstance
-    // assert.equal(signalEntity, entity);
-    // assert.equal(componentClass, MockComponent);
-  // }
 });
