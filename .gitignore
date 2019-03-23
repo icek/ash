@@ -2,7 +2,7 @@
 node_modules
 .rpt2_cache
 docs
-reports
+coverage
 dist/types
 
 # Files

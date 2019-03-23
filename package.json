@@ -52,7 +52,8 @@
     "test": "jest",
     "test-watch": "jest --watchAll",
     "test-changed": "jest -o",
-    "test-watch-changed": "jest --watch"
+    "test-watch-changed": "jest --watch",
+    "test-coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
