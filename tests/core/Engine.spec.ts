@@ -16,7 +16,7 @@ describe('Engine tests', () => {
     engine = null;
   });
 
-  it('entities getter returns all the Entities', () => {
+  it('entities getter should return all the Entities', () => {
     const entity1:Entity = new Entity();
     engine.addEntity(entity1);
     const entity2:Entity = new Entity();
@@ -25,7 +25,7 @@ describe('Engine tests', () => {
     expect(engine.entities).toEqual(expect.arrayContaining([entity1, entity2]));
   });
 
-  it('getEntityByName returns correct Entity', () => {
+  it('getEntityByName should return correct Entity', () => {
     const entity1:Entity = new Entity();
     entity1.name = 'otherEntity';
     engine.addEntity(entity1);
@@ -35,7 +35,7 @@ describe('Engine tests', () => {
     expect(engine.getEntityByName('myEntity')).toBe(entity2);
   });
 
-  it('getEntityByName returns null if no Entity', () => {
+  it('getEntityByName should return null if no Entity', () => {
     const entity1:Entity = new Entity();
     entity1.name = 'otherEntity';
     engine.addEntity(entity1);
@@ -45,7 +45,16 @@ describe('Engine tests', () => {
     expect(engine.getEntityByName('wrongName')).toBeNull();
   });
 
-  it('add Entity checks with all Families', () => {
+  it('should throw Error when added Entity with the same name', () => {
+    const entity1 = new Entity('entity-name');
+    engine.addEntity(entity1);
+    const entity2 = new Entity('entity-name');
+    expect(() => {
+      engine.addEntity(entity2);
+    }).toThrowError();
+  });
+
+  it('addEntity should check with all Families', () => {
     engine.getNodeList(MockNode);
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
@@ -54,7 +63,7 @@ describe('Engine tests', () => {
     expect(MockFamily.instances[1].newEntityCalls).toBe(1);
   });
 
-  it('remove Entity checks with all Families', () => {
+  it('removeEntity should check with all Families', () => {
     engine.getNodeList(MockNode);
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
@@ -64,7 +73,7 @@ describe('Engine tests', () => {
     expect(MockFamily.instances[1].removeEntityCalls).toBe(1);
   });
 
-  it('removeAllEntities checks with all families', () => {
+  it('removeAllEntities should check with all Families', () => {
     engine.getNodeList(MockNode);
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
@@ -76,7 +85,7 @@ describe('Engine tests', () => {
     expect(MockFamily.instances[1].removeEntityCalls).toBe(2);
   });
 
-  it('componentAdded checks with all Families', () => {
+  it('componentAdded should check with all Families', () => {
     engine.getNodeList(MockNode);
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
@@ -86,7 +95,7 @@ describe('Engine tests', () => {
     expect(MockFamily.instances[1].componentAddedCalls).toBe(1);
   });
 
-  it('componentRemoved checks with all Families', () => {
+  it('componentRemoved should check with all Families', () => {
     engine.getNodeList(MockNode);
     engine.getNodeList(MockNode2);
     const entity:Entity = new Entity();
@@ -97,37 +106,43 @@ describe('Engine tests', () => {
     expect(MockFamily.instances[1].componentRemovedCalls).toBe(1);
   });
 
-  it('getNodeListCreatesFamily', () => {
+  it('getNodeList should create a Family', () => {
     engine.getNodeList(MockNode);
     expect(MockFamily.instances.length).toBe(1);
   });
 
-  it('getNodeList checks all Entities', () => {
+  it('getNodeList should get an existing Family if it\'s already created', () => {
+    const nodeList1 = engine.getNodeList(MockNode);
+    const nodeList2 = engine.getNodeList(MockNode);
+    expect(nodeList1).toEqual(nodeList2);
+  });
+
+  it('getNodeList should check all Entities', () => {
     engine.addEntity(new Entity());
     engine.addEntity(new Entity());
     engine.getNodeList(MockNode);
     expect(MockFamily.instances[0].newEntityCalls).toBe(2);
   });
 
-  it('releaseNodeList calls clean up', () => {
+  it('releaseNodeList should call clean up', () => {
     engine.getNodeList(MockNode);
     engine.releaseNodeList(MockNode);
     expect(MockFamily.instances[0].cleanUpCalls).toBe(1);
   });
 
-  it('Entity can be obtained by name', () => {
+  it('Entity should be obtained by name', () => {
     const entity:Entity = new Entity('anything');
     engine.addEntity(entity);
     const other:Entity = engine.getEntityByName('anything');
     expect(other).toBe(entity);
   });
 
-  it('get Entity by invalid name returns null', () => {
+  it('get Entity by invalid name should return null', () => {
     const entity:Entity = engine.getEntityByName('anything');
     expect(entity).toBeNull();
   });
 
-  it('Entity can be obtained by name after renaming', () => {
+  it('Entity shouldn\'t be obtained by name after renaming', () => {
     const entity:Entity = new Entity('anything');
     engine.addEntity(entity);
     entity.name = 'otherName';
@@ -135,7 +150,7 @@ describe('Engine tests', () => {
     expect(other).toBe(entity);
   });
 
-  it('Entity cannot be obtained by old name after renaming', () => {
+  it('Entity shouldn\'t be obtained by old name after renaming', () => {
     const entity:Entity = new Entity('anything');
     engine.addEntity(entity);
     entity.name = 'otherName';
