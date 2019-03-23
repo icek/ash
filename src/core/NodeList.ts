@@ -160,7 +160,7 @@ export class NodeList<TNode extends Node<TNode>> {
    *
    * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
    */
-  public insertionSort(sortFunction:(node1:Node<any>, node2:Node<any>) => number):void {
+  public insertionSort(sortFunction:(a:TNode, b:TNode) => number):void {
     if(!this.head || !this.tail || this.head === this.tail) {
       return;
     }
