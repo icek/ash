@@ -63,16 +63,16 @@ describe('Entity tests', () => {
     expect(entity.get(MockComponent)).toBeNull();
   });
 
-  // it('will retrieve all Components', () => {
-  //   const component1:MockComponent1 = new MockComponent1();
-  //   entity.add(component1);
-  //   const component2:MockComponent2 = new MockComponent2();
-  //   entity.add(component2);
-  //   const all:any[] = entity.getAll();
-  //   const allLength = 2;
-  //   expect(all.length).toEqual(allLength);
-  //   assert.includeMembers(all, [component1, component2]);
-  // });
+  it('will retrieve all Components', () => {
+    const component1:MockComponent1 = new MockComponent1();
+    entity.add(component1);
+    const component2:MockComponent2 = new MockComponent2();
+    entity.add(component2);
+    const all:any[] = entity.getAll();
+    const allLength = 2;
+    expect(all.length).toEqual(allLength);
+    expect(all).toEqual(expect.arrayContaining([component1, component2]));
+  });
 
   it('has Component is false if Component type not present', () => {
     entity.add(new MockComponent2());

@@ -6,7 +6,7 @@ import { MockSystem, MockSystem2 } from '../__mocks__';
 describe('System tests', () => {
   let engine:Engine;
   const mockObject = {
-    asyncCallback: null,
+    asyncCallback: null
   };
 
   beforeEach(() => {
@@ -18,14 +18,14 @@ describe('System tests', () => {
     mockObject.asyncCallback = null;
   });
 
-  // it('systems getter returns all the Systems', () => {
-  //   const system1:System = new MockSystem();
-  //   engine.addSystem(system1, 1);
-  //   const system2:System = new MockSystem();
-  //   engine.addSystem(system2, 1);
-  //   expect(engine.systems.length).toBe(2);
-  //   assert.includeMembers(engine.systems, [system1, system2]);
-  // });
+  it('systems getter returns all the Systems', () => {
+    const system1:System = new MockSystem();
+    engine.addSystem(system1, 1);
+    const system2:System = new MockSystem();
+    engine.addSystem(system2, 1);
+    expect(engine.systems.length).toBe(2);
+    expect(engine.systems).toEqual(expect.arrayContaining([system1, system2]));
+  });
 
   // it('add System calls addToEngine', () => {
   //   const system:System = new MockSystem(asyncCallback);

@@ -130,24 +130,24 @@ describe('Engine and Family integration tests', () => {
     }
   });
 
-  // it('Family contains all matching Entities', () => {
-  //   const entities:Entity[] = [];
-  //   for(let i:number = 0; i < 5; i += 1) {
-  //     const entity:Entity = new Entity();
-  //     entity.add(new MockComponent1());
-  //     entity.add(new MockComponent2());
-  //     entities.push(entity);
-  //     engine.addEntity(entity);
-  //   }
-  //
-  //   const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
-  //   let node:MockNode2;
-  //   for(node = nodes.head; node; node = node.next) {
-  //     const index:number = entities.indexOf(node.entity);
-  //     entities.splice(index, 1);
-  //   }
-  //   assert.isEmpty(entities);
-  // });
+  it('Family contains all matching Entities', () => {
+    const entities:Entity[] = [];
+    for(let i:number = 0; i < 5; i += 1) {
+      const entity:Entity = new Entity();
+      entity.add(new MockComponent1());
+      entity.add(new MockComponent2());
+      entities.push(entity);
+      engine.addEntity(entity);
+    }
+
+    const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
+    let node:MockNode2;
+    for(node = nodes.head; node; node = node.next) {
+      const index:number = entities.indexOf(node.entity);
+      entities.splice(index, 1);
+    }
+    expect(entities).toEqual(expect.arrayContaining([]));
+  });
 
   it('release Family empties NodeList', () => {
     const entity:Entity = new Entity();

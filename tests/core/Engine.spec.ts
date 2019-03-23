@@ -16,14 +16,14 @@ describe('Engine tests', () => {
     engine = null;
   });
 
-  // it('entities getter returns all the Entities', () => {
-  //   const entity1:Entity = new Entity();
-  //   engine.addEntity(entity1);
-  //   const entity2:Entity = new Entity();
-  //   engine.addEntity(entity2);
-  //   expect(engine.entities.length).toBe(2);
-  //   assert.includeMembers(engine.entities, [entity1, entity2]);
-  // });
+  it('entities getter returns all the Entities', () => {
+    const entity1:Entity = new Entity();
+    engine.addEntity(entity1);
+    const entity2:Entity = new Entity();
+    engine.addEntity(entity2);
+    expect(engine.entities.length).toBe(2);
+    expect(engine.entities).toEqual(expect.arrayContaining([entity1, entity2]));
+  });
 
   it('getEntityByName returns correct Entity', () => {
     const entity1:Entity = new Entity();
