@@ -1,6 +1,5 @@
 import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash.ts';
-import { MockComponent, MockComponent1 } from '../__mocks__/MockComponent';
-import { MockNode } from '../__mocks__/MockNode';
+import { MockComponent, MockComponent1, MockNode } from '../__mocks__';
 
 describe('ComponentMatchingFamily tests', () => {
   let engine:Engine;
@@ -91,7 +90,7 @@ describe('ComponentMatchingFamily tests', () => {
   it('NodeList contains only matching Entities', () => {
     const entities:Entity[] = [];
     const numTimes = 5;
-    for(let i = 0; i < numTimes; ++i) {
+    for (let i = 0; i < numTimes; ++i) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent());
       entities.push(entity);
@@ -100,7 +99,7 @@ describe('ComponentMatchingFamily tests', () => {
     }
 
     const nodes:NodeList<MockNode> = family.nodeList;
-    for(let node:MockNode = nodes.head; node; node = node.next) {
+    for (let node:MockNode = nodes.head; node; node = node.next) {
       expect(entities).toContain(node.entity);
     }
   });
@@ -108,7 +107,7 @@ describe('ComponentMatchingFamily tests', () => {
   it('NodeList contains all matching Entities', () => {
     const entities:Entity[] = [];
     const numTimes = 5;
-    for(let i = 0; i < numTimes; ++i) {
+    for (let i = 0; i < numTimes; ++i) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent());
       entities.push(entity);
@@ -118,7 +117,7 @@ describe('ComponentMatchingFamily tests', () => {
 
     const nodes:NodeList<MockNode> = family.nodeList;
     let node:MockNode;
-    for(node = nodes.head; node; node = node.next) {
+    for (node = nodes.head; node; node = node.next) {
       const index = entities.indexOf(node.entity);
       entities.splice(index, 1);
     }
@@ -137,7 +136,7 @@ describe('ComponentMatchingFamily tests', () => {
   it('clean up sets next Node to null', () => {
     const entities:Array<Entity> = [];
     const numTimes = 5;
-    for(let i = 0; i < numTimes; ++i) {
+    for (let i = 0; i < numTimes; ++i) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent());
       entities.push(entity);

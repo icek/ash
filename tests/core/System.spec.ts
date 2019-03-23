@@ -1,7 +1,7 @@
 // tslint:disable:no-magic-numbers
 
 import { Engine, System } from 'ash.ts';
-import { MockSystem, MockSystem2 } from '../__mocks__/MockSystem';
+import { MockSystem, MockSystem2 } from '../__mocks__';
 
 describe('System tests', () => {
   let engine:Engine;

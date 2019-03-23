@@ -1,7 +1,7 @@
 // tslint:disable:no-magic-numbers
 
 import { Node, NodeList, NodePool } from 'ash.ts';
-import { MockNode } from '../__mocks__/MockNode';
+import { MockNode } from '../__mocks__';
 
 describe('NodeList tests', () => {
   let nodes:NodeList<MockNode>;

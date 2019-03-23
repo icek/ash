@@ -1,7 +1,7 @@
 // tslint:disable:no-magic-numbers
 
 import { ClassType, Entity } from 'ash.ts';
-import { MockComponent, MockComponent1, MockComponent2, MockComponentExtended } from '../__mocks__/MockComponent';
+import { MockComponent, MockComponent1, MockComponent2, MockComponentExtended } from '../__mocks__';
 
 describe('Entity tests', () => {
   let entity:Entity;
