@@ -2,7 +2,6 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "esModuleInterop": true,
-    "strict": false,
     "baseUrl": ".",
     "paths": {
       "ash.ts": ["../src"]

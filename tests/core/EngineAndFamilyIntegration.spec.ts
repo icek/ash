@@ -4,14 +4,14 @@ import { Engine, Entity, NodeList } from 'ash.ts';
 import { MockComponent1, MockComponent2, MockNode2 } from '../__mocks__';
 
 describe('Engine and Family integration tests', () => {
-  let engine:Engine = null;
+  let engine:Engine;
 
   beforeEach(() => {
     engine = new Engine();
   });
 
   afterEach(() => {
-    engine = null;
+    (engine as Engine | null) = null;
   });
 
   it('Family is initially empty', () => {
@@ -28,8 +28,8 @@ describe('Engine and Family integration tests', () => {
 
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
     engine.addEntity(entity);
-    expect(nodes.head.component1).toBe(component1);
-    expect(nodes.head.component2).toBe(component2);
+    expect(nodes.head!.component1).toBe(component1);
+    expect(nodes.head!.component2).toBe(component2);
   });
 
   it('correct Entity added to Family when access Family first', () => {
@@ -38,7 +38,7 @@ describe('Engine and Family integration tests', () => {
     entity.add(new MockComponent2());
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
     engine.addEntity(entity);
-    expect(nodes.head.entity).toBe(entity);
+    expect(nodes.head!.entity).toBe(entity);
   });
 
   it('correct Entity added to Family when access Family second', () => {
@@ -47,7 +47,7 @@ describe('Engine and Family integration tests', () => {
     entity.add(new MockComponent2());
     engine.addEntity(entity);
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
-    expect(nodes.head.entity).toBe(entity);
+    expect(nodes.head!.entity).toBe(entity);
   });
 
   it('correct Entity added to Family when Components added', () => {
@@ -56,7 +56,7 @@ describe('Engine and Family integration tests', () => {
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
     entity.add(new MockComponent1());
     entity.add(new MockComponent2());
-    expect(nodes.head.entity).toBe(entity);
+    expect(nodes.head!.entity).toBe(entity);
   });
 
   it('incorrect Entity not added to Family when access Family first', () => {
@@ -115,7 +115,7 @@ describe('Engine and Family integration tests', () => {
 
   it('Family contains only matching Entities', () => {
     const entities:Entity[] = [];
-    for(let i:number = 0; i < 5; i += 1) {
+    for (let i:number = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -124,15 +124,15 @@ describe('Engine and Family integration tests', () => {
     }
 
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
-    let node:MockNode2;
-    for(node = nodes.head; node; node = node.next) {
+    let node:MockNode2 | null;
+    for (node = nodes.head; node; node = node.next) {
       expect(entities).toContain(node.entity);
     }
   });
 
   it('Family contains all matching Entities', () => {
     const entities:Entity[] = [];
-    for(let i:number = 0; i < 5; i += 1) {
+    for (let i:number = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -141,8 +141,8 @@ describe('Engine and Family integration tests', () => {
     }
 
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
-    let node:MockNode2;
-    for(node = nodes.head; node; node = node.next) {
+    let node:MockNode2 | null;
+    for (node = nodes.head; node; node = node.next) {
       const index:number = entities.indexOf(node.entity);
       entities.splice(index, 1);
     }
@@ -160,7 +160,7 @@ describe('Engine and Family integration tests', () => {
   });
 
   it('release Family sets next Node to null', () => {
-    for(let i:number = 0; i < 5; i += 1) {
+    for (let i:number = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -168,7 +168,7 @@ describe('Engine and Family integration tests', () => {
     }
 
     const nodes:NodeList<MockNode2> = engine.getNodeList(MockNode2);
-    const node:MockNode2 = nodes.head.next;
+    const node:MockNode2 = nodes.head!.next!;
     engine.releaseNodeList(MockNode2);
     expect(node.next).toBeNull();
   });

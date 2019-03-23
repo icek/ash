@@ -4,7 +4,7 @@ import { Engine, Entity } from 'ash.ts';
 import { MockComponent, MockFamily, MockNode, MockNode2 } from '../__mocks__';
 
 describe('Engine tests', () => {
-  let engine:Engine = null;
+  let engine:Engine;
 
   beforeEach(() => {
     engine = new Engine();
@@ -13,7 +13,7 @@ describe('Engine tests', () => {
   });
 
   afterEach(() => {
-    engine = null;
+    (engine as Engine | null) = null;
   });
 
   it('entities getter should return all the Entities', () => {
@@ -133,12 +133,12 @@ describe('Engine tests', () => {
   it('Entity should be obtained by name', () => {
     const entity:Entity = new Entity('anything');
     engine.addEntity(entity);
-    const other:Entity = engine.getEntityByName('anything');
+    const other:Entity | null = engine.getEntityByName('anything');
     expect(other).toBe(entity);
   });
 
   it('get Entity by invalid name should return null', () => {
-    const entity:Entity = engine.getEntityByName('anything');
+    const entity:Entity | null = engine.getEntityByName('anything');
     expect(entity).toBeNull();
   });
 
@@ -146,7 +146,7 @@ describe('Engine tests', () => {
     const entity:Entity = new Entity('anything');
     engine.addEntity(entity);
     entity.name = 'otherName';
-    const other:Entity = engine.getEntityByName('otherName');
+    const other:Entity | null = engine.getEntityByName('otherName');
     expect(other).toBe(entity);
   });
 
@@ -154,7 +154,7 @@ describe('Engine tests', () => {
     const entity:Entity = new Entity('anything');
     engine.addEntity(entity);
     entity.name = 'otherName';
-    const other:Entity = engine.getEntityByName('anything');
+    const other:Entity | null = engine.getEntityByName('anything');
     expect(other).toBeNull();
   });
 });

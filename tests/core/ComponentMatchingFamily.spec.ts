@@ -11,8 +11,8 @@ describe('ComponentMatchingFamily tests', () => {
   });
 
   afterEach(() => {
-    engine = null;
-    family = null;
+    (engine as Engine | null) = null;
+    (family as ComponentMatchingFamily<MockNode> | null) = null;
   });
 
   it('NodeList is initially empty', () => {
@@ -25,7 +25,7 @@ describe('ComponentMatchingFamily tests', () => {
     const entity:Entity = new Entity();
     entity.add(new MockComponent());
     family.newEntity(entity);
-    expect(nodes.head.entity).toEqual(entity);
+    expect(nodes.head!.entity).toEqual(entity);
   });
 
   it('matching Entity is added when access NodeList test 2', () => {
@@ -33,7 +33,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(new MockComponent());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    expect(nodes.head.entity).toEqual(entity);
+    expect(nodes.head!.entity).toEqual(entity);
   });
 
   it('Node contains Entity properties', () => {
@@ -42,7 +42,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(component);
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    expect(nodes.head.component).toEqual(component);
+    expect(nodes.head!.component).toEqual(component);
   });
 
   it('matching Entity is added when Component added', () => {
@@ -50,7 +50,7 @@ describe('ComponentMatchingFamily tests', () => {
     const entity:Entity = new Entity();
     entity.add(new MockComponent());
     family.componentAddedToEntity(entity, MockComponent);
-    expect(nodes.head.entity).toEqual(entity);
+    expect(nodes.head!.entity).toEqual(entity);
   });
 
   it('non matching Entity is not added', () => {
@@ -99,7 +99,8 @@ describe('ComponentMatchingFamily tests', () => {
     }
 
     const nodes:NodeList<MockNode> = family.nodeList;
-    for (let node:MockNode = nodes.head; node; node = node.next) {
+    let node:MockNode | null;
+    for (node = nodes.head; node; node = node.next) {
       expect(entities).toContain(node.entity);
     }
   });
@@ -116,7 +117,7 @@ describe('ComponentMatchingFamily tests', () => {
     }
 
     const nodes:NodeList<MockNode> = family.nodeList;
-    let node:MockNode;
+    let node:MockNode | null;
     for (node = nodes.head; node; node = node.next) {
       const index = entities.indexOf(node.entity);
       entities.splice(index, 1);
@@ -144,7 +145,7 @@ describe('ComponentMatchingFamily tests', () => {
     }
 
     const nodes:NodeList<MockNode> = family.nodeList;
-    const node:MockNode = nodes.head.next;
+    const node:MockNode = nodes.head!.next!;
     family.cleanUp();
     expect(node.next).toBeNull();
   });

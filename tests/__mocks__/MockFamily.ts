@@ -9,6 +9,7 @@ export class MockFamily implements IFamily<MockNode> {
   public componentAddedCalls:number = 0;
   public componentRemovedCalls:number = 0;
   public cleanUpCalls:number = 0;
+  private pNodeList:NodeList<MockNode> = new NodeList<MockNode>();
 
   public static reset():void {
     MockFamily.instances = [];
@@ -19,7 +20,7 @@ export class MockFamily implements IFamily<MockNode> {
   }
 
   public get nodeList():NodeList<MockNode> {
-    return null;
+    return this.pNodeList;
   }
 
   public newEntity(entity:Entity):void {

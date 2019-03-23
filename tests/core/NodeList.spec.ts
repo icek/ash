@@ -11,7 +11,7 @@ describe('NodeList tests', () => {
   });
 
   afterEach(() => {
-    nodes = null;
+    (nodes as NodeList<MockNode> | null) = null;
   });
 
   it('adding Node triggers added Signal', () => {
@@ -32,7 +32,7 @@ describe('NodeList tests', () => {
   });
 
   it('all Nodes are covered during iteration', () => {
-    let node:MockNode;
+    let node:MockNode | null;
     const nodeArray:Array<MockNode> = [];
     const numNodes = 5;
     for(let i:number = 0; i < numNodes; ++i) {
@@ -50,7 +50,7 @@ describe('NodeList tests', () => {
   });
 
   it('removing current Node during iteration is valid', () => {
-    let node:MockNode;
+    let node:MockNode | null;
     const nodeArray:Array<MockNode> = [];
     const numNodes = 5;
     for(let i:number = 0; i < numNodes; ++i) {
@@ -71,7 +71,7 @@ describe('NodeList tests', () => {
   });
 
   it('removing next Node during iteration is valid', () => {
-    let node:MockNode;
+    let node:MockNode | null;
     const nodeArray:Array<MockNode> = [];
     for(let i:number = 0; i < 5; ++i) {
       node = new MockNode();
@@ -84,7 +84,7 @@ describe('NodeList tests', () => {
       const index:number = nodeArray.indexOf(node);
       nodeArray.splice(index, 1);
       if(++count === 2) {
-        nodes.remove(node.next);
+        nodes.remove(node.next!);
       }
     }
     expect(nodeArray.length).toEqual(1);

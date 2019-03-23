@@ -3,10 +3,14 @@
 import { Engine, System } from 'ash.ts';
 import { MockSystem, MockSystem2 } from '../__mocks__';
 
+interface MockObject {
+  asyncCallback: ((system:System, action:string, payload:any) => void) | null;
+}
+
 describe('System tests', () => {
   let engine:Engine;
-  const mockObject = {
-    asyncCallback: null
+  const mockObject:MockObject = {
+    asyncCallback: null,
   };
 
   beforeEach(() => {
@@ -14,7 +18,7 @@ describe('System tests', () => {
   });
 
   afterEach(() => {
-    engine = null;
+    (engine as Engine | null) = null;
     mockObject.asyncCallback = null;
   });
 

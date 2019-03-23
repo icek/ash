@@ -10,7 +10,7 @@ describe('Signals tests', () => {
   });
 
   afterEach(() => {
-    signal = null;
+    (signal as Signal0 | null) = null;
   });
 
   // it('new signal has null head', () => {

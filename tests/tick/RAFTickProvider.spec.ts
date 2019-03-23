@@ -8,7 +8,7 @@ describe('RAFTickProvider tests', () => {
   });
 
   afterEach(() => {
-    tickProvider = null;
+    (tickProvider as RAFTickProvider | null) = null;
   });
 
   it('after creating playing should be false', () => {
