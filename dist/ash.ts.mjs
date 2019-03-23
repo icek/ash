@@ -388,7 +388,7 @@ class NodeList {
    * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
    */
   insertionSort(sortFunction) {
-    if (this.head === this.tail) {
+    if (!this.head || !this.tail || this.head === this.tail) {
       return;
     }
     let remains = this.head.next;
@@ -599,13 +599,6 @@ class ComponentMatchingFamily {
     };
     this.nodeClass = nodeClass;
     this.engine = engine;
-    this.init();
-  }
-  /**
-   * Initialises the class. Creates the nodelist and other tools. Analyses the node to determine
-   * what component types the node requires.
-   */
-  init() {
     this.nodes = new NodeList();
     this.entities = new Map();
     this.components = new Map();
@@ -670,7 +663,8 @@ class ComponentMatchingFamily {
       const node = this.nodePool.get();
       node.entity = entity;
       for (const componentClass of this.components.keys()) {
-        node[this.components.get(componentClass)] = entity.get(componentClass);
+        const key = this.components.get(componentClass);
+        node[key] = entity.get(componentClass);
       }
       this.entities.set(entity, node);
       this.nodes.add(node);
@@ -1137,9 +1131,11 @@ class Entity {
    */
   add(component, componentClass = null) {
     if (!componentClass) {
-      componentClass = component.constructor.prototype.constructor; // weird but works!
+      componentClass = component.constructor.prototype.constructor;
     }
-    componentClass = componentClass;
+    if (!componentClass) {
+      throw new Error(`Unable to get type of component: ${component}`);
+    }
     if (this.components.has(componentClass)) {
       this.remove(componentClass);
     }
@@ -1524,7 +1520,7 @@ class EntityStateMachine {
    */
   constructor(entity) {
     this.entity = entity;
-    this.states = {};
+    this.states = new Map();
   }
   /**
    * Add a state to this state machine.
@@ -1534,7 +1530,7 @@ class EntityStateMachine {
    * @return This state machine, so methods can be chained.
    */
   addState(name, state) {
-    this.states[name] = state;
+    this.states.set(name, state);
     return this;
   }
   /**
@@ -1546,7 +1542,7 @@ class EntityStateMachine {
    */
   createState(name) {
     const state = new EntityState();
-    this.states[name] = state;
+    this.states.set(name, state);
     return state;
   }
   /**
@@ -1556,12 +1552,11 @@ class EntityStateMachine {
    * @param name The name of the state to change to.
    */
   changeState(name) {
-    let newState = this.states[name];
+    const newState = this.states.get(name);
     if (!newState) {
       throw new Error(`Entity state ${name} doesn't exist`);
     }
     if (newState === this.currentState) {
-      newState = null;
       return;
     }
     let toAdd;
@@ -1585,6 +1580,9 @@ class EntityStateMachine {
       this.entity.add(toAdd.get(type).getComponent(), type);
     }
     this.currentState = newState;
+  }
+  getStateNames() {
+    return Object.keys(this.states);
   }
 }
 
@@ -1858,7 +1856,7 @@ class EngineStateMachine {
    */
   constructor(engine) {
     this.engine = engine;
-    this.states = {};
+    this.states = new Map();
   }
   /**
    * Add a state to this state machine.
@@ -1868,7 +1866,7 @@ class EngineStateMachine {
    * @return This state machine, so methods can be chained.
    */
   addState(name, state) {
-    this.states[name] = state;
+    this.states.set(name, state);
     return this;
   }
   /**
@@ -1880,7 +1878,7 @@ class EngineStateMachine {
    */
   createState(name) {
     const state = new EngineState();
-    this.states[name] = state;
+    this.states.set(name, state);
     return state;
   }
   /**
@@ -1890,12 +1888,11 @@ class EngineStateMachine {
    * @param name The name of the state to change to.
    */
   changeState(name) {
-    let newState = this.states[name];
+    const newState = this.states.get(name);
     if (!newState) {
       throw new Error(`Engine state ${name} doesn't exist`);
     }
     if (newState === this.currentState) {
-      newState = null;
       return;
     }
     const toAdd = [];
@@ -1919,6 +1916,9 @@ class EngineStateMachine {
       this.engine.addSystem(provider.getSystem(), provider.priority);
     }
     this.currentState = newState;
+  }
+  getStateNames() {
+    return Object.keys(this.states);
   }
 }
 

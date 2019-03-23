@@ -498,7 +498,7 @@
      * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
      */
     NodeList.prototype.insertionSort = function(sortFunction) {
-      if (this.head === this.tail) {
+      if (!this.head || !this.tail || this.head === this.tail) {
         return;
       }
       var remains = this.head.next;
@@ -713,6 +713,7 @@
      * @param engine The engine that this family is managing teh NodeList for.
      */
     function ComponentMatchingFamily(nodeClass, engine) {
+      var e_1, _a;
       var _this = this;
       /**
        * Releases the nodes that were added to the node pool during this engine update, so they can
@@ -724,14 +725,6 @@
       };
       this.nodeClass = nodeClass;
       this.engine = engine;
-      this.init();
-    }
-    /**
-     * Initialises the class. Creates the nodelist and other tools. Analyses the node to determine
-     * what component types the node requires.
-     */
-    ComponentMatchingFamily.prototype.init = function() {
-      var e_1, _a;
       this.nodes = new NodeList();
       this.entities = new Map();
       this.components = new Map();
@@ -755,7 +748,7 @@
           if (e_1) throw e_1.error;
         }
       }
-    };
+    }
     Object.defineProperty(ComponentMatchingFamily.prototype, 'nodeList', {
       /**
        * The nodelist managed by this family. This is a reference that remains valid always
@@ -827,7 +820,8 @@
         try {
           for (var _e = __values(this.components.keys()), _f = _e.next(); !_f.done; _f = _e.next()) {
             var componentClass = _f.value;
-            node[this.components.get(componentClass)] = entity.get(componentClass);
+            var key = this.components.get(componentClass);
+            node[key] = entity.get(componentClass);
           }
         } catch (e_3_1) {
           e_3 = { error: e_3_1 };
@@ -1376,9 +1370,11 @@
         componentClass = null;
       }
       if (!componentClass) {
-        componentClass = component.constructor.prototype.constructor; // weird but works!
+        componentClass = component.constructor.prototype.constructor;
       }
-      componentClass = componentClass;
+      if (!componentClass) {
+        throw new Error('Unable to get type of component: ' + component);
+      }
       if (this.components.has(componentClass)) {
         this.remove(componentClass);
       }
@@ -1800,7 +1796,7 @@
      */
     function EntityStateMachine(entity) {
       this.entity = entity;
-      this.states = {};
+      this.states = new Map();
     }
     /**
      * Add a state to this state machine.
@@ -1810,7 +1806,7 @@
      * @return This state machine, so methods can be chained.
      */
     EntityStateMachine.prototype.addState = function(name, state) {
-      this.states[name] = state;
+      this.states.set(name, state);
       return this;
     };
     /**
@@ -1822,7 +1818,7 @@
      */
     EntityStateMachine.prototype.createState = function(name) {
       var state = new EntityState();
-      this.states[name] = state;
+      this.states.set(name, state);
       return state;
     };
     /**
@@ -1833,12 +1829,11 @@
      */
     EntityStateMachine.prototype.changeState = function(name) {
       var e_1, _a, e_2, _b, e_3, _c;
-      var newState = this.states[name];
+      var newState = this.states.get(name);
       if (!newState) {
         throw new Error('Entity state ' + name + " doesn't exist");
       }
       if (newState === this.currentState) {
-        newState = null;
         return;
       }
       var toAdd;
@@ -1895,6 +1890,9 @@
         }
       }
       this.currentState = newState;
+    };
+    EntityStateMachine.prototype.getStateNames = function() {
+      return Object.keys(this.states);
     };
     return EntityStateMachine;
   })();
@@ -2198,7 +2196,7 @@
      */
     function EngineStateMachine(engine) {
       this.engine = engine;
-      this.states = {};
+      this.states = new Map();
     }
     /**
      * Add a state to this state machine.
@@ -2208,7 +2206,7 @@
      * @return This state machine, so methods can be chained.
      */
     EngineStateMachine.prototype.addState = function(name, state) {
-      this.states[name] = state;
+      this.states.set(name, state);
       return this;
     };
     /**
@@ -2220,7 +2218,7 @@
      */
     EngineStateMachine.prototype.createState = function(name) {
       var state = new EngineState();
-      this.states[name] = state;
+      this.states.set(name, state);
       return state;
     };
     /**
@@ -2231,12 +2229,11 @@
      */
     EngineStateMachine.prototype.changeState = function(name) {
       var e_1, _a, e_2, _b, e_3, _c;
-      var newState = this.states[name];
+      var newState = this.states.get(name);
       if (!newState) {
         throw new Error('Engine state ' + name + " doesn't exist");
       }
       if (newState === this.currentState) {
-        newState = null;
         return;
       }
       var toAdd = [];
@@ -2293,6 +2290,9 @@
         }
       }
       this.currentState = newState;
+    };
+    EngineStateMachine.prototype.getStateNames = function() {
+      return Object.keys(this.states);
     };
     return EngineStateMachine;
   })();

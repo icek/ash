@@ -244,7 +244,7 @@ export declare class NodeList<TNode extends Node<TNode>> {
    *
    * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
    */
-  insertionSort(sortFunction: (node1: Node<any>, node2: Node<any>) => number): void;
+  insertionSort(sortFunction: (a: TNode, b: TNode) => number): void;
   /**
    * Performs a merge sort on the node list. In general, merge sort is more efficient than insertion sort
    * with long lists that are very unsorted.
@@ -509,11 +509,6 @@ export declare class ComponentMatchingFamily<TNode extends Node<TNode>> implemen
    */
   constructor(nodeClass: NodeClassType<TNode>, engine: Engine);
   /**
-   * Initialises the class. Creates the nodelist and other tools. Analyses the node to determine
-   * what component types the node requires.
-   */
-  private init;
-  /**
    * The nodelist managed by this family. This is a reference that remains valid always
    * since it is retained and reused by Systems that use the list. i.e. we never recreate the list,
    * we always modify it in place.
@@ -757,6 +752,7 @@ export declare class EntityStateMachine {
    * @param name The name of the state to change to.
    */
   changeState(name: string): void;
+  getStateNames(): string[];
 }
 export interface ISystemProvider<TSystem extends System> {
   getSystem(): TSystem;
@@ -893,6 +889,7 @@ export declare class EngineStateMachine {
    * @param name The name of the state to change to.
    */
   changeState(name: string): void;
+  getStateNames(): string[];
 }
 /**
  * The interface for a tick provider. A tick provider dispatches a regular update tick
