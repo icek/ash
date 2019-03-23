@@ -1,6 +1,5 @@
 // tslint:disable:no-magic-numbers
 import { Signal0 } from 'ash.ts';
-import { assert } from 'chai';
 
 describe('Signals tests', () => {
   // let async:IAsync;
@@ -19,7 +18,7 @@ describe('Signals tests', () => {
   // });
 
   it('new Signal has listeners count zero', () => {
-    assert.equal(signal.numListeners, 0);
+    expect(signal.numListeners).toEqual(0);
   });
 
   // it('add listener then dispatch should call it', () => {
@@ -29,7 +28,7 @@ describe('Signals tests', () => {
 //
   it('add listener then listeners count is one', () => {
     signal.add(newEmptyHandler());
-    assert.equal(signal.numListeners, 1);
+    expect(signal.numListeners).toEqual(1);
   });
 
   it('add listener then remove then dispatch should not call listener', () => {
@@ -41,7 +40,7 @@ describe('Signals tests', () => {
   it('add listener then remove then listeners count is zero', () => {
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
-    assert.equal(signal.numListeners, 0);
+    expect(signal.numListeners).toEqual(0);
   });
 
   it('remove function not in listeners should not throw Error', () => {
@@ -65,7 +64,7 @@ describe('Signals tests', () => {
     signal.add(newEmptyHandler());
     signal.add(newEmptyHandler());
     const numListeners = 2;
-    assert.equal(signal.numListeners, numListeners);
+    expect(signal.numListeners).toEqual(numListeners);
   });
 
   // it(' add2ListenersRemove1stThenDispatchShouldCall2ndNot1stListener', () => {
@@ -88,7 +87,7 @@ describe('Signals tests', () => {
     signal.add(newEmptyHandler());
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
-    assert.equal(signal.numListeners, 1);
+    expect(signal.numListeners).toEqual(1);
   });
 
   it('add same listener twice should only add it once', () => {
@@ -97,7 +96,7 @@ describe('Signals tests', () => {
     signal.add(func);
     signal.add(func);
     dispatchSignal();
-    assert.equal(count, 1);
+    expect(count).toEqual(1);
   });
 
   it('add the same listener twice should mot throw Error', () => {
@@ -109,7 +108,7 @@ describe('Signals tests', () => {
   it('add same listener twice then listeners count is one', () => {
     signal.add(failIfCalled);
     signal.add(failIfCalled);
-    assert.equal(signal.numListeners, 1);
+    expect(signal.numListeners).toEqual(1);
   });
 
   // it(' dispatch2Listeners1stListenerRemovesItselfThen2ndListenerIsStillCalled', () => {
@@ -141,13 +140,13 @@ describe('Signals tests', () => {
   it('adding a listener during dispatch increments listeners count', () => {
     signal.add(addListenerDuringDispatchToTestCount);
     dispatchSignal();
-    assert.equal(signal.numListeners, 2);
+    expect(signal.numListeners).toEqual(2);
   });
 
   function addListenerDuringDispatchToTestCount():void {
-    assert.equal(signal.numListeners, 1);
+    expect(signal.numListeners).toEqual(1);
     signal.add(newEmptyHandler());
-    assert.equal(signal.numListeners, 2);
+    expect(signal.numListeners).toEqual(2);
   }
 
 
@@ -228,6 +227,6 @@ describe('Signals tests', () => {
 
 
   function failIfCalled():void {
-    assert.fail('This function should not have been called.');
+    expect(false).toBe(true);
   }
 });

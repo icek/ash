@@ -1,7 +1,6 @@
-import { assert } from 'chai';
 import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash.ts';
-import { MockComponent, MockComponent1 } from '../_mocks/MockComponent';
-import { MockNode } from '../_mocks/MockNode';
+import { MockComponent, MockComponent1 } from '../__mocks__/MockComponent';
+import { MockNode } from '../__mocks__/MockNode';
 
 describe('ComponentMatchingFamily tests', () => {
   let engine:Engine;
@@ -19,7 +18,7 @@ describe('ComponentMatchingFamily tests', () => {
 
   it('NodeList is initially empty', () => {
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.isNull(nodes.head);
+    expect(nodes.head).toBeNull();
   });
 
   it('matching Entity is added when access NodeList test 1', () => {
@@ -27,7 +26,7 @@ describe('ComponentMatchingFamily tests', () => {
     const entity:Entity = new Entity();
     entity.add(new MockComponent());
     family.newEntity(entity);
-    assert.equal(nodes.head.entity, entity);
+    expect(nodes.head.entity).toEqual(entity);
   });
 
   it('matching Entity is added when access NodeList test 2', () => {
@@ -35,7 +34,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(new MockComponent());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.equal(nodes.head.entity, entity);
+    expect(nodes.head.entity).toEqual(entity);
   });
 
   it('Node contains Entity properties', () => {
@@ -44,7 +43,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(component);
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.equal(nodes.head.component, component);
+    expect(nodes.head.component).toEqual(component);
   });
 
   it('matching Entity is added when Component added', () => {
@@ -52,14 +51,14 @@ describe('ComponentMatchingFamily tests', () => {
     const entity:Entity = new Entity();
     entity.add(new MockComponent());
     family.componentAddedToEntity(entity, MockComponent);
-    assert.equal(nodes.head.entity, entity);
+    expect(nodes.head.entity).toEqual(entity);
   });
 
   it('non matching Entity is not added', () => {
     const entity:Entity = new Entity();
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.isNull(nodes.head);
+    expect(nodes.head).toBeNull();
   });
 
   it('non matching Entity is not added when Component added', () => {
@@ -67,7 +66,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(new MockComponent1());
     family.componentAddedToEntity(entity, MockComponent1);
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.isNull(nodes.head);
+    expect(nodes.head).toBeNull();
   });
 
   it('Entity is removed when access NodeList', () => {
@@ -76,7 +75,7 @@ describe('ComponentMatchingFamily tests', () => {
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
     family.removeEntity(entity);
-    assert.isNull(nodes.head);
+    expect(nodes.head).toBeNull();
   });
 
   it('Entity is removed when Component removed', () => {
@@ -86,7 +85,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.remove(MockComponent);
     family.componentRemovedFromEntity(entity, MockComponent);
     const nodes:NodeList<MockNode> = family.nodeList;
-    assert.isNull(nodes.head);
+    expect(nodes.head).toBeNull();
   });
 
   it('NodeList contains only matching Entities', () => {
@@ -102,7 +101,7 @@ describe('ComponentMatchingFamily tests', () => {
 
     const nodes:NodeList<MockNode> = family.nodeList;
     for(let node:MockNode = nodes.head; node; node = node.next) {
-      assert.include(entities, node.entity);
+      expect(entities).toContain(node.entity);
     }
   });
 
@@ -123,7 +122,7 @@ describe('ComponentMatchingFamily tests', () => {
       const index = entities.indexOf(node.entity);
       entities.splice(index, 1);
     }
-    assert.equal(entities.length, 0);
+    expect(entities.length).toEqual(0);
   });
 
   it('clean up empties NodeList', () => {
@@ -132,7 +131,7 @@ describe('ComponentMatchingFamily tests', () => {
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
     family.cleanUp();
-    assert.isNull(nodes.head);
+    expect(nodes.head).toBeNull();
   });
 
   it('clean up sets next Node to null', () => {
@@ -148,6 +147,6 @@ describe('ComponentMatchingFamily tests', () => {
     const nodes:NodeList<MockNode> = family.nodeList;
     const node:MockNode = nodes.head.next;
     family.cleanUp();
-    assert.isNull(node.next);
+    expect(node.next).toBeNull();
   });
 });

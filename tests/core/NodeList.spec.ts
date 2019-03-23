@@ -1,8 +1,7 @@
 // tslint:disable:no-magic-numbers
 
 import { Node, NodeList, NodePool } from 'ash.ts';
-import { assert } from 'chai';
-import { MockNode } from '../_mocks/MockNode';
+import { MockNode } from '../__mocks__/MockNode';
 
 describe('NodeList tests', () => {
   let nodes:NodeList<MockNode>;
@@ -18,7 +17,7 @@ describe('NodeList tests', () => {
   it('adding Node triggers added Signal', () => {
     const node:MockNode = new MockNode();
     nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
-      assert.equal(signalNode, node);
+      expect(signalNode).toEqual(node);
     });
     nodes.add(node);
   });
@@ -26,7 +25,7 @@ describe('NodeList tests', () => {
   it('removing Node triggers removed Signal', () => {
     const node:MockNode = new MockNode();
     nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
-      assert.equal(signalNode, node);
+      expect(signalNode).toEqual(node);
     });
     nodes.add(node);
     nodes.remove(node);
@@ -47,7 +46,7 @@ describe('NodeList tests', () => {
       nodeArray.splice(index, 1);
     }
 
-    assert.equal(nodeArray.length, 0);
+    expect(nodeArray.length).toEqual(0);
   });
 
   it('removing current Node during iteration is valid', () => {
@@ -68,7 +67,7 @@ describe('NodeList tests', () => {
         nodes.remove(node);
       }
     }
-    assert.equal(nodeArray.length, 0);
+    expect(nodeArray.length).toEqual(0);
   });
 
   it('removing next Node during iteration is valid', () => {
@@ -88,14 +87,14 @@ describe('NodeList tests', () => {
         nodes.remove(node.next);
       }
     }
-    assert.equal(nodeArray.length, 1);
+    expect(nodeArray.length).toEqual(1);
   });
 
   it('NodePoll works', () => {
     const cmps = new Map<{ new():any }, string>();
     const poll = new NodePool<MockNode>(MockNode, cmps);
     const m = poll.get();
-    assert.instanceOf(m, MockNode);
+    expect(m).toBeInstanceOf(MockNode);
   });
 
   let tempNode:MockNode;
@@ -104,7 +103,7 @@ describe('NodeList tests', () => {
     tempNode = new MockNode();
     nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
       setTimeout(() => {
-        assert.equal(signalNode, tempNode);
+        expect(signalNode).toEqual(tempNode);
         done();
       });
     });
@@ -116,7 +115,7 @@ describe('NodeList tests', () => {
     nodes.add(tempNode);
     nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
       setTimeout(() => {
-        assert.equal(signalNode, tempNode);
+        expect(signalNode).toEqual(tempNode);
         done();
       });
     });

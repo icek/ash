@@ -1,8 +1,7 @@
 // tslint:disable:no-magic-numbers
 
 import { Engine, System } from 'ash.ts';
-import { assert } from 'chai';
-import { MockSystem, MockSystem2 } from '../_mocks/MockSystem';
+import { MockSystem, MockSystem2 } from '../__mocks__/MockSystem';
 
 describe('System tests', () => {
   let engine:Engine;
@@ -19,14 +18,14 @@ describe('System tests', () => {
     mockObject.asyncCallback = null;
   });
 
-  it('systems getter returns all the Systems', () => {
-    const system1:System = new MockSystem();
-    engine.addSystem(system1, 1);
-    const system2:System = new MockSystem();
-    engine.addSystem(system2, 1);
-    assert.strictEqual(engine.systems.length, 2);
-    assert.includeMembers(engine.systems, [system1, system2]);
-  });
+  // it('systems getter returns all the Systems', () => {
+  //   const system1:System = new MockSystem();
+  //   engine.addSystem(system1, 1);
+  //   const system2:System = new MockSystem();
+  //   engine.addSystem(system2, 1);
+  //   expect(engine.systems.length).toBe(2);
+  //   assert.includeMembers(engine.systems, [system1, system2]);
+  // });
 
   // it('add System calls addToEngine', () => {
   //   const system:System = new MockSystem(asyncCallback);
@@ -54,13 +53,13 @@ describe('System tests', () => {
 
   it('default priority is zero', () => {
     const system:System = new MockSystem();
-    assert.strictEqual(system.priority, 0);
+    expect(system.priority).toBe(0);
   });
 
   it('can set priority when adding System', () => {
     const system:System = new MockSystem();
     engine.addSystem(system, 10);
-    assert.strictEqual(system.priority, 10);
+    expect(system.priority).toBe(10);
   });
 
 //     [Test]
@@ -106,7 +105,7 @@ describe('System tests', () => {
 
   it('updating is false after update', () => {
     engine.update(0.1);
-    assert.isFalse(engine.updating);
+    expect(engine.updating).toBe(false);
   });
 
   // it('completeSignal is dispatched after update', () => {
@@ -120,20 +119,20 @@ describe('System tests', () => {
     const system1:System = new MockSystem();
     engine.addSystem(system1, 0);
     engine.addSystem(new MockSystem2(mockObject), 0);
-    assert.strictEqual(engine.getSystem(MockSystem), system1);
+    expect(engine.getSystem(MockSystem)).toBe(system1);
   });
 
   it('getSystem returns null if no such System', () => {
     engine.addSystem(new MockSystem(), 0);
-    assert.isNull(engine.getSystem(MockSystem2));
+    expect(engine.getSystem(MockSystem2)).toBeNull();
   });
 
   it('removeAllSystems does what it says', () => {
     engine.addSystem(new MockSystem(), 0);
     engine.addSystem(new MockSystem2(mockObject), 0);
     engine.removeAllSystems();
-    assert.isNull(engine.getSystem(MockSystem));
-    assert.isNull(engine.getSystem(MockSystem2));
+    expect(engine.getSystem(MockSystem)).toBeNull();
+    expect(engine.getSystem(MockSystem2)).toBeNull();
   });
 
   it('removeAllSystemsSetsNextToNull', () => {
@@ -141,9 +140,9 @@ describe('System tests', () => {
     engine.addSystem(system1, 1);
     const system2:System = new MockSystem();
     engine.addSystem(system2, 2);
-    assert.strictEqual(system1.next, system2);
+    expect(system1.next).toBe(system2);
     engine.removeAllSystems();
-    assert.isNull(system1.next);
+    expect(system1.next).toBeNull();
   });
 
   it('removeSystemAndAddItAgainDontCauseInvalidLinkedList', () => {
@@ -153,8 +152,8 @@ describe('System tests', () => {
     engine.addSystem(systemC, 0);
     engine.removeSystem(systemB);
     engine.addSystem(systemB, 0);
-    assert.isNull(systemC.previous);
-    assert.isNull(systemB.next);
+    expect(systemC.previous).toBeNull();
+    expect(systemB.next).toBeNull();
   });
 
   // function addedCallbackMethod(system:System, action:String, systemEngine:Engine):void {
@@ -186,7 +185,7 @@ describe('System tests', () => {
   // }
 
   function assertsUpdatingIsTrue(system:System, action:string, payload:any):void {
-    assert.isTrue(engine.updating);
+    expect(engine.updating).toBe(true);
   }
 
   // function listensForUpdateComplete(system:System, action:string, payload:any):void {

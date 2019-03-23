@@ -1,4 +1,3 @@
-import { assert } from 'chai';
 import { RAFTickProvider } from 'ash.ts';
 
 describe('RAFTickProvider tests', () => {
@@ -13,6 +12,6 @@ describe('RAFTickProvider tests', () => {
   });
 
   it('after creating playing should be false', () => {
-    assert.isFalse(tickProvider.playing);
+    expect(tickProvider.playing).toBe(false);
   });
 });
