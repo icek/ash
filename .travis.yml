@@ -3,6 +3,7 @@ language: node_js
 branches:
   only:
     - master
+    - /^v.*$/
 
 cache:
   directories:
