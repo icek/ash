@@ -1,7 +1,7 @@
 {
   "name": "ash.ts",
   "license": "MIT",
-  "version": "0.9.6",
+  "version": "v0.9.7",
   "description": "Typescript port of Ash - Entity Component System framework",
   "keywords": [
     "ash",
