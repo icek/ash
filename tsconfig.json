@@ -7,7 +7,6 @@
     "declarationDir": "dist/types",
     "sourceMap": true,
     "strict": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": ["dom", "es6"],
     "pretty": true
