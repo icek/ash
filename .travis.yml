@@ -1,0 +1,39 @@
+language: node_js
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules
+
+script:
+  - npm run lint
+  - npm run test-coverage
+  - npm run dist
+  - npm pack
+  - npm run zip
+  - mv ash.ts.zip "ash.ts-${TRAVIS_TAG}.zip"
+  - npm run docs
+  - npm run gh-pages
+
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+
+  - provider: releases
+    skip_cleanup: true
+    api_key: $GITHUB_TOKEN
+    on:
+      tags: true
+
+  - provider: npm
+    skip_cleanup: true
+    email: $NPM_EMAIL
+    api_key: $NPM_TOKEN
+    on:
+      tags: true

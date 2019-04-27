@@ -7,4 +7,5 @@ dist/types
 
 # Files
 npm-debug.log
-ash.ts-*.tgz
+ash.ts*.tgz
+ash.ts*.zip
