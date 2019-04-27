@@ -2085,22 +2085,22 @@ class ListIteratingSystem extends System {
 }
 
 export {
+  ComponentMatchingFamily,
+  ComponentPool,
+  Engine,
+  EngineStateMachine,
+  Entity,
+  EntityStateMachine,
+  IntervalTickProvider,
+  ListIteratingSystem,
+  Node,
+  NodeList,
+  NodePool,
+  RAFTickProvider,
   Signal0,
   Signal1,
   Signal2,
   Signal3,
-  ComponentMatchingFamily,
-  keep,
-  Engine,
-  Entity,
-  Node,
-  NodePool,
-  NodeList,
   System,
-  EntityStateMachine,
-  EngineStateMachine,
-  RAFTickProvider,
-  IntervalTickProvider,
-  ComponentPool,
-  ListIteratingSystem
+  keep
 };

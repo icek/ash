@@ -713,8 +713,8 @@
      * @param engine The engine that this family is managing teh NodeList for.
      */
     function ComponentMatchingFamily(nodeClass, engine) {
-      var e_1, _a;
       var _this = this;
+      var e_1, _a;
       /**
        * Releases the nodes that were added to the node pool during this engine update, so they can
        * be reused.
@@ -2486,24 +2486,24 @@
     return ListIteratingSystem;
   })(System);
 
+  exports.ComponentMatchingFamily = ComponentMatchingFamily;
+  exports.ComponentPool = ComponentPool;
+  exports.Engine = Engine;
+  exports.EngineStateMachine = EngineStateMachine;
+  exports.Entity = Entity;
+  exports.EntityStateMachine = EntityStateMachine;
+  exports.IntervalTickProvider = IntervalTickProvider;
+  exports.ListIteratingSystem = ListIteratingSystem;
+  exports.Node = Node;
+  exports.NodeList = NodeList;
+  exports.NodePool = NodePool;
+  exports.RAFTickProvider = RAFTickProvider;
   exports.Signal0 = Signal0;
   exports.Signal1 = Signal1;
   exports.Signal2 = Signal2;
   exports.Signal3 = Signal3;
-  exports.ComponentMatchingFamily = ComponentMatchingFamily;
-  exports.keep = keep;
-  exports.Engine = Engine;
-  exports.Entity = Entity;
-  exports.Node = Node;
-  exports.NodePool = NodePool;
-  exports.NodeList = NodeList;
   exports.System = System;
-  exports.EntityStateMachine = EntityStateMachine;
-  exports.EngineStateMachine = EngineStateMachine;
-  exports.RAFTickProvider = RAFTickProvider;
-  exports.IntervalTickProvider = IntervalTickProvider;
-  exports.ComponentPool = ComponentPool;
-  exports.ListIteratingSystem = ListIteratingSystem;
+  exports.keep = keep;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 });

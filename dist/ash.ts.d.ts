@@ -163,7 +163,7 @@ export declare class Entity {
  * to the list obtained by the system. The engine keeps the list up to date as entities are added
  * to and removed from the engine and as the components on entities change.</p>
  */
-export abstract class Node<TNode> {
+export declare abstract class Node<TNode> {
   /**
    * The entity whose components are included in the node.
    */
@@ -312,7 +312,7 @@ export interface IFamily<TNode extends Node<any>> {
  * node lists - collections of nodes. Each node contains the components from an entity in the engine
  * that match the node.</p>
  */
-export abstract class System {
+export declare abstract class System {
   /**
    * Used internally to manage the list of systems within the engine. The previous system in the list.
    */
@@ -964,7 +964,7 @@ export declare class ComponentPool {
  * }
  * ```
  */
-export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
+export declare abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
   protected nodeList: NodeList<TNode> | null;
   protected nodeClass: NodeClassType<TNode>;
   protected nodeAdded?: (node: Node<TNode>) => void;
@@ -977,3 +977,5 @@ export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends Sys
 }
 
 export as namespace ash;
+
+export {};
