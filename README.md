@@ -10,8 +10,7 @@ by [Richard Lord]
 
 ## Documentation
 
-There is no formal documentation as yet, 
-but much of the source code contains jsdoc comments.
+TypeDoc generated API docs: https://icek.github.io/ash.ts/
 
 Richard Lord also written a few blog posts explaining how Ash works.
 
@@ -75,8 +74,9 @@ Base System class is declared as abstract class with these methods marked as
 required to be declared in an inherited class.
 - `public abstract addToEngine(engine:Engine):void;`
 - `public abstract removeFromEngine(engine:Engine):void;`
-- `public abstract update(time:number):void;`
-Example:
+- `public abstract update(time:number):void;`  
+
+Example usage:
 
 ```typescript
 import { Engine, NodeList, System } from 'ash.ts';
