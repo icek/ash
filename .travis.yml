@@ -16,11 +16,11 @@ script:
   - npm run zip
   - mv ash.ts.zip "ash.ts-${TRAVIS_TAG}.zip"
   - npm run docs
-  - npm run gh-pages
 
 deploy:
   - provider: pages
     skip_cleanup: true
+    local_dir: docs
     github_token: $GITHUB_TOKEN
     on:
       branch: master
