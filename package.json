@@ -47,21 +47,20 @@
     "docs": "npm-run-all docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
     "docs:typedoc": "typedoc --options typedoc.json ./src/index.ts",
-    "zip": "npm-pack-zip",
     "tslint": "tslint -p tsconfig.json",
     "pretest": "rimraf reports",
     "test": "jest",
     "test-watch": "jest --watchAll",
     "test-changed": "jest -o",
     "test-watch-changed": "jest --watch",
-    "test-coverage": "jest --coverage"
+    "test-coverage": "jest --coverage",
+    "prepack": "rimraf ash.ts-*.tgz"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
     "dts-bundle-generator": "^3.0.0",
     "echo-cli": "^1.0.8",
     "jest": "^24.7.1",
-    "npm-pack-zip": "^1.2.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.17.0",
     "prettier-tslint": "^0.4.2",
