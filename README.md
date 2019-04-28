@@ -1,5 +1,6 @@
 # ash
 [![Build Status](https://travis-ci.com/icek/ash.svg?branch=master)](https://travis-ci.com/icek/ash)
+[![Coverage Status](https://coveralls.io/repos/github/icek/ash/badge.svg?branch=master)](https://coveralls.io/github/icek/ash?branch=master)
 
 A Typescript port of [Ash Framework], 
 an entity framework for game development 
