@@ -1,4 +1,4 @@
-import { keep, Node } from 'ash.ts';
+import { keep, Node } from 'ash';
 import { MockComponent, MockComponent1, MockComponent2 } from './MockComponent';
 
 export class MockNode extends Node<MockNode> {

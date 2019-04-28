@@ -28,7 +28,7 @@ deploy:
     skip_cleanup: true
     api_key: $GITHUB_TOKEN
     file_glob: true
-    file: ash.ts-*.tgz
+    file: ash-*.tgz
     on:
       tags: true
 

@@ -1,6 +1,6 @@
 // tslint:disable:no-magic-numbers
 
-import { Engine, Entity, NodeList } from 'ash.ts';
+import { Engine, Entity, NodeList } from 'ash';
 import { MockComponent1, MockComponent2, MockNode2 } from '../__mocks__';
 
 describe('Engine and Family integration tests', () => {

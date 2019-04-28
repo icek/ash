@@ -1,5 +1,5 @@
 {
-  "name": "ash.ts",
+  "name": "@ash.ts/ash",
   "license": "MIT",
   "version": "0.9.7",
   "description": "Typescript port of Ash - Entity Component System framework",
@@ -12,21 +12,21 @@
     "component",
     "system"
   ],
-  "homepage": "https://ash.ts.github.io",
+  "homepage": "https://icek.github.io/ash",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icek/ash.ts"
+    "url": "https://github.com/icek/ash"
   },
   "bugs": {
-    "url": "https://github.com/icek/ash.ts/issues"
+    "url": "https://github.com/icek/ash/issues"
   },
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "contributors": [],
-  "main": "dist/ash.ts.js",
-  "browser": "dist/ash.ts.min.js",
-  "module": "dist/ash.ts.mjs",
-  "types": "dist/ash.ts.d.ts",
-  "typings": "dist/ash.ts.d.ts",
+  "main": "dist/ash.js",
+  "browser": "dist/ash.min.js",
+  "module": "dist/ash.mjs",
+  "types": "dist/ash.d.ts",
+  "typings": "dist/ash.d.ts",
   "files": [
     "dist/*"
   ],
@@ -34,13 +34,13 @@
     "build": "npm-run-all build:clean build:rollup build:prettier",
     "build:clean": "rimraf dist",
     "build:rollup": "rollup -c",
-    "build:prettier": "prettier --write './dist/ash.ts?(.|.es5).?(m)js' --loglevel error",
+    "build:prettier": "prettier --write './dist/ash?(.|.es5).?(m)js' --loglevel error",
     "predts": "echo-cli '\nBundling typings...'",
     "dts": "npm-run-all dts:bundle dts:clean dts:prettier dts:tslint",
-    "dts:bundle": "dts-bundle-generator -o dist/ash.ts.d.ts --umd-module-name ash dist/types/index.d.ts",
+    "dts:bundle": "dts-bundle-generator -o dist/ash.d.ts --umd-module-name ash dist/types/index.d.ts",
     "dts:clean": "rimraf dist/types",
-    "dts:prettier": "prettier --write 'dist/ash.ts.d.ts' --loglevel error",
-    "dts:tslint": "tslint -c tslint.json --fix dist/ash.ts.d.ts",
+    "dts:prettier": "prettier --write 'dist/ash.d.ts' --loglevel error",
+    "dts:tslint": "tslint -c tslint.json --fix dist/ash.d.ts",
     "predist": "echo-cli '======= Build start ======='",
     "dist": "npm-run-all build dts",
     "postdist": "echo-cli '\n======= Build end ======='",
@@ -54,7 +54,7 @@
     "test-changed": "jest -o",
     "test-watch-changed": "jest --watch",
     "test-coverage": "jest --coverage",
-    "prepack": "rimraf ash.ts-*.tgz"
+    "prepack": "rimraf ash-*.tgz"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
@@ -90,7 +90,7 @@
       "json"
     ],
     "moduleNameMapper": {
-      "ash.ts": "<rootDir>/src"
+      "ash": "<rootDir>/src"
     },
     "globals": {
       "ts-jest": {

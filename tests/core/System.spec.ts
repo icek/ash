@@ -1,6 +1,6 @@
 // tslint:disable:no-magic-numbers
 
-import { Engine, System } from 'ash.ts';
+import { Engine, System } from 'ash';
 import { MockSystem, MockSystem2 } from '../__mocks__';
 
 interface MockObject {

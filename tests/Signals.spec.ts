@@ -1,5 +1,5 @@
 // tslint:disable:no-magic-numbers
-import { Signal0 } from 'ash.ts';
+import { Signal0 } from 'ash';
 
 describe('Signals tests', () => {
   // let async:IAsync;

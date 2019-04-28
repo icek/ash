@@ -1,4 +1,4 @@
-import { ClassType, Engine, Entity, IFamily, NodeList } from 'ash.ts';
+import { ClassType, Engine, Entity, IFamily, NodeList } from 'ash';
 import { MockNode } from './MockNode';
 
 export class MockFamily implements IFamily<MockNode> {

@@ -1,4 +1,4 @@
-import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash.ts';
+import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash';
 import { MockComponent, MockComponent1, MockNode } from '../__mocks__';
 
 describe('ComponentMatchingFamily tests', () => {

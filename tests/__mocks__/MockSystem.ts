@@ -1,4 +1,4 @@
-import { Engine, System } from 'ash.ts';
+import { Engine, System } from 'ash';
 
 export class MockSystem extends System {
   constructor() {

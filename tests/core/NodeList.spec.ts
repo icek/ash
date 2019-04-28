@@ -1,6 +1,6 @@
 // tslint:disable:no-magic-numbers
 
-import { Node, NodeList, NodePool } from 'ash.ts';
+import { Node, NodeList, NodePool } from 'ash';
 import { MockComponent, MockNode } from '../__mocks__';
 import '../__matchers__';
 

@@ -1,4 +1,4 @@
-import { Node, NodeList } from 'ash.ts';
+import { Node, NodeList } from 'ash';
 
 export function toBeNodeList<TNode extends Node<TNode>>(received:NodeList<TNode>, ...expected:TNode[]) {
   let pass = true;

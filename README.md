@@ -1,4 +1,4 @@
-# ash.ts
+# ash
 A Typescript port of [Ash Framework], 
 an entity framework for game development 
 by [Richard Lord]
@@ -10,7 +10,7 @@ by [Richard Lord]
 
 ## Documentation
 
-TypeDoc generated API docs: https://icek.github.io/ash.ts/
+TypeDoc generated API docs: https://icek.github.io/ash/
 
 Richard Lord also written a few blog posts explaining how Ash works.
 
@@ -42,7 +42,7 @@ it's not changed as in [ash-js] (`Ash.Nodes.create()`). All you need to add is
  available in compile and run time. Example:
  
  ```typescript
-import { Node, keep } from 'ash.ts';
+import { Node, keep } from 'ash';
 import { Motion, Position } from '../components';
 
 export class MovementNode extends Node<MovementNode> {
@@ -79,7 +79,7 @@ required to be declared in an inherited class.
 Example usage:
 
 ```typescript
-import { Engine, NodeList, System } from 'ash.ts';
+import { Engine, NodeList, System } from 'ash';
 import { RenderNode } from '../nodes';
 
 export class RenderSystem extends System {
@@ -119,7 +119,7 @@ declared in an inherited class:
 Example usage:
 
 ```typescript
-import { ListIteratingSystem } from 'ash.ts';
+import { ListIteratingSystem } from 'ash';
 import { MovementNode } from '../nodes';
 
 export class MovementSystem extends ListIteratingSystem<MovementNode> {
@@ -156,7 +156,7 @@ as used browser and your environment can provide.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net/
-[Asteroids]: http://github.com/icek/asteroids.ash.ts
+[Asteroids]: http://github.com/icek/asteroids
 [intro]: http://www.richardlord.net/blog/ecs/introducing-ash.html
 [what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
 [why]: http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html

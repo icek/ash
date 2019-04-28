@@ -35,32 +35,32 @@ const terserConfig = {
 export default [
   {
     input,
-    output: { format: 'umd', file: 'dist/ash.ts.js', name: 'ash' },
+    output: { format: 'umd', file: 'dist/ash.js', name: 'ash' },
     plugins: [typescript(typescriptConfig)],
   },
   {
     input,
-    output: { format: 'umd', file: 'dist/ash.ts.min.js', name: 'ash' },
+    output: { format: 'umd', file: 'dist/ash.min.js', name: 'ash' },
     plugins: [typescript(typescriptConfig), terser(terserConfig)],
   },
   {
     input,
-    output: { format: 'esm', file: 'dist/ash.ts.mjs' },
+    output: { format: 'esm', file: 'dist/ash.mjs' },
     plugins: [typescript(typescriptConfig)],
   },
   {
     input,
-    output: { format: 'esm', file: 'dist/ash.ts.min.mjs' },
+    output: { format: 'esm', file: 'dist/ash.min.mjs' },
     plugins: [typescript(typescriptConfig), terser(terserConfig)],
   },
   {
     input,
-    output: { format: 'umd', file: 'dist/ash.ts.es5.js', name: 'ash' },
+    output: { format: 'umd', file: 'dist/ash.es5.js', name: 'ash' },
     plugins: [typescript({ ...typescriptConfig, tsconfigOverride })],
   },
   {
     input,
-    output: { format: 'umd', file: 'dist/ash.ts.es5.min.js', name: 'ash' },
+    output: { format: 'umd', file: 'dist/ash.es5.min.js', name: 'ash' },
     plugins: [typescript({ ...typescriptConfig, tsconfigOverride }), terser(terserConfig)],
   },
 ];
