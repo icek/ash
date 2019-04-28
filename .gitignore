@@ -3,7 +3,7 @@ node_modules
 .rpt2_cache
 docs
 coverage
-dist/types
+dist
 
 # Files
 npm-debug.log
