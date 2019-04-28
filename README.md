@@ -15,7 +15,7 @@ Using yarn:
 
 ## Examples
 
-- [Asteroids]
+- [Asteroids] ([Source])
 
 ## Documentation
 
@@ -165,7 +165,8 @@ as used browser and your environment can provide.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
-[Asteroids]: http://github.com/icek/asteroids
+[Asteroids]: http://icek.github.io/asteroids
+[Source]: https://github.com/icek/asteroids
 [api]: https://icek.github.io/ash
 [intro]: http://www.richardlord.net/blog/ecs/introducing-ash.html
 [what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
