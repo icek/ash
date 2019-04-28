@@ -1,4 +1,6 @@
 # ash
+[![Build Status](https://travis-ci.com/icek/ash.svg?branch=master)](https://travis-ci.com/icek/ash)
+
 A Typescript port of [Ash Framework], 
 an entity framework for game development 
 by [Richard Lord]
