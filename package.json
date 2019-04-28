@@ -30,6 +30,9 @@
   "files": [
     "dist/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "npm-run-all build:clean build:rollup build:prettier",
     "build:clean": "rimraf dist",
