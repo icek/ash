@@ -21,7 +21,9 @@
     "url": "https://github.com/icek/ash/issues"
   },
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
-  "contributors": [],
+  "contributors": [
+    "Andres Alva <andresa88@gmail.com>"
+  ],
   "main": "dist/ash.js",
   "browser": "dist/ash.min.js",
   "module": "dist/ash.mjs",
