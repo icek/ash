@@ -60,10 +60,12 @@
     "test-watch-changed": "jest --watch",
     "pretest-coverage": "rimraf reports",
     "test-coverage": "jest --coverage",
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "prepack": "rimraf ash-*.tgz"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
+    "coveralls": "^3.0.3",
     "dts-bundle-generator": "^3.0.0",
     "echo-cli": "^1.0.8",
     "jest": "^24.7.1",

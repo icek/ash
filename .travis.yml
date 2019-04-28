@@ -11,7 +11,7 @@ cache:
 
 script:
   - npm run tslint
-  - npm run test-coverage
+  - npm run coveralls
   - npm run dist
   - npm pack
   - npm run docs
