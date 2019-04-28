@@ -48,11 +48,12 @@
     "docs:clean": "rimraf docs",
     "docs:typedoc": "typedoc --options typedoc.json ./src/index.ts",
     "tslint": "tslint -p tsconfig.json",
-    "pretest": "rimraf reports",
+    "pretest": "jest --clearCache",
     "test": "jest",
     "test-watch": "jest --watchAll",
     "test-changed": "jest -o",
     "test-watch-changed": "jest --watch",
+    "pretest-coverage": "rimraf reports",
     "test-coverage": "jest --coverage",
     "prepack": "rimraf ash-*.tgz"
   },
@@ -81,7 +82,7 @@
       "<rootDir>/tests"
     ],
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.ts$": "ts-jest"
     },
     "testRegex": ".*\\.(test|spec)\\.ts$",
     "moduleFileExtensions": [
@@ -90,7 +91,7 @@
       "json"
     ],
     "moduleNameMapper": {
-      "ash": "<rootDir>/src"
+      "^ash$": "<rootDir>/src"
     },
     "globals": {
       "ts-jest": {
