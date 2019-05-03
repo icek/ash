@@ -28,7 +28,10 @@ deploy:
     skip_cleanup: true
     api_key: $GITHUB_TOKEN
     file_glob: true
-    file: ash.ts-ash-*.tgz
+    file:
+      - dist/*.js
+      - dist/*.mjs
+      - dist/*.ts
     on:
       tags: true
 

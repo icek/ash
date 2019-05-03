@@ -18,7 +18,8 @@ Using yarn:
 
 ## Examples
 
-- [Asteroids] ([Source])
+- [Asteroids (SVG version)] ([Source](source-svg))
+- [Asteroids (PIXI version)] ([Source](source-pixi))
 
 ## Documentation
 
@@ -168,8 +169,10 @@ as used browser and your environment can provide.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
-[Asteroids]: http://icek.github.io/asteroids
-[Source]: https://github.com/icek/asteroids
+[Asteroids (SVG version)]: http://icek.github.io/asteroids
+[Asteroids (PIXI version)]: http://icek.github.io/asteroids-pixi
+[source-svg]: https://github.com/icek/asteroids
+[source-pixi]: https://github.com/icek/asteroids-pixi
 [api]: https://icek.github.io/ash
 [intro]: http://www.richardlord.net/blog/ecs/introducing-ash.html
 [what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
