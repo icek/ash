@@ -28,8 +28,8 @@ import { NodeClassType } from '../types';
 export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
   protected nodeList:NodeList<TNode> | null = null;
   protected nodeClass:NodeClassType<TNode>;
-  protected nodeAdded?:(node:Node<TNode>) => void;
-  protected nodeRemoved?:(node:Node<TNode>) => void;
+  protected nodeAdded?:(node:TNode) => void;
+  protected nodeRemoved?:(node:TNode) => void;
 
   constructor(nodeClass:NodeClassType<TNode>) {
     super();
@@ -40,7 +40,7 @@ export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends Sys
   public addToEngine(engine:Engine):void {
     this.nodeList = engine.getNodeList<TNode>(this.nodeClass);
     if(this.nodeAdded) {
-      for(let node:Node<TNode> | null = this.nodeList.head; node; node = node.next) {
+      for(let node:TNode | null = this.nodeList.head; node; node = node.next) {
         this.nodeAdded(node);
       }
       this.nodeList.nodeAdded.add(this.nodeAdded);
@@ -61,10 +61,10 @@ export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends Sys
   }
 
   public update(time:number):void {
-    for(let node:Node<TNode> | null = this.nodeList!.head; node; node = node.next) {
+    for(let node:TNode | null = this.nodeList!.head; node; node = node.next) {
       this.updateNode(node, time);
     }
   }
 
-  abstract updateNode(node:Node<TNode>, delta:number):void;
+  abstract updateNode(node:TNode, delta:number):void;
 }
