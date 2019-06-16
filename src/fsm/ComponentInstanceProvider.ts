@@ -1,4 +1,4 @@
-import ComponentProvider from './ComponentProvider';
+import { ComponentProvider } from './ComponentProvider';
 
 /**
  * This component provider always returns the same instance of the component. The instance

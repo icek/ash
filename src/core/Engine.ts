@@ -3,7 +3,7 @@ import { ClassType, NodeClassType } from '../types';
 import ComponentMatchingFamily from './ComponentMatchingFamily';
 import Entity from './Entity';
 import EntityList from './EntityList';
-import Family from './Family';
+import { Family } from './Family';
 import Node from './Node';
 import NodeList from './NodeList';
 import System from './System';

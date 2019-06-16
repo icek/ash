@@ -1,7 +1,7 @@
 import System from '../core/System';
 import { ClassType } from '../types';
 import DynamicSystemProvider from './DynamicSystemProvider';
-import SystemProvider from './SystemProvider';
+import { SystemProvider } from './SystemProvider';
 import StateSystemMapping from './StateSystemMapping';
 import SystemInstanceProvider from './SystemInstanceProvider';
 import SystemSingletonProvider from './SystemSingletonProvider';

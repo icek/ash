@@ -4,7 +4,8 @@
  * ComponentTypeProvider, ComponentInstanceProvider and ComponentSingletonProvider. Developers
  * may wish to create more.
  */
-interface ComponentProvider<TComponent> {
+// eslint-disable-next-line import/prefer-default-export
+export interface ComponentProvider<TComponent> {
   /**
    * Used to request a component from the provider.
    *
@@ -26,5 +27,3 @@ interface ComponentProvider<TComponent> {
    */
   identifier:any;
 }
-
-export default ComponentProvider;

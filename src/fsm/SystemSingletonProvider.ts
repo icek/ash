@@ -1,6 +1,6 @@
 import System from '../core/System';
 import { ClassType } from '../types';
-import SystemProvider from './SystemProvider';
+import { SystemProvider } from './SystemProvider';
 
 /**
  * This System provider always returns the same instance of the System. The instance

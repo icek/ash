@@ -1,7 +1,7 @@
 import System from '../core/System';
 import { ClassType } from '../types';
 import EngineState from './EngineState';
-import SystemProvider from './SystemProvider';
+import { SystemProvider } from './SystemProvider';
 
 export default class StateSystemMapping<TSystem extends System> {
   private creatingState:EngineState;

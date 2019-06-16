@@ -1,4 +1,4 @@
-import ComponentProvider from './ComponentProvider';
+import { ComponentProvider } from './ComponentProvider';
 
 /**
  * This component provider calls a function to get the component instance. The function must

@@ -1,7 +1,7 @@
 import { ClassType, NodeClassType } from '../types';
 import Engine from './Engine';
 import Entity from './Entity';
-import Family from './Family';
+import { Family } from './Family';
 import Node from './Node';
 import NodeList from './NodeList';
 import NodePool from './NodePool';

@@ -4,7 +4,7 @@ import ComponentSingletonProvider from './ComponentSingletonProvider';
 import ComponentTypeProvider from './ComponentTypeProvider';
 import DynamicComponentProvider from './DynamicComponentProvider';
 import EntityState from './EntityState';
-import ComponentProvider from './ComponentProvider';
+import { ComponentProvider } from './ComponentProvider';
 
 /**
  * Used by the EntityState class to create the mappings of components to providers via a fluent interface.

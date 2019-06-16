@@ -1,5 +1,5 @@
 import { ClassType } from '../types';
-import ComponentProvider from './ComponentProvider';
+import { ComponentProvider } from './ComponentProvider';
 
 /**
  * This component provider always returns a new instance of a component. An instance

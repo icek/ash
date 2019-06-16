@@ -1,5 +1,5 @@
 import Signal1 from '../signals/Signal1';
-import TickProvider from './TickProvider';
+import { TickProvider } from './TickProvider';
 
 export default class RAFTickProvider extends Signal1<number> implements TickProvider {
   private rafId:number = 0;

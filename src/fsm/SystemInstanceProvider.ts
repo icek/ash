@@ -1,5 +1,5 @@
 import System from '../core/System';
-import SystemProvider from './SystemProvider';
+import { SystemProvider } from './SystemProvider';
 
 /**
  * This System provider always returns the same instance of the component. The system

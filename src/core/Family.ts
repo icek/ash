@@ -8,7 +8,8 @@ import NodeList from './NodeList';
  * in the Engine object). Most developers don't need to use this since the default implementation
  * is used by default and suits most needs.
  */
-interface Family<TNode extends Node<any>> {
+// eslint-disable-next-line import/prefer-default-export
+export interface Family<TNode extends Node<any>> {
   /**
    * Returns the NodeList managed by this class. This should be a reference that remains valid always
    * since it is retained and reused by Systems that use the list. i.e. never recreate the list,
@@ -47,5 +48,3 @@ interface Family<TNode extends Node<any>> {
    */
   cleanUp():void;
 }
-
-export default Family;

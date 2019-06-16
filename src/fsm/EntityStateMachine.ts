@@ -1,7 +1,7 @@
 import Entity from '../core/Entity';
 import { ClassType } from '../types';
 import EntityState from './EntityState';
-import ComponentProvider from './ComponentProvider';
+import { ComponentProvider } from './ComponentProvider';
 
 /**
  * This is a state machine for an entity. The state machine manages a set of states,

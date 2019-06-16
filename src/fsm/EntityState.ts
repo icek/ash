@@ -1,5 +1,5 @@
 import { ClassType } from '../types';
-import ComponentProvider from './ComponentProvider';
+import { ComponentProvider } from './ComponentProvider';
 import StateComponentMapping from './StateComponentMapping';
 
 /**

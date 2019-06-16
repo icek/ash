@@ -22,7 +22,6 @@ module.exports = {
     'max-len': [2, 120],
     'no-restricted-syntax': ['error', 'WithStatement'],
     'class-methods-use-this': 'off',
-    'no-undef': 'off',
     'no-param-reassign': ['error', { 'props': false }],
 
     '@typescript-eslint/indent': ['error', 2],

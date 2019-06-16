@@ -1,6 +1,6 @@
 import Engine from '../core/Engine';
 import EngineState from './EngineState';
-import SystemProvider from './SystemProvider';
+import { SystemProvider } from './SystemProvider';
 
 /**
  * This is a state machine for the Engine. The state machine manages a set of states,
