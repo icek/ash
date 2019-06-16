@@ -1,8 +1,9 @@
-import { Signal1 } from '../signals/Signal1';
-import { ITickProvider } from './ITickProvider';
+import Signal1 from '../signals/Signal1';
+import TickProvider from './TickProvider';
 
-export class RAFTickProvider extends Signal1<number> implements ITickProvider {
+export default class RAFTickProvider extends Signal1<number> implements TickProvider {
   private rafId:number = 0;
+
   private previousTime:number = 0;
 
   public start():void {

@@ -2,24 +2,30 @@
  * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
  */
 
-import { ListenerNode } from './ListenerNode';
-import { ListenerNodePool } from './ListenerNodePool';
+import ListenerNode from './ListenerNode';
+import ListenerNodePool from './ListenerNodePool';
 
 /**
  * The base class for all the signal classes.
  */
-export abstract class SignalBase<TListener> {
+export default abstract class SignalBase<TListener> {
   protected head:ListenerNode<TListener> | null = null;
+
   protected tail:ListenerNode<TListener> | null = null;
 
   private nodes:Map<TListener, ListenerNode<TListener>>;
+
   private listenerNodePool:ListenerNodePool<TListener>;
+
   private toAddHead:ListenerNode<TListener> | null = null;
+
   private toAddTail:ListenerNode<TListener> | null = null;
+
   private dispatching:boolean = false;
+
   private pNumListeners:number = 0;
 
-  constructor() {
+  public constructor() {
     this.nodes = new Map<TListener, ListenerNode<TListener>>();
     this.listenerNodePool = new ListenerNodePool<TListener>();
   }
@@ -30,8 +36,8 @@ export abstract class SignalBase<TListener> {
 
   protected endDispatch():void {
     this.dispatching = false;
-    if(this.toAddHead) {
-      if(!this.head) {
+    if (this.toAddHead) {
+      if (!this.head) {
         this.head = this.toAddHead;
         this.tail = this.toAddTail;
       } else {
@@ -50,7 +56,7 @@ export abstract class SignalBase<TListener> {
   }
 
   public add(listener:TListener):void {
-    if(this.nodes.has(listener)) {
+    if (this.nodes.has(listener)) {
       return;
     }
 
@@ -61,7 +67,7 @@ export abstract class SignalBase<TListener> {
   }
 
   public addOnce(listener:TListener):void {
-    if(this.nodes.has(listener)) {
+    if (this.nodes.has(listener)) {
       return;
     }
 
@@ -73,49 +79,50 @@ export abstract class SignalBase<TListener> {
   }
 
   protected addNode(node:ListenerNode<TListener>):void {
-    if(this.dispatching) {
-      if(!this.toAddHead) {
-        this.toAddHead = this.toAddTail = node;
+    if (this.dispatching) {
+      if (!this.toAddHead) {
+        this.toAddHead = node;
+        this.toAddTail = node;
       } else {
         this.toAddTail!.next = node;
         node.previous = this.toAddTail;
         this.toAddTail = node;
       }
+    } else if (!this.head) {
+      this.head = node;
+      this.tail = node;
     } else {
-      if(!this.head) {
-        this.head = this.tail = node;
-      } else {
-        this.tail!.next = node;
-        node.previous = this.tail;
-        this.tail = node;
-      }
+      this.tail!.next = node;
+      node.previous = this.tail;
+      this.tail = node;
     }
+
     this.pNumListeners += 1;
   }
 
   public remove(listener:TListener):void {
     const node:ListenerNode<TListener> | null = this.nodes.get(listener) || null;
-    if(node) {
-      if(this.head === node) {
+    if (node) {
+      if (this.head === node) {
         this.head = this.head.next;
       }
-      if(this.tail === node) {
+      if (this.tail === node) {
         this.tail = this.tail.previous;
       }
-      if(this.toAddHead === node) {
+      if (this.toAddHead === node) {
         this.toAddHead = this.toAddHead.next;
       }
-      if(this.toAddTail === node) {
+      if (this.toAddTail === node) {
         this.toAddTail = this.toAddTail.previous;
       }
-      if(node.previous) {
+      if (node.previous) {
         node.previous.next = node.next;
       }
-      if(node.next) {
+      if (node.next) {
         node.next.previous = node.previous;
       }
       this.nodes.delete(listener);
-      if(this.dispatching) {
+      if (this.dispatching) {
         this.listenerNodePool.cache(node);
       } else {
         this.listenerNodePool.dispose(node);
@@ -125,7 +132,7 @@ export abstract class SignalBase<TListener> {
   }
 
   public removeAll():void {
-    while(this.head) {
+    while (this.head) {
       const node:ListenerNode<TListener> = this.head;
       this.head = this.head.next;
       this.nodes.delete(node.listener!);

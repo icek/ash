@@ -23,11 +23,11 @@
  */
 import { ClassType } from '../types';
 
-export class ComponentPool {
+export default class ComponentPool {
   private static pools:Map<ClassType<any>, any[]> = new Map<ClassType<any>, any[]>();
 
   private static getPool<T>(componentClass:ClassType<T>):T[] {
-    if(ComponentPool.pools.has(componentClass)) {
+    if (ComponentPool.pools.has(componentClass)) {
       return ComponentPool.pools.get(componentClass)!;
     }
 
@@ -40,16 +40,16 @@ export class ComponentPool {
   /**
    * Get an object from the pool.
    *
-   * @param componentClass The type of component wanted.
+   * @param ComponentClass The type of component wanted.
    * @return The component.
    */
-  public static get<T>(componentClass:ClassType<T>):T {
-    const pool:T[] = ComponentPool.getPool(componentClass);
-    if(pool.length > 0) {
+  public static get<T>(ComponentClass:ClassType<T>):T {
+    const pool:T[] = ComponentPool.getPool(ComponentClass);
+    if (pool.length > 0) {
       return pool.pop()!;
     }
 
-    return new componentClass();
+    return new ComponentClass();
   }
 
   /**
@@ -57,8 +57,8 @@ export class ComponentPool {
    *
    * @param component The component to return to the pool.
    */
-  public static dispose<T>(component:T):void {
-    if(component) {
+  public static dispose<T extends object>(component:T):void {
+    if (component) {
       const type:ClassType<T> = component.constructor.prototype.constructor;
       const pool:T[] = ComponentPool.getPool(type);
       pool[pool.length] = component;

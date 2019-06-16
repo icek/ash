@@ -1,16 +1,16 @@
-import { IComponentProvider } from './IComponentProvider';
-import { StateComponentMapping } from './StateComponentMapping';
 import { ClassType } from '../types';
+import ComponentProvider from './ComponentProvider';
+import StateComponentMapping from './StateComponentMapping';
 
 /**
  * Represents a state for an EntityStateMachine. The state contains any number of ComponentProviders which
  * are used to add components to the entity when this state is entered.
  */
-export class EntityState {
+export default class EntityState {
   /**
    * @private
    */
-  public providers:Map<ClassType<any>, IComponentProvider<any>> = new Map<ClassType<any>, IComponentProvider<any>>();
+  public providers:Map<ClassType<any>, ComponentProvider<any>> = new Map<ClassType<any>, ComponentProvider<any>>();
 
   /**
    * Add a new ComponentMapping to this state. The mapping is a utility class that is used to
@@ -29,7 +29,7 @@ export class EntityState {
    * @param type The type of component to get the provider for
    * @return The ComponentProvider
    */
-  public get<TComponent>(type:ClassType<TComponent>):IComponentProvider<TComponent> | null {
+  public get<TComponent>(type:ClassType<TComponent>):ComponentProvider<TComponent> | null {
     return this.providers.get(type) || null;
   }
 

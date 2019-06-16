@@ -1,21 +1,32 @@
-import { ClassType, Engine, Entity, IFamily, NodeList } from 'ash';
-import { MockNode } from './MockNode';
+import {
+  ClassType,
+  Engine,
+  Entity,
+  Family,
+  NodeList,
+} from '../../src';
+import MockNode from './MockNode';
 
-export class MockFamily implements IFamily<MockNode> {
+export default class MockFamily implements Family<MockNode> {
   public static instances:MockFamily[] = [];
 
   public newEntityCalls:number = 0;
+
   public removeEntityCalls:number = 0;
+
   public componentAddedCalls:number = 0;
+
   public componentRemovedCalls:number = 0;
+
   public cleanUpCalls:number = 0;
+
   private pNodeList:NodeList<MockNode> = new NodeList<MockNode>();
 
   public static reset():void {
     MockFamily.instances = [];
   }
 
-  constructor(nodeClass:ClassType<any>, engine:Engine) {
+  public constructor(nodeClass:ClassType<any>, engine:Engine) {
     MockFamily.instances.push(this);
   }
 
@@ -24,22 +35,22 @@ export class MockFamily implements IFamily<MockNode> {
   }
 
   public newEntity(entity:Entity):void {
-    this.newEntityCalls++;
+    this.newEntityCalls += 1;
   }
 
   public removeEntity(entity:Entity):void {
-    this.removeEntityCalls++;
+    this.removeEntityCalls += 1;
   }
 
   public componentAddedToEntity(entity:Entity, componentClass:ClassType<any>):void {
-    this.componentAddedCalls++;
+    this.componentAddedCalls += 1;
   }
 
   public componentRemovedFromEntity(entity:Entity, componentClass:ClassType<any>):void {
-    this.componentRemovedCalls++;
+    this.componentRemovedCalls += 1;
   }
 
   public cleanUp():void {
-    this.cleanUpCalls++;
+    this.cleanUpCalls += 1;
   }
 }

@@ -36,23 +36,19 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm-run-all build:clean build:rollup build:prettier",
+    "build": "npm-run-all build:clean build:rollup",
     "build:clean": "rimraf dist",
     "build:rollup": "rollup -c",
-    "build:prettier": "prettier --write './dist/ash?(.|.es5).?(m)js' --loglevel error",
-    "predts": "echo-cli '\nBundling typings...'",
-    "dts": "npm-run-all dts:bundle dts:clean dts:prettier dts:tslint",
+    "dts": "npm-run-all dts:bundle dts:clean",
     "dts:bundle": "dts-bundle-generator -o dist/ash.d.ts --umd-module-name ash dist/types/index.d.ts",
     "dts:clean": "rimraf dist/types",
-    "dts:prettier": "prettier --write 'dist/ash.d.ts' --loglevel error",
-    "dts:tslint": "tslint -c tslint.json --fix dist/ash.d.ts",
-    "predist": "echo-cli '======= Build start ======='",
     "dist": "npm-run-all build dts",
-    "postdist": "echo-cli '\n======= Build end ======='",
     "docs": "npm-run-all docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
     "docs:typedoc": "typedoc --options typedoc.json ./src/index.ts",
-    "tslint": "tslint -p tsconfig.json",
+    "lint": "npm-run-all lint:src lint:tests",
+    "lint:src": "eslint ./src/**/*.ts",
+    "lint:tests": "eslint ./tests/**/*.ts",
     "pretest": "jest --clearCache",
     "test": "jest",
     "test-watch": "jest --watchAll",
@@ -64,25 +60,27 @@
     "prepack": "rimraf ash-*.tgz"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "coveralls": "^3.0.3",
-    "dts-bundle-generator": "^3.0.0",
-    "echo-cli": "^1.0.8",
-    "jest": "^24.7.1",
+    "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.10.2",
+    "@typescript-eslint/parser": "^1.10.2",
+    "coveralls": "^3.0.4",
+    "dts-bundle-generator": "^3.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-import-resolver-jest": "^2.1.1",
+    "eslint-import-resolver-typescript": "^1.1.1",
+    "eslint-plugin-import": "^2.17.3",
+    "jest": "^24.8.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.17.0",
-    "prettier-tslint": "^0.4.2",
     "rimraf": "^2.6.3",
-    "rollup": "^1.10.1",
-    "rollup-plugin-terser": "^4.0.4",
-    "rollup-plugin-typescript2": "^0.21.0",
+    "rollup": "^1.15.6",
+    "rollup-plugin-terser": "^5.0.0",
+    "rollup-plugin-typescript2": "^0.21.1",
     "touch": "^3.1.0",
     "ts-jest": "^24.0.2",
-    "tslib": "^1.9.3",
-    "tslint": "^5.16.0",
-    "tslint-config-airbnb-base": "^0.3.0",
+    "tslib": "^1.10.0",
     "typedoc": "^0.14.2",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.2"
   },
   "jest": {
     "roots": [
@@ -99,11 +97,6 @@
     ],
     "moduleNameMapper": {
       "^ash$": "<rootDir>/src"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "./tests/tsconfig.json"
-      }
     }
   }
 }

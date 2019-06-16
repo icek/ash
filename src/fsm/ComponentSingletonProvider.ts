@@ -1,21 +1,22 @@
 import { ClassType } from '../types';
-import { IComponentProvider } from './IComponentProvider';
+import ComponentProvider from './ComponentProvider';
 
 /**
  * This component provider always returns the same instance of the component. The instance
  * is created when first required and is of the type passed in to the constructor.
  */
-export class ComponentSingletonProvider<TComponent> implements IComponentProvider<TComponent> {
-  private componentType:ClassType<TComponent>;
+export default class ComponentSingletonProvider<TComponent> implements ComponentProvider<TComponent> {
+  private ComponentType:ClassType<TComponent>;
+
   private instance?:TComponent;
 
   /**
    * Constructor
    *
-   * @param type The type of the single instance
+   * @param ComponentType The type of the single instance
    */
-  constructor(type:ClassType<TComponent>) {
-    this.componentType = type;
+  public constructor(ComponentType:ClassType<TComponent>) {
+    this.ComponentType = ComponentType;
   }
 
   /**
@@ -24,8 +25,8 @@ export class ComponentSingletonProvider<TComponent> implements IComponentProvide
    * @return The single instance
    */
   public getComponent():TComponent {
-    if(!this.instance) {
-      this.instance = new this.componentType();
+    if (!this.instance) {
+      this.instance = new this.ComponentType();
     }
 
     return this.instance;

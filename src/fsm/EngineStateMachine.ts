@@ -1,21 +1,23 @@
-import { EngineState } from './EngineState';
-import { ISystemProvider } from './ISystemProvider';
-import { Engine } from '../core/Engine';
+import Engine from '../core/Engine';
+import EngineState from './EngineState';
+import SystemProvider from './SystemProvider';
 
 /**
  * This is a state machine for the Engine. The state machine manages a set of states,
  * each of which has a set of System providers. When the state machine changes the state, it removes
  * Systems associated with the previous state and adds Systems associated with the new state.
  */
-export class EngineStateMachine {
+export default class EngineStateMachine {
   public engine:Engine;
+
   private states:Map<string, EngineState>;
+
   private currentState?:EngineState;
 
   /**
    * Constructor. Creates an SystemStateMachine.
    */
-  constructor(engine:Engine) {
+  public constructor(engine:Engine) {
     this.engine = engine;
     this.states = new Map();
   }
@@ -55,31 +57,31 @@ export class EngineStateMachine {
    */
   public changeState(name:string):void {
     const newState:EngineState | undefined = this.states.get(name);
-    if(!newState) {
-      throw(new Error(`Engine state ${name} doesn't exist`));
+    if (!newState) {
+      throw new Error(`Engine state ${name} doesn't exist`);
     }
-    if(newState === this.currentState) {
+    if (newState === this.currentState) {
       return;
     }
-    const toAdd:ISystemProvider<any>[] = [];
+    const toAdd:SystemProvider<any>[] = [];
     let id:any;
-    for(const provider of newState.providers) {
+    for (const provider of newState.providers) {
       id = provider.identifier;
       toAdd[id] = provider;
     }
-    if(this.currentState) {
-      for(const provider of this.currentState.providers) {
+    if (this.currentState) {
+      for (const provider of this.currentState.providers) {
         id = provider.identifier;
-        const other:ISystemProvider<any> = toAdd[id];
+        const other:SystemProvider<any> = toAdd[id];
 
-        if(other) {
+        if (other) {
           delete toAdd[id];
         } else {
           this.engine.removeSystem(provider.getSystem());
         }
       }
     }
-    for(const provider of toAdd) {
+    for (const provider of toAdd) {
       this.engine.addSystem(provider.getSystem(), provider.priority);
     }
     this.currentState = newState;

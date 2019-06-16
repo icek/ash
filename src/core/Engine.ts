@@ -1,24 +1,27 @@
-import { Signal0 } from '../signals/Signal0';
+import Signal0 from '../signals/Signal0';
 import { ClassType, NodeClassType } from '../types';
-import { ComponentMatchingFamily } from './ComponentMatchingFamily';
-import { Entity } from './Entity';
-import { EntityList } from './EntityList';
-import { IFamily } from './IFamily';
-import { Node } from './Node';
-import { NodeList } from './NodeList';
-import { System } from './System';
-import { SystemList } from './SystemList';
+import ComponentMatchingFamily from './ComponentMatchingFamily';
+import Entity from './Entity';
+import EntityList from './EntityList';
+import Family from './Family';
+import Node from './Node';
+import NodeList from './NodeList';
+import System from './System';
+import SystemList from './SystemList';
 
 
 /**
  * The Engine class is the central point for creating and managing your game state. Add
  * entities and systems to the engine, and fetch families of nodes from the engine.
  */
-export class Engine {
+export default class Engine {
   private entityNames:Map<string, Entity>;
+
   private entityList:EntityList;
+
   private systemList:SystemList;
-  private families:Map<NodeClassType<any>, IFamily<any>>;
+
+  private families:Map<NodeClassType<any>, Family<any>>;
 
   /**
    * Indicates if the engine is currently in its update loop.
@@ -39,13 +42,13 @@ export class Engine {
    *
    * The class must implement the Family interface.
    */
-  public familyClass:ClassType<IFamily<any>> = ComponentMatchingFamily;
+  public FamilyClass:ClassType<Family<any>> = ComponentMatchingFamily;
 
-  constructor() {
+  public constructor() {
     this.entityList = new EntityList();
     this.entityNames = new Map<string, Entity>();
     this.systemList = new SystemList();
-    this.families = new Map<NodeClassType<any>, IFamily<any>>();
+    this.families = new Map<NodeClassType<any>, Family<any>>();
     this.updateComplete = new Signal0();
   }
 
@@ -55,15 +58,15 @@ export class Engine {
    * @param entity The entity to add.
    */
   public addEntity(entity:Entity):void {
-    if(this.entityNames.has(entity.name)) {
-      throw new Error('The entity name ' + entity.name + ' is already in use by another entity.');
+    if (this.entityNames.has(entity.name)) {
+      throw new Error(`The entity name ${entity.name} is already in use by another entity.`);
     }
     this.entityList.add(entity);
     this.entityNames.set(entity.name, entity);
     entity.componentAdded.add(this.componentAdded);
     entity.componentRemoved.add(this.componentRemoved);
     entity.nameChanged.add(this.entityNameChanged);
-    for(const family of this.families.values()) {
+    for (const family of this.families.values()) {
       family.newEntity(entity);
     }
   }
@@ -77,7 +80,7 @@ export class Engine {
     entity.componentAdded.remove(this.componentAdded);
     entity.componentRemoved.remove(this.componentRemoved);
     entity.nameChanged.remove(this.entityNameChanged);
-    for(const family of this.families.values()) {
+    for (const family of this.families.values()) {
       family.removeEntity(entity);
     }
     this.entityNames.delete(entity.name);
@@ -85,7 +88,7 @@ export class Engine {
   }
 
   private entityNameChanged = (entity:Entity, oldName:string) => {
-    if(this.entityNames.get(oldName) === entity) {
+    if (this.entityNames.get(oldName) === entity) {
       this.entityNames.delete(oldName);
       this.entityNames.set(entity.name, entity);
     }
@@ -105,7 +108,7 @@ export class Engine {
    * Remove all entities from the engine.
    */
   public removeAllEntities():void {
-    while(this.entityList.head) {
+    while (this.entityList.head) {
       this.removeEntity(this.entityList.head);
     }
   }
@@ -115,7 +118,7 @@ export class Engine {
    */
   public get entities():Entity[] {
     const entities:Entity[] = [];
-    for(let entity:Entity | null = this.entityList.head; entity; entity = entity.next) {
+    for (let entity:Entity | null = this.entityList.head; entity; entity = entity.next) {
       entities[entities.length] = entity;
     }
 
@@ -126,7 +129,7 @@ export class Engine {
    * @private
    */
   private componentAdded = (entity:Entity, componentClass:ClassType<any>) => {
-    for(const family of this.families.values()) {
+    for (const family of this.families.values()) {
       family.componentAddedToEntity(entity, componentClass);
     }
   };
@@ -135,7 +138,7 @@ export class Engine {
    * @private
    */
   private componentRemoved = (entity:Entity, componentClass:ClassType<any>) => {
-    for(const family of this.families.values()) {
+    for (const family of this.families.values()) {
       family.componentRemovedFromEntity(entity, componentClass);
     }
   };
@@ -153,12 +156,12 @@ export class Engine {
    * @return A linked list of all nodes of this type from all entities in the engine.
    */
   public getNodeList<TNode extends Node<any>>(nodeClass:NodeClassType<TNode>):NodeList<TNode> {
-    if(this.families.has(nodeClass)) {
+    if (this.families.has(nodeClass)) {
       return this.families.get(nodeClass)!.nodeList;
     }
-    const family:IFamily<TNode> = new this.familyClass(nodeClass, this);
+    const family:Family<TNode> = new this.FamilyClass(nodeClass, this);
     this.families.set(nodeClass, family);
-    for(let entity:Entity | null = this.entityList.head; entity; entity = entity.next) {
+    for (let entity:Entity | null = this.entityList.head; entity; entity = entity.next) {
       family.newEntity(entity);
     }
 
@@ -176,7 +179,7 @@ export class Engine {
    * @param nodeClass The type of the node class if the list to be released.
    */
   public releaseNodeList<TNode extends Node<TNode>>(nodeClass:NodeClassType<TNode>):void {
-    if(this.families.has(nodeClass)) {
+    if (this.families.has(nodeClass)) {
       this.families.get(nodeClass)!.cleanUp();
     }
     this.families.delete(nodeClass);
@@ -216,7 +219,7 @@ export class Engine {
    */
   public get systems():System[] {
     const systems:System[] = [];
-    for(let system:System | null = this.systemList.head; system; system = system.next) {
+    for (let system:System | null = this.systemList.head; system; system = system.next) {
       systems[systems.length] = system;
     }
 
@@ -237,7 +240,7 @@ export class Engine {
    * Remove all systems from the engine.
    */
   public removeAllSystems():void {
-    while(this.systemList.head) {
+    while (this.systemList.head) {
       const system:System = this.systemList.head;
       this.systemList.head = this.systemList.head.next;
       system.previous = null;
@@ -258,7 +261,7 @@ export class Engine {
    */
   public update(time:number):void {
     this.updating = true;
-    for(let system:System | null = this.systemList.head; system; system = system.next) {
+    for (let system:System | null = this.systemList.head; system; system = system.next) {
       system.update(time);
     }
     this.updating = false;

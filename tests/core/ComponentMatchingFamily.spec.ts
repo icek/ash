@@ -1,4 +1,9 @@
-import { ComponentMatchingFamily, Engine, Entity, NodeList } from 'ash';
+import {
+  ComponentMatchingFamily,
+  Engine,
+  Entity,
+  NodeList,
+} from '../../src';
 import { MockComponent, MockComponent1, MockNode } from '../__mocks__';
 
 describe('ComponentMatchingFamily tests', () => {
@@ -90,7 +95,7 @@ describe('ComponentMatchingFamily tests', () => {
   it('NodeList contains only matching Entities', () => {
     const entities:Entity[] = [];
     const numTimes = 5;
-    for (let i = 0; i < numTimes; ++i) {
+    for (let i = 0; i < numTimes; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent());
       entities.push(entity);
@@ -108,7 +113,7 @@ describe('ComponentMatchingFamily tests', () => {
   it('NodeList contains all matching Entities', () => {
     const entities:Entity[] = [];
     const numTimes = 5;
-    for (let i = 0; i < numTimes; ++i) {
+    for (let i = 0; i < numTimes; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent());
       entities.push(entity);
@@ -135,9 +140,9 @@ describe('ComponentMatchingFamily tests', () => {
   });
 
   it('clean up sets next Node to null', () => {
-    const entities:Array<Entity> = [];
+    const entities:Entity[] = [];
     const numTimes = 5;
-    for (let i = 0; i < numTimes; ++i) {
+    for (let i = 0; i < numTimes; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent());
       entities.push(entity);

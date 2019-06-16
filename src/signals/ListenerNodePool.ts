@@ -1,15 +1,16 @@
-import { ListenerNode } from './ListenerNode';
+import ListenerNode from './ListenerNode';
 
 /**
  * This internal class maintains a pool of deleted listener nodes for reuse by framework. This reduces
  * the overhead from object creation and garbage collection.
  */
-export class ListenerNodePool<TListener> {
+export default class ListenerNodePool<TListener> {
   private tail:ListenerNode<TListener> | null = null;
+
   private cacheTail:ListenerNode<TListener> | null = null;
 
   public get():ListenerNode<TListener> {
-    if(this.tail) {
+    if (this.tail) {
       const node:ListenerNode<TListener> = this.tail;
       this.tail = this.tail.previous;
       node.previous = null;
@@ -35,7 +36,7 @@ export class ListenerNodePool<TListener> {
   }
 
   public releaseCache():void {
-    while(this.cacheTail) {
+    while (this.cacheTail) {
       const node:ListenerNode<TListener> = this.cacheTail;
       this.cacheTail = node.previous;
       node.next = null;

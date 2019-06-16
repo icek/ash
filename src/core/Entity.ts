@@ -1,4 +1,4 @@
-import { Signal2 } from '../signals/Signal2';
+import Signal2 from '../signals/Signal2';
 import { ClassType } from '../types';
 
 /**
@@ -22,45 +22,52 @@ import { ClassType } from '../types';
  * <p>All entities that have a position in the game world, will have an instance of the
  * position component. Systems operate on entities based on the components they have.</p>
  */
-export class Entity {
+export default class Entity {
   private static nameCount:number = 0;
 
   /**
    * Optional, give the entity a name. This can help with debugging and with serialising the entity.
    */
   private pName:string;
+
   /**
    * This signal is dispatched when a component is added to the entity.
    */
   public componentAdded:Signal2<Entity, ClassType<any>>;
+
   /**
    * This signal is dispatched when a component is removed from the entity.
    */
   public componentRemoved:Signal2<Entity, ClassType<any>>;
+
   /**
-   * Dispatched when the name of the entity changes. Used internally by the engine to track entities based on their names.
+   * Dispatched when the name of the entity changes.
+   * Used internally by the engine to track entities based on their names.
    */
   public nameChanged:Signal2<Entity, string>;
 
   public previous:Entity | null = null;
+
   public next:Entity | null = null;
+
   public components:Map<ClassType<any>, any>;
 
   /**
    * The constructor
    *
-   * @param name The name for the entity. If left blank, a default name is assigned with the form _entityN where N is an integer.
+   * @param name The name for the entity. If left blank, a default name is
+   * assigned with the form _entityN where N is an integer.
    */
-  constructor(name:string = '') {
+  public constructor(name:string = '') {
     this.componentAdded = new Signal2();
     this.componentRemoved = new Signal2();
     this.nameChanged = new Signal2();
     this.components = new Map<ClassType<any>, any>();
-    if(name) {
+    if (name) {
       this.pName = name;
     } else {
       Entity.nameCount += 1;
-      this.pName = '_entity' + Entity.nameCount;
+      this.pName = `_entity${Entity.nameCount}`;
     }
   }
 
@@ -73,7 +80,7 @@ export class Entity {
   }
 
   public set name(value:string) {
-    if(this.pName !== value) {
+    if (this.pName !== value) {
       const previous:string = this.pName;
       this.pName = value;
       this.nameChanged.dispatch(this, previous);
@@ -100,21 +107,22 @@ export class Entity {
    * ```
    */
 
-  public add<T>(component:T, componentClass:ClassType<T> | null = null):this {
-    if(!componentClass) {
-      componentClass = component.constructor.prototype.constructor;
+  public add<T extends object>(component:T, componentClass:ClassType<T> | null = null):this {
+    let cClass = componentClass;
+    if (!componentClass) {
+      cClass = component.constructor.prototype.constructor;
     }
 
-    if(!componentClass) {
+    if (!cClass) {
       throw new Error(`Unable to get type of component: ${component}`);
     }
 
-    if(this.components.has(componentClass)) {
-      this.remove(componentClass);
+    if (this.components.has(cClass)) {
+      this.remove(cClass);
     }
 
-    this.components.set(componentClass, component);
-    this.componentAdded.dispatch(this, componentClass);
+    this.components.set(cClass, component);
+    this.componentAdded.dispatch(this, cClass);
 
     return this;
   }
@@ -127,7 +135,7 @@ export class Entity {
    */
   public remove<T>(componentClass:ClassType<T>):T | null {
     const component:any = this.components.get(componentClass);
-    if(component) {
+    if (component) {
       this.components.delete(componentClass);
       this.componentRemoved.dispatch(this, componentClass);
 
@@ -154,7 +162,7 @@ export class Entity {
    */
   public getAll():any[] {
     const componentArray:any[] = [];
-    for(const value of this.components.values()) {
+    for (const value of this.components.values()) {
       componentArray.push(value);
     }
 

@@ -1,21 +1,21 @@
-import { System } from '../core/System';
-import { ISystemProvider } from './ISystemProvider';
+import System from '../core/System';
+import SystemProvider from './SystemProvider';
 
 /**
  * This System provider returns results of a method call. The method
  * is passed to the provider at initialisation.
  */
-export class DynamicSystemProvider<TSystem extends System> implements ISystemProvider<TSystem> {
+export default class DynamicSystemProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private method:() => TSystem;
-  private systemPriority:number = 0;
 
+  private systemPriority:number = 0;
 
   /**
    * Constructor
    *
    * @param method The method that returns the System instance;
    */
-  constructor(method:() => TSystem) {
+  public constructor(method:() => TSystem) {
     this.method = method;
   }
 

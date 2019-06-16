@@ -1,9 +1,10 @@
-import { Node, NodeList } from 'ash';
+import { Node, NodeList } from '../../src';
 
-export function toBeNodeList<TNode extends Node<TNode>>(received:NodeList<TNode>, ...expected:TNode[]) {
+// eslint-disable-next-line max-len
+export default function toBeNodeList<TNode extends Node<TNode>>(received:NodeList<TNode>, ...expected:TNode[]):{ pass:boolean; message:string } {
   let pass = true;
-  let index:number = 0;
-  for (let node:Node<TNode> | null = received.head; node; node = node.next, ++index) {
+  let index = 0;
+  for (let node:Node<TNode> | null = received.head; node; node = node.next, index += 1) {
     if (index >= expected.length) {
       pass = false;
       break;

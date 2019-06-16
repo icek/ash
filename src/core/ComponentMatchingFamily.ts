@@ -1,12 +1,13 @@
 import { ClassType, NodeClassType } from '../types';
-import { Engine } from './Engine';
-import { Entity } from './Entity';
-import { IFamily } from './IFamily';
-import { Node } from './Node';
-import { NodeList } from './NodeList';
-import { NodePool } from './NodePool';
+import Engine from './Engine';
+import Entity from './Entity';
+import Family from './Family';
+import Node from './Node';
+import NodeList from './NodeList';
+import NodePool from './NodePool';
 
-const ashProp:string = '__ash_types__';
+const ashProp = '__ash_types__';
+
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
  * nodes to/from the list as the entities and the components in the engine change.
@@ -14,12 +15,17 @@ const ashProp:string = '__ash_types__';
  * It uses the basic entity matching pattern of an entity system - entities are added to the list if
  * they contain components matching all the public properties of the node class.
  */
-export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFamily<TNode> {
+export default class ComponentMatchingFamily<TNode extends Node<TNode>> implements Family<TNode> {
   private nodes:NodeList<TNode>;
+
   private entities:Map<Entity, TNode>;
+
   private nodeClass:NodeClassType<TNode>;
+
   public components:Map<ClassType<any>, string>;
+
   private nodePool:NodePool<TNode>;
+
   private engine:Engine;
 
   /**
@@ -29,7 +35,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
    * @param nodeClass The type of node to create and manage a NodeList for.
    * @param engine The engine that this family is managing teh NodeList for.
    */
-  constructor(nodeClass:NodeClassType<TNode>, engine:Engine) {
+  public constructor(nodeClass:NodeClassType<TNode>, engine:Engine) {
     this.nodeClass = nodeClass;
     this.engine = engine;
     this.nodes = new NodeList<TNode>();
@@ -42,7 +48,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
 
     const types:Map<string, ClassType<any>> = (dummyNode.constructor as any)[ashProp];
 
-    for(const [className, classType] of types) {
+    for (const [className, classType] of types) {
       this.components.set(classType, className);
     }
   }
@@ -78,7 +84,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
    * remove it if so.
    */
   public componentRemovedFromEntity(entity:Entity, componentClass:ClassType<any>):void {
-    if(this.components.has(componentClass)) {
+    if (this.components.has(componentClass)) {
       this.removeIfMatch(entity);
     }
   }
@@ -96,9 +102,9 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
    * if it should be in this NodeList and adds it if so.
    */
   private addIfMatch(entity:Entity):void {
-    if(!this.entities.has(entity)) {
-      for(const componentClass of this.components.keys()) {
-        if(!entity.has(componentClass)) {
+    if (!this.entities.has(entity)) {
+      for (const componentClass of this.components.keys()) {
+        if (!entity.has(componentClass)) {
           return;
         }
       }
@@ -106,7 +112,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
       const node:TNode = this.nodePool.get();
       node.entity = entity;
 
-      for(const componentClass of this.components.keys()) {
+      for (const componentClass of this.components.keys()) {
         const key = this.components.get(componentClass)! as keyof TNode;
         node[key] = entity.get(componentClass);
       }
@@ -120,11 +126,11 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
    * Removes the entity if it is in this family's NodeList.
    */
   private removeIfMatch(entity:Entity):void {
-    if(this.entities.has(entity)) {
+    if (this.entities.has(entity)) {
       const node:TNode = this.entities.get(entity)!;
       this.entities.delete(entity);
       this.nodes.remove(node);
-      if(this.engine.updating) {
+      if (this.engine.updating) {
         this.nodePool.cache(node);
         this.engine.updateComplete.add(this.releaseNodePoolCache);
       } else {
@@ -146,7 +152,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
    * Removes all nodes from the NodeList.
    */
   public cleanUp():void {
-    for(let node:Node<TNode> | null = this.nodes.head; node; node = node.next) {
+    for (let node:Node<TNode> | null = this.nodes.head; node; node = node.next) {
       this.entities.delete(node.entity);
     }
     this.nodes.removeAll();
@@ -154,10 +160,11 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements IFami
 }
 
 export function keep(type:ClassType<any>):PropertyDecorator {
-  return (target:Object, propertyKey:string | symbol) => {
+  return (target:Record<string, any>, propertyKey:string | symbol) => {
     const ctor = target.constructor;
     let map:Map<string | symbol, ClassType<any>>;
-    if(ctor.hasOwnProperty(ashProp)) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (ctor.hasOwnProperty(ashProp)) {
       map = (ctor as any)[ashProp];
     } else {
       map = new Map();

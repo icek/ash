@@ -1,13 +1,11 @@
-// tslint:disable:no-magic-numbers
-
-import { Node, NodeList, NodePool } from 'ash';
-import { MockComponent, MockNode } from '../__mocks__';
+import { Node, NodeList, NodePool } from '../../src';
 import '../__matchers__';
+import { MockComponent, MockNode } from '../__mocks__';
 
 describe('NodeList tests', () => {
   let nodes:NodeList<MockNode>;
 
-  const sortFunction = (node1:MockNode, node2:MockNode) => node1.component.x - node2.component.x;
+  const sortFunction = (node1:MockNode, node2:MockNode):number => node1.component.x - node2.component.x;
 
   beforeEach(() => {
     nodes = new NodeList<MockNode>();
@@ -36,9 +34,9 @@ describe('NodeList tests', () => {
 
   it('all Nodes are covered during iteration', () => {
     let node:MockNode | null;
-    const nodeArray:Array<MockNode> = [];
+    const nodeArray:MockNode[] = [];
     const numNodes = 5;
-    for (let i:number = 0; i < numNodes; ++i) {
+    for (let i = 0; i < numNodes; i += 1) {
       node = new MockNode();
       nodeArray.push(node);
       nodes.add(node);
@@ -54,19 +52,20 @@ describe('NodeList tests', () => {
 
   it('removing current Node during iteration is valid', () => {
     let node:MockNode | null;
-    const nodeArray:Array<MockNode> = [];
+    const nodeArray:MockNode[] = [];
     const numNodes = 5;
-    for (let i:number = 0; i < numNodes; ++i) {
+    for (let i = 0; i < numNodes; i += 1) {
       node = new MockNode();
       nodeArray.push(node);
       nodes.add(node);
     }
 
-    let count:number = 0;
+    let count = 0;
     for (node = nodes.head; node; node = node.next) {
-      const index:number = nodeArray.indexOf(node);
+      const index = nodeArray.indexOf(node);
       nodeArray.splice(index, 1);
-      if (++count === 2) {
+      count += 1;
+      if (count === 2) {
         nodes.remove(node);
       }
     }
@@ -75,18 +74,19 @@ describe('NodeList tests', () => {
 
   it('removing next Node during iteration is valid', () => {
     let node:MockNode | null;
-    const nodeArray:Array<MockNode> = [];
-    for (let i:number = 0; i < 5; ++i) {
+    const nodeArray:MockNode[] = [];
+    for (let i = 0; i < 5; i += 1) {
       node = new MockNode();
       nodeArray.push(node);
       nodes.add(node);
     }
 
-    let count:number = 0;
+    let count = 0;
     for (node = nodes.head; node; node = node.next) {
       const index:number = nodeArray.indexOf(node);
       nodeArray.splice(index, 1);
-      if (++count === 2) {
+      count += 1;
+      if (count === 2) {
         nodes.remove(node.next!);
       }
     }

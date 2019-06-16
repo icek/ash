@@ -1,7 +1,7 @@
-import { Engine } from '../core/Engine';
-import { Node } from '../core/Node';
-import { NodeList } from '../core/NodeList';
-import { System } from '../core/System';
+import Engine from '../core/Engine';
+import Node from '../core/Node';
+import NodeList from '../core/NodeList';
+import System from '../core/System';
 import { NodeClassType } from '../types';
 
 /**
@@ -25,13 +25,16 @@ import { NodeClassType } from '../types';
  * ```
  */
 
-export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
+export default abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
   protected nodeList:NodeList<TNode> | null = null;
+
   protected nodeClass:NodeClassType<TNode>;
+
   protected nodeAdded?:(node:TNode) => void;
+
   protected nodeRemoved?:(node:TNode) => void;
 
-  constructor(nodeClass:NodeClassType<TNode>) {
+  public constructor(nodeClass:NodeClassType<TNode>) {
     super();
 
     this.nodeClass = nodeClass;
@@ -39,29 +42,29 @@ export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends Sys
 
   public addToEngine(engine:Engine):void {
     this.nodeList = engine.getNodeList<TNode>(this.nodeClass);
-    if(this.nodeAdded) {
-      for(let node:TNode | null = this.nodeList.head; node; node = node.next) {
+    if (this.nodeAdded) {
+      for (let node:TNode | null = this.nodeList.head; node; node = node.next) {
         this.nodeAdded(node);
       }
       this.nodeList.nodeAdded.add(this.nodeAdded);
     }
-    if(this.nodeRemoved) {
+    if (this.nodeRemoved) {
       this.nodeList.nodeRemoved.add(this.nodeRemoved);
     }
   }
 
-  public removeFromEngine(engine:Engine):void {
-    if(this.nodeAdded) {
+  public removeFromEngine():void {
+    if (this.nodeAdded) {
       this.nodeList!.nodeAdded.remove(this.nodeAdded);
     }
-    if(this.nodeRemoved) {
+    if (this.nodeRemoved) {
       this.nodeList!.nodeRemoved.remove(this.nodeRemoved);
     }
     this.nodeList = null;
   }
 
   public update(time:number):void {
-    for(let node:TNode | null = this.nodeList!.head; node; node = node.next) {
+    for (let node:TNode | null = this.nodeList!.head; node; node = node.next) {
       this.updateNode(node, time);
     }
   }

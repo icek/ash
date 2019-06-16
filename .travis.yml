@@ -10,7 +10,7 @@ cache:
     - node_modules
 
 script:
-  - npm run tslint
+  - npm run lint
   - npm run coveralls
   - npm run dist
   - npm pack

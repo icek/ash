@@ -1,30 +1,33 @@
 import { ClassType } from '../types';
-import { System } from './System';
+import System from './System';
 
 /**
  * Used internally, this is an ordered list of Systems for use by the engine update loop.
  */
-export class SystemList {
+export default class SystemList {
   public head:System | null = null;
+
   public tail:System | null = null;
 
   public add(system:System):void {
-    if(!this.head) {
-      this.head = this.tail = system;
-      system.next = system.previous = null;
+    if (!this.head) {
+      this.head = system;
+      this.tail = system;
+      system.next = null;
+      system.previous = null;
     } else {
       let node:System | null;
-      for(node = this.tail; node; node = node.previous) {
-        if(node.priority <= system.priority) {
+      for (node = this.tail; node; node = node.previous) {
+        if (node.priority <= system.priority) {
           break;
         }
       }
-      if(node === this.tail) {
+      if (node === this.tail) {
         this.tail!.next = system;
         system.previous = this.tail;
         system.next = null;
         this.tail = system;
-      } else if(!node) {
+      } else if (!node) {
         system.next = this.head;
         system.previous = null;
         this.head.previous = system;
@@ -39,18 +42,18 @@ export class SystemList {
   }
 
   public remove(system:System):void {
-    if(this.head === system) {
+    if (this.head === system) {
       this.head = this.head.next;
     }
-    if(this.tail === system) {
+    if (this.tail === system) {
       this.tail = this.tail.previous;
     }
 
-    if(system.previous) {
+    if (system.previous) {
       system.previous.next = system.next;
     }
 
-    if(system.next) {
+    if (system.next) {
       system.next.previous = system.previous;
     }
     // N.B. Don't set system.next and system.previous to null because
@@ -58,7 +61,7 @@ export class SystemList {
   }
 
   public removeAll():void {
-    while(this.head) {
+    while (this.head) {
       const system:System = this.head;
       this.head = this.head.next;
       system.previous = null;
@@ -68,8 +71,8 @@ export class SystemList {
   }
 
   public get<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
-    for(let system:System | null = this.head; system; system = system.next) {
-      if(system instanceof type) {
+    for (let system:System | null = this.head; system; system = system.next) {
+      if (system instanceof type) {
         return system as TSystem;
       }
     }

@@ -1,5 +1,4 @@
-// tslint:disable:no-magic-numbers
-import { Signal0 } from 'ash';
+import { Signal0 } from '../src';
 
 describe('Signals tests', () => {
   // let async:IAsync;
@@ -13,6 +12,22 @@ describe('Signals tests', () => {
     (signal as Signal0 | null) = null;
   });
 
+  // UTILITY FUNCTIONS
+
+  function dispatchSignal():void {
+    signal.dispatch();
+  }
+
+
+  function newEmptyHandler():() => {} {
+    return () => ({});
+  }
+
+
+  function failIfCalled():void {
+    expect(false).toBe(true);
+  }
+
   // it('new signal has null head', () => {
   //   assert.isNull(signal.head);
   // });
@@ -25,7 +40,7 @@ describe('Signals tests', () => {
   //   signal.add(async.add(newEmptyHandler(), 10));
   //   dispatchSignal();
   // });
-//
+  //
   it('add listener then listeners count is one', () => {
     signal.add(newEmptyHandler());
     expect(signal.numListeners).toEqual(1);
@@ -74,14 +89,14 @@ describe('Signals tests', () => {
   //   dispatchSignal();
   // });
 
-//    it( ' add2ListenersRemove2ndThenDispatchShouldCall1stNot2ndListener', () =>
-//        {
-//            signal.add( async.add( newEmptyHandler(), 10 ) );
-//            signal.add( failIfCalled );
-//            signal.remove( failIfCalled );
-//            dispatchSignal();
-//        }
-//    );
+  //    it( ' add2ListenersRemove2ndThenDispatchShouldCall1stNot2ndListener', () =>
+  //        {
+  //            signal.add( async.add( newEmptyHandler(), 10 ) );
+  //            signal.add( failIfCalled );
+  //            signal.remove( failIfCalled );
+  //            dispatchSignal();
+  //        }
+  //    );
 
   it('add 2 listeners then remove1 then listeners count is one', () => {
     signal.add(newEmptyHandler());
@@ -91,8 +106,10 @@ describe('Signals tests', () => {
   });
 
   it('add same listener twice should only add it once', () => {
-    let count:number = 0;
-    const func = () => ++count;
+    let count = 0;
+    const func = ():void => {
+      count += 1;
+    };
     signal.add(func);
     signal.add(func);
     dispatchSignal();
@@ -136,6 +153,11 @@ describe('Signals tests', () => {
   //   signal.add(failIfCalled);
   // }
 
+  function addListenerDuringDispatchToTestCount():void {
+    expect(signal.numListeners).toEqual(1);
+    signal.add(newEmptyHandler());
+    expect(signal.numListeners).toEqual(2);
+  }
 
   it('adding a listener during dispatch increments listeners count', () => {
     signal.add(addListenerDuringDispatchToTestCount);
@@ -143,90 +165,68 @@ describe('Signals tests', () => {
     expect(signal.numListeners).toEqual(2);
   });
 
-  function addListenerDuringDispatchToTestCount():void {
-    expect(signal.numListeners).toEqual(1);
-    signal.add(newEmptyHandler());
-    expect(signal.numListeners).toEqual(2);
-  }
-
-
   //    it( ' dispatch2Listeners2ndListenerRemoves1stThen1stListenerIsNotCalled', () =>
-//    {
-//        signal.add( async.add( removeFailListener, 10 ) );
-//        signal.add( failIfCalled );
-//        dispatchSignal();
-//    } );
-//
-//    function removeFailListener( ...args ):void
-//    {
-//        signal.remove( failIfCalled );
-//    }
-//
-//
-//    it( ' add2ListenersThenRemoveAllShouldLeaveNoListeners', () =>
-//        {
-//            signal.add( newEmptyHandler() );
-//            signal.add( newEmptyHandler() );
-//            signal.removeAll();
-//            assertThat( signal.head, nullValue() );
-//        }
-//    );
-//    it( ' addListenerThenRemoveAllThenAddAgainShouldAddListener', () =>
-//        {
-//            var handler:Function = newEmptyHandler();
-//            signal.add( handler );
-//            signal.removeAll();
-//            signal.add( handler );
-//            assertThat( signal.numListeners, equalTo( 1 ) );
-//        }
-//    );
-//    it( ' add2ListenersThenRemoveAllThenListenerCountIsZero', () =>
-//        {
-//            signal.add( newEmptyHandler() );
-//            signal.add( newEmptyHandler() );
-//            signal.removeAll();
-//            assertThat( signal.numListeners, equalTo( 0 ) );
-//        }
-//    );
-//    it( ' removeAllDuringDispatchShouldStopAll', () =>
-//    {
-//        signal.add( removeAllListeners );
-//        signal.add( failIfCalled );
-//        signal.add( newEmptyHandler() );
-//        dispatchSignal();
-//    } );
-//
-//    function removeAllListeners( ...args ):void
-//    {
-//        signal.removeAll();
-//    }
-//
-//    it( ' addOnceListenerThenDispatchShouldCallIt', () =>
-//        {
-//            signal.addOnce( async.add( newEmptyHandler(), 10 ) );
-//            dispatchSignal();
-//        }
-//    );
-//    it( ' addOnceListenerShouldBeRemovedAfterDispatch', () =>
-//    {
-//        signal.addOnce( newEmptyHandler() );
-//        dispatchSignal();
-//        assertThat( signal.head, nullValue() );
-//    } );
-//
-//    // //// UTILITY METHODS // ////
-//
-  function dispatchSignal():void {
-    signal.dispatch();
-  }
-
-
-  function newEmptyHandler():() => {} {
-    return () => ({});
-  }
-
-
-  function failIfCalled():void {
-    expect(false).toBe(true);
-  }
+  //    {
+  //        signal.add( async.add( removeFailListener, 10 ) );
+  //        signal.add( failIfCalled );
+  //        dispatchSignal();
+  //    } );
+  //
+  //    function removeFailListener( ...args ):void
+  //    {
+  //        signal.remove( failIfCalled );
+  //    }
+  //
+  //
+  //    it( ' add2ListenersThenRemoveAllShouldLeaveNoListeners', () =>
+  //        {
+  //            signal.add( newEmptyHandler() );
+  //            signal.add( newEmptyHandler() );
+  //            signal.removeAll();
+  //            assertThat( signal.head, nullValue() );
+  //        }
+  //    );
+  //    it( ' addListenerThenRemoveAllThenAddAgainShouldAddListener', () =>
+  //        {
+  //            var handler:Function = newEmptyHandler();
+  //            signal.add( handler );
+  //            signal.removeAll();
+  //            signal.add( handler );
+  //            assertThat( signal.numListeners, equalTo( 1 ) );
+  //        }
+  //    );
+  //    it( ' add2ListenersThenRemoveAllThenListenerCountIsZero', () =>
+  //        {
+  //            signal.add( newEmptyHandler() );
+  //            signal.add( newEmptyHandler() );
+  //            signal.removeAll();
+  //            assertThat( signal.numListeners, equalTo( 0 ) );
+  //        }
+  //    );
+  //    it( ' removeAllDuringDispatchShouldStopAll', () =>
+  //    {
+  //        signal.add( removeAllListeners );
+  //        signal.add( failIfCalled );
+  //        signal.add( newEmptyHandler() );
+  //        dispatchSignal();
+  //    } );
+  //
+  //    function removeAllListeners( ...args ):void
+  //    {
+  //        signal.removeAll();
+  //    }
+  //
+  //    it( ' addOnceListenerThenDispatchShouldCallIt', () =>
+  //        {
+  //            signal.addOnce( async.add( newEmptyHandler(), 10 ) );
+  //            dispatchSignal();
+  //        }
+  //    );
+  //    it( ' addOnceListenerShouldBeRemovedAfterDispatch', () =>
+  //    {
+  //        signal.addOnce( newEmptyHandler() );
+  //        dispatchSignal();
+  //        assertThat( signal.head, nullValue() );
+  //    } );
+  //
 });

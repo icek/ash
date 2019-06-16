@@ -1,20 +1,20 @@
 import { ClassType } from '../types';
-import { IComponentProvider } from './IComponentProvider';
+import ComponentProvider from './ComponentProvider';
 
 /**
  * This component provider always returns a new instance of a component. An instance
  * is created when requested and is of the type passed in to the constructor.
  */
-export class ComponentTypeProvider<TComponent> implements IComponentProvider<TComponent> {
-  private componentType:ClassType<TComponent>;
+export default class ComponentTypeProvider<TComponent> implements ComponentProvider<TComponent> {
+  private ComponentType:ClassType<TComponent>;
 
   /**
    * Constructor
    *
-   * @param type The type of the instances to be created
+   * @param ComponentType The type of the instances to be created
    */
-  constructor(type:ClassType<TComponent>) {
-    this.componentType = type;
+  public constructor(ComponentType:ClassType<TComponent>) {
+    this.ComponentType = ComponentType;
   }
 
   /**
@@ -23,7 +23,7 @@ export class ComponentTypeProvider<TComponent> implements IComponentProvider<TCo
    * @return A new instance of the type provided in the constructor
    */
   public getComponent():TComponent {
-    return new this.componentType();
+    return new this.ComponentType();
   }
 
   /**
@@ -33,6 +33,6 @@ export class ComponentTypeProvider<TComponent> implements IComponentProvider<TCo
    * @return The type of the instances created
    */
   public get identifier():any {
-    return this.componentType;
+    return this.ComponentType;
   }
 }

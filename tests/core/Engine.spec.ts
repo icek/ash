@@ -1,14 +1,17 @@
-// tslint:disable:no-magic-numbers
-
-import { Engine, Entity } from 'ash';
-import { MockComponent, MockFamily, MockNode, MockNode2 } from '../__mocks__';
+import { Engine, Entity } from '../../src';
+import {
+  MockComponent,
+  MockFamily,
+  MockNode,
+  MockNode2,
+} from '../__mocks__';
 
 describe('Engine tests', () => {
   let engine:Engine;
 
   beforeEach(() => {
     engine = new Engine();
-    engine.familyClass = MockFamily;
+    engine.FamilyClass = MockFamily;
     MockFamily.reset();
   });
 

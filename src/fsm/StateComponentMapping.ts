@@ -1,19 +1,20 @@
 import { ClassType } from '../types';
-import { ComponentInstanceProvider } from './ComponentInstanceProvider';
-import { ComponentSingletonProvider } from './ComponentSingletonProvider';
-import { ComponentTypeProvider } from './ComponentTypeProvider';
-import { DynamicComponentProvider } from './DynamicComponentProvider';
-import { EntityState } from './EntityState';
-import { IComponentProvider } from './IComponentProvider';
+import ComponentInstanceProvider from './ComponentInstanceProvider';
+import ComponentSingletonProvider from './ComponentSingletonProvider';
+import ComponentTypeProvider from './ComponentTypeProvider';
+import DynamicComponentProvider from './DynamicComponentProvider';
+import EntityState from './EntityState';
+import ComponentProvider from './ComponentProvider';
 
 /**
  * Used by the EntityState class to create the mappings of components to providers via a fluent interface.
  */
-export class StateComponentMapping<TComponent> {
+export default class StateComponentMapping<TComponent> {
   private componentType:ClassType<TComponent>;
+
   private creatingState:EntityState;
-  // tslint:disable-next-line:no-unused-variable
-  private provider!:IComponentProvider<TComponent>;
+
+  private provider!:ComponentProvider<TComponent>;
 
   /**
    * Used internally, the constructor creates a component mapping. The constructor
@@ -23,7 +24,7 @@ export class StateComponentMapping<TComponent> {
    * @param creatingState The EntityState that the mapping will belong to
    * @param type The component type for the mapping
    */
-  constructor(creatingState:EntityState, type:ClassType<TComponent>) {
+  public constructor(creatingState:EntityState, type:ClassType<TComponent>) {
     this.creatingState = creatingState;
     this.componentType = type;
     this.withType(type);
@@ -66,15 +67,11 @@ export class StateComponentMapping<TComponent> {
    * mapping is used.
    * @return This ComponentMapping, so more modifications can be applied
    */
-  public withSingleton(type?:ClassType<any>):this {
-    if(!type) {
-      type = this.componentType;
-    }
+  public withSingleton(type:ClassType<any> = this.componentType):this {
     this.setProvider(new ComponentSingletonProvider(type));
 
     return this;
   }
-
 
   /**
    * Creates a mapping for the component type to a method call. A
@@ -95,7 +92,7 @@ export class StateComponentMapping<TComponent> {
    * @param provider The component provider to use.
    * @return This ComponentMapping, so more modifications can be applied.
    */
-  public withProvider(provider:IComponentProvider<TComponent>):this {
+  public withProvider(provider:ComponentProvider<TComponent>):this {
     this.setProvider(provider);
 
     return this;
@@ -112,7 +109,7 @@ export class StateComponentMapping<TComponent> {
     return this.creatingState.add(type);
   }
 
-  private setProvider(provider:IComponentProvider<TComponent>):void {
+  private setProvider(provider:ComponentProvider<TComponent>):void {
     this.provider = provider;
     this.creatingState.providers.set(this.componentType, provider);
   }

@@ -1,4 +1,4 @@
-import { RAFTickProvider } from 'ash';
+import { RAFTickProvider } from '../../src';
 
 describe('RAFTickProvider tests', () => {
   let tickProvider:RAFTickProvider;

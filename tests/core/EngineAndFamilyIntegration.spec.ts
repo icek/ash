@@ -1,6 +1,4 @@
-// tslint:disable:no-magic-numbers
-
-import { Engine, Entity, NodeList } from 'ash';
+import { Engine, Entity, NodeList } from '../../src';
 import { MockComponent1, MockComponent2, MockNode2 } from '../__mocks__';
 
 describe('Engine and Family integration tests', () => {
@@ -115,7 +113,7 @@ describe('Engine and Family integration tests', () => {
 
   it('Family contains only matching Entities', () => {
     const entities:Entity[] = [];
-    for (let i:number = 0; i < 5; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -132,7 +130,7 @@ describe('Engine and Family integration tests', () => {
 
   it('Family contains all matching Entities', () => {
     const entities:Entity[] = [];
-    for (let i:number = 0; i < 5; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());
@@ -160,7 +158,7 @@ describe('Engine and Family integration tests', () => {
   });
 
   it('release Family sets next Node to null', () => {
-    for (let i:number = 0; i < 5; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const entity:Entity = new Entity();
       entity.add(new MockComponent1());
       entity.add(new MockComponent2());

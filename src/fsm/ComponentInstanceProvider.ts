@@ -1,10 +1,10 @@
-import { IComponentProvider } from './IComponentProvider';
+import ComponentProvider from './ComponentProvider';
 
 /**
  * This component provider always returns the same instance of the component. The instance
  * is passed to the provider at initialisation.
  */
-export class ComponentInstanceProvider<TComponent> implements IComponentProvider<TComponent> {
+export default class ComponentInstanceProvider<TComponent> implements ComponentProvider<TComponent> {
   private instance:TComponent;
 
   /**
@@ -12,7 +12,7 @@ export class ComponentInstanceProvider<TComponent> implements IComponentProvider
    *
    * @param instance The instance to return whenever a component is requested.
    */
-  constructor(instance:TComponent) {
+  public constructor(instance:TComponent) {
     this.instance = instance;
   }
 

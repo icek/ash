@@ -9,7 +9,8 @@
     "strict": true,
     "experimentalDecorators": true,
     "lib": ["dom", "es6"],
-    "pretty": true
+    "pretty": true,
+    "esModuleInterop": true
   },
   "include": [
     "./src"

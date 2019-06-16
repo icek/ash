@@ -4,7 +4,7 @@
  * ComponentTypeProvider, ComponentInstanceProvider and ComponentSingletonProvider. Developers
  * may wish to create more.
  */
-export interface IComponentProvider<TComponent> {
+interface ComponentProvider<TComponent> {
   /**
    * Used to request a component from the provider.
    *
@@ -26,3 +26,5 @@ export interface IComponentProvider<TComponent> {
    */
   identifier:any;
 }
+
+export default ComponentProvider;

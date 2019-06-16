@@ -1,12 +1,13 @@
-import { ISystemProvider } from './ISystemProvider';
-import { System } from '../core/System';
+import System from '../core/System';
+import SystemProvider from './SystemProvider';
 
 /**
  * This System provider always returns the same instance of the component. The system
  * is passed to the provider at initialisation.
  */
-export class SystemInstanceProvider<TSystem extends System> implements ISystemProvider<TSystem> {
+export default class SystemInstanceProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private instance:TSystem;
+
   private systemPriority:number = 0;
 
   /**
@@ -14,7 +15,7 @@ export class SystemInstanceProvider<TSystem extends System> implements ISystemPr
    *
    * @param instance The instance to return whenever a System is requested.
    */
-  constructor(instance:TSystem) {
+  public constructor(instance:TSystem) {
     this.instance = instance;
   }
 

@@ -1,11 +1,12 @@
+import System from '../core/System';
 import { ClassType } from '../types';
-import { EngineState } from './EngineState';
-import { ISystemProvider } from './ISystemProvider';
-import { System } from '../core/System';
+import EngineState from './EngineState';
+import SystemProvider from './SystemProvider';
 
-export class StateSystemMapping<TSystem extends System> {
+export default class StateSystemMapping<TSystem extends System> {
   private creatingState:EngineState;
-  private provider:ISystemProvider<TSystem>;
+
+  private provider:SystemProvider<TSystem>;
 
   /**
    * Used internally, the constructor creates a component mapping. The constructor
@@ -15,7 +16,7 @@ export class StateSystemMapping<TSystem extends System> {
    * @param creatingState The SystemState that the mapping will belong to
    * @param provider The System type for the mapping
    */
-  constructor(creatingState:EngineState, provider:ISystemProvider<TSystem>) {
+  public constructor(creatingState:EngineState, provider:SystemProvider<TSystem>) {
     this.creatingState = creatingState;
     this.provider = provider;
   }
@@ -76,8 +77,7 @@ export class StateSystemMapping<TSystem extends System> {
    * @param provider The component provider to use.
    * @return This StateSystemMapping, so more modifications can be applied.
    */
-  public addProvider(provider:ISystemProvider<TSystem>):StateSystemMapping<TSystem> {
+  public addProvider(provider:SystemProvider<TSystem>):StateSystemMapping<TSystem> {
     return this.creatingState.addProvider(provider);
   }
 }
-

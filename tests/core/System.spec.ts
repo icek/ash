@@ -1,10 +1,8 @@
-// tslint:disable:no-magic-numbers
-
-import { Engine, System } from 'ash';
+import { Engine, System } from '../../src';
 import { MockSystem, MockSystem2 } from '../__mocks__';
 
 interface MockObject {
-  asyncCallback: ((system:System, action:string, payload:any) => void) | null;
+  asyncCallback:((system:System, action:string, payload:any) => void) | null;
 }
 
 describe('System tests', () => {
@@ -22,6 +20,10 @@ describe('System tests', () => {
     mockObject.asyncCallback = null;
   });
 
+  function assertsUpdatingIsTrue(system:System, action:string, payload:any):void {
+    expect(engine.updating).toBe(true);
+  }
+
   it('systems getter returns all the Systems', () => {
     const system1:System = new MockSystem();
     engine.addSystem(system1, 1);
@@ -37,23 +39,23 @@ describe('System tests', () => {
   //   engine.addSystem(system, 0);
   // });
 
-//     [Test]
-//     public function removeSystemCallsRemovedFromEngine() : void
-//   {
-//     var system : System = new MockSystem( this );
-//     engine.addSystem( system, 0 );
-//     asyncCallback = async.add( removedCallbackMethod, 10 );
-//     engine.removeSystem( system );
-//   }
-//
-//     [Test]
-//     public function engineCallsUpdateOnSystems() : void
-//   {
-//     var system : System = new MockSystem( this );
-//     engine.addSystem( system, 0 );
-//     asyncCallback = async.add( updateCallbackMethod, 10 );
-//     engine.update( 0.1 );
-//   }
+  //     [Test]
+  //     public function removeSystemCallsRemovedFromEngine() : void
+  //   {
+  //     var system : System = new MockSystem( this );
+  //     engine.addSystem( system, 0 );
+  //     asyncCallback = async.add( removedCallbackMethod, 10 );
+  //     engine.removeSystem( system );
+  //   }
+  //
+  //     [Test]
+  //     public function engineCallsUpdateOnSystems() : void
+  //   {
+  //     var system : System = new MockSystem( this );
+  //     engine.addSystem( system, 0 );
+  //     asyncCallback = async.add( updateCallbackMethod, 10 );
+  //     engine.update( 0.1 );
+  //   }
 
   it('default priority is zero', () => {
     const system:System = new MockSystem();
@@ -66,39 +68,39 @@ describe('System tests', () => {
     expect(system.priority).toBe(10);
   });
 
-//     [Test]
-//     public function systemsUpdatedInPriorityOrderIfSameAsAddOrder() : void
-//   {
-//     system1 = new MockSystem( this );
-//     engine.addSystem( system1, 10 );
-//     system2 = new MockSystem( this );
-//     engine.addSystem( system2, 20 );
-//     asyncCallback = async.add( updateCallbackMethod1, 10 );
-//     engine.update( 0.1 );
-//   }
-//
-//     [Test]
-//     public function systemsUpdatedInPriorityOrderIfReverseOfAddOrder() : void
-//   {
-//     system2 = new MockSystem( this );
-//     engine.addSystem( system2, 20 );
-//     system1 = new MockSystem( this );
-//     engine.addSystem( system1, 10 );
-//     asyncCallback = async.add( updateCallbackMethod1, 10 );
-//     engine.update( 0.1 );
-//   }
-//
-//     [Test]
-//     public function systemsUpdatedInPriorityOrderIfPrioritiesAreNegative() : void
-//   {
-//     system2 = new MockSystem( this );
-//     engine.addSystem( system2, 10 );
-//     system1 = new MockSystem( this );
-//     engine.addSystem( system1, -20 );
-//     asyncCallback = async.add( updateCallbackMethod1, 10 );
-//     engine.update( 0.1 );
-//   }
-//
+  //     [Test]
+  //     public function systemsUpdatedInPriorityOrderIfSameAsAddOrder() : void
+  //   {
+  //     system1 = new MockSystem( this );
+  //     engine.addSystem( system1, 10 );
+  //     system2 = new MockSystem( this );
+  //     engine.addSystem( system2, 20 );
+  //     asyncCallback = async.add( updateCallbackMethod1, 10 );
+  //     engine.update( 0.1 );
+  //   }
+  //
+  //     [Test]
+  //     public function systemsUpdatedInPriorityOrderIfReverseOfAddOrder() : void
+  //   {
+  //     system2 = new MockSystem( this );
+  //     engine.addSystem( system2, 20 );
+  //     system1 = new MockSystem( this );
+  //     engine.addSystem( system1, 10 );
+  //     asyncCallback = async.add( updateCallbackMethod1, 10 );
+  //     engine.update( 0.1 );
+  //   }
+  //
+  //     [Test]
+  //     public function systemsUpdatedInPriorityOrderIfPrioritiesAreNegative() : void
+  //   {
+  //     system2 = new MockSystem( this );
+  //     engine.addSystem( system2, 10 );
+  //     system1 = new MockSystem( this );
+  //     engine.addSystem( system1, -20 );
+  //     asyncCallback = async.add( updateCallbackMethod1, 10 );
+  //     engine.update( 0.1 );
+  //   }
+  //
 
   it('updating is true during update', () => {
     const system:System = new MockSystem2(mockObject);
@@ -118,7 +120,7 @@ describe('System tests', () => {
   //   mockObject.asyncCallback = listensForUpdateComplete;
   //   engine.update(0.1);
   // });
-//
+  //
   it('getSystem returns the System', () => {
     const system1:System = new MockSystem();
     engine.addSystem(system1, 0);
@@ -187,10 +189,6 @@ describe('System tests', () => {
   // function updatingIsFalseBeforeUpdate():void {
   //   assert.isFalse(engine.updating);
   // }
-
-  function assertsUpdatingIsTrue(system:System, action:string, payload:any):void {
-    expect(engine.updating).toBe(true);
-  }
 
   // function listensForUpdateComplete(system:System, action:string, payload:any):void {
   //   engine.updateComplete.add(async.add());

@@ -1,15 +1,17 @@
-import { Signal1 } from '../signals/Signal1';
-import { ITickProvider } from './ITickProvider';
+import Signal1 from '../signals/Signal1';
+import TickProvider from './TickProvider';
 
-export class IntervalTickProvider extends Signal1<number> implements ITickProvider {
+export default class IntervalTickProvider extends Signal1<number> implements TickProvider {
   private intervalId:number = 0;
+
   private previousTime:number = 0;
+
   private pInterval:number = 33;
 
-  constructor(interval?:number) {
+  public constructor(interval?:number) {
     super();
 
-    if(interval) {
+    if (interval) {
       this.pInterval = interval;
     }
   }
@@ -33,7 +35,7 @@ export class IntervalTickProvider extends Signal1<number> implements ITickProvid
 
   public set interval(interval:number) {
     this.pInterval = interval;
-    if(this.intervalId !== 0) {
+    if (this.intervalId !== 0) {
       window.clearInterval(this.intervalId);
       this.intervalId = window.setInterval(this.update, interval);
     }
@@ -43,7 +45,7 @@ export class IntervalTickProvider extends Signal1<number> implements ITickProvid
     return this.pInterval;
   }
 
-  public get playing() {
+  public get playing():boolean {
     return !!this.intervalId;
   }
 }

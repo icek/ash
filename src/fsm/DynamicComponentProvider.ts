@@ -1,10 +1,10 @@
-import { IComponentProvider } from './IComponentProvider';
+import ComponentProvider from './ComponentProvider';
 
 /**
  * This component provider calls a function to get the component instance. The function must
  * return a single component of the appropriate type.
  */
-export class DynamicComponentProvider<TComponent> implements IComponentProvider<TComponent> {
+export default class DynamicComponentProvider<TComponent> implements ComponentProvider<TComponent> {
   private closure:() => TComponent;
 
   /**
@@ -12,7 +12,7 @@ export class DynamicComponentProvider<TComponent> implements IComponentProvider<
    *
    * @param closure The function that will return the component instance when called.
    */
-  constructor(closure:() => TComponent) {
+  public constructor(closure:() => TComponent) {
     this.closure = closure;
   }
 

@@ -1,7 +1,10 @@
-// tslint:disable:no-magic-numbers
-
-import { ClassType, Entity } from 'ash';
-import { MockComponent, MockComponent1, MockComponent2, MockComponentExtended } from '../__mocks__';
+import { ClassType, Entity } from '../../src';
+import {
+  MockComponent,
+  MockComponent1,
+  MockComponent2,
+  MockComponentExtended,
+} from '../__mocks__';
 
 describe('Entity tests', () => {
   let entity:Entity;
@@ -154,7 +157,7 @@ describe('Entity tests', () => {
   });
 
   it('test Entity name stored and returned', () => {
-    const name:string = 'anything';
+    const name = 'anything';
     entity = new Entity(name);
     expect(entity.name).toEqual(name);
   });

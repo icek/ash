@@ -1,5 +1,5 @@
-import { Signal1 } from '../signals/Signal1';
-import { Node } from './Node';
+import Signal1 from '../signals/Signal1';
+import Node from './Node';
 
 /**
  * A collection of nodes.
@@ -19,11 +19,12 @@ import { Node } from './Node';
  * NodeList it's previous and next properties still point to the nodes that were before and after
  * it in the NodeList just before it was removed.</p>
  */
-export class NodeList<TNode extends Node<TNode>> {
+export default class NodeList<TNode extends Node<TNode>> {
   /**
    * The first item in the node list, or null if the list contains no nodes.
    */
   public head:TNode | null = null;
+
   /**
    * The last item in the node list, or null if the list contains no nodes.
    */
@@ -35,6 +36,7 @@ export class NodeList<TNode extends Node<TNode>> {
    * <p>The signal will pass a single parameter to the listeners - the node that was added.</p>
    */
   public nodeAdded:Signal1<TNode>;
+
   /**
    * A signal that is dispatched whenever a node is removed from the node list.
    *
@@ -42,15 +44,17 @@ export class NodeList<TNode extends Node<TNode>> {
    */
   public nodeRemoved:Signal1<TNode>;
 
-  constructor() {
+  public constructor() {
     this.nodeAdded = new Signal1<TNode>();
     this.nodeRemoved = new Signal1<TNode>();
   }
 
   public add(node:TNode):void {
-    if(!this.head) {
-      this.head = this.tail = node;
-      node.next = node.previous = null;
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+      node.next = null;
+      node.previous = null;
     } else {
       this.tail!.next = node;
       node.previous = this.tail;
@@ -61,18 +65,18 @@ export class NodeList<TNode extends Node<TNode>> {
   }
 
   public remove(node:TNode):void {
-    if(this.head === node) {
+    if (this.head === node) {
       this.head = this.head.next;
     }
-    if(this.tail === node) {
+    if (this.tail === node) {
       this.tail = this.tail.previous;
     }
 
-    if(node.previous) {
+    if (node.previous) {
       node.previous.next = node.next;
     }
 
-    if(node.next) {
+    if (node.next) {
       node.next.previous = node.previous;
     }
     this.nodeRemoved.dispatch(node);
@@ -81,7 +85,7 @@ export class NodeList<TNode extends Node<TNode>> {
   }
 
   public removeAll():void {
-    while(this.head) {
+    while (this.head) {
       const node:TNode = this.head;
       this.head = node.next;
       node.previous = null;
@@ -102,12 +106,12 @@ export class NodeList<TNode extends Node<TNode>> {
    * Swaps the positions of two nodes in the list. Useful when sorting a list.
    */
   public swap(node1:TNode, node2:TNode):void {
-    if(node1.previous === node2) {
+    if (node1.previous === node2) {
       node1.previous = node2.previous;
       node2.previous = node1;
       node2.next = node1.next;
       node1.next = node2;
-    } else if(node2.previous === node1) {
+    } else if (node2.previous === node1) {
       node2.previous = node1.previous;
       node1.previous = node2;
       node1.next = node2.next;
@@ -120,26 +124,26 @@ export class NodeList<TNode extends Node<TNode>> {
       node1.next = node2.next;
       node2.next = temp;
     }
-    if(this.head === node1) {
+    if (this.head === node1) {
       this.head = node2;
-    } else if(this.head === node2) {
+    } else if (this.head === node2) {
       this.head = node1;
     }
-    if(this.tail === node1) {
+    if (this.tail === node1) {
       this.tail = node2;
-    } else if(this.tail === node2) {
+    } else if (this.tail === node2) {
       this.tail = node1;
     }
-    if(node1.previous) {
+    if (node1.previous) {
       node1.previous.next = node1;
     }
-    if(node2.previous) {
+    if (node2.previous) {
       node2.previous.next = node2;
     }
-    if(node1.next) {
+    if (node1.next) {
       node1.next.previous = node1;
     }
-    if(node2.next) {
+    if (node2.next) {
       node2.next.previous = node2;
     }
   }
@@ -161,23 +165,23 @@ export class NodeList<TNode extends Node<TNode>> {
    * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
    */
   public insertionSort(sortFunction:(a:TNode, b:TNode) => number):void {
-    if(!this.head || !this.tail || this.head === this.tail) {
+    if (!this.head || !this.tail || this.head === this.tail) {
       return;
     }
     let remains:TNode | null = this.head.next;
-    for(let node = remains; node; node = remains) {
+    for (let node = remains; node; node = remains) {
       let other:TNode | null;
       remains = node.next;
-      for(other = node.previous; other; other = other.previous) {
-        if(sortFunction(node, other) >= 0) {
+      for (other = node.previous; other; other = other.previous) {
+        if (sortFunction(node, other) >= 0) {
           // move node to after other
-          if(node !== other.next) {
+          if (node !== other.next) {
             // remove from place
-            if(this.tail === node) {
+            if (this.tail === node) {
               this.tail = node.previous;
             }
             node.previous!.next = node.next;
-            if(node.next) {
+            if (node.next) {
               node.next.previous = node.previous;
             }
             // insert after other
@@ -189,13 +193,13 @@ export class NodeList<TNode extends Node<TNode>> {
           break; // exit the inner for loop
         }
       }
-      if(!other) { // the node belongs at the start of the list
+      if (!other) { // the node belongs at the start of the list
         // remove from place
-        if(this.tail === node) {
+        if (this.tail === node) {
           this.tail = node.previous;
         }
         node.previous!.next = node.next;
-        if(node.next) {
+        if (node.next) {
           node.next.previous = node.previous;
         }
         // insert at head
@@ -223,30 +227,32 @@ export class NodeList<TNode extends Node<TNode>> {
    * <p>This merge sort implementation creates and uses a single array during the sort operation.</p>
    */
   public mergeSort(sortFunction:(a:TNode, b:TNode) => number):void {
-    if(this.head === this.tail) {
+    if (this.head === this.tail) {
       return;
     }
     const lists:TNode[] = [];
     // disassemble the list
     let start:TNode | null = this.head;
     let end:TNode;
-    while(start) {
+    while (start) {
       end = start;
-      while(end.next && sortFunction(end, end.next) <= 0) {
+      while (end.next && sortFunction(end, end.next) <= 0) {
         end = end.next;
       }
       const next:TNode = end.next!;
-      start.previous = end.next = null;
+      start.previous = null;
+      end.next = null;
       lists[lists.length] = start;
       start = next;
     }
     // reassemble it in order
-    while(lists.length > 1) {
+    while (lists.length > 1) {
       lists.push(this.merge(lists.shift()!, lists.shift()!, sortFunction));
     }
     // find the tail
-    this.tail = this.head = lists[0];
-    while(this.tail!.next) {
+    [this.tail] = lists;
+    [this.head] = lists;
+    while (this.tail!.next) {
       this.tail = this.tail!.next;
     }
   }
@@ -254,32 +260,37 @@ export class NodeList<TNode extends Node<TNode>> {
   private merge(head1:TNode, head2:TNode, sortFunction:(a:TNode, b:TNode) => number):TNode {
     let node:TNode;
     let head:TNode;
-    if(sortFunction(head1, head2) <= 0) {
-      head = node = head1;
-      head1 = head1.next!;
+    let h1 = head1;
+    let h2 = head2;
+
+    if (sortFunction(h1, h2) <= 0) {
+      head = h1;
+      node = h1;
+      h1 = h1.next!;
     } else {
-      head = node = head2;
-      head2 = head2.next!;
+      head = h2;
+      node = h2;
+      h2 = h2.next!;
     }
-    while(head1 && head2) {
-      if(sortFunction(head1, head2) <= 0) {
-        node.next = head1;
-        head1.previous = node;
-        node = head1;
-        head1 = head1.next!;
+    while (h1 && h2) {
+      if (sortFunction(h1, h2) <= 0) {
+        node.next = h1;
+        h1.previous = node;
+        node = h1;
+        h1 = h1.next!;
       } else {
-        node.next = head2;
-        head2.previous = node;
-        node = head2;
-        head2 = head2.next!;
+        node.next = h2;
+        h2.previous = node;
+        node = h2;
+        h2 = h2.next!;
       }
     }
-    if(head1) {
-      node.next = head1;
-      head1.previous = node;
+    if (h1) {
+      node.next = h1;
+      h1.previous = node;
     } else {
-      node.next = head2;
-      head2.previous = node;
+      node.next = h2;
+      h2.previous = node;
     }
 
     return head;

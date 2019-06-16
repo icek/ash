@@ -1,19 +1,21 @@
-import { Entity } from '../core/Entity';
-import { EntityState } from './EntityState';
-import { IComponentProvider } from './IComponentProvider';
+import Entity from '../core/Entity';
 import { ClassType } from '../types';
+import EntityState from './EntityState';
+import ComponentProvider from './ComponentProvider';
 
 /**
  * This is a state machine for an entity. The state machine manages a set of states,
  * each of which has a set of component providers. When the state machine changes the state, it removes
  * components associated with the previous state and adds components associated with the new state.
  */
-export class EntityStateMachine {
+export default class EntityStateMachine {
   private states:Map<string, EntityState>;
+
   /**
    * The current state of the state machine.
    */
   private currentState?:EntityState;
+
   /**
    * The entity whose state machine this is
    */
@@ -22,7 +24,7 @@ export class EntityStateMachine {
   /**
    * Constructor. Creates an EntityStateMachine.
    */
-  constructor(entity:Entity) {
+  public constructor(entity:Entity) {
     this.entity = entity;
     this.states = new Map();
   }
@@ -62,23 +64,23 @@ export class EntityStateMachine {
    */
   public changeState(name:string):void {
     const newState:EntityState | undefined = this.states.get(name);
-    if(!newState) {
-      throw(new Error(`Entity state ${name} doesn't exist`));
+    if (!newState) {
+      throw new Error(`Entity state ${name} doesn't exist`);
     }
-    if(newState === this.currentState) {
+    if (newState === this.currentState) {
       return;
     }
-    let toAdd:Map<ClassType<any>, IComponentProvider<any>>;
+    let toAdd:Map<ClassType<any>, ComponentProvider<any>>;
 
-    if(this.currentState) {
-      toAdd = new Map<ClassType<any>, IComponentProvider<any>>();
-      for(const type of newState.providers.keys()) {
+    if (this.currentState) {
+      toAdd = new Map<ClassType<any>, ComponentProvider<any>>();
+      for (const type of newState.providers.keys()) {
         toAdd.set(type, newState.providers.get(type)!);
       }
-      for(const type of this.currentState.providers.keys()) {
-        const other:IComponentProvider<any> | null = toAdd.get(type) || null;
+      for (const type of this.currentState.providers.keys()) {
+        const other:ComponentProvider<any> | null = toAdd.get(type) || null;
 
-        if(other && other.identifier === this.currentState!.providers.get(type)!.identifier) {
+        if (other && other.identifier === this.currentState!.providers.get(type)!.identifier) {
           toAdd.delete(type);
         } else {
           this.entity.remove(type);
@@ -87,8 +89,8 @@ export class EntityStateMachine {
     } else {
       toAdd = newState.providers;
     }
-    for(const type of toAdd.keys()) {
-      this.entity.add(<IComponentProvider<any>>(toAdd.get(type)!).getComponent(), type);
+    for (const type of toAdd.keys()) {
+      this.entity.add((toAdd.get(type)! as ComponentProvider<any>).getComponent(), type);
     }
     this.currentState = newState;
   }

@@ -1,4 +1,4 @@
-import { Engine } from './Engine';
+import Engine from './Engine';
 
 /**
  * The base class for a system.
@@ -12,15 +12,17 @@ import { Engine } from './Engine';
  * node lists - collections of nodes. Each node contains the components from an entity in the engine
  * that match the node.</p>
  */
-export abstract class System {
+export default abstract class System {
   /**
    * Used internally to manage the list of systems within the engine. The previous system in the list.
    */
   public previous:System | null = null;
+
   /**
    * Used internally to manage the list of systems within the engine. The next system in the list.
    */
   public next:System | null = null;
+
   /**
    * Used internally to hold the priority of this system within the system list. This is
    * used to order the systems so they are updated in the correct order.

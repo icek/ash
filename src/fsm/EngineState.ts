@@ -1,17 +1,17 @@
+import System from '../core/System';
 import { ClassType } from '../types';
-import { DynamicSystemProvider } from './DynamicSystemProvider';
-import { ISystemProvider } from './ISystemProvider';
-import { StateSystemMapping } from './StateSystemMapping';
-import { SystemInstanceProvider } from './SystemInstanceProvider';
-import { SystemSingletonProvider } from './SystemSingletonProvider';
-import { System } from '../core/System';
+import DynamicSystemProvider from './DynamicSystemProvider';
+import SystemProvider from './SystemProvider';
+import StateSystemMapping from './StateSystemMapping';
+import SystemInstanceProvider from './SystemInstanceProvider';
+import SystemSingletonProvider from './SystemSingletonProvider';
 
 /**
  * Represents a state for a SystemStateMachine. The state contains any number of SystemProviders which
  * are used to add Systems to the Engine when this state is entered.
  */
-export class EngineState {
-  public providers:ISystemProvider<any>[] = [];
+export default class EngineState {
+  public providers:SystemProvider<any>[] = [];
 
   /**
    * Creates a mapping for the System type to a specific System instance. A
@@ -56,7 +56,7 @@ export class EngineState {
    * @param provider The component provider to use.
    * @return This StateSystemMapping, so more modifications can be applied.
    */
-  public addProvider<TSystem extends System>(provider:ISystemProvider<TSystem>):StateSystemMapping<TSystem> {
+  public addProvider<TSystem extends System>(provider:SystemProvider<TSystem>):StateSystemMapping<TSystem> {
     const mapping:StateSystemMapping<TSystem> = new StateSystemMapping(this, provider);
     this.providers[this.providers.length] = provider;
 
