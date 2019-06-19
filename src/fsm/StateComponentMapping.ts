@@ -1,15 +1,15 @@
 import { ClassType } from '../types';
-import ComponentInstanceProvider from './ComponentInstanceProvider';
-import ComponentSingletonProvider from './ComponentSingletonProvider';
-import ComponentTypeProvider from './ComponentTypeProvider';
-import DynamicComponentProvider from './DynamicComponentProvider';
-import EntityState from './EntityState';
+import { ComponentInstanceProvider } from './ComponentInstanceProvider';
+import { ComponentSingletonProvider } from './ComponentSingletonProvider';
+import { ComponentTypeProvider } from './ComponentTypeProvider';
+import { DynamicComponentProvider } from './DynamicComponentProvider';
+import { EntityState } from './EntityState';
 import { ComponentProvider } from './ComponentProvider';
 
 /**
  * Used by the EntityState class to create the mappings of components to providers via a fluent interface.
  */
-export default class StateComponentMapping<TComponent> {
+export class StateComponentMapping<TComponent> {
   private componentType:ClassType<TComponent>;
 
   private creatingState:EntityState;

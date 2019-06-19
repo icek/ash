@@ -1,5 +1,5 @@
-import Signal1 from '../signals/Signal1';
-import Node from './Node';
+import { Signal1 } from '../signals/Signal1';
+import { Node } from './Node';
 
 /**
  * A collection of nodes.
@@ -19,7 +19,7 @@ import Node from './Node';
  * NodeList it's previous and next properties still point to the nodes that were before and after
  * it in the NodeList just before it was removed.</p>
  */
-export default class NodeList<TNode extends Node<TNode>> {
+export class NodeList<TNode extends Node<TNode>> {
   /**
    * The first item in the node list, or null if the list contains no nodes.
    */

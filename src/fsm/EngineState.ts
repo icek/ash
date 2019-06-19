@@ -1,16 +1,16 @@
-import System from '../core/System';
 import { ClassType } from '../types';
-import DynamicSystemProvider from './DynamicSystemProvider';
+import { DynamicSystemProvider } from './DynamicSystemProvider';
 import { SystemProvider } from './SystemProvider';
-import StateSystemMapping from './StateSystemMapping';
-import SystemInstanceProvider from './SystemInstanceProvider';
-import SystemSingletonProvider from './SystemSingletonProvider';
+import { StateSystemMapping } from './StateSystemMapping';
+import { SystemInstanceProvider } from './SystemInstanceProvider';
+import { SystemSingletonProvider } from './SystemSingletonProvider';
+import { System } from '../core/System';
 
 /**
  * Represents a state for a SystemStateMachine. The state contains any number of SystemProviders which
  * are used to add Systems to the Engine when this state is entered.
  */
-export default class EngineState {
+export class EngineState {
   public providers:SystemProvider<any>[] = [];
 
   /**

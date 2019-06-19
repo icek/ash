@@ -1,6 +1,6 @@
 import { MockComponent, MockComponentExtended } from './MockComponent';
 
-export default class MockReflectionObject {
+export class MockReflectionObject {
   public numberVariable:number = 0;
 
   public booleanVariable:boolean = false;

@@ -1,4 +1,4 @@
-import System from '../core/System';
+import { System } from '../core/System';
 import { ClassType } from '../types';
 import { SystemProvider } from './SystemProvider';
 
@@ -6,7 +6,7 @@ import { SystemProvider } from './SystemProvider';
  * This System provider always returns the same instance of the System. The instance
  * is created when first required and is of the type passed in to the constructor.
  */
-export default class SystemSingletonProvider<TSystem extends System> implements SystemProvider<TSystem> {
+export class SystemSingletonProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private ComponentType:ClassType<TSystem>;
 
   private instance?:TSystem;
