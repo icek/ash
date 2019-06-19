@@ -1,7 +1,7 @@
-import Signal1 from '../signals/Signal1';
+import { Signal1 } from '../signals/Signal1';
 import { TickProvider } from './TickProvider';
 
-export default class IntervalTickProvider extends Signal1<number> implements TickProvider {
+export class IntervalTickProvider extends Signal1<number> implements TickProvider {
   private intervalId:number = 0;
 
   private previousTime:number = 0;

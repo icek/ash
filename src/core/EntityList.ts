@@ -1,10 +1,10 @@
-import Entity from './Entity';
+import { Entity } from './Entity';
 
 /**
  * An internal class for a linked list of entities. Used inside the framework for
  * managing the entities.
  */
-export default class EntityList {
+export class EntityList {
   public head:Entity | null = null;
 
   public tail:Entity | null = null;

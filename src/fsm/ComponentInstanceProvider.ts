@@ -4,7 +4,7 @@ import { ComponentProvider } from './ComponentProvider';
  * This component provider always returns the same instance of the component. The instance
  * is passed to the provider at initialisation.
  */
-export default class ComponentInstanceProvider<TComponent> implements ComponentProvider<TComponent> {
+export class ComponentInstanceProvider<TComponent> implements ComponentProvider<TComponent> {
   private instance:TComponent;
 
   /**
