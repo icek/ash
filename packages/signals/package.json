@@ -1,0 +1,16 @@
+{
+  "name": "@ash-ts/signals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/signals.js",
+  "browser": "dist/signals.min.js",
+  "module": "dist/signals.mjs",
+  "types": "dist/signals.d.ts",
+  "typings": "dist/signals.d.ts",
+  "keywords": [],
+  "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

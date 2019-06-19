@@ -4,18 +4,15 @@
     "module": "es6",
     "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "dist/types",
     "sourceMap": true,
     "strict": true,
     "experimentalDecorators": true,
     "lib": ["dom", "es6"],
     "pretty": true,
-    "esModuleInterop": true
-  },
-  "include": [
-    "./src"
-  ],
-  "exclude": [
-    "./src/io"
-  ]
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ash-ts/*": ["./*"]
+    }
+  }
 }

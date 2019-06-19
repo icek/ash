@@ -1,0 +1,17 @@
+{
+  "name": "@ash-ts/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/core.d.ts",
+  "typings": "dist/core.d.ts",
+  "keywords": [],
+  "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ash-ts/signals": "file:../signals"
+  }
+}
