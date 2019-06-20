@@ -23,6 +23,13 @@ module.exports = {
     'no-restricted-syntax': ['error', 'WithStatement'],
     'class-methods-use-this': 'off',
     'no-param-reassign': ['error', { 'props': false }],
+    'object-curly-newline': ['error', {
+      'ObjectExpression': { 'consistent': true },
+      'ObjectPattern': { 'consistent': true },
+      'ImportDeclaration': { 'consistent': true },
+      'ExportDeclaration': { 'consistent': true },
+    }],
+    'import/prefer-default-export': 'off',
 
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/type-annotation-spacing': ['error', { before: false, after: false, overrides: { arrow: { before: true, after: true } } }],

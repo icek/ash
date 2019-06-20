@@ -4,7 +4,7 @@ import { ComponentProvider } from './ComponentProvider';
  * This component provider calls a function to get the component instance. The function must
  * return a single component of the appropriate type.
  */
-export default class DynamicComponentProvider<TComponent> implements ComponentProvider<TComponent> {
+export class DynamicComponentProvider<TComponent> implements ComponentProvider<TComponent> {
   private closure:() => TComponent;
 
   /**

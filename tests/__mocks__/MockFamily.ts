@@ -1,13 +1,7 @@
-import {
-  ClassType,
-  Engine,
-  Entity,
-  Family,
-  NodeList,
-} from '../../src';
-import MockNode from './MockNode';
+import { ClassType, Engine, Entity, Family, NodeList } from '../../src';
+import { MockNode } from './MockNode';
 
-export default class MockFamily implements Family<MockNode> {
+export class MockFamily implements Family<MockNode> {
   public static instances:MockFamily[] = [];
 
   public newEntityCalls:number = 0;

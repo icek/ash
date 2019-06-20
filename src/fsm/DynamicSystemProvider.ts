@@ -1,11 +1,11 @@
-import System from '../core/System';
+import { System } from '../core/System';
 import { SystemProvider } from './SystemProvider';
 
 /**
  * This System provider returns results of a method call. The method
  * is passed to the provider at initialisation.
  */
-export default class DynamicSystemProvider<TSystem extends System> implements SystemProvider<TSystem> {
+export class DynamicSystemProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private method:() => TSystem;
 
   private systemPriority:number = 0;

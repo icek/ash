@@ -1,14 +1,14 @@
-import Entity from '../core/Entity';
-import { ClassType } from '../types';
-import EntityState from './EntityState';
+import { Entity } from '../core/Entity';
+import { EntityState } from './EntityState';
 import { ComponentProvider } from './ComponentProvider';
+import { ClassType } from '../types';
 
 /**
  * This is a state machine for an entity. The state machine manages a set of states,
  * each of which has a set of component providers. When the state machine changes the state, it removes
  * components associated with the previous state and adds components associated with the new state.
  */
-export default class EntityStateMachine {
+export class EntityStateMachine {
   private states:Map<string, EntityState>;
 
   /**

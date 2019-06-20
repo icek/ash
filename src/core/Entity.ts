@@ -1,4 +1,4 @@
-import Signal2 from '../signals/Signal2';
+import { Signal2 } from '../signals/Signal2';
 import { ClassType } from '../types';
 
 /**
@@ -22,7 +22,7 @@ import { ClassType } from '../types';
  * <p>All entities that have a position in the game world, will have an instance of the
  * position component. Systems operate on entities based on the components they have.</p>
  */
-export default class Entity {
+export class Entity {
   private static nameCount:number = 0;
 
   /**

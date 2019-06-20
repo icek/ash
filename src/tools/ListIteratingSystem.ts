@@ -1,7 +1,7 @@
-import Engine from '../core/Engine';
-import Node from '../core/Node';
-import NodeList from '../core/NodeList';
-import System from '../core/System';
+import { Engine } from '../core/Engine';
+import { Node } from '../core/Node';
+import { NodeList } from '../core/NodeList';
+import { System } from '../core/System';
 import { NodeClassType } from '../types';
 
 /**
@@ -25,7 +25,7 @@ import { NodeClassType } from '../types';
  * ```
  */
 
-export default abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
+export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
   protected nodeList:NodeList<TNode> | null = null;
 
   protected nodeClass:NodeClassType<TNode>;

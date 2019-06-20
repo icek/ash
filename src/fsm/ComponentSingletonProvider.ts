@@ -5,7 +5,7 @@ import { ComponentProvider } from './ComponentProvider';
  * This component provider always returns the same instance of the component. The instance
  * is created when first required and is of the type passed in to the constructor.
  */
-export default class ComponentSingletonProvider<TComponent> implements ComponentProvider<TComponent> {
+export class ComponentSingletonProvider<TComponent> implements ComponentProvider<TComponent> {
   private ComponentType:ClassType<TComponent>;
 
   private instance?:TComponent;

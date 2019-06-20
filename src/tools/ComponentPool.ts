@@ -23,7 +23,7 @@
  */
 import { ClassType } from '../types';
 
-export default class ComponentPool {
+export class ComponentPool {
   private static pools:Map<ClassType<any>, any[]> = new Map<ClassType<any>, any[]>();
 
   private static getPool<T>(componentClass:ClassType<T>):T[] {

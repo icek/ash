@@ -18,8 +18,8 @@ Using yarn:
 
 ## Examples
 
-- [Asteroids (SVG version)] ([Source](source-svg))
-- [Asteroids (PIXI version)] ([Source](source-pixi))
+- Asteroids (SVG version): [Demo][demo-svg] [Source][source-svg]
+- Asteroids (PIXI.js version): [Demo][demo-pixi] [Source][source-pixi]
 
 ## Documentation
 
@@ -169,8 +169,8 @@ as used browser and your environment can provide.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
-[Asteroids (SVG version)]: http://icek.github.io/asteroids
-[Asteroids (PIXI version)]: http://icek.github.io/asteroids-pixi
+[demo-svg]: http://icek.github.io/asteroids
+[demo-pixi]: http://icek.github.io/asteroids-pixi
 [source-svg]: https://github.com/icek/asteroids
 [source-pixi]: https://github.com/icek/asteroids-pixi
 [api]: https://icek.github.io/ash

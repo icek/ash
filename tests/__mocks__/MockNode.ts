@@ -1,7 +1,7 @@
 import { keep, Node } from '../../src';
 import { MockComponent, MockComponent1, MockComponent2 } from './MockComponent';
 
-export default class MockNode extends Node<MockNode> {
+export class MockNode extends Node<MockNode> {
   @keep(MockComponent)
   public component!:MockComponent;
 }

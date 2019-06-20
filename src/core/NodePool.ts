@@ -1,6 +1,6 @@
 import { ClassType, NodeClassType } from '../types';
-import Entity from './Entity';
-import Node from './Node';
+import { Entity } from './Entity';
+import { Node } from './Node';
 
 /**
  * This internal class maintains a pool of deleted nodes for reuse by the framework. This reduces the overhead
@@ -10,7 +10,7 @@ import Node from './Node';
  * while iterating through the NodeList, the pool also maintains a cache of nodes that are added to the pool
  * but should not be reused yet. They are then released into the pool by calling the releaseCache method.
  */
-export default class NodePool<TNode extends Node<TNode>> {
+export class NodePool<TNode extends Node<TNode>> {
   private tail:TNode | null = null;
 
   private NodeClass:NodeClassType<TNode>;

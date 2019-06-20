@@ -1,11 +1,11 @@
-import System from '../core/System';
 import { SystemProvider } from './SystemProvider';
+import { System } from '../core/System';
 
 /**
  * This System provider always returns the same instance of the component. The system
  * is passed to the provider at initialisation.
  */
-export default class SystemInstanceProvider<TSystem extends System> implements SystemProvider<TSystem> {
+export class SystemInstanceProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private instance:TSystem;
 
   private systemPriority:number = 0;
