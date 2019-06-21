@@ -38,7 +38,7 @@
   },
   "scripts": {
     "postinstall": "npm-run-all lerna:install lerna:link",
-    "lerna:install": "lerna exec -- npm i",
+    "lerna:install": "lerna exec -- npm i --no-package-lock",
     "lerna:link": "lerna link",
     "lerna": "npm-run-all lerna:prepare lerna:publish",
     "lerna:prepare": "cp .npmrc-publish .npmrc",
