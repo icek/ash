@@ -62,4 +62,3 @@ export default [
 
   return config;
 }, []);
-// Library bundle in 4 versions: ESM and ES6 UMD as minified and unminified.

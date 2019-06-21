@@ -11,9 +11,8 @@ cache:
 
 script:
   - npm run lint
+  - npm run build
   - npm run coveralls
-  - npm run dist
-  - npm pack
   - npm run docs
 
 deploy:
@@ -29,15 +28,14 @@ deploy:
     api_key: $GITHUB_TOKEN
     file_glob: true
     file:
-      - dist/*.js
-      - dist/*.mjs
-      - dist/*.ts
+      - packages/**/dist/*.js
+      - packages/**/dist/*.mjs
+      - packages/**/dist/*.ts
     on:
       tags: true
 
-  - provider: npm
+  - provider: script
+    script: npm run lerna
     skip_cleanup: true
-    email: "$NPM_EMAIL"
-    api_key: "$NPM_TOKEN"
     on:
       tags: true
