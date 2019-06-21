@@ -86,32 +86,5 @@
     "typedoc": "^0.14.2",
     "typedoc-plugin-lerna-packages": "^0.1.5",
     "typescript": "^3.5.2"
-  },
-  "jest": {
-    "roots": [
-      "<rootDir>/packages/ash/src",
-      "<rootDir>/packages/core/tests",
-      "<rootDir>/packages/core/src",
-      "<rootDir>/packages/fsm/tests",
-      "<rootDir>/packages/fsm/src",
-      "<rootDir>/packages/signals/tests",
-      "<rootDir>/packages/signals/src",
-      "<rootDir>/packages/tick/tests",
-      "<rootDir>/packages/tick/src",
-      "<rootDir>/packages/tools/tests",
-      "<rootDir>/packages/tools/src"
-    ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testRegex": "/tests/.*\\.spec\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "packages/**/src/*.ts"
-    ]
   }
 }
