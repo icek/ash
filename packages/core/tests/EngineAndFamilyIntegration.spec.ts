@@ -1,5 +1,5 @@
-import { Engine, Entity, NodeList } from '../../src';
-import { MockComponent1, MockComponent2, MockNode2 } from '../__mocks__';
+import { Engine, Entity, NodeList } from '../src';
+import { MockComponent1, MockComponent2, MockNode2 } from './__mocks__';
 
 describe('Engine and Family integration tests', () => {
   let engine:Engine;

@@ -1,5 +1,5 @@
-import { Engine, System } from '../../src';
-import { MockSystem, MockSystem2 } from '../__mocks__';
+import { Engine, System } from '../src';
+import { MockSystem, MockSystem2 } from './__mocks__';
 
 interface MockObject {
   asyncCallback:((system:System, action:string, payload:any) => void) | null;

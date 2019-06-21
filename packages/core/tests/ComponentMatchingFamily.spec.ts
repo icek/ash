@@ -3,8 +3,8 @@ import {
   Engine,
   Entity,
   NodeList,
-} from '../../src';
-import { MockComponent, MockComponent1, MockNode } from '../__mocks__';
+} from '../src';
+import { MockComponent, MockComponent1, MockNode } from './__mocks__';
 
 describe('ComponentMatchingFamily tests', () => {
   let engine:Engine;

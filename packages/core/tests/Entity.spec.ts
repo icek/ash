@@ -1,10 +1,10 @@
-import { ClassType, Entity } from '../../src';
+import { ClassType, Entity } from '../src';
 import {
   MockComponent,
   MockComponent1,
   MockComponent2,
   MockComponentExtended,
-} from '../__mocks__';
+} from './__mocks__';
 
 describe('Entity tests', () => {
   let entity:Entity;

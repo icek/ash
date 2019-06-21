@@ -1,6 +1,6 @@
-import { Node, NodeList, NodePool } from '../../src';
-import '../__matchers__';
-import { MockComponent, MockNode } from '../__mocks__';
+import { Node, NodeList, NodePool } from '../src';
+import './__matchers__';
+import { MockComponent, MockNode } from './__mocks__';
 
 describe('NodeList tests', () => {
   let nodes:NodeList<MockNode>;

@@ -85,7 +85,7 @@
   },
   "jest": {
     "roots": [
-      "<rootDir>/tests"
+      "<rootDir>/packages"
     ],
     "transform": {
       "^.+\\.ts$": "ts-jest"
@@ -95,9 +95,6 @@
       "ts",
       "js",
       "json"
-    ],
-    "moduleNameMapper": {
-      "^ash$": "<rootDir>/src"
-    }
+    ]
   }
 }

@@ -1,10 +1,10 @@
-import { Engine, Entity } from '../../src';
+import { Engine, Entity } from '../src';
 import {
   MockComponent,
   MockFamily,
   MockNode,
   MockNode2,
-} from '../__mocks__';
+} from './__mocks__';
 
 describe('Engine tests', () => {
   let engine:Engine;
