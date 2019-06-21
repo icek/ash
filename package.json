@@ -53,7 +53,7 @@
     "test-watch": "jest --watchAll",
     "test-changed": "jest -o",
     "test-watch-changed": "jest --watch",
-    "pretest-coverage": "rimraf reports",
+    "pretest-coverage": "rimraf coverage",
     "test-coverage": "jest --coverage",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "prepack": "rimraf ash-*.tgz"
@@ -86,16 +86,29 @@
   },
   "jest": {
     "roots": [
-      "<rootDir>/packages"
+      "<rootDir>/packages/ash/src",
+      "<rootDir>/packages/core/tests",
+      "<rootDir>/packages/core/src",
+      "<rootDir>/packages/fsm/tests",
+      "<rootDir>/packages/fsm/src",
+      "<rootDir>/packages/signals/tests",
+      "<rootDir>/packages/signals/src",
+      "<rootDir>/packages/tick/tests",
+      "<rootDir>/packages/tick/src",
+      "<rootDir>/packages/tools/tests",
+      "<rootDir>/packages/tools/src"
     ],
     "transform": {
       "^.+\\.ts$": "ts-jest"
     },
-    "testRegex": ".*\\.(test|spec)\\.ts$",
+    "testRegex": "/tests/.*\\.spec\\.ts$",
     "moduleFileExtensions": [
       "ts",
-      "js",
-      "json"
+      "js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "packages/**/src/*.ts"
     ]
   }
 }
