@@ -1,10 +1,10 @@
 import { ClassType } from './types';
-import System from './System';
+import { System } from './System';
 
 /**
  * Used internally, this is an ordered list of Systems for use by the engine update loop.
  */
-export default class SystemList {
+export class SystemList {
   public head:System | null = null;
 
   public tail:System | null = null;

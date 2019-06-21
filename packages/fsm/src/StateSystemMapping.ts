@@ -1,8 +1,8 @@
-import { System, ClassType } from '@ash-ts/core';
-import EngineState from './EngineState';
+import { System, ClassType } from '@ash.ts/core';
+import { EngineState } from './EngineState';
 import { SystemProvider } from './SystemProvider';
 
-export default class StateSystemMapping<TSystem extends System> {
+export class StateSystemMapping<TSystem extends System> {
   private creatingState:EngineState;
 
   private provider:SystemProvider<TSystem>;

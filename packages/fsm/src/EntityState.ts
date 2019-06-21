@@ -1,12 +1,12 @@
-import { ClassType } from '@ash-ts/core';
+import { ClassType } from '@ash.ts/core';
 import { ComponentProvider } from './ComponentProvider';
-import StateComponentMapping from './StateComponentMapping';
+import { StateComponentMapping } from './StateComponentMapping';
 
 /**
  * Represents a state for an EntityStateMachine. The state contains any number of ComponentProviders which
  * are used to add components to the entity when this state is entered.
  */
-export default class EntityState {
+export class EntityState {
   /**
    * @private
    */

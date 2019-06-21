@@ -1,2 +1,2 @@
-export { default as EntityStateMachine } from './EntityStateMachine';
-export { default as EngineStateMachine } from './EngineStateMachine';
+export { EntityStateMachine } from './EntityStateMachine';
+export { EngineStateMachine } from './EngineStateMachine';

@@ -1,6 +1,6 @@
 {
   "name": "ash",
-  "mode": "file",
+  "mode": "modules",
   "module": "es6",
   "target": "es6",
   "out": "docs",

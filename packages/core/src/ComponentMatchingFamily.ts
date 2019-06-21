@@ -1,10 +1,10 @@
 import { ClassType, NodeClassType } from './types';
-import Engine from './Engine';
-import Entity from './Entity';
+import { Engine } from './Engine';
+import { Entity } from './Entity';
 import { Family } from './Family';
-import Node from './Node';
-import NodeList from './NodeList';
-import NodePool from './NodePool';
+import { Node } from './Node';
+import { NodeList } from './NodeList';
+import { NodePool } from './NodePool';
 
 const ashProp = '__ash_types__';
 
@@ -15,7 +15,7 @@ const ashProp = '__ash_types__';
  * It uses the basic entity matching pattern of an entity system - entities are added to the list if
  * they contain components matching all the public properties of the node class.
  */
-export default class ComponentMatchingFamily<TNode extends Node<TNode>> implements Family<TNode> {
+export class ComponentMatchingFamily<TNode extends Node<TNode>> implements Family<TNode> {
   private nodes:NodeList<TNode>;
 
   private entities:Map<Entity, TNode>;

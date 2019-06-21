@@ -1,20 +1,20 @@
-import { Signal0 } from '@ash-ts/signals';
+import { Signal0 } from '@ash.ts/signals';
 import { ClassType, NodeClassType } from './types';
-import ComponentMatchingFamily from './ComponentMatchingFamily';
-import Entity from './Entity';
-import EntityList from './EntityList';
+import { ComponentMatchingFamily } from './ComponentMatchingFamily';
+import { Entity } from './Entity';
+import { EntityList } from './EntityList';
 import { Family } from './Family';
-import Node from './Node';
-import NodeList from './NodeList';
-import System from './System';
-import SystemList from './SystemList';
+import { Node } from './Node';
+import { NodeList } from './NodeList';
+import { System } from './System';
+import { SystemList } from './SystemList';
 
 
 /**
  * The Engine class is the central point for creating and managing your game state. Add
  * entities and systems to the engine, and fetch families of nodes from the engine.
  */
-export default class Engine {
+export class Engine {
   private entityNames:Map<string, Entity>;
 
   private entityList:EntityList;

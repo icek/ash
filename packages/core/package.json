@@ -1,10 +1,11 @@
 {
-  "name": "@ash-ts/core",
+  "name": "@ash.ts/core",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/core.js",
+  "browser": "dist/core.min.js",
+  "module": "dist/core.mjs",
   "types": "dist/core.d.ts",
-  "typings": "dist/core.d.ts",
   "keywords": [],
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "license": "MIT",
@@ -12,6 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@ash-ts/signals": "file:../signals"
+    "@ash.ts/signals": "file:../signals"
   }
 }

@@ -1,5 +1,6 @@
 {
-  "name": "@ash.ts/ash",
+  "name": "ash.ts",
+  "private": true,
   "license": "MIT",
   "version": "0.9.14",
   "description": "Typescript port of Ash - Entity Component System framework",
@@ -36,13 +37,12 @@
     "access": "public"
   },
   "scripts": {
+    "postinstall": "npm-run-all lerna:install lerna:link",
+    "lerna:install": "lerna exec -- npm i",
+    "lerna:link": "lerna link",
     "build": "npm-run-all build:clean build:rollup",
-    "build:clean": "rimraf dist",
+    "build:clean": "rimraf packages/**/dist",
     "build:rollup": "rollup -c",
-    "dts": "npm-run-all dts:bundle dts:clean",
-    "dts:bundle": "dts-bundle-generator -o dist/ash.d.ts --umd-module-name ash dist/types/index.d.ts",
-    "dts:clean": "rimraf dist/types",
-    "dist": "npm-run-all build dts",
     "docs": "npm-run-all docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
     "docs:typedoc": "typedoc --options typedoc.json ./src/index.ts",
@@ -59,18 +59,11 @@
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "prepack": "rimraf ash-*.tgz"
   },
-  "dependencies": {
-    "core": "file:packages/core",
-    "fsm": "file:packages/fsm",
-    "signals": "file:packages/signals",
-    "tick": "file:packages/tick"
-  },
   "devDependencies": {
     "@types/jest": "^24.0.15",
     "@typescript-eslint/eslint-plugin": "^1.10.2",
     "@typescript-eslint/parser": "^1.10.2",
     "coveralls": "^3.0.4",
-    "dts-bundle-generator": "^3.1.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-import-resolver-jest": "^2.1.1",
@@ -82,12 +75,14 @@
     "rimraf": "^2.6.3",
     "rollup": "^1.15.6",
     "rollup-plugin-dts": "^1.1.1",
+    "rollup-plugin-node-resolve": "^5.0.3",
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript2": "^0.21.1",
     "touch": "^3.1.0",
     "ts-jest": "^24.0.2",
     "tslib": "^1.10.0",
     "typedoc": "^0.14.2",
+    "typedoc-plugin-lerna-packages": "^0.1.5",
     "typescript": "^3.5.2"
   },
   "jest": {

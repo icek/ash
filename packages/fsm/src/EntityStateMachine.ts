@@ -1,5 +1,5 @@
-import { Entity, ClassType } from '@ash-ts/core';
-import EntityState from './EntityState';
+import { Entity, ClassType } from '@ash.ts/core';
+import { EntityState } from './EntityState';
 import { ComponentProvider } from './ComponentProvider';
 
 /**
@@ -7,7 +7,7 @@ import { ComponentProvider } from './ComponentProvider';
  * each of which has a set of component providers. When the state machine changes the state, it removes
  * components associated with the previous state and adds components associated with the new state.
  */
-export default class EntityStateMachine {
+export class EntityStateMachine {
   private states:Map<string, EntityState>;
 
   /**

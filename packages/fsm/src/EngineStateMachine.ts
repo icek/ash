@@ -1,5 +1,5 @@
-import { Engine } from '@ash-ts/core';
-import EngineState from './EngineState';
+import { Engine } from '@ash.ts/core';
+import { EngineState } from './EngineState';
 import { SystemProvider } from './SystemProvider';
 
 /**
@@ -7,7 +7,7 @@ import { SystemProvider } from './SystemProvider';
  * each of which has a set of System providers. When the state machine changes the state, it removes
  * Systems associated with the previous state and adds Systems associated with the new state.
  */
-export default class EngineStateMachine {
+export class EngineStateMachine {
   public engine:Engine;
 
   private states:Map<string, EngineState>;

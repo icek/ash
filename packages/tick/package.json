@@ -2,10 +2,17 @@
   "name": "@ash.ts/tick",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "dist/tick.js",
+  "browser": "dist/tick.min.js",
+  "module": "dist/tick.mjs",
+  "types": "dist/tick.d.ts",
+  "keywords": [],
+  "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "@ash.ts/signals": "file:../signals"
+  }
 }

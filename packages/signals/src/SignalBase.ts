@@ -2,13 +2,13 @@
  * Based on ideas used in Robert Penner's AS3-signals - https://github.com/robertpenner/as3-signals
  */
 
-import ListenerNode from './ListenerNode';
-import ListenerNodePool from './ListenerNodePool';
+import { ListenerNode } from './ListenerNode';
+import { ListenerNodePool } from './ListenerNodePool';
 
 /**
  * The base class for all the signal classes.
  */
-export default abstract class SignalBase<TListener> {
+export abstract class SignalBase<TListener> {
   protected head:ListenerNode<TListener> | null = null;
 
   protected tail:ListenerNode<TListener> | null = null;
