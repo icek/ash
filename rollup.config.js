@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import resolve from 'rollup-plugin-node-resolve';
 import dts from 'rollup-plugin-dts';
+import resolve from 'rollup-plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -20,6 +20,9 @@ export default [
       clean: true,
       verbosity: 1,
       tsconfig: `./packages/${name}/tsconfig.json`,
+      tsconfigOverride: {
+        include: ['./src/'],
+      },
     }),
   ];
 
@@ -56,8 +59,6 @@ export default [
     plugins: [dts()],
     output: { file: `${root}/dist/${name}.d.ts`, format: 'es' },
   });
-
-  console.log(config);
 
   return config;
 }, []);

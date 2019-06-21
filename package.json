@@ -43,6 +43,7 @@
     "build": "npm-run-all build:clean build:rollup",
     "build:clean": "rimraf packages/**/dist",
     "build:rollup": "rollup -c",
+    "postbuild": "rimraf packages/**/dist/types",
     "docs": "npm-run-all docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
     "docs:typedoc": "typedoc --options typedoc.json",
