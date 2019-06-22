@@ -4,7 +4,7 @@
   "module": "es6",
   "target": "es6",
   "out": "docs",
-  "exclude": ["./tests/**/*", "./node_modules/**/*"],
+  "exclude": ["packages/**/tests/**/*", "packages/**/node_modules/**/*"],
   "theme": "default",
   "ignoreCompilerErrors": true,
   "excludePrivate": true,
