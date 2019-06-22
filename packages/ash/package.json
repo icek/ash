@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/ash",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Typescript port of Ash - Entity Component System framework",
   "main": "dist/ash.js",
   "browser": "dist/ash.min.js",
