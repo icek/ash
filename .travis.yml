@@ -28,9 +28,9 @@ deploy:
     api_key: $GITHUB_TOKEN
     file_glob: true
     file:
-      - packages/**/dist/*.js
-      - packages/**/dist/*.mjs
-      - packages/**/dist/*.ts
+      - packages/ash/*.js
+      - packages/ash/*.mjs
+      - dist/*
     on:
       tags: true
 
