@@ -2,5 +2,10 @@
   "version": "independent",
   "packages": [
     "packages/*"
-  ]
+  ],
+  "command": {
+    "version": {
+      "push": false
+    }
+  }
 }
