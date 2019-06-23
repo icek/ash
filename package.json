@@ -2,7 +2,7 @@
   "name": "ash.ts",
   "private": true,
   "license": "MIT",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Typescript port of Ash - Entity Component System framework",
   "homepage": "https://icek.github.io/ash",
   "repository": {
