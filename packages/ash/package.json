@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/ash",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Ash.ts - an entity component system framework for game development",
   "main": "dist/ash.js",
   "browser": "dist/ash.min.js",

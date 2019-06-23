@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tools for use with Ash.ts - an entity component system framework for game development",
   "main": "dist/tools.js",
   "browser": "dist/tools.min.js",
