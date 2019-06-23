@@ -1,14 +1,33 @@
 {
   "name": "@ash.ts/fsm",
   "version": "1.0.0",
-  "description": "",
+  "description": "Finite state machine for Ash.ts - an entity component system framework for game development",
   "main": "dist/fsm.js",
   "browser": "dist/fsm.min.js",
   "module": "dist/fsm.mjs",
   "types": "dist/fsm.d.ts",
-  "keywords": [],
+  "keywords": [
+    "ash",
+    "typescript",
+    "framework",
+    "game",
+    "entity",
+    "component",
+    "system",
+    "finite",
+    "state",
+    "machine"
+  ],
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "license": "MIT",
+  "homepage": "https://icek.github.io/ash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icek/ash"
+  },
+  "bugs": {
+    "url": "https://github.com/icek/ash/issues"
+  },
   "publishConfig": {
     "access": "public"
   },

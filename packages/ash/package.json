@@ -1,14 +1,30 @@
 {
   "name": "@ash.ts/ash",
   "version": "0.10.1",
-  "description": "Typescript port of Ash - Entity Component System framework",
+  "description": "Ash.ts - an entity component system framework for game development",
   "main": "dist/ash.js",
   "browser": "dist/ash.min.js",
   "module": "dist/ash.mjs",
   "types": "dist/ash.d.ts",
-  "keywords": [],
+  "keywords": [
+    "ash",
+    "typescript",
+    "framework",
+    "game",
+    "entity",
+    "component",
+    "system"
+  ],
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "license": "MIT",
+  "homepage": "https://icek.github.io/ash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icek/ash"
+  },
+  "bugs": {
+    "url": "https://github.com/icek/ash/issues"
+  },
   "publishConfig": {
     "access": "public"
   },

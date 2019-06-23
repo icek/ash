@@ -4,15 +4,6 @@
   "license": "MIT",
   "version": "0.10.1",
   "description": "Typescript port of Ash - Entity Component System framework",
-  "keywords": [
-    "ash",
-    "typescript",
-    "framework",
-    "game",
-    "entity",
-    "component",
-    "system"
-  ],
   "homepage": "https://icek.github.io/ash",
   "repository": {
     "type": "git",
@@ -37,11 +28,11 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "npm-run-all lerna:install lerna:link",
+    "postinstall": "npm run lerna:bootstrap",
+    "lerna:bootstrap": "npm-run-all lerna:clean lerna:install lerna:link",
+    "lerna:clean": "lerna clean -y",
     "lerna:install": "lerna exec -- npm i --no-package-lock",
     "lerna:link": "lerna link",
-    "lerna": "npm-run-all lerna:prepare lerna:publish",
-    "lerna:prepare": "cp .npmrc-publish .npmrc",
     "lerna:publish": "lerna publish -y from-package",
     "build": "npm-run-all build:clean build:rollup build:dts",
     "build:clean": "rimraf dist packages/**/dist",
@@ -54,13 +45,14 @@
     "lint": "eslint ./packages/**/*.ts",
     "pretest": "jest --clearCache",
     "test": "jest",
-    "test-watch": "jest --watchAll",
-    "test-changed": "jest -o",
-    "test-watch-changed": "jest --watch",
-    "pretest-coverage": "rimraf coverage",
-    "test-coverage": "jest --coverage",
+    "test:watch": "jest --watchAll",
+    "test:changed": "jest -o",
+    "test:watch:changed": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "coverage:clean": "rimraf coverage",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "prepack": "rimraf ash-*.tgz"
+    "prepack": "rimraf packages/**/*.tgz",
+    "clean": "npm-run-all lerna:clean build:clean docs:clean test:clean"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",

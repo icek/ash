@@ -1,14 +1,30 @@
 {
   "name": "@ash.ts/tools",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tools for use with Ash.ts - an entity component system framework for game development",
   "main": "dist/tools.js",
   "browser": "dist/tools.min.js",
   "module": "dist/tools.mjs",
   "types": "dist/tools.d.ts",
-  "keywords": [],
+  "keywords": [
+    "ash",
+    "typescript",
+    "framework",
+    "game",
+    "entity",
+    "component",
+    "system"
+  ],
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "license": "MIT",
+  "homepage": "https://icek.github.io/ash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icek/ash"
+  },
+  "bugs": {
+    "url": "https://github.com/icek/ash/issues"
+  },
   "publishConfig": {
     "access": "public"
   },

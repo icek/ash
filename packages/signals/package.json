@@ -1,14 +1,30 @@
 {
   "name": "@ash.ts/signals",
   "version": "1.0.0",
-  "description": "",
+  "description": "Signals library used by Ash.ts - an entity component system framework for game development",
   "main": "dist/signals.js",
   "browser": "dist/signals.min.js",
   "module": "dist/signals.mjs",
   "types": "dist/signals.d.ts",
-  "keywords": [],
+  "keywords": [
+    "ash",
+    "typescript",
+    "framework",
+    "game",
+    "entity",
+    "component",
+    "system"
+  ],
   "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
   "license": "MIT",
+  "homepage": "https://icek.github.io/ash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icek/ash"
+  },
+  "bugs": {
+    "url": "https://github.com/icek/ash/issues"
+  },
   "publishConfig": {
     "access": "public"
   }

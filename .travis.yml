@@ -15,6 +15,7 @@ script:
   - npm run coveralls
   - npm run docs
   - touch docs/.nojekyll
+  - cp .npmrc-publish .npmrc
 
 deploy:
   - provider: pages
@@ -29,14 +30,14 @@ deploy:
     api_key: $GITHUB_TOKEN
     file_glob: true
     file:
-      - packages/ash/*.js
-      - packages/ash/*.mjs
+      - packages/ash/dist/*.js
+      - packages/ash/dist/*.mjs
       - dist/*
     on:
       tags: true
 
   - provider: script
-    script: npm run lerna
+    script: npm run lerna:publish
     skip_cleanup: true
     on:
       tags: true

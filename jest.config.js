@@ -4,6 +4,5 @@ module.exports = {
   transform: { '^.+\.ts$': 'ts-jest' },
   testRegex: '/tests/.*\.spec\.ts$',
   moduleFileExtensions: ['ts', 'js'],
-  collectCoverage: true,
   collectCoverageFrom: ['packages/**/src/*.ts'],
 };
