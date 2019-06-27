@@ -1,0 +1,37 @@
+{
+  "name": "@ash.ts/io",
+  "version": "0.1.0",
+  "description": "Serialization and deserialization for Ash.ts - an entity component system framework for game development",
+  "main": "dist/io.js",
+  "browser": "dist/io.min.js",
+  "module": "dist/io.mjs",
+  "types": "dist/io.d.ts",
+  "keywords": [
+    "ash",
+    "typescript",
+    "framework",
+    "game",
+    "entity",
+    "component",
+    "system",
+    "serialization",
+    "deserialization"
+  ],
+  "author": "Grzegorz Michlicki <grzegorz@michlicki.pl>",
+  "license": "MIT",
+  "homepage": "https://icek.github.io/ash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icek/ash"
+  },
+  "bugs": {
+    "url": "https://github.com/icek/ash/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ash.ts/core": "file:../core",
+    "@ash.ts/signals": "file:../signals"
+  }
+}
