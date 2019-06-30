@@ -5,10 +5,6 @@ import { ObjectCodec } from './ObjectCodec';
 
 export class ArrayObjectCodec implements ObjectCodec<any[]> {
   public encode(object:any[], codecManager:CodecManager):EncodedObject | null {
-    const typeName:string | null = codecManager.classToStringMap.get(object[0]) || null;
-    // console.log(typeName);
-    if (!typeName) return { type: 'Array', value: [] };
-
     const value:any[] = [];
     for (const val of object) {
       const encoded = codecManager.encodeObject(val);
@@ -21,11 +17,7 @@ export class ArrayObjectCodec implements ObjectCodec<any[]> {
   }
 
   public decode(object:EncodedObject, codecManager:CodecManager):any[] | null {
-    const Type:ClassType<any> | null = codecManager.stringToClassMap.get(object.type) || null;
-    if (!Type) {
-      return null;
-    }
-    const decoded:any[] = new Type();
+    const decoded:any[] = [];
     for (const obj of object.value) {
       decoded[decoded.length] = codecManager.decodeObject(obj);
     }

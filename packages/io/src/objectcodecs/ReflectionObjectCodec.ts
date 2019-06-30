@@ -8,9 +8,9 @@ import { ObjectReflectionFactory } from './ObjectReflectionFactory';
 export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
   public encode(object:Record<string, any>, codecManager:CodecManager):EncodedObject | null {
     const reflection:ObjectReflection | null = ObjectReflectionFactory.reflection(object);
-    const properties:any = {};
     if (!reflection) return null;
-    const keys = Object.keys(reflection.propertyTypes);
+    const properties:any = {};
+    const keys = reflection.propertyTypes.keys();
     for (const name of keys) {
       properties[name] = codecManager.encodeObject(object[name]);
     }

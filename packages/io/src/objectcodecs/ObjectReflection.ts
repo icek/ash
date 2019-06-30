@@ -1,31 +1,38 @@
 import { ClassType } from '@ash.ts/core';
 
 export class ObjectReflection {
-  private pPropertyTypes:Map<string, string> = new Map<string, string>();
+  private _propertyTypes:Map<string, string> = new Map<string, string>();
 
-  private pType:string;
+  private _type:string;
 
   public constructor(component:Record<string, any>, type?:string) {
-    this.pType = type || component.constructor.name;
-    const { pPropertyTypes } = this;
-    const keys = Object.keys(component);
+    this._type = type || component.constructor.name;
+    const { _propertyTypes } = this;
+    const filter = (descs:{ [key:string]:PropertyDescriptor }) => (key:string) => {
+      const desc = descs[key];
+      return desc.enumerable || (!!desc.get && !!desc.set);
+    };
+    const ownKeys = Object.getOwnPropertyDescriptors(component);
+    const protoDescriptor = Object.getOwnPropertyDescriptors(Object.getPrototypeOf(component));
+    let keys = Object.keys(ownKeys).filter(filter(ownKeys));
+    keys = keys.concat(Object.keys(protoDescriptor).filter(filter(protoDescriptor)));
 
     for (const key of keys) {
-      const name:string = typeof component[key];
+      const cmp = component[key];
+      const name:string = typeof cmp;
       switch (name.toLowerCase()) {
         case 'object':
-          pPropertyTypes.set(key, component[key].constructor.name);
-          break;
-        case 'number':
-        case 'string':
-        case 'boolean':
-          pPropertyTypes.set(key, name[0].toUpperCase() + name.substr(1));
+          if (cmp === null) {
+            _propertyTypes.set(key, 'null');
+          } else {
+            _propertyTypes.set(key, cmp.constructor.name);
+          }
           break;
         case 'undefined':
         case 'null':
           break;
         default:
-          pPropertyTypes.set(key, name);
+          _propertyTypes.set(key, name);
       }
     }
 
@@ -34,17 +41,17 @@ export class ObjectReflection {
 
     for (const [key, componentType] of types) {
       const { name }:{ name:string } = componentType;
-      if (!pPropertyTypes.has(key)) {
-        pPropertyTypes.set(key, name);
+      if (!_propertyTypes.has(key)) {
+        _propertyTypes.set(key, name);
       }
     }
   }
 
   public get propertyTypes():Map<string, string> {
-    return this.pPropertyTypes;
+    return this._propertyTypes;
   }
 
   public get type():string {
-    return this.pType;
+    return this._type;
   }
 }

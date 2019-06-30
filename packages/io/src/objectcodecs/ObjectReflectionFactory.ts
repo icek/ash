@@ -2,7 +2,7 @@ import { ClassType } from '@ash.ts/core';
 import { ObjectReflection } from './ObjectReflection';
 
 export class ObjectReflectionFactory {
-  public static classMap:Map<ClassType<any>, string>;
+  public static classMap:Map<ClassType<any>, string> = new Map<ClassType<any>, string>();
 
   private static reflections:Map<ClassType<any>, ObjectReflection> = new Map<ClassType<any>, ObjectReflection>();
 

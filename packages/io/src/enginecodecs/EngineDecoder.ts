@@ -22,7 +22,6 @@ export class EngineDecoder {
   }
 
   public decodeEngine(encodedData:EncodedData, engine:Engine):void {
-    // console.dir(encodedData);
     for (const encodedComponent of encodedData.components) {
       this.decodeComponent(encodedComponent);
     }

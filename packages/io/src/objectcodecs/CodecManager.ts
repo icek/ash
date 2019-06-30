@@ -1,5 +1,7 @@
 import { ClassType } from '@ash.ts/core';
 import { EncodedObject } from '../enginecodecs/EncodedData';
+import { ArrayObjectCodec } from './ArrayObjectCodec';
+import { ClassObjectCodec } from './ClassObjectCodec';
 import { NativeObjectCodec } from './NativeObjectCodec';
 import { ObjectCodec } from './ObjectCodec';
 import { ObjectReflectionFactory } from './ObjectReflectionFactory';
@@ -15,31 +17,34 @@ export class CodecManager {
   private reflectionCodec:ReflectionObjectCodec;
 
   public constructor(classMap:Map<string, ClassType<any>>) {
+    classMap.set('number', Number);
+    classMap.set('string', String);
+    classMap.set('boolean', Boolean);
     this.stringToClassMap = classMap;
     const classToStringMap = new Map<ClassType<any>, string>();
-    ObjectReflectionFactory.classMap = classToStringMap;
-    this.classToStringMap = classToStringMap;
     for (const [className, classType] of classMap) {
       classToStringMap.set(classType, className);
     }
+
+    ObjectReflectionFactory.classMap = classToStringMap;
+    this.classToStringMap = classToStringMap;
 
     this.codecs = new Map<ClassType<any>, ObjectCodec<any>>();
     this.reflectionCodec = new ReflectionObjectCodec();
 
     const nativeCodec:NativeObjectCodec = new NativeObjectCodec();
-    // this.addCustomCodec(nativeCodec, Number);
-    // this.addCustomCodec(nativeCodec, String);
-    // this.addCustomCodec(nativeCodec, Boolean);
-    // this.addCustomCodec(new ClassObjectCodec(), Function);
-    // this.addCustomCodec(new ArrayObjectCodec(), Array);
+    this.addCustomCodec(nativeCodec, Number);
+    this.addCustomCodec(nativeCodec, String);
+    this.addCustomCodec(nativeCodec, Boolean);
+    this.addCustomCodec(new ClassObjectCodec(), Function);
+    this.addCustomCodec(new ArrayObjectCodec(), Array);
   }
 
   public getCodecForObject(object:any):ObjectCodec<any> | null {
     const nativeTypes:{ [key:string]:ClassType<any> } = {
-      // number: Number,
-      // string: String,
-      // boolean: Boolean,
-      // function: Function,
+      number: Number,
+      string: String,
+      boolean: Boolean,
     };
 
     let type = nativeTypes[typeof object];
@@ -95,14 +100,14 @@ export class CodecManager {
 
   public encodeObject(object:any):EncodedObject | null {
     if (object === null) {
-      return null;
+      return { type: 'null', value: null };
     }
     const codec:ObjectCodec<any> | null = this.getCodecForObject(object);
     if (codec) {
       return codec.encode(object, this);
     }
 
-    return null;
+    return { type: 'null', value: null };
   }
 
   public decodeComponent(object:EncodedObject):any | null {
