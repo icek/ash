@@ -60,16 +60,6 @@ export class SystemList {
     // that will break the list iteration if node is the current node in the iteration.
   }
 
-  public removeAll():void {
-    while (this.head) {
-      const system:System = this.head;
-      this.head = this.head.next;
-      system.previous = null;
-      system.next = null;
-    }
-    this.tail = null;
-  }
-
   public get<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
     for (let system:System | null = this.head; system; system = system.next) {
       if (system instanceof type) {

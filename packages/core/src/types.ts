@@ -5,5 +5,3 @@ export interface ClassType<T> {
 export interface NodeClassType<TNode> {
   new():TNode;
 }
-
-export type NativeType = string | number | boolean;

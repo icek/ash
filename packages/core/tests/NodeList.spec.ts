@@ -352,4 +352,21 @@ describe('NodeList tests', () => {
     nodes.mergeSort(sortFunction);
     expect(nodes).toBeNodeList(node1, node2, node3, node4, node5);
   });
+
+  it('removeAll should remove all Nodes', () => {
+    const node1:MockNode = new MockNode();
+    const node2:MockNode = new MockNode();
+    const node3:MockNode = new MockNode();
+    const node4:MockNode = new MockNode();
+    const node5:MockNode = new MockNode();
+
+    nodes.add(node1);
+    nodes.add(node2);
+    nodes.add(node3);
+    nodes.add(node4);
+    nodes.add(node5);
+
+    nodes.removeAll();
+    expect(nodes).toBeNodeList();
+  });
 });
