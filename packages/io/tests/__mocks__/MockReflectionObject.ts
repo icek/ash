@@ -3,6 +3,8 @@ import { MockComponent, MockComponentExtended } from './MockComponent';
 export class MockReflectionObject {
   private _fullAccessor = 0;
 
+  private _setter = 0;
+
   public numberVariable:number = 0;
 
   public booleanVariable:boolean = false;
@@ -32,5 +34,6 @@ export class MockReflectionObject {
   }
 
   public set setOnlyAccessor(value:number) {
+    this._setter = value;
   }
 }

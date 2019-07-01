@@ -19,10 +19,17 @@ module.exports = {
     jest: true,
   },
   rules: {
-    'max-len': [2, 120],
+    'max-len': ['error', 120, 2, {
+      ignoreUrls: true,
+      ignoreComments: false,
+      ignoreRegExpLiterals: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
+    }],
     'no-restricted-syntax': ['error', 'WithStatement'],
     'class-methods-use-this': 'off',
     'no-underscore-dangle': 'off',
+    'no-continue': 'off',
     'no-param-reassign': ['error', { 'props': false }],
     'object-curly-newline': ['error', {
       'ObjectExpression': { 'consistent': true },

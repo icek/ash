@@ -10,5 +10,5 @@ module.exports = {
   transform: { '^.+\.ts$': 'ts-jest' },
   testRegex: '/tests/.*\.spec\.ts$',
   moduleFileExtensions: ['ts', 'js'],
-  collectCoverageFrom: ['packages/**/src/*.ts'],
+  collectCoverageFrom: ['packages/**/src/**/*.ts'],
 };

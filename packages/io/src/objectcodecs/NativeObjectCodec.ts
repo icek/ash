@@ -16,7 +16,12 @@ export class NativeObjectCodec implements ObjectCodec<number | boolean | string>
       + 'so we\'re decoding into a local copy not the original.');
   }
 
-  public decodeIntoProperty(parent:{ [key:string]:any }, property:string, object:EncodedObject, codecManager:CodecManager):void {
+  public decodeIntoProperty(
+    parent:Record<string, any>,
+    property:string,
+    object:EncodedObject,
+    codecManager:CodecManager,
+  ):void {
     parent[property] = object.value;
   }
 }

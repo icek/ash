@@ -1,6 +1,6 @@
 import { ClassType, Engine, Entity } from '@ash.ts/core';
 import { EncodedData } from '../../src/enginecodecs/EncodedData';
-import { ObjectEngineCodec } from '../../src/enginecodecs/ObjectEngineCodec';
+import { ObjectEngineCodec } from '../../src';
 import { MockComponent1, MockComponent2 } from '../__mocks__/MockComponent';
 
 describe('Decoder tests', () => {

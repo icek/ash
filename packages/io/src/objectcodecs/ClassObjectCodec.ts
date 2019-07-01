@@ -16,7 +16,12 @@ export class ClassObjectCodec implements ObjectCodec<ClassType<any>> {
     throw new Error('Can\'t decode into a native object because the object is passed by value, not by reference, so we\'re decoding into a local copy not the original.');
   }
 
-  public decodeIntoProperty(parent:{ [key:string]:any }, property:string, object:EncodedObject, codecManager:CodecManager):void {
+  public decodeIntoProperty(
+    parent:Record<string, any>,
+    property:string,
+    object:EncodedObject,
+    codecManager:CodecManager,
+  ):void {
     this.decodeIntoObject(parent[property], object, codecManager);
   }
 }

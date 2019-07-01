@@ -52,11 +52,6 @@ export class EngineDecoder {
     }
   }
 
-  // private getClassMap( engine:Engine ):ClassMap<any>
-  // {
-  // let {components} = engine.families
-  // }
-
   private overlayEntity(entity:Entity, encodedEntity:EncodedEntity):void {
     for (const componentId of encodedEntity.components) {
       if (this.componentMap[componentId]) {
