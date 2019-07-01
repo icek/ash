@@ -33,7 +33,7 @@ describe('Signals tests', () => {
   // });
 
   it('new Signal has listeners count zero', () => {
-    expect(signal.numListeners).toEqual(0);
+    expect(signal.numListeners).toBe(0);
   });
 
   // it('add listener then dispatch should call it', () => {
@@ -43,7 +43,7 @@ describe('Signals tests', () => {
   //
   it('add listener then listeners count is one', () => {
     signal.add(newEmptyHandler());
-    expect(signal.numListeners).toEqual(1);
+    expect(signal.numListeners).toBe(1);
   });
 
   it('add listener then remove then dispatch should not call listener', () => {
@@ -55,7 +55,7 @@ describe('Signals tests', () => {
   it('add listener then remove then listeners count is zero', () => {
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
-    expect(signal.numListeners).toEqual(0);
+    expect(signal.numListeners).toBe(0);
   });
 
   it('remove function not in listeners should not throw Error', () => {
@@ -79,7 +79,7 @@ describe('Signals tests', () => {
     signal.add(newEmptyHandler());
     signal.add(newEmptyHandler());
     const numListeners = 2;
-    expect(signal.numListeners).toEqual(numListeners);
+    expect(signal.numListeners).toBe(numListeners);
   });
 
   // it(' add2ListenersRemove1stThenDispatchShouldCall2ndNot1stListener', () => {
@@ -102,7 +102,7 @@ describe('Signals tests', () => {
     signal.add(newEmptyHandler());
     signal.add(failIfCalled);
     signal.remove(failIfCalled);
-    expect(signal.numListeners).toEqual(1);
+    expect(signal.numListeners).toBe(1);
   });
 
   it('add same listener twice should only add it once', () => {
@@ -113,7 +113,7 @@ describe('Signals tests', () => {
     signal.add(func);
     signal.add(func);
     dispatchSignal();
-    expect(count).toEqual(1);
+    expect(count).toBe(1);
   });
 
   it('add the same listener twice should mot throw Error', () => {
@@ -125,7 +125,7 @@ describe('Signals tests', () => {
   it('add same listener twice then listeners count is one', () => {
     signal.add(failIfCalled);
     signal.add(failIfCalled);
-    expect(signal.numListeners).toEqual(1);
+    expect(signal.numListeners).toBe(1);
   });
 
   // it(' dispatch2Listeners1stListenerRemovesItselfThen2ndListenerIsStillCalled', () => {
@@ -154,15 +154,15 @@ describe('Signals tests', () => {
   // }
 
   function addListenerDuringDispatchToTestCount():void {
-    expect(signal.numListeners).toEqual(1);
+    expect(signal.numListeners).toBe(1);
     signal.add(newEmptyHandler());
-    expect(signal.numListeners).toEqual(2);
+    expect(signal.numListeners).toBe(2);
   }
 
   it('adding a listener during dispatch increments listeners count', () => {
     signal.add(addListenerDuringDispatchToTestCount);
     dispatchSignal();
-    expect(signal.numListeners).toEqual(2);
+    expect(signal.numListeners).toBe(2);
   });
 
   //    it( ' dispatch2Listeners2ndListenerRemoves1stThen1stListenerIsNotCalled', () =>

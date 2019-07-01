@@ -117,7 +117,7 @@ describe('Engine tests', () => {
   it('getNodeList should get an existing Family if it\'s already created', () => {
     const nodeList1 = engine.getNodeList(MockNode);
     const nodeList2 = engine.getNodeList(MockNode);
-    expect(nodeList1).toEqual(nodeList2);
+    expect(nodeList1).toBe(nodeList2);
   });
 
   it('getNodeList should check all Entities', () => {

@@ -30,7 +30,7 @@ describe('ComponentMatchingFamily tests', () => {
     const entity:Entity = new Entity();
     entity.add(new MockComponent());
     family.newEntity(entity);
-    expect(nodes.head!.entity).toEqual(entity);
+    expect(nodes.head!.entity).toBe(entity);
   });
 
   it('matching Entity is added when access NodeList test 2', () => {
@@ -38,7 +38,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(new MockComponent());
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    expect(nodes.head!.entity).toEqual(entity);
+    expect(nodes.head!.entity).toBe(entity);
   });
 
   it('Node contains Entity properties', () => {
@@ -47,7 +47,7 @@ describe('ComponentMatchingFamily tests', () => {
     entity.add(component);
     family.newEntity(entity);
     const nodes:NodeList<MockNode> = family.nodeList;
-    expect(nodes.head!.component).toEqual(component);
+    expect(nodes.head!.component).toBe(component);
   });
 
   it('matching Entity is added when Component added', () => {
@@ -55,7 +55,7 @@ describe('ComponentMatchingFamily tests', () => {
     const entity:Entity = new Entity();
     entity.add(new MockComponent());
     family.componentAddedToEntity(entity, MockComponent);
-    expect(nodes.head!.entity).toEqual(entity);
+    expect(nodes.head!.entity).toBe(entity);
   });
 
   it('non matching Entity is not added', () => {
@@ -127,7 +127,7 @@ describe('ComponentMatchingFamily tests', () => {
       const index = entities.indexOf(node.entity);
       entities.splice(index, 1);
     }
-    expect(entities.length).toEqual(0);
+    expect(entities.length).toBe(0);
   });
 
   it('clean up empties NodeList', () => {

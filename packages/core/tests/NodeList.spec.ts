@@ -18,7 +18,7 @@ describe('NodeList tests', () => {
   it('adding Node triggers added Signal', () => {
     const node:MockNode = new MockNode();
     nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
-      expect(signalNode).toEqual(node);
+      expect(signalNode).toBe(node);
     });
     nodes.add(node);
   });
@@ -26,7 +26,7 @@ describe('NodeList tests', () => {
   it('removing Node triggers removed Signal', () => {
     const node:MockNode = new MockNode();
     nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
-      expect(signalNode).toEqual(node);
+      expect(signalNode).toBe(node);
     });
     nodes.add(node);
     nodes.remove(node);
@@ -47,7 +47,7 @@ describe('NodeList tests', () => {
       nodeArray.splice(index, 1);
     }
 
-    expect(nodeArray.length).toEqual(0);
+    expect(nodeArray.length).toBe(0);
   });
 
   it('removing current Node during iteration is valid', () => {
@@ -69,7 +69,7 @@ describe('NodeList tests', () => {
         nodes.remove(node);
       }
     }
-    expect(nodeArray.length).toEqual(0);
+    expect(nodeArray.length).toBe(0);
   });
 
   it('removing next Node during iteration is valid', () => {
@@ -90,7 +90,7 @@ describe('NodeList tests', () => {
         nodes.remove(node.next!);
       }
     }
-    expect(nodeArray.length).toEqual(1);
+    expect(nodeArray.length).toBe(1);
   });
 
   it('NodePoll works', () => {
@@ -106,7 +106,7 @@ describe('NodeList tests', () => {
     tempNode = new MockNode();
     nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
       setTimeout(() => {
-        expect(signalNode).toEqual(tempNode);
+        expect(signalNode).toBe(tempNode);
         done();
       });
     });
@@ -118,7 +118,7 @@ describe('NodeList tests', () => {
     nodes.add(tempNode);
     nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
       setTimeout(() => {
-        expect(signalNode).toEqual(tempNode);
+        expect(signalNode).toBe(tempNode);
         done();
       });
     });
