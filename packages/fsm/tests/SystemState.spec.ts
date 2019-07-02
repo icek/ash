@@ -28,7 +28,7 @@ describe('SystemState tests', () => {
 
   it('add method creates method provider', () => {
     const instance = new MockSystem();
-    const methodProvider = () => instance;
+    const methodProvider = ():MockSystem => instance;
     state.addMethod(methodProvider);
     const provider = state.providers[0];
     expect(provider).toBeInstanceOf(DynamicSystemProvider);

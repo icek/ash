@@ -42,7 +42,7 @@ describe('EntityState tests', () => {
   });
 
   it('add with method qualifier creates dynamic provider', () => {
-    const dynamicProvider = () => new MockComponent();
+    const dynamicProvider = ():MockComponent => new MockComponent();
     state.add(MockComponent).withMethod(dynamicProvider);
     const provider = state.providers.get(MockComponent)!;
     expect(provider).toBeInstanceOf(DynamicComponentProvider);
