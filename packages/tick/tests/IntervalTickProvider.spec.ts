@@ -1,10 +1,10 @@
-import { RAFTickProvider } from '../src';
+import { IntervalTickProvider } from '../src';
 
-describe('RAFTickProvider tests', () => {
-  let tickProvider:RAFTickProvider;
+describe('IntervalTickProvider tests', () => {
+  let tickProvider:IntervalTickProvider;
 
   beforeEach(() => {
-    tickProvider = new RAFTickProvider();
+    tickProvider = new IntervalTickProvider();
   });
 
   afterEach(() => {
@@ -42,10 +42,40 @@ describe('RAFTickProvider tests', () => {
   });
 
   it('callback should be execute with delta time', (done) => {
-    const callback = jest.fn((time) => {
+    const callback = jest.fn(() => {
       expect(callback).toBeCalledWith(expect.any(Number));
       done();
     });
+    tickProvider.add(callback);
+    tickProvider.start();
+  });
+
+  it('callback should be execute with delta time', (done) => {
+    const callback = jest.fn(() => {
+      expect(callback).toBeCalledWith(expect.any(Number));
+      done();
+    });
+    tickProvider.add(callback);
+    tickProvider.start();
+  });
+
+  it('should be able to set custom interval', () => {
+    tickProvider.interval = 50;
+    expect(tickProvider.inteval).toBe(50);
+  });
+
+  it('callback should be executed with interval time', (done) => {
+    const matcher = {
+      asymmetricMatch: (actual:number) => {
+        expect(actual).toBeCloseTo(50 / 1000, 2);
+        return true;
+      },
+    };
+    const callback = jest.fn(() => {
+      expect(callback).toBeCalledWith(matcher);
+      done();
+    });
+    tickProvider.interval = 50;
     tickProvider.add(callback);
     tickProvider.start();
   });

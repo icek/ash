@@ -1,7 +1,7 @@
-import { Signal0 } from '../src';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { Signal0, Signal1, Signal2, Signal3 } from '../src';
 
 describe('Signals tests', () => {
-  // let async:IAsync;
   let signal:Signal0;
 
   beforeEach(() => {
@@ -12,97 +12,99 @@ describe('Signals tests', () => {
     (signal as Signal0 | null) = null;
   });
 
-  // UTILITY FUNCTIONS
-
-  function dispatchSignal():void {
-    signal.dispatch();
-  }
-
-
-  function newEmptyHandler():() => {} {
-    return () => ({});
-  }
-
-
-  function failIfCalled():void {
-    expect(false).toBe(true);
-  }
-
-  // it('new signal has null head', () => {
-  //   assert.isNull(signal.head);
-  // });
-
-  it('new Signal has listeners count zero', () => {
-    expect(signal.numListeners).toEqual(0);
+  it('new signal has null head', () => {
+    // @ts-ignore
+    expect(signal.head).toBeNull();
   });
 
-  // it('add listener then dispatch should call it', () => {
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   dispatchSignal();
-  // });
-  //
+  it('new Signal has listeners count zero', () => {
+    expect(signal.numListeners).toBe(0);
+  });
+
+  it('add listener then dispatch should call it', () => {
+    const callback = jest.fn();
+    signal.add(callback);
+    signal.dispatch();
+    expect(callback).toBeCalled();
+  });
+
   it('add listener then listeners count is one', () => {
-    signal.add(newEmptyHandler());
-    expect(signal.numListeners).toEqual(1);
+    signal.add(jest.fn());
+    expect(signal.numListeners).toBe(1);
   });
 
   it('add listener then remove then dispatch should not call listener', () => {
-    signal.add(failIfCalled);
-    signal.remove(failIfCalled);
-    dispatchSignal();
+    const callback = jest.fn();
+    signal.add(callback);
+    signal.remove(callback);
+    signal.dispatch();
+    expect(callback).not.toBeCalled();
   });
 
   it('add listener then remove then listeners count is zero', () => {
-    signal.add(failIfCalled);
-    signal.remove(failIfCalled);
-    expect(signal.numListeners).toEqual(0);
+    const callback = jest.fn();
+    signal.add(callback);
+    signal.remove(callback);
+    expect(signal.numListeners).toBe(0);
   });
 
   it('remove function not in listeners should not throw Error', () => {
-    signal.remove(newEmptyHandler());
-    dispatchSignal();
+    signal.remove(jest.fn());
+    signal.dispatch();
   });
 
-  // it(' addListenerThenRemoveFunctionNotInListenersShouldStillCallListener', () => {
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   signal.remove(newEmptyHandler());
-  //   dispatchSignal();
-  // });
+  it('add listener then remove function not in listeners should still call listener', () => {
+    const callback = jest.fn();
+    signal.add(callback);
+    signal.remove(jest.fn());
+    signal.dispatch();
+    expect(callback).toBeCalled();
+  });
 
-  // it(' add2ListenersThenDispatchShouldCallBoth', () => {
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   dispatchSignal();
-  // });
+  it(' add2ListenersThenDispatchShouldCallBoth', () => {
+    const callback1 = jest.fn();
+    const callback2 = jest.fn();
+    signal.add(callback1);
+    signal.add(callback2);
+    signal.dispatch();
+    expect(callback1).toBeCalled();
+    expect(callback2).toBeCalled();
+  });
 
   it('add 2 listeners then listeners count is two', () => {
-    signal.add(newEmptyHandler());
-    signal.add(newEmptyHandler());
+    signal.add(jest.fn());
+    signal.add(jest.fn());
     const numListeners = 2;
-    expect(signal.numListeners).toEqual(numListeners);
+    expect(signal.numListeners).toBe(numListeners);
   });
 
-  // it(' add2ListenersRemove1stThenDispatchShouldCall2ndNot1stListener', () => {
-  //   signal.add(failIfCalled);
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   signal.remove(failIfCalled);
-  //   dispatchSignal();
-  // });
-
-  //    it( ' add2ListenersRemove2ndThenDispatchShouldCall1stNot2ndListener', () =>
-  //        {
-  //            signal.add( async.add( newEmptyHandler(), 10 ) );
-  //            signal.add( failIfCalled );
-  //            signal.remove( failIfCalled );
-  //            dispatchSignal();
-  //        }
-  //    );
+  it('add 2 listeners remove 1st then dispatch should call 2nd not 1st listener', () => {
+    const callback1 = jest.fn();
+    const callback2 = jest.fn();
+    signal.add(callback1);
+    signal.add(callback2);
+    signal.remove(callback1);
+    signal.dispatch();
+    expect(callback1).not.toBeCalled();
+    expect(callback2).toBeCalled();
+  });
+  it('add 2 listeners remove 2nd then dispatch should call 1st not 2nd listener', () => {
+    const callback1 = jest.fn();
+    const callback2 = jest.fn();
+    signal.add(callback1);
+    signal.add(callback2);
+    signal.remove(callback2);
+    signal.dispatch();
+    expect(callback1).toBeCalled();
+    expect(callback2).not.toBeCalled();
+  });
 
   it('add 2 listeners then remove1 then listeners count is one', () => {
-    signal.add(newEmptyHandler());
-    signal.add(failIfCalled);
-    signal.remove(failIfCalled);
-    expect(signal.numListeners).toEqual(1);
+    const callback = jest.fn();
+    signal.add(jest.fn());
+    signal.add(callback);
+    signal.remove(callback);
+    expect(signal.numListeners).toBe(1);
   });
 
   it('add same listener twice should only add it once', () => {
@@ -112,121 +114,187 @@ describe('Signals tests', () => {
     };
     signal.add(func);
     signal.add(func);
-    dispatchSignal();
-    expect(count).toEqual(1);
+    signal.dispatch();
+    expect(count).toBe(1);
   });
 
   it('add the same listener twice should mot throw Error', () => {
-    const listener = newEmptyHandler();
+    const listener = jest.fn();
     signal.add(listener);
     signal.add(listener);
   });
 
   it('add same listener twice then listeners count is one', () => {
-    signal.add(failIfCalled);
-    signal.add(failIfCalled);
-    expect(signal.numListeners).toEqual(1);
+    const callback = jest.fn();
+    signal.add(callback);
+    signal.add(callback);
+    expect(signal.numListeners).toBe(1);
   });
 
-  // it(' dispatch2Listeners1stListenerRemovesItselfThen2ndListenerIsStillCalled', () => {
-  //   signal.add(selfRemover);
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   dispatchSignal();
-  // });
+  it('dispatch 2 listeners 1st listener removes itself then 2nd listener is still called', () => {
+    const callback1:() => void = jest.fn(() => signal.remove(callback1));
+    const callback2 = jest.fn();
+    signal.add(callback1);
+    signal.add(callback2);
+    signal.dispatch();
+    expect(callback2).toBeCalled();
+  });
 
-  // it(' dispatch2Listeners2ndListenerRemovesItselfThen1stListenerIsStillCalled', () => {
-  //   signal.add(async.add(newEmptyHandler(), 10));
-  //   signal.add(selfRemover);
-  //   dispatchSignal();
-  // });
+  it('dispatch 2 Listeners 2nd listener removes itself then 1st listener is still called', () => {
+    const callback1 = jest.fn();
+    const callback2:() => void = jest.fn(() => signal.remove(callback1));
+    signal.add(callback1);
+    signal.add(callback2);
+    signal.dispatch();
+    expect(callback1).toBeCalled();
+  });
 
-  // function selfRemover():void {
-  //   signal.remove(selfRemover);
-  // }
-
-  // it(' addingAListenerDuringDispatchShouldNotCallIt', () => {
-  //   signal.add(async.add(addListenerDuringDispatch, 10));
-  //   dispatchSignal();
-  // });
-
-  // function addListenerDuringDispatch():void {
-  //   signal.add(failIfCalled);
-  // }
-
-  function addListenerDuringDispatchToTestCount():void {
-    expect(signal.numListeners).toEqual(1);
-    signal.add(newEmptyHandler());
-    expect(signal.numListeners).toEqual(2);
-  }
+  it('adding a listener during dispatch should not call it', () => {
+    const callback = jest.fn();
+    setTimeout(() => signal.add(callback), 10);
+    signal.dispatch();
+    expect(callback).not.toBeCalled();
+  });
 
   it('adding a listener during dispatch increments listeners count', () => {
-    signal.add(addListenerDuringDispatchToTestCount);
-    dispatchSignal();
-    expect(signal.numListeners).toEqual(2);
+    const callback = () => {
+      expect(signal.numListeners).toBe(1);
+      signal.add(jest.fn());
+      expect(signal.numListeners).toBe(2);
+    };
+    signal.add(callback);
+    signal.dispatch();
+    expect(signal.numListeners).toBe(2);
   });
 
-  //    it( ' dispatch2Listeners2ndListenerRemoves1stThen1stListenerIsNotCalled', () =>
-  //    {
-  //        signal.add( async.add( removeFailListener, 10 ) );
-  //        signal.add( failIfCalled );
-  //        dispatchSignal();
-  //    } );
-  //
-  //    function removeFailListener( ...args ):void
-  //    {
-  //        signal.remove( failIfCalled );
-  //    }
-  //
-  //
-  //    it( ' add2ListenersThenRemoveAllShouldLeaveNoListeners', () =>
-  //        {
-  //            signal.add( newEmptyHandler() );
-  //            signal.add( newEmptyHandler() );
-  //            signal.removeAll();
-  //            assertThat( signal.head, nullValue() );
-  //        }
-  //    );
-  //    it( ' addListenerThenRemoveAllThenAddAgainShouldAddListener', () =>
-  //        {
-  //            var handler:Function = newEmptyHandler();
-  //            signal.add( handler );
-  //            signal.removeAll();
-  //            signal.add( handler );
-  //            assertThat( signal.numListeners, equalTo( 1 ) );
-  //        }
-  //    );
-  //    it( ' add2ListenersThenRemoveAllThenListenerCountIsZero', () =>
-  //        {
-  //            signal.add( newEmptyHandler() );
-  //            signal.add( newEmptyHandler() );
-  //            signal.removeAll();
-  //            assertThat( signal.numListeners, equalTo( 0 ) );
-  //        }
-  //    );
-  //    it( ' removeAllDuringDispatchShouldStopAll', () =>
-  //    {
-  //        signal.add( removeAllListeners );
-  //        signal.add( failIfCalled );
-  //        signal.add( newEmptyHandler() );
-  //        dispatchSignal();
-  //    } );
-  //
-  //    function removeAllListeners( ...args ):void
-  //    {
-  //        signal.removeAll();
-  //    }
-  //
-  //    it( ' addOnceListenerThenDispatchShouldCallIt', () =>
-  //        {
-  //            signal.addOnce( async.add( newEmptyHandler(), 10 ) );
-  //            dispatchSignal();
-  //        }
-  //    );
-  //    it( ' addOnceListenerShouldBeRemovedAfterDispatch', () =>
-  //    {
-  //        signal.addOnce( newEmptyHandler() );
-  //        dispatchSignal();
-  //        assertThat( signal.head, nullValue() );
-  //    } );
-  //
+  it('dispatch 2 listeners 2nd listener removes 1st then 1st listener is not called', () => {
+    const callback1 = jest.fn();
+    const callback2 = () => {
+      signal.remove(callback1);
+    };
+    signal.add(callback2);
+    signal.add(callback1);
+    signal.dispatch();
+    expect(callback1).not.toBeCalled();
+  });
+
+  it('add 2 listeners then remove all should leave no listeners', () => {
+    signal.add(jest.fn());
+    signal.add(jest.fn());
+    signal.removeAll();
+    // @ts-ignore
+    expect(signal.head).toBeNull();
+  });
+
+  it('add listener then remove all then add again should add listener', () => {
+    const callback = jest.fn();
+    signal.add(callback);
+    signal.removeAll();
+    signal.add(callback);
+    expect(signal.numListeners).toBe(1);
+  });
+
+  it('add 2 listeners then remove all then listener count is zero', () => {
+    signal.add(jest.fn());
+    signal.add(jest.fn());
+    signal.removeAll();
+    expect(signal.numListeners).toBe(0);
+  });
+
+  it(' removeAllDuringDispatchShouldStopAll', () => {
+    const callback1 = () => signal.removeAll();
+    const callback2 = jest.fn();
+    const callback3 = jest.fn();
+    signal.add(callback1);
+    signal.add(callback2);
+    signal.add(callback3);
+    signal.dispatch();
+    expect(callback2).not.toBeCalled();
+    expect(callback3).not.toBeCalled();
+  });
+
+  it('addOnce listener then dispatch should call it', () => {
+    const callback = jest.fn();
+    signal.addOnce(callback);
+    signal.dispatch();
+    expect(callback).toBeCalled();
+  });
+
+  it('addOnce listener should be removed after dispatch', () => {
+    signal.addOnce(jest.fn());
+    signal.dispatch();
+    // @ts-ignore
+    expect(signal.head).toBeNull();
+  });
+
+  it('addOnce listener should be called just once', () => {
+    const callback = jest.fn();
+    signal.addOnce(callback);
+    signal.dispatch();
+    signal.dispatch();
+    expect(callback).toBeCalledTimes(1);
+  });
+
+  it('Signal1 should dispatch 1 parameter', () => {
+    const param = 'test';
+    const signal1 = new Signal1();
+    const callback = jest.fn();
+    signal1.add(callback);
+    signal1.dispatch(param);
+    expect(callback).toBeCalledWith(param);
+  });
+
+  it('Signal1 addOnce should dispatch 1 parameter just once', () => {
+    const param = 'test';
+    const signal1 = new Signal1();
+    const callback = jest.fn();
+    signal1.addOnce(callback);
+    signal1.dispatch(param);
+    signal1.dispatch(param);
+    expect(callback).toBeCalledTimes(1);
+  });
+
+  it('Signal2 should dispatch 2 parameters', () => {
+    const param1 = 'test';
+    const param2 = 13.75;
+    const signal2 = new Signal2();
+    const callback = jest.fn();
+    signal2.add(callback);
+    signal2.dispatch(param1, param2);
+    expect(callback).toBeCalledWith(param1, param2);
+  });
+
+  it('Signal2 addOnce should dispatch just once', () => {
+    const param1 = 'test';
+    const param2 = 13.75;
+    const signal2 = new Signal2();
+    const callback = jest.fn();
+    signal2.addOnce(callback);
+    signal2.dispatch(param1, param2);
+    signal2.dispatch(param1, param2);
+    expect(callback).toBeCalledTimes(1);
+  });
+
+  it('Signal3 should dispatch 3 parameters', () => {
+    const param1 = 'test';
+    const param2 = 13.75;
+    const param3 = { test: 123 };
+    const signal3 = new Signal3();
+    const callback = jest.fn();
+    signal3.add(callback);
+    signal3.dispatch(param1, param2, param3);
+    expect(callback).toBeCalledWith(param1, param2, param3);
+  });
+
+  it('Signal3 addOnce should be called just once', () => {
+    const param1 = 'test';
+    const param2 = 13.75;
+    const param3 = { test: 123 };
+    const signal3 = new Signal3();
+    const callback = jest.fn();
+    signal3.addOnce(callback);
+    signal3.dispatch(param1, param2, param3);
+    signal3.dispatch(param1, param2, param3);
+    expect(callback).toBeCalledTimes(1);
+  });
 });

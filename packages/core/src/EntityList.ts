@@ -41,14 +41,4 @@ export class EntityList {
     // N.B. Don't set entity.next and entity.previous to null because that
     // will break the list iteration if node is the current node in the iteration.
   }
-
-  public removeAll():void {
-    while (this.head) {
-      const entity:Entity = this.head;
-      this.head = this.head.next;
-      entity.previous = null;
-      entity.next = null;
-    }
-    this.tail = null;
-  }
 }

@@ -14,7 +14,7 @@ export class MockFamily implements Family<MockNode> {
 
   public cleanUpCalls:number = 0;
 
-  private pNodeList:NodeList<MockNode> = new NodeList<MockNode>();
+  private _nodeList:NodeList<MockNode> = new NodeList<MockNode>();
 
   public static reset():void {
     MockFamily.instances = [];
@@ -25,7 +25,7 @@ export class MockFamily implements Family<MockNode> {
   }
 
   public get nodeList():NodeList<MockNode> {
-    return this.pNodeList;
+    return this._nodeList;
   }
 
   public newEntity(entity:Entity):void {

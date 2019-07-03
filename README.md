@@ -3,17 +3,21 @@
 [![Coverage Status](https://coveralls.io/repos/github/icek/ash/badge.svg?branch=master)](https://coveralls.io/github/icek/ash?branch=master)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-## Documentation
+## [Installation, usage & documentation](./packages/ash/README.md)
 
-See `packages/` folder for documentation for each package 
-or check TypeDoc generated [API docs](https://icek.github.io/ash)
+## Packages
+- [ash](./packages/ash/) - Full bundle containing all other modules.
+- [core](./packages/core/) - Core module. [required]
+- [fsm](./packages/fsm/) - Finite State Machine for Engine and Entities.
+- [signals](./packages/signals/) - Signals used for internal communication. 
+[This package is required and installed by core]
+- [tick](./packages/tick/) - Tick providers. [recommended]
+- [tools](./packages/tools) - Optional tools for use with Ash.  
 
 ## Development
-
-First install:
+First install (build is automatically executed):
 ```bash
 $ npm i
-$ npm run build
 ```
 
 One time test:

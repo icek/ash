@@ -63,25 +63,24 @@ export class EngineStateMachine {
     if (newState === this.currentState) {
       return;
     }
-    const toAdd:SystemProvider<any>[] = [];
-    let id:any;
+    const toAdd:Map<any, SystemProvider<any>> = new Map();
     for (const provider of newState.providers) {
-      id = provider.identifier;
-      toAdd[id] = provider;
+      const id = provider.identifier;
+      toAdd.set(id, provider);
     }
     if (this.currentState) {
       for (const provider of this.currentState.providers) {
-        id = provider.identifier;
-        const other:SystemProvider<any> = toAdd[id];
+        const id = provider.identifier;
+        const other:SystemProvider<any> = toAdd.get(id)!;
 
         if (other) {
-          delete toAdd[id];
+          toAdd.delete(id);
         } else {
           this.engine.removeSystem(provider.getSystem());
         }
       }
     }
-    for (const provider of toAdd) {
+    for (const provider of toAdd.values()) {
       this.engine.addSystem(provider.getSystem(), provider.priority);
     }
     this.currentState = newState;

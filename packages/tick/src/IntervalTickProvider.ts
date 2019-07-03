@@ -6,19 +6,19 @@ export class IntervalTickProvider extends Signal1<number> implements TickProvide
 
   private previousTime:number = 0;
 
-  private pInterval:number = 33;
+  private _interval:number = 33;
 
   public constructor(interval?:number) {
     super();
 
     if (interval) {
-      this.pInterval = interval;
+      this._interval = interval;
     }
   }
 
   public start():void {
     this.previousTime = Date.now();
-    this.intervalId = window.setInterval(this.update, this.pInterval);
+    this.intervalId = window.setInterval(this.update, this._interval);
   }
 
   private update = () => {
@@ -34,7 +34,7 @@ export class IntervalTickProvider extends Signal1<number> implements TickProvide
   }
 
   public set interval(interval:number) {
-    this.pInterval = interval;
+    this._interval = interval;
     if (this.intervalId !== 0) {
       window.clearInterval(this.intervalId);
       this.intervalId = window.setInterval(this.update, interval);
@@ -42,7 +42,7 @@ export class IntervalTickProvider extends Signal1<number> implements TickProvide
   }
 
   public get inteval():number {
-    return this.pInterval;
+    return this._interval;
   }
 
   public get playing():boolean {

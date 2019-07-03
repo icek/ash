@@ -28,7 +28,7 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "npm run lerna:bootstrap",
+    "postinstall": "npm-run-all lerna:bootstrap build",
     "lerna:bootstrap": "npm-run-all lerna:clean lerna:install lerna:link",
     "lerna:clean": "lerna clean -y",
     "lerna:install": "lerna exec -- npm i --no-package-lock",
