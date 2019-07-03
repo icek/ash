@@ -15,10 +15,9 @@
 - [tools](./packages/tools) - Optional tools for use with Ash.  
 
 ## Development
-First install:
+First install (build is automatically executed):
 ```bash
 $ npm i
-$ npm run build
 ```
 
 One time test:

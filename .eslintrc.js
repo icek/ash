@@ -23,6 +23,7 @@ module.exports = {
     'no-restricted-syntax': ['error', 'WithStatement'],
     'class-methods-use-this': 'off',
     'no-param-reassign': ['error', { 'props': false }],
+    'no-underscore-dangle': 'off',
     'object-curly-newline': ['error', {
       'ObjectExpression': { 'consistent': true },
       'ObjectPattern': { 'consistent': true },
