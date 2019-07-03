@@ -1,5 +1,5 @@
 module.exports = {
-  projects: ['core', 'fsm', 'signals', 'tick', 'tools'].map(dir => ({
+  projects: ['core', 'fsm', 'io', 'signals', 'tick', 'tools'].map(dir => ({
     roots: [
       `<rootDir>/packages/${dir}/src`,
       `<rootDir>/packages/${dir}/tests`,
