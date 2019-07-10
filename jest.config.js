@@ -8,5 +8,5 @@ module.exports = {
     testRegex: '/tests/.*\.spec\.ts$',
     moduleFileExtensions: ['ts', 'js'],
   })),
-  collectCoverageFrom: ['packages/**/src/*.ts'],
+  collectCoverageFrom: ['packages/**/src/**/*.ts'],
 };
