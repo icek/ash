@@ -118,6 +118,70 @@ export class RenderSystem extends System {
 
 ```
 
+### IO
+
+This package provides (de)serialization of Engine. Because of how js handle 
+types, you need to provide additional string to ClassType map. Eg.:
+
+```typescript
+import { JsonEngineCodec } from '@ash.ts/io';
+import { Display, Position } from '../components';
+
+const classMap = new Map();
+classMap.set('Position', Position);
+classMap.set('Display', Display);
+// ... add other classes
+
+const codec = new JsonEngineCodec(classMap);
+```
+
+Other way to create Map (array of [string, ClassType] tuples):
+
+```typescript
+const classMap = new Map([
+  ['Position', Position],
+  ['Display', Display],
+  // ... other classes
+]);
+```
+
+If you export all components in one file, you can use this method:
+
+```typescript
+import * as components from './components';
+
+const map = new Map(
+  Object
+    .keys(components)
+    .map(key => [key, components[key as keyof typeof components]])
+);
+```
+
+If your components are more complex objects, remember to also add all used
+Classes. Eg. if you use PIXI you might want to add DisplayObject class.
+
+```typescript
+map.set('PIXI.DisplayObject', PIXI.DisplayObject);
+```
+
+Second important difference is exported JSON format. It's similar but not the 
+same. All object codecs return object that implements EncodedObject interface.
+All use the same "value" key. AS3 version use different keys for different 
+types.
+
+Typescript exported json example:
+
+```json
+{
+  "id": 1,
+  "type": "Position",
+  "value": ...
+}
+```
+
+value can be any valid json, eg. array in ArrayObjectCodec, number, boolean or 
+string in NativeObjectCodec or object in most other codecs.
+
 ### ListIteratingSystem
 
 This utility class is also declared as abstract class with `updateNode` method

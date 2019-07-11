@@ -1,6 +1,6 @@
 import { ClassType, Engine, Entity } from '@ash.ts/core';
-import { EncodedData } from '../../src/enginecodecs/EncodedData';
 import { JsonEngineCodec } from '../../src';
+import { EncodedData } from '../../src/enginecodecs/EncodedData';
 import { MockComponent1, MockComponent2 } from '../__mocks__/MockComponent';
 
 describe('JsonEngineCodec tests', () => {
@@ -104,5 +104,20 @@ describe('JsonEngineCodec tests', () => {
     const third = engine.entities.find(entity => entity.name === 'third')!;
     const component = third.get(MockComponent1)!;
     expect(component.x).toEqual(secondComponent1.x);
+  });
+
+  it('after making changes and decoding over engine state should be the same as in the beginning', () => {
+    const first = engine.entities.find(entity => entity.name === 'first')!;
+    const second = engine.entities.find(entity => entity.name === 'second')!;
+    const third = engine.entities.find(entity => entity.name === 'third')!;
+    const component1 = first.get(MockComponent1)!;
+    component1.x = 11;
+    const component2 = second.get(MockComponent2)!;
+    component2.y = 22;
+    engine.removeEntity(third);
+    endec.decodeOverEngine(encodedData, engine);
+    expect(component1.x).toEqual(firstComponent1.x);
+    expect(component2.y).toEqual(onlyComponent2.y);
+    expect(engine.getEntityByName('third')).not.toBeNull();
   });
 });
