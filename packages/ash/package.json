@@ -31,6 +31,7 @@
   "dependencies": {
     "@ash.ts/core": "file:../core",
     "@ash.ts/fsm": "file:../fsm",
+    "@ash.ts/io": "file:../io",
     "@ash.ts/signals": "file:../signals",
     "@ash.ts/tick": "file:../tick",
     "@ash.ts/tools": "file:../tools"

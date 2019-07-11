@@ -13,6 +13,7 @@ import {
   System,
 } from '@ash.ts/core';
 import { EntityStateMachine, EngineStateMachine } from '@ash.ts/fsm';
+import { JsonEngineCodec, ObjectEngineCodec } from '@ash.ts/io';
 import { TickProvider, RAFTickProvider, IntervalTickProvider } from '@ash.ts/tick';
 import { ComponentPool, ListIteratingSystem } from '@ash.ts/tools';
 
@@ -32,6 +33,8 @@ export {
   NodePool,
   NodeList,
   System,
+  JsonEngineCodec,
+  ObjectEngineCodec,
   EntityStateMachine,
   EngineStateMachine,
   TickProvider,

@@ -10,7 +10,7 @@ export default [
   'fsm',
   'tick',
   'tools',
-  // 'io',
+  'io',
   'ash',
 ].reduce((config, name) => {
   const plugins = [
