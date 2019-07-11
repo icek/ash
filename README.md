@@ -9,6 +9,7 @@
 - [ash](./packages/ash/) - Full bundle containing all other modules.
 - [core](./packages/core/) - Core module. [required]
 - [fsm](./packages/fsm/) - Finite State Machine for Engine and Entities.
+- [io](./packages/io/) - Serialization/Deserialization for Engine.
 - [signals](./packages/signals/) - Signals used for internal communication. 
 [This package is required and installed by core]
 - [tick](./packages/tick/) - Tick providers. [recommended]

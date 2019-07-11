@@ -19,7 +19,7 @@ import { Node } from './Node';
  * NodeList it's previous and next properties still point to the nodes that were before and after
  * it in the NodeList just before it was removed.</p>
  */
-export class NodeList<TNode extends Node<TNode>> {
+export class NodeList<TNode extends Node> {
   /**
    * The first item in the node list, or null if the list contains no nodes.
    */
@@ -56,7 +56,7 @@ export class NodeList<TNode extends Node<TNode>> {
       node.next = null;
       node.previous = null;
     } else {
-      this.tail!.next = node;
+      this.tail!.next = node!;
       node.previous = this.tail;
       node.next = null;
       this.tail = node;
@@ -180,14 +180,14 @@ export class NodeList<TNode extends Node<TNode>> {
             if (this.tail === node) {
               this.tail = node.previous;
             }
-            node.previous!.next = node.next;
+            node.previous!.next = node.next!;
             if (node.next) {
               node.next.previous = node.previous;
             }
             // insert after other
             node.next = other.next;
             node.previous = other;
-            node.next!.previous = node;
+            node.next!.previous = node!;
             other.next = node;
           }
           break; // exit the inner for loop
@@ -198,13 +198,13 @@ export class NodeList<TNode extends Node<TNode>> {
         if (this.tail === node) {
           this.tail = node.previous;
         }
-        node.previous!.next = node.next;
+        node.previous!.next = node.next!;
         if (node.next) {
           node.next.previous = node.previous;
         }
         // insert at head
         node.next = this.head;
-        this.head!.previous = node;
+        this.head!.previous = node!;
         node.previous = null;
         this.head = node;
       }

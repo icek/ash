@@ -155,7 +155,7 @@ export class Engine {
    * @param nodeClass The type of node required.
    * @return A linked list of all nodes of this type from all entities in the engine.
    */
-  public getNodeList<TNode extends Node<any>>(nodeClass:NodeClassType<TNode>):NodeList<TNode> {
+  public getNodeList<TNode extends Node>(nodeClass:NodeClassType<TNode>):NodeList<TNode> {
     if (this.families.has(nodeClass)) {
       return this.families.get(nodeClass)!.nodeList;
     }
@@ -178,7 +178,7 @@ export class Engine {
    *
    * @param nodeClass The type of the node class if the list to be released.
    */
-  public releaseNodeList<TNode extends Node<TNode>>(nodeClass:NodeClassType<TNode>):void {
+  public releaseNodeList<TNode extends Node>(nodeClass:NodeClassType<TNode>):void {
     if (this.families.has(nodeClass)) {
       this.families.get(nodeClass)!.cleanUp();
     }

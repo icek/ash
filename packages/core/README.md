@@ -38,7 +38,7 @@ it's not changed as in [ash-js] (`Ash.Nodes.create()`). All you need to add is
 import { Node, keep } from '@ash.ts/ash';
 import { Motion, Position } from '../components';
 
-export class MovementNode extends Node<MovementNode> {
+export class MovementNode extends Node {
   
   @keep(Position)
   public position!:Position;
@@ -49,12 +49,6 @@ export class MovementNode extends Node<MovementNode> {
 }
 
 ```
-Typescript has generics which are the way to add more typing to the classes.
-Similar concept in AS3 was `Vector.<Type>` but only used in this type of 
-structure. In typescript generics can be used in any type of structures.
-Using `Node<MovementNode>` gave compiler information about type of previous and
-next node, as nodes are stored in the Engine as double linked list.
-
 Exclamation mark used in this example is a non-null assertion operator.
 If you use `"strict": true` or `"strictNullChecks": true` flags in your
 `tsconfig.json` file, it's the way to silent compiler. You as a developer 

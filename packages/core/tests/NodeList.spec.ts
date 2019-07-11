@@ -17,7 +17,7 @@ describe('NodeList tests', () => {
 
   it('adding Node triggers added Signal', () => {
     const node:MockNode = new MockNode();
-    nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
+    nodes.nodeAdded.add((signalNode:Node) => {
       expect(signalNode).toBe(node);
     });
     nodes.add(node);
@@ -25,7 +25,7 @@ describe('NodeList tests', () => {
 
   it('removing Node triggers removed Signal', () => {
     const node:MockNode = new MockNode();
-    nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
+    nodes.nodeRemoved.add((signalNode:Node) => {
       expect(signalNode).toBe(node);
     });
     nodes.add(node);
@@ -104,7 +104,7 @@ describe('NodeList tests', () => {
 
   it('component Added Signal Contains Correct Parameters', (done) => {
     tempNode = new MockNode();
-    nodes.nodeAdded.add((signalNode:Node<MockNode>) => {
+    nodes.nodeAdded.add((signalNode:Node) => {
       setTimeout(() => {
         expect(signalNode).toBe(tempNode);
         done();
@@ -116,7 +116,7 @@ describe('NodeList tests', () => {
   it('component Removed Signal Contains Correct Parameters', (done) => {
     tempNode = new MockNode();
     nodes.add(tempNode);
-    nodes.nodeRemoved.add((signalNode:Node<MockNode>) => {
+    nodes.nodeRemoved.add((signalNode:Node) => {
       setTimeout(() => {
         expect(signalNode).toBe(tempNode);
         done();

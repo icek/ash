@@ -19,8 +19,8 @@ Using yarn:
 
 Utility class declared as abstract class with `updateNode` method marked as required. There are also 2 optional callback
 methods that can be declared in an inherited class:
-- `protected nodeAdded?:(node:Node<TNode>) => void;`
-- `protected nodeRemoved?:(node:Node<TNode>) => void;`
+- `protected nodeAdded?:(node:Node) => void;`
+- `protected nodeRemoved?:(node:Node) => void;`
 
 Example usage:
 

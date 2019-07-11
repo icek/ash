@@ -10,7 +10,7 @@ import { Node } from './Node';
  * while iterating through the NodeList, the pool also maintains a cache of nodes that are added to the pool
  * but should not be reused yet. They are then released into the pool by calling the releaseCache method.
  */
-export class NodePool<TNode extends Node<TNode>> {
+export class NodePool<TNode extends Node> {
   private tail:TNode | null = null;
 
   private NodeClass:NodeClassType<TNode>;

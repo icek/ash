@@ -8,15 +8,13 @@ import { NodeList } from './NodeList';
  * in the Engine object). Most developers don't need to use this since the default implementation
  * is used by default and suits most needs.
  */
-export interface Family<TNode extends Node<any>> {
+export interface Family<TNode extends Node> {
   /**
    * Returns the NodeList managed by this class. This should be a reference that remains valid always
    * since it is retained and reused by Systems that use the list. i.e. never recreate the list,
    * always modify it in place.
    */
-
-  /* get */
-  nodeList:NodeList<TNode>;
+  readonly nodeList:NodeList<TNode>;
 
   /**
    * An entity has been added to the engine. It may already have components so test the entity

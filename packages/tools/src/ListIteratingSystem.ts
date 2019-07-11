@@ -9,7 +9,7 @@ import { Engine, Node, NodeClassType, NodeList, System } from '@ash.ts/core';
  * @example
  * ```typescript
  *
- * export class MySystem extends ListIteratingSystem {
+ * export class MySystem extends ListIteratingSystem<MyNode> {
  *   constructor() {
  *     super(MyNode);
  *   }
@@ -21,7 +21,7 @@ import { Engine, Node, NodeClassType, NodeList, System } from '@ash.ts/core';
  * ```
  */
 
-export abstract class ListIteratingSystem<TNode extends Node<TNode>> extends System {
+export abstract class ListIteratingSystem<TNode extends Node> extends System {
   protected nodeList:NodeList<TNode> | null = null;
 
   protected nodeClass:NodeClassType<TNode>;

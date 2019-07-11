@@ -55,7 +55,7 @@ it's not changed as in [ash-js] (`Ash.Nodes.create()`). All you need to add is
 import { Node, keep } from '@ash.ts/ash';
 import { Motion, Position } from '../components';
 
-export class MovementNode extends Node<MovementNode> {
+export class MovementNode extends Node {
   
   @keep(Position)
   public position!:Position;
@@ -123,8 +123,8 @@ export class RenderSystem extends System {
 This utility class is also declared as abstract class with `updateNode` method
 marked as required. There are also 2 optional callback methods that can be 
 declared in an inherited class:
-- `protected nodeAdded?:(node:Node<TNode>) => void;`
-- `protected nodeRemoved?:(node:Node<TNode>) => void;`
+- `protected nodeAdded?:(node:Node) => void;`
+- `protected nodeRemoved?:(node:Node) => void;`
 
 Example usage:
 

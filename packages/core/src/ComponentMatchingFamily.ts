@@ -1,10 +1,10 @@
-import { ClassType, NodeClassType } from './types';
 import { Engine } from './Engine';
 import { Entity } from './Entity';
 import { Family } from './Family';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
+import { ClassType, NodeClassType } from './types';
 
 const ashProp = '__ash_types__';
 
@@ -15,7 +15,7 @@ const ashProp = '__ash_types__';
  * It uses the basic entity matching pattern of an entity system - entities are added to the list if
  * they contain components matching all the public properties of the node class.
  */
-export class ComponentMatchingFamily<TNode extends Node<TNode>> implements Family<TNode> {
+export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode> {
   private nodes:NodeList<TNode>;
 
   private entities:Map<Entity, TNode>;
@@ -152,7 +152,7 @@ export class ComponentMatchingFamily<TNode extends Node<TNode>> implements Famil
    * Removes all nodes from the NodeList.
    */
   public cleanUp():void {
-    for (let node:Node<TNode> | null = this.nodes.head; node; node = node.next) {
+    for (let node:Node | null = this.nodes.head; node; node = node.next) {
       this.entities.delete(node.entity);
     }
     this.nodes.removeAll();

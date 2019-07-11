@@ -9,7 +9,7 @@ import { Entity } from './Entity';
  * to the list obtained by the system. The engine keeps the list up to date as entities are added
  * to and removed from the engine and as the components on entities change.</p>
  */
-export abstract class Node<TNode> {
+export abstract class Node {
   /**
    * The entity whose components are included in the node.
    */
@@ -18,10 +18,10 @@ export abstract class Node<TNode> {
   /**
    * Used by the NodeList class. The previous node in a node list.
    */
-  public previous:TNode | null = null;
+  public previous:this | null = null;
 
   /**
    * Used by the NodeList class. The next node in a node list.
    */
-  public next:TNode | null = null;
+  public next:this | null = null;
 }
