@@ -1,4 +1,3 @@
-import { ClassType } from '@ash.ts/core';
 import { EncodedObject } from '../enginecodecs/EncodedData';
 import { CodecManager } from './CodecManager';
 import { ObjectCodec } from './ObjectCodec';
