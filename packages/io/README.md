@@ -157,19 +157,19 @@ engine codecs to encode/decode each specific object.
 An object codec implements the ObjectCodec interface, and has four methods.
 
 ```typescript
-function encode( object : Object, codecManager:CodecManager) : Object;
+function encode(object:T, codecManager:CodecManager):EncodedObject;
 ```
 
 To encode from one of the types handled by the codec into an anonymous object.
 
 ```typescript
-function decode( object : Object, codecManager:CodecManager) : Object;
+function decode(object:EncodedObject, codecManager:CodecManager):T;
 ```
 
 To decode from an anonymous object into the type handled by the codec.
 
 ```typescript
-function decodeIntoObject( target : Object, object : Object, codecManager:CodecManager):void;
+function decodeIntoObject(target:T, object:EncodedObject, codecManager:CodecManager):void;
 ```
 
 To decode from an anonymous object into the given target object of a type 
@@ -177,7 +177,7 @@ handled by the codec. This is used when overlaying a saved game state over the
 current game state.
 
 ```typescript
-function decodeIntoProperty( parent : Object, property : String, object : Object, codecManager : CodecManager ) : void;
+function decodeIntoProperty(parent:any, property:string, object:EncodedObject, codecManager:CodecManager):void;
 ```
 
 To decode from an anonymous object into the given property of another object. 
