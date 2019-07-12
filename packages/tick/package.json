@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/tick",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tick providers package for Ash.ts - an entity component system framework for game development",
   "main": "dist/tick.js",
   "browser": "dist/tick.min.js",
