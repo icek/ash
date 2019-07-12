@@ -52,10 +52,9 @@ In AS3 when Node fields are null but they are declared as some type, that
 information is kept at runtime.
 Adding typescript to javascript gave us code completion and type checking, 
 but information about type is dropped as soon as code is compiled to javascript
-and not available at runtime. To keep Typescript API as similar to AS3 version
-it's not changed as in [ash-js] (`Ash.Nodes.create()`). All you need to add is
- `@keep(Class)` to each field of your node. This way type information is
- available in compile and run time. Example:
+and not available at runtime. All you need to add is `@keep(Class)` to each 
+field of your node. This way type information is available in compile and 
+runtime. Example:
  
  ```typescript
 import { Node, keep } from '@ash.ts/ash';
@@ -72,12 +71,6 @@ export class MovementNode extends Node {
 }
 
 ```
-Typescript has generics which are the way to add more typing to the classes.
-Similar concept in AS3 was `Vector.<Type>` but only used in this type of 
-structure. In typescript generics can be used in any type of structures.
-Using `Node<MovementNode>` gave compiler information about type of previous and
-next node, as nodes are stored in the Engine as double linked list.
-
 Exclamation mark used in this example is a non-null assertion operator.
 If you use `"strict": true` or `"strictNullChecks": true` flags in your
 `tsconfig.json` file, it's the way to silent compiler. You as a developer 
@@ -245,4 +238,3 @@ as used browser and your environment can provide.
 [what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
 [why]: http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
 [group]: https://groups.google.com/forum/?fromgroups=#!forum/ash-framework
-[ash-js]: https://github.com/BrettJephson/ash-js

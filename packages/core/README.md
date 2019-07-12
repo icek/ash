@@ -29,10 +29,9 @@ In AS3 when Node fields are null but they are declared as some type, that
 information is kept at runtime.
 Adding typescript to javascript gave us code completion and type checking, 
 but information about type is dropped as soon as code is compiled to javascript
-and not available at runtime. To keep Typescript API as similar to AS3 version
-it's not changed as in [ash-js] (`Ash.Nodes.create()`). All you need to add is
- `@keep(Class)` to each field of your node. This way type information is
- available in compile and run time. Example:
+and not available at runtime. All you need to add is `@keep(Class)` to each 
+field of your node. This way type information is available in compile and 
+runtime. Example:
  
  ```typescript
 import { Node, keep } from '@ash.ts/ash';
@@ -106,4 +105,3 @@ export class RenderSystem extends System {
 [what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
 [why]: http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
 [group]: https://groups.google.com/forum/?fromgroups=#!forum/ash-framework
-[ash-js]: https://github.com/BrettJephson/ash-js
