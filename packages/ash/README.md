@@ -2,12 +2,11 @@
 A Typescript port of [Ash Framework], an entity framework for game development 
 by [Richard Lord]. This is the bundle package containing the following packages:
 
-- [core](../core/) - Core module. [required]
+- [core](../core/) - Core module.
 - [fsm](../fsm/) - Finite State Machine for Engine and Entities.
 - [io](../io/) - Serialization/Deserialization for Engine.
-- [signals](../signals/) - Signals used for internal communication. 
-[This package is required and installed by core]
-- [tick](../tick/) - Tick providers. [recommended]
+- [signals](../signals/) - Signals used for internal communication.
+- [tick](../tick/) - Tick providers.
 - [tools](../tools) - Optional tools for use with Ash.  
 
 ## Instalation
