@@ -26,7 +26,7 @@ export class StateSystemMapping<TSystem extends System> {
    * @param priority The component provider to use.
    * @return This StateSystemMapping, so more modifications can be applied.
    */
-  public withPriority(priority:number):StateSystemMapping<TSystem> {
+  public withPriority(priority:number):this {
     this.provider.priority = priority;
 
     return this;
@@ -39,7 +39,7 @@ export class StateSystemMapping<TSystem extends System> {
    * @param system The System instance to use for the mapping
    * @return This StateSystemMapping, so more modifications can be applied
    */
-  public addInstance(system:TSystem):StateSystemMapping<TSystem> {
+  public addInstance<TNextSystem extends System>(system:TNextSystem):StateSystemMapping<TNextSystem> {
     return this.creatingState.addInstance(system);
   }
 
@@ -53,7 +53,7 @@ export class StateSystemMapping<TSystem extends System> {
    * mapping is used.
    * @return This StateSystemMapping, so more modifications can be applied
    */
-  public addSingleton(type:ClassType<TSystem>):StateSystemMapping<TSystem> {
+  public addSingleton<TNextSystem extends System>(type:ClassType<TNextSystem>):StateSystemMapping<TNextSystem> {
     return this.creatingState.addSingleton(type);
   }
 
@@ -65,7 +65,7 @@ export class StateSystemMapping<TSystem extends System> {
    * @param method The method to provide the System instance.
    * @return This StateSystemMapping, so more modifications can be applied.
    */
-  public addMethod(method:() => TSystem):StateSystemMapping<TSystem> {
+  public addMethod<TNextSystem extends System>(method:() => TNextSystem):StateSystemMapping<TNextSystem> {
     return this.creatingState.addMethod(method);
   }
 
@@ -76,7 +76,7 @@ export class StateSystemMapping<TSystem extends System> {
    * @param provider The component provider to use.
    * @return This StateSystemMapping, so more modifications can be applied.
    */
-  public addProvider(provider:SystemProvider<TSystem>):StateSystemMapping<TSystem> {
+  public addProvider<TNextSystem extends System>(provider:SystemProvider<TNextSystem>):StateSystemMapping<TNextSystem> {
     return this.creatingState.addProvider(provider);
   }
 }
