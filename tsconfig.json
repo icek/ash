@@ -14,5 +14,21 @@
     "paths": {
       "@ash.ts/*": ["./*"]
     }
+  },
+  "typedocOptions": {
+    "name": "ash",
+    "mode": "modules",
+    "module": "es6",
+    "target": "es6",
+    "out": "docs",
+    "exclude": ["packages/**/tests/**/*", "packages/**/node_modules/**/*"],
+    "theme": "default",
+    "ignoreCompilerErrors": true,
+    "excludePrivate": true,
+    "excludeNotExported": true,
+    "preserveConstEnums": true,
+    "stripInternal": true,
+    "gitRevision": "master",
+    "rewriteLinks": "./typedoc-rewrite.json"
   }
 }

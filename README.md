@@ -6,14 +6,14 @@
 ## [Installation, usage & documentation](./packages/ash/README.md)
 
 ## Packages
-- [ash](./packages/ash/) - Full bundle containing all other modules.
-- [core](./packages/core/) - Core module. [required]
-- [fsm](./packages/fsm/) - Finite State Machine for Engine and Entities.
-- [io](./packages/io/) - Serialization/Deserialization for Engine.
-- [signals](./packages/signals/) - Signals used for internal communication. 
+- [ash](./packages/ash/README.md) - Full bundle containing all other modules.
+- [core](./packages/core/README.md) - Core module. [required]
+- [fsm](./packages/fsm/README.md) - Finite State Machine for Engine and Entities.
+- [io](./packages/io/README.md) - Serialization/Deserialization for Engine.
+- [signals](./packages/signals/README.md) - Signals used for internal communication. 
 [This package is required and installed by core]
-- [tick](./packages/tick/) - Tick providers. [recommended]
-- [tools](./packages/tools) - Optional tools for use with Ash.  
+- [tick](./packages/tick/README.md) - Tick providers. [recommended]
+- [tools](./packages/tools/README.md) - Optional tools for use with Ash.  
 
 ## Development
 First install (build is automatically executed):

@@ -41,7 +41,7 @@
     "postbuild": "rimraf packages/**/dist/types",
     "docs": "npm-run-all docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
-    "docs:typedoc": "typedoc --options typedoc.json",
+    "docs:typedoc": "typedoc",
     "lint": "eslint ./packages/**/*.ts",
     "pretest": "jest --clearCache",
     "test": "jest",
@@ -59,8 +59,8 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
-    "@typescript-eslint/eslint-plugin": "^1.11.0",
-    "@typescript-eslint/parser": "^1.11.0",
+    "@typescript-eslint/eslint-plugin": "^1.12.0",
+    "@typescript-eslint/parser": "^1.12.0",
     "coveralls": "^3.0.5",
     "dts-bundle-generator": "^3.1.0",
     "eslint": "^6.0.1",
@@ -81,6 +81,7 @@
     "tslib": "^1.10.0",
     "typedoc": "^0.14.2",
     "typedoc-plugin-lerna-packages": "^0.1.6",
+    "typedoc-plugin-linkrewriter": "^0.1.1",
     "typescript": "^3.5.3"
   }
 }
