@@ -20,7 +20,8 @@
   "homepage": "https://icek.github.io/ash",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icek/ash"
+    "url": "https://github.com/icek/ash.git",
+    "directory": "packages/tools"
   },
   "bugs": {
     "url": "https://github.com/icek/ash/issues"

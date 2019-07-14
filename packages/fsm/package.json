@@ -23,7 +23,8 @@
   "homepage": "https://icek.github.io/ash",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icek/ash"
+    "url": "https://github.com/icek/ash.git",
+    "directory": "packages/fsm"
   },
   "bugs": {
     "url": "https://github.com/icek/ash/issues"
