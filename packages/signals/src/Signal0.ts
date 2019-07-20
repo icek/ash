@@ -10,8 +10,7 @@ import { SignalBase } from './SignalBase';
 export class Signal0 extends SignalBase<() => void> {
   public dispatch():void {
     this.startDispatch();
-    let node:ListenerNode<() => void> | null;
-    for (node = this.head; node; node = node.next) {
+    for (let node = this.head; node; node = node.next) {
       node.listener();
       if (node.once) {
         this.remove(node.listener);
