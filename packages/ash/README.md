@@ -226,6 +226,15 @@ with static FPS,
 - `RAFTickProvider` which uses requestAnimationFrame and provide as many FPS
 as used browser and your environment can provide.
 
+## Alternatives
+
+These are alternative typescript ports you can find:
+
+- [ash-ts](https://www.npmjs.com/package/ash-ts) - Private source code. 
+No docs, no examples, only core module. Components must inherit from the 
+AshComponent class.
+- [AshTS](https://github.com/MikeMnD/AshTS) - Not a node module, core package 
+only.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
