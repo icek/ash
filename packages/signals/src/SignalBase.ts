@@ -135,7 +135,7 @@ export abstract class SignalBase<TListener> {
     while (this.head) {
       const node:ListenerNode<TListener> = this.head;
       this.head = this.head.next;
-      this.nodes.delete(node.listener!);
+      this.nodes.delete(node.listener);
       this.listenerNodePool.dispose(node);
     }
     this.tail = null;

@@ -6,7 +6,7 @@ export class ListenerNode<TListener> {
 
   public next:ListenerNode<TListener> | null = null;
 
-  public listener:TListener | null = null;
+  public listener!:TListener;
 
   public once:boolean = false;
 }

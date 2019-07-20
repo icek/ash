@@ -12,9 +12,9 @@ export class Signal0 extends SignalBase<() => void> {
     this.startDispatch();
     let node:ListenerNode<() => void> | null;
     for (node = this.head; node; node = node.next) {
-      node.listener!.call(node);
+      node.listener();
       if (node.once) {
-        this.remove(node.listener!);
+        this.remove(node.listener);
       }
     }
     this.endDispatch();

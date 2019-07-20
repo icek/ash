@@ -13,9 +13,9 @@ export class Signal2<T1, T2> extends SignalBase<(a:T1, b:T2) => void> {
     this.startDispatch();
     let node:ListenerNode<(a:T1, b:T2) => void> | null;
     for (node = this.head; node; node = node.next) {
-      node.listener!.call(node, object1, object2);
+      node.listener(object1, object2);
       if (node.once) {
-        this.remove(node.listener!);
+        this.remove(node.listener);
       }
     }
     this.endDispatch();
