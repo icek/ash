@@ -1,4 +1,5 @@
-import { MockComponent, MockComponentExtended } from './MockComponent';
+import { MockComponent } from './MockComponent';
+import { MockComponentExtended } from './MockComponentExtended';
 
 export class MockReflectionObject {
   private _fullAccessor = 0;

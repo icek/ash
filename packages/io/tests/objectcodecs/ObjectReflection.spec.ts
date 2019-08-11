@@ -1,7 +1,6 @@
 import { ObjectReflection } from '../../src/objectcodecs/ObjectReflection';
 import { ObjectReflectionFactory } from '../../src/objectcodecs/ObjectReflectionFactory';
-import { MockComponent } from '../__mocks__/MockComponent';
-import { MockReflectionObject } from '../__mocks__/MockReflectionObject';
+import { MockComponent, MockReflectionObject } from '../__mocks__';
 
 describe('ObjectReflection tests', () => {
   let object:MockReflectionObject;

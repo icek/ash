@@ -1,7 +1,7 @@
 import { ClassType } from '@ash.ts/core';
 import { ClassObjectCodec } from '../../src/objectcodecs/ClassObjectCodec';
 import { CodecManager } from '../../src/objectcodecs/CodecManager';
-import { MockComponent } from '../__mocks__/MockComponent';
+import { MockComponent } from '../__mocks__';
 
 describe('ClassObjectCodec tests', () => {
   let classMap:Map<string, ClassType<any>>;

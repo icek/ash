@@ -2,8 +2,7 @@ import { ClassType } from '@ash.ts/core';
 import { EncodedObject } from '../../src/enginecodecs/EncodedData';
 import { CodecManager } from '../../src/objectcodecs/CodecManager';
 import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCodec';
-import { MockComponent, MockComponentExtended } from '../__mocks__/MockComponent';
-import { MockReflectionObject } from '../__mocks__/MockReflectionObject';
+import { MockComponent, MockComponentExtended, MockReflectionObject } from '../__mocks__';
 
 describe('ReflectionObjectCodec tests', () => {
   let classMap:Map<string, ClassType<any>>;

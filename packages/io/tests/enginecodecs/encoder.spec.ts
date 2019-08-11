@@ -1,7 +1,7 @@
 import { ClassType, Engine, Entity } from '@ash.ts/core';
 import { EncodedComponent, EncodedData, EncodedEntity } from '../../src/enginecodecs/EncodedData';
 import { ObjectEngineCodec } from '../../src';
-import { MockComponent, MockComponentExtended } from '../__mocks__/MockComponent';
+import { MockComponent, MockComponentExtended } from '../__mocks__';
 
 describe('Encoder tests', () => {
   let classMap:Map<string, ClassType<any>>;
@@ -97,16 +97,16 @@ describe('Encoder tests', () => {
   });
 
   it('first entity has correct components', () => {
-    const first = encodedData.entities.find(entity => entity.name === 'first')!;
+    const first = encodedData.entities.find((entity) => entity.name === 'first')!;
     const pointId = first.components[0];
-    const pointEncoded = encodedData.components.find(component => component.id === pointId)!;
+    const pointEncoded = encodedData.components.find((component) => component.id === pointId)!;
     expect(pointEncoded.type).toEqual('MockComponent');
     expect(pointEncoded.value.x.value).toEqual(firstPoint.x);
     expect(pointEncoded.value.y.value).toEqual(firstPoint.y);
   });
 
   it('second entity has correct components', () => {
-    const second = encodedData.entities.find(entity => entity.name === 'second')!;
+    const second = encodedData.entities.find((entity) => entity.name === 'second')!;
     let pointEncoded:EncodedComponent;
     let rectangleEncoded:EncodedComponent;
     for (const id of second.components) {
@@ -132,9 +132,9 @@ describe('Encoder tests', () => {
   });
 
   it('third entity has correct components', () => {
-    const third:EncodedEntity = encodedData.entities.find(entity => entity.name === 'third')!;
+    const third:EncodedEntity = encodedData.entities.find((entity) => entity.name === 'third')!;
     const pointId = third.components[0];
-    const pointEncoded = encodedData.components.find(component => component.id === pointId)!;
+    const pointEncoded = encodedData.components.find((component) => component.id === pointId)!;
 
     expect(pointEncoded.type).toEqual('MockComponent');
     expect(pointEncoded.value.x.value).toEqual(secondPoint.x);
