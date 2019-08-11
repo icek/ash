@@ -1,4 +1,9 @@
-export { MockComponent, MockComponent1, MockComponent2, MockComponentExtended } from './MockComponent';
+export { MockComponent } from './MockComponent';
+export { MockComponentExtended } from './MockComponentExtended';
+export { MockComponent1 } from './MockComponent1';
+export { MockComponent2 } from './MockComponent2';
 export { MockFamily } from './MockFamily';
-export { MockNode, MockNode2 } from './MockNode';
-export { MockSystem, MockSystem2 } from './MockSystem';
+export { MockNode } from './MockNode';
+export { MockNode2 } from './MockNode2';
+export { MockSystem } from './MockSystem';
+export { MockSystem2 } from './MockSystem2';

@@ -16,7 +16,6 @@ describe('System tests', () => {
   });
 
   afterEach(() => {
-    (engine as Engine | null) = null;
     mockObject.asyncCallback = null;
   });
 
