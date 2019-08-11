@@ -52,7 +52,7 @@
     "coverage:clean": "rimraf coverage",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "prepack": "rimraf packages/**/*.tgz",
-    "clean": "npm-run-all lerna:clean build:clean docs:clean test:clean",
+    "clean": "npm-run-all lerna:clean build:clean docs:clean coverage:clean",
     "preversion": "npm-run-all lerna:version commit",
     "lerna:version": "lerna version",
     "commit": "git commit -a -m \"Release\""

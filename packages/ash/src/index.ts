@@ -12,7 +12,7 @@ import {
   ObjectEngineCodec,
 } from '@ash.ts/io';
 import { Signal0, Signal1, Signal2, Signal3 } from '@ash.ts/signals';
-import { FixedTickProvider, FrameTickProvider, RAFTickProvider, TickProvider } from '@ash.ts/tick';
+import { FixedTickProvider, FrameTickProvider, TickProvider } from '@ash.ts/tick';
 import { ComponentPool, defineNode, ListIteratingSystem } from '@ash.ts/tools';
 
 export {
@@ -43,7 +43,6 @@ export {
   EntityStateMachine,
   EngineStateMachine,
   TickProvider,
-  RAFTickProvider,
   FrameTickProvider,
   FixedTickProvider,
   ComponentPool,
