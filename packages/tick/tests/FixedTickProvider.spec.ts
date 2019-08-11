@@ -1,10 +1,10 @@
-import { RAFTickProvider } from '../src';
+import { FixedTickProvider } from '../src';
 
-describe('RAFTickProvider tests', () => {
-  let tickProvider:RAFTickProvider;
+describe('FixedTickProvider tests', () => {
+  let tickProvider:FixedTickProvider;
 
   beforeEach(() => {
-    tickProvider = new RAFTickProvider();
+    tickProvider = new FixedTickProvider(1 / 60);
   });
 
   afterEach(() => {
@@ -12,18 +12,18 @@ describe('RAFTickProvider tests', () => {
   });
 
   it('after creating playing should be false', () => {
-    expect(tickProvider.playing).toBe(false);
+    expect(tickProvider.isPlaying).toBe(false);
   });
 
   it('after starting playing flag should be true', () => {
     tickProvider.start();
-    expect(tickProvider.playing).toBe(true);
+    expect(tickProvider.isPlaying).toBe(true);
   });
 
   it('after starting and then stopping playing flag should be false', () => {
     tickProvider.start();
     tickProvider.stop();
-    expect(tickProvider.playing).toBe(false);
+    expect(tickProvider.isPlaying).toBe(false);
   });
 
   it('should be able to add callback', () => {
@@ -42,8 +42,8 @@ describe('RAFTickProvider tests', () => {
   });
 
   it('callback should be execute with delta time', (done) => {
-    const callback = jest.fn((time) => {
-      expect(callback).toBeCalledWith(expect.any(Number));
+    const callback = jest.fn(() => {
+      expect(callback).toBeCalledWith(1 / 60);
       done();
     });
     tickProvider.add(callback);

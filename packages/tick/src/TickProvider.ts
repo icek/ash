@@ -4,7 +4,7 @@
  * to add and remove listeners for the tick.
  */
 export interface TickProvider {
-  readonly playing:boolean;
+  readonly isPlaying:boolean;
 
   add(listener:(delta:number) => void):void;
 

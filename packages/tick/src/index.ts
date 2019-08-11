@@ -1,3 +1,3 @@
 export { TickProvider } from './TickProvider';
-export { RAFTickProvider } from './RAFTickProvider';
-export { IntervalTickProvider } from './IntervalTickProvider';
+export { FrameTickProvider } from './FrameTickProvider';
+export { FixedTickProvider } from './FixedTickProvider';

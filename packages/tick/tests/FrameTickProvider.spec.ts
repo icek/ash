@@ -1,10 +1,10 @@
-import { IntervalTickProvider } from '../src';
+import { FrameTickProvider } from '../src';
 
-describe('IntervalTickProvider tests', () => {
-  let tickProvider:IntervalTickProvider;
+describe('FrameTickProvider tests', () => {
+  let tickProvider:FrameTickProvider;
 
   beforeEach(() => {
-    tickProvider = new IntervalTickProvider();
+    tickProvider = new FrameTickProvider();
   });
 
   afterEach(() => {
@@ -12,18 +12,18 @@ describe('IntervalTickProvider tests', () => {
   });
 
   it('after creating playing should be false', () => {
-    expect(tickProvider.playing).toBe(false);
+    expect(tickProvider.isPlaying).toBe(false);
   });
 
   it('after starting playing flag should be true', () => {
     tickProvider.start();
-    expect(tickProvider.playing).toBe(true);
+    expect(tickProvider.isPlaying).toBe(true);
   });
 
   it('after starting and then stopping playing flag should be false', () => {
     tickProvider.start();
     tickProvider.stop();
-    expect(tickProvider.playing).toBe(false);
+    expect(tickProvider.isPlaying).toBe(false);
   });
 
   it('should be able to add callback', () => {
@@ -50,32 +50,12 @@ describe('IntervalTickProvider tests', () => {
     tickProvider.start();
   });
 
-  it('callback should be execute with delta time', (done) => {
+  it('should limit frame time', (done) => {
+    tickProvider = new FrameTickProvider(0.0001);
     const callback = jest.fn(() => {
-      expect(callback).toBeCalledWith(expect.any(Number));
+      expect(callback).toBeCalledWith(0.0001);
       done();
     });
-    tickProvider.add(callback);
-    tickProvider.start();
-  });
-
-  it('should be able to set custom interval', () => {
-    tickProvider.interval = 50;
-    expect(tickProvider.inteval).toBe(50);
-  });
-
-  it('callback should be executed with interval time', (done) => {
-    const matcher = {
-      asymmetricMatch: (actual:number) => {
-        expect(actual).toBeCloseTo(50 / 1000, 2);
-        return true;
-      },
-    };
-    const callback = jest.fn(() => {
-      expect(callback).toBeCalledWith(matcher);
-      done();
-    });
-    tickProvider.interval = 50;
     tickProvider.add(callback);
     tickProvider.start();
   });
