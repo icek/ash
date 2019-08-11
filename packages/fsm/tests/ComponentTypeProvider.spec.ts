@@ -1,5 +1,5 @@
 import { ComponentTypeProvider } from '../src/ComponentTypeProvider';
-import { MockComponent, MockComponent2 } from './__mocks__/MockComponent';
+import { MockComponent, MockComponent2 } from './__mocks__';
 
 describe('ComponentTypeProvider tests', () => {
   it('provider returns an instance of type', () => {

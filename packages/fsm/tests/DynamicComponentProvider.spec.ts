@@ -1,5 +1,5 @@
 import { DynamicComponentProvider } from '../src/DynamicComponentProvider';
-import { MockComponent } from './__mocks__/MockComponent';
+import { MockComponent } from './__mocks__';
 
 describe('DynamicComponentProvider tests', () => {
   it('provider returns the instance', () => {

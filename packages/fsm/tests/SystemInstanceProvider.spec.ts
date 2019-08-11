@@ -1,5 +1,5 @@
 import { SystemInstanceProvider } from '../src/SystemInstanceProvider';
-import { MockSystem } from './__mocks__/MockSystem';
+import { MockSystem } from './__mocks__';
 
 describe('SystemInstanceProvider tests', () => {
   it('provider returns the instance', () => {

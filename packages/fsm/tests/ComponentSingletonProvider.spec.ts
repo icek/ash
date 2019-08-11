@@ -1,5 +1,5 @@
 import { ComponentSingletonProvider } from '../src/ComponentSingletonProvider';
-import { MockComponent, MockComponent2 } from './__mocks__/MockComponent';
+import { MockComponent, MockComponent2 } from './__mocks__';
 
 describe('ComponentSingletonProvider tests', () => {
   it('provider returns an instance of type', () => {

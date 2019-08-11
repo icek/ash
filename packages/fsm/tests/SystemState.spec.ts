@@ -2,7 +2,7 @@ import { DynamicSystemProvider } from '../src/DynamicSystemProvider';
 import { EngineState } from '../src/EngineState';
 import { SystemInstanceProvider } from '../src/SystemInstanceProvider';
 import { SystemSingletonProvider } from '../src/SystemSingletonProvider';
-import { MockSystem } from './__mocks__/MockSystem';
+import { MockSystem } from './__mocks__';
 
 describe('SystemState tests', () => {
   let state:EngineState;

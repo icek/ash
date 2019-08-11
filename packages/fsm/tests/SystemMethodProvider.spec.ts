@@ -1,5 +1,5 @@
 import { DynamicSystemProvider } from '../src/DynamicSystemProvider';
-import { MockSystem } from './__mocks__/MockSystem';
+import { MockSystem } from './__mocks__';
 
 describe('SystemMethodProvider tests', () => {
   it('provider returns the instance', () => {

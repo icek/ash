@@ -1,7 +1,7 @@
 import { Engine } from '@ash.ts/core';
 import { EngineStateMachine } from '../src';
 import { EngineState } from '../src/EngineState';
-import { MockSystem, MockSystem2 } from './__mocks__/MockSystem';
+import { MockSystem, MockSystem2 } from './__mocks__';
 
 describe('EngineStateMachine tests', () => {
   let fsm:EngineStateMachine;

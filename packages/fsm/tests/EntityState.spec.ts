@@ -3,7 +3,7 @@ import { ComponentSingletonProvider } from '../src/ComponentSingletonProvider';
 import { ComponentTypeProvider } from '../src/ComponentTypeProvider';
 import { DynamicComponentProvider } from '../src/DynamicComponentProvider';
 import { EntityState } from '../src/EntityState';
-import { MockComponent, MockComponentExtended } from './__mocks__/MockComponent';
+import { MockComponent, MockComponentExtended } from './__mocks__';
 
 describe('EntityState tests', () => {
   let state:EntityState;

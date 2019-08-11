@@ -1,5 +1,5 @@
 import { SystemSingletonProvider } from '../src/SystemSingletonProvider';
-import { MockSystem, MockSystem2 } from './__mocks__/MockSystem';
+import { MockSystem, MockSystem2 } from './__mocks__';
 
 describe('SystemSingletonProvider tests', () => {
   it('provider returns an instance of system', () => {

@@ -1,7 +1,7 @@
 import { Entity } from '@ash.ts/core';
 import { EntityStateMachine } from '../src';
 import { EntityState } from '../src/EntityState';
-import { MockComponent, MockComponent2 } from './__mocks__/MockComponent';
+import { MockComponent, MockComponent2 } from './__mocks__';
 
 describe('EntityStateMachine tests', () => {
   let fsm:EntityStateMachine;
