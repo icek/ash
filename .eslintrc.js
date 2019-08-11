@@ -31,7 +31,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-continue': 'off',
     'no-param-reassign': ['error', { 'props': false }],
-    'no-underscore-dangle': 'off',
     'object-curly-newline': ['error', {
       'ObjectExpression': { 'consistent': true },
       'ObjectPattern': { 'consistent': true },
