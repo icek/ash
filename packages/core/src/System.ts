@@ -27,7 +27,7 @@ export abstract class System {
    * Used internally to hold the priority of this system within the system list. This is
    * used to order the systems so they are updated in the correct order.
    */
-  public priority:number = 0;
+  public priority = 0;
 
   /**
    * Called just after the system is added to the engine, before any calls to the update method.

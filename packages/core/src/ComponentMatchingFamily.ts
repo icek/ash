@@ -143,7 +143,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
    * Releases the nodes that were added to the node pool during this engine update, so they can
    * be reused.
    */
-  private releaseNodePoolCache = () => {
+  private releaseNodePoolCache = ():void => {
     this.engine.updateComplete.remove(this.releaseNodePoolCache);
     this.nodePool.releaseCache();
   };
@@ -160,7 +160,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
 }
 
 export function keep(type:ClassType<any>):PropertyDecorator {
-  return (target:Record<string, any>, propertyKey:string | symbol) => {
+  return (target:Record<string, any>, propertyKey:string | symbol):void => {
     const ctor = target.constructor;
     let map:Map<string | symbol, ClassType<any>>;
     // eslint-disable-next-line no-prototype-builtins

@@ -10,7 +10,7 @@ export class SystemSingletonProvider<TSystem extends System> implements SystemPr
 
   private instance?:TSystem;
 
-  private systemPriority:number = 0;
+  private systemPriority = 0;
 
   /**
    * Constructor

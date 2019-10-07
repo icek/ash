@@ -6,11 +6,11 @@ export class MockReflectionObject {
 
   private _setter = 0;
 
-  public numberVariable:number = 0;
+  public numberVariable = 0;
 
-  public booleanVariable:boolean = false;
+  public booleanVariable = false;
 
-  public stringVariable:string = '';
+  public stringVariable = '';
 
   public pointVariable:MockComponent | null = null;
 

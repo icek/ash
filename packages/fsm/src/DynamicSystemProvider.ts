@@ -8,7 +8,7 @@ import { SystemProvider } from './SystemProvider';
 export class DynamicSystemProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private method:() => TSystem;
 
-  private systemPriority:number = 0;
+  private systemPriority = 0;
 
   /**
    * Constructor

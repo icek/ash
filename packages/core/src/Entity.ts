@@ -23,7 +23,7 @@ import { ClassType } from './types';
  * position component. Systems operate on entities based on the components they have.</p>
  */
 export class Entity {
-  private static nameCount:number = 0;
+  private static nameCount = 0;
 
   /**
    * Optional, give the entity a name. This can help with debugging and with serialising the entity.
@@ -58,7 +58,7 @@ export class Entity {
    * @param name The name for the entity. If left blank, a default name is
    * assigned with the form _entityN where N is an integer.
    */
-  public constructor(name:string = '') {
+  public constructor(name = '') {
     this.componentAdded = new Signal2();
     this.componentRemoved = new Signal2();
     this.nameChanged = new Signal2();

@@ -8,13 +8,13 @@ import { TickProvider } from './TickProvider';
 export class FixedTickProvider extends Signal1<number> implements TickProvider {
   private frameTime:number;
 
-  private rafId:number = 0;
+  private rafId = 0;
 
   /**
    * Applies a time adjustement factor to the tick, so you can slow down or speed up the entire engine.
    * The update tick time is multiplied by this value, so a value of 1 will run the engine at the normal rate.
    */
-  public timeAdjustment:number = 1;
+  public timeAdjustment = 1;
 
   public constructor(frameTime:number) {
     super();
@@ -30,7 +30,7 @@ export class FixedTickProvider extends Signal1<number> implements TickProvider {
     this.rafId = 0;
   }
 
-  private dispatchTick = () => {
+  private dispatchTick = ():void => {
     this.rafId = requestAnimationFrame(this.dispatchTick);
     this.dispatch(this.frameTime * this.timeAdjustment);
   };

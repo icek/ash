@@ -8,5 +8,5 @@ export class ListenerNode<TListener extends (...args:any[]) => void> {
 
   public listener!:TListener;
 
-  public once:boolean = false;
+  public once = false;
 }

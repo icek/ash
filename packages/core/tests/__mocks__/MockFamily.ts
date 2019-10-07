@@ -4,15 +4,15 @@ import { MockNode } from './MockNode';
 export class MockFamily implements Family<MockNode> {
   public static instances:MockFamily[] = [];
 
-  public newEntityCalls:number = 0;
+  public newEntityCalls = 0;
 
-  public removeEntityCalls:number = 0;
+  public removeEntityCalls = 0;
 
-  public componentAddedCalls:number = 0;
+  public componentAddedCalls = 0;
 
-  public componentRemovedCalls:number = 0;
+  public componentRemovedCalls = 0;
 
-  public cleanUpCalls:number = 0;
+  public cleanUpCalls = 0;
 
   private _nodeList:NodeList<MockNode> = new NodeList<MockNode>();
 

@@ -8,7 +8,7 @@ import { SystemProvider } from './SystemProvider';
 export class SystemInstanceProvider<TSystem extends System> implements SystemProvider<TSystem> {
   private instance:TSystem;
 
-  private systemPriority:number = 0;
+  private systemPriority = 0;
 
   /**
    * Constructor

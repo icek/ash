@@ -8,9 +8,9 @@ export class ObjectReflection {
   public constructor(component:Record<string, any>, type?:string) {
     this._type = type || component.constructor.name;
     const { _propertyTypes } = this;
-    const filter = (descs:{ [key:string]:PropertyDescriptor }) => (key:string) => {
+    const filter = (descs:{ [key:string]:PropertyDescriptor }) => (key:string):boolean => {
       const desc = descs[key];
-      return desc.enumerable || (!!desc.get && !!desc.set);
+      return !!desc.enumerable || (!!desc.get && !!desc.set);
     };
     const ownKeys = Object.getOwnPropertyDescriptors(component);
     const protoDescriptor = Object.getOwnPropertyDescriptors(Object.getPrototypeOf(component));

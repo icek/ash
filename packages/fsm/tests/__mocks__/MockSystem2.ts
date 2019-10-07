@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Engine, System } from '@ash.ts/core';
 
 export class MockSystem2 extends System {

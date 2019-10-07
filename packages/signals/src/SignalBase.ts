@@ -21,9 +21,9 @@ export abstract class SignalBase<TListener extends (...args:any[]) => void> {
 
   private toAddTail:ListenerNode<TListener> | null = null;
 
-  private dispatching:boolean = false;
+  private dispatching = false;
 
-  private _numListeners:number = 0;
+  private _numListeners = 0;
 
   public constructor() {
     this.nodes = new Map<TListener, ListenerNode<TListener>>();

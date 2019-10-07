@@ -26,7 +26,7 @@ export class Engine {
   /**
    * Indicates if the engine is currently in its update loop.
    */
-  public updating:boolean = false;
+  public updating = false;
 
   /**
    * Dispatched when the update loop ends. If you want to add and remove systems from the
@@ -87,7 +87,7 @@ export class Engine {
     this.entityList.remove(entity);
   }
 
-  private entityNameChanged = (entity:Entity, oldName:string) => {
+  private entityNameChanged = (entity:Entity, oldName:string):void => {
     if (this.entityNames.get(oldName) === entity) {
       this.entityNames.delete(oldName);
       this.entityNames.set(entity.name, entity);
@@ -128,7 +128,7 @@ export class Engine {
   /**
    * @private
    */
-  private componentAdded = (entity:Entity, componentClass:ClassType<any>) => {
+  private componentAdded = (entity:Entity, componentClass:ClassType<any>):void => {
     for (const family of this.families.values()) {
       family.componentAddedToEntity(entity, componentClass);
     }
@@ -137,7 +137,7 @@ export class Engine {
   /**
    * @private
    */
-  private componentRemoved = (entity:Entity, componentClass:ClassType<any>) => {
+  private componentRemoved = (entity:Entity, componentClass:ClassType<any>):void => {
     for (const family of this.families.values()) {
       family.componentRemovedFromEntity(entity, componentClass);
     }

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { Signal0, Signal1, Signal2, Signal3 } from '../src';
 
 describe('Signals tests', () => {
@@ -157,7 +157,7 @@ describe('Signals tests', () => {
   });
 
   it('adding a listener during dispatch increments listeners count', () => {
-    const callback = () => {
+    const callback = ():void => {
       expect(signal.numListeners).toBe(1);
       signal.add(jest.fn());
       expect(signal.numListeners).toBe(2);
@@ -169,7 +169,7 @@ describe('Signals tests', () => {
 
   it('dispatch 2 listeners 2nd listener removes 1st then 1st listener is not called', () => {
     const callback1 = jest.fn();
-    const callback2 = () => {
+    const callback2 = ():void => {
       signal.remove(callback1);
     };
     signal.add(callback2);
@@ -202,7 +202,7 @@ describe('Signals tests', () => {
   });
 
   it(' removeAllDuringDispatchShouldStopAll', () => {
-    const callback1 = () => signal.removeAll();
+    const callback1 = ():void => signal.removeAll();
     const callback2 = jest.fn();
     const callback3 = jest.fn();
     signal.add(callback1);

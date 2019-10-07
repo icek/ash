@@ -7,19 +7,19 @@ import { TickProvider } from './TickProvider';
  * the longest period a frame can be.
  */
 export class FrameTickProvider extends Signal1<number> implements TickProvider {
-  private rafId:number = 0;
+  private rafId = 0;
 
-  private previousTime:number = 0;
+  private previousTime = 0;
 
-  private maximumFrameTime:number = 0;
+  private maximumFrameTime = 0;
 
   /**
    * Applies a time adjustement factor to the tick, so you can slow down or speed up the entire engine.
    * The update tick time is multiplied by this value, so a value of 1 will run the engine at the normal rate.
    */
-  public timeAdjustment:number = 1;
+  public timeAdjustment = 1;
 
-  public constructor(maximumFrameTime:number = Number.MAX_VALUE) {
+  public constructor(maximumFrameTime = Number.MAX_VALUE) {
     super();
     this.maximumFrameTime = maximumFrameTime;
   }
@@ -34,7 +34,7 @@ export class FrameTickProvider extends Signal1<number> implements TickProvider {
     this.rafId = 0;
   }
 
-  private dispatchTick = () => {
+  private dispatchTick = ():void => {
     this.rafId = requestAnimationFrame(this.dispatchTick);
     const temp = this.previousTime;
     this.previousTime = performance.now();
