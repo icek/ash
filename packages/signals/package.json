@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/signals",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Signals library used by Ash.ts - an entity component system framework for game development",
   "main": "dist/signals.js",
   "browser": "dist/signals.min.js",

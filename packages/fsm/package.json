@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/fsm",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Finite state machine for Ash.ts - an entity component system framework for game development",
   "main": "dist/fsm.js",
   "browser": "dist/fsm.min.js",
