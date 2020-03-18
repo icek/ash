@@ -1,3 +1,0 @@
-{
-  "^\\.\\./([^/]+)(?:#readme|/README.md)": "modules/_ash_ts_$1.html"
-}
