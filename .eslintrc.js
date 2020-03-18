@@ -38,6 +38,7 @@ module.exports = {
       'ExportDeclaration': { 'consistent': true },
     }],
     'import/prefer-default-export': 'off',
+    'import/extensions': ['error', 'ignorePackages', { 'ts': 'never', 'js': 'never' }],
 
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/type-annotation-spacing': ['error', { before: false, after: false, overrides: { arrow: { before: true, after: true } } }],

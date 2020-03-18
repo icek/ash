@@ -25,11 +25,8 @@ export function defineNode<T extends Record<string, ClassType<any>>>(props:T, na
     get: () => map,
   });
 
-  for (const prop in props) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (props.hasOwnProperty(prop)) {
-      map.set(prop, props[prop]);
-    }
+  for (const prop of Object.keys(props)) {
+    map.set(prop, props[prop]);
   }
 
   return Cls as RecordToNodeClass<T>;
