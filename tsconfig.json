@@ -29,6 +29,8 @@
     "preserveConstEnums": true,
     "stripInternal": true,
     "gitRevision": "master",
-    "rewriteLinks": "./typedoc-rewrite.json"
+    "rewriteLinks": {
+      "^\\.\\./([^/]+)(?:#readme|/README.md)": "modules/_ash_ts_$1.html"
+    }
   }
 }
