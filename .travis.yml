@@ -28,10 +28,7 @@ deploy:
     skip_cleanup: true
     api_key: $GITHUB_TOKEN
     file_glob: true
-    file:
-      - packages/ash/dist/*.js
-      - packages/ash/dist/*.mjs
-      - dist/*
+    file: packages/**/dist/*
     on:
       tags: true
 

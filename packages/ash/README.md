@@ -218,14 +218,6 @@ export class MovementSystem extends ListIteratingSystem<MovementNode> {
 
 ```
 
-### TickProviders
-
-There are two tickProviders included by default:
-- `IntervalTickProvider` which uses setTimeout under the hood and can be used
-with static FPS,
-- `RAFTickProvider` which uses requestAnimationFrame and provide as many FPS
-as used browser and your environment can provide.
-
 ## Alternatives
 
 These are alternative typescript ports you can find:

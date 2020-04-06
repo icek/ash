@@ -29,7 +29,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
+  "devDependencies": {
     "@ash.ts/core": "file:../core",
     "@ash.ts/fsm": "file:../fsm",
     "@ash.ts/io": "file:../io",
