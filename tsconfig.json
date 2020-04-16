@@ -12,7 +12,14 @@
     "esModuleInterop": true,
     "baseUrl": "./packages",
     "paths": {
-      "@ash.ts/*": ["./*"]
+      "@ash.ts/core": ["./core/src"],
+      "@ash.ts/signals": ["./signals/src"],
+      "@ash.ts/io": ["./io/src"],
+      "@ash.ts/fsm": ["./fsm/src"],
+      "@ash.ts/tick": ["./tick/src"],
+      "@ash.ts/ash": ["./ash/src"],
+      "@ash.ts/tools": ["./tools/src"],
+      
     }
   },
   "typedocOptions": {

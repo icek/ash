@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { EncodedObject } from '@ash.ts/io/src/enginecodecs/EncodedData';
+import { EncodedObject } from '@ash.ts/io';
 import { CodecManager } from '../../src/objectcodecs/CodecManager';
 import { ObjectCodec } from '../../src/objectcodecs/ObjectCodec';
 

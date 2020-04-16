@@ -20,7 +20,7 @@ export default packages.reduce((config, packageName) => {
       useTsconfigDeclarationDir: true,
       clean: true,
       verbosity: 1,
-      tsconfig: `${root}/tsconfig.json`,
+      tsconfig: `${root}/_tsconfig.json`,
       tsconfigOverride: {
         include: ['./src/'],
       },
