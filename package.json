@@ -27,7 +27,6 @@
     "access": "public"
   },
   "scripts": {
-    "prepare": "run-s build",
     "_prepare": "run-s lerna:bootstrap build",
     "lerna:bootstrap": "run-s lerna:clean lerna:install lerna:link",
     "lerna:clean": "lerna clean -y",
