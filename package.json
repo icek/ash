@@ -27,7 +27,7 @@
     "access": "public"
   },
   "scripts": {
-    "_prepare": "run-s lerna:bootstrap build",
+    "prepare": "run-s lerna:bootstrap build",
     "lerna:bootstrap": "run-s lerna:clean lerna:install lerna:link",
     "lerna:clean": "lerna clean -y",
     "lerna:install": "lerna exec -- npm i --no-package-lock",
@@ -53,7 +53,7 @@
     "test:coverage": "jest --coverage",
     "coverage:clean": "rimraf coverage",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "_prepack": "rimraf packages/**/*.tgz",
+    "prepack": "rimraf packages/**/*.tgz",
     "clean": "run-p lerna:clean build:clean docs:clean coverage:clean",
     "preversion": "run-s lerna:version commit-release",
     "lerna:version": "lerna version",
