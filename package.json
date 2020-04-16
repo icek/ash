@@ -20,7 +20,7 @@
   "module": "dist/ash.mjs",
   "types": "dist/ash.d.ts",
   "typings": "dist/ash.d.ts",
-  "files": [
+  "_files": [
     "dist/*"
   ],
   "publishConfig": {
