@@ -53,7 +53,7 @@
     "test:coverage": "jest --coverage",
     "coverage:clean": "rimraf coverage",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "prepack": "rimraf packages/**/*.tgz",
+    "_prepack": "rimraf packages/**/*.tgz",
     "clean": "run-p lerna:clean build:clean docs:clean coverage:clean",
     "preversion": "run-s lerna:version commit-release",
     "lerna:version": "lerna version",
