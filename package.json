@@ -28,7 +28,7 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "run-s lerna:bootstrap build",
+    "prepare": "run-s lerna:bootstrap build",
     "lerna:bootstrap": "run-s lerna:clean lerna:install lerna:link",
     "lerna:clean": "lerna clean -y",
     "lerna:install": "lerna exec -- npm i --no-package-lock",
@@ -37,7 +37,7 @@
     "build": "run-s build:clean build:rollup build:dts",
     "build:clean": "rimraf dist packages/**/dist",
     "build:rollup": "rollup -c",
-    "build:dts": "dts-bundle-generator packages/ash/dist/types/index.d.ts -o packages/ash/dist/ash.d.ts --umd-module-name ash",
+    "build:dts": "dts-bundle-generator packages/ash/dist/types/index.d.ts -o packages/ash/dist/ash.d.ts --umd-module-name ASH",
     "postbuild": "rimraf packages/**/dist/types",
     "docs": "run-s docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",

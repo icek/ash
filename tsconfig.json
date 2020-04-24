@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "baseUrl": "./packages",
     "paths": {
-      "@ash.ts/*": ["./*"]
+      "@ash.ts/*": ["./*/src"]
     }
   },
   "typedocOptions": {
@@ -22,6 +22,7 @@
     "target": "es6",
     "out": "docs",
     "exclude": ["packages/**/tests/**/*", "packages/**/node_modules/**/*"],
+    "readme": "packages/ash/README.md",
     "theme": "default",
     "ignoreCompilerErrors": true,
     "excludePrivate": true,
