@@ -1,6 +1,6 @@
 {
   "name": "@ash.ts/io",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Serialization and deserialization for Ash.ts - an entity component system framework for game development",
   "main": "dist/io.js",
   "browser": "dist/io.min.js",
