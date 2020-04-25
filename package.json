@@ -16,14 +16,6 @@
   "contributors": [
     "Andres Alva <andresa88@gmail.com>"
   ],
-  "main": "dist/ash.js",
-  "browser": "dist/ash.min.js",
-  "module": "dist/ash.mjs",
-  "types": "dist/ash.d.ts",
-  "typings": "dist/ash.d.ts",
-  "files": [
-    "dist/*"
-  ],
   "publishConfig": {
     "access": "public"
   },
