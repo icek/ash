@@ -25,7 +25,6 @@ export default packages.reduce((config, packageName) => {
           useTsconfigDeclarationDir: true,
           clean: true,
           verbosity: 1,
-          // tsconfig: 'tsconfig.json',
           tsconfigOverride: {
             include: [`${root}/src/`],
             compilerOptions: {

@@ -92,5 +92,10 @@
     "hooks": {
       "pre-commit": "run-s typecheck lint"
     }
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6",
+    "yarn": "Please use npm >= 6"
   }
 }
