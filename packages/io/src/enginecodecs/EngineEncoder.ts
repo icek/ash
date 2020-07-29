@@ -24,7 +24,7 @@ export class EngineEncoder {
     this.nextComponentId = 1;
     this.encodedEntities = [];
     this.encodedComponents = [];
-    this.componentEncodingMap = new Map<any, EncodedComponent>();
+    this.componentEncodingMap = new Map();
     this.encoded = { entities: this.encodedEntities, components: this.encodedComponents };
   }
 

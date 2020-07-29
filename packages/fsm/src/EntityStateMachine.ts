@@ -72,7 +72,7 @@ export class EntityStateMachine {
     let toAdd:Map<ClassType<any>, ComponentProvider<any>>;
 
     if (this.currentState) {
-      toAdd = new Map<ClassType<any>, ComponentProvider<any>>();
+      toAdd = new Map();
       for (const type of newState.providers.keys()) {
         toAdd.set(type, newState.providers.get(type)!);
       }

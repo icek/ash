@@ -46,9 +46,9 @@ export class Engine {
 
   public constructor() {
     this.entityList = new EntityList();
-    this.entityNames = new Map<string, Entity>();
+    this.entityNames = new Map();
     this.systemList = new SystemList();
-    this.families = new Map<NodeClassType<any>, Family<any>>();
+    this.families = new Map();
     this.updateComplete = new Signal0();
   }
 

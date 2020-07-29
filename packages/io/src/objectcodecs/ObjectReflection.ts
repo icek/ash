@@ -1,7 +1,7 @@
 import { ClassType } from '@ash.ts/core';
 
 export class ObjectReflection {
-  private _propertyTypes:Map<string, string> = new Map<string, string>();
+  private _propertyTypes:Map<string, string> = new Map();
 
   private _type:string;
 

@@ -38,10 +38,10 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
   public constructor(nodeClass:NodeClassType<TNode>, engine:Engine) {
     this.nodeClass = nodeClass;
     this.engine = engine;
-    this.nodes = new NodeList<TNode>();
-    this.entities = new Map<Entity, TNode>();
-    this.components = new Map<ClassType<any>, string>();
-    this.nodePool = new NodePool<TNode>(this.nodeClass, this.components);
+    this.nodes = new NodeList();
+    this.entities = new Map();
+    this.components = new Map();
+    this.nodePool = new NodePool(this.nodeClass, this.components);
 
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);

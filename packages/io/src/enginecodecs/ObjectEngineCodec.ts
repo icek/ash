@@ -14,9 +14,9 @@ export class ObjectEngineCodec implements EngineCodec<EncodedData> {
 
   private codecManager:CodecManager;
 
-  private encodeCompleteSignal:Signal1<EncodedData> = new Signal1<EncodedData>();
+  private encodeCompleteSignal:Signal1<EncodedData> = new Signal1();
 
-  private decodeCompleteSignal:Signal1<Engine> = new Signal1<Engine>();
+  private decodeCompleteSignal:Signal1<Engine> = new Signal1();
 
   public constructor(classMap:Map<string, ClassType<any>>) {
     this.codecManager = new CodecManager(classMap);

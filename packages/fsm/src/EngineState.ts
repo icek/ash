@@ -20,7 +20,7 @@ export class EngineState {
    * @return This StateSystemMapping, so more modifications can be applied
    */
   public addInstance<TSystem extends System>(system:TSystem):StateSystemMapping<TSystem> {
-    return this.addProvider(new SystemInstanceProvider<TSystem>(system));
+    return this.addProvider(new SystemInstanceProvider(system));
   }
 
   /**
@@ -34,7 +34,7 @@ export class EngineState {
    * @return This StateSystemMapping, so more modifications can be applied
    */
   public addSingleton<TSystem extends System>(type:ClassType<TSystem>):StateSystemMapping<TSystem> {
-    return this.addProvider(new SystemSingletonProvider<TSystem>(type));
+    return this.addProvider(new SystemSingletonProvider(type));
   }
 
   /**
@@ -46,7 +46,7 @@ export class EngineState {
    * @return This StateSystemMapping, so more modifications can be applied.
    */
   public addMethod<TSystem extends System>(method:() => TSystem):StateSystemMapping<TSystem> {
-    return this.addProvider(new DynamicSystemProvider<TSystem>(method));
+    return this.addProvider(new DynamicSystemProvider(method));
   }
 
   /**

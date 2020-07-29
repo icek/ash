@@ -14,7 +14,7 @@ export class MockFamily implements Family<MockNode> {
 
   public cleanUpCalls = 0;
 
-  private _nodeList:NodeList<MockNode> = new NodeList<MockNode>();
+  private _nodeList:NodeList<MockNode> = new NodeList();
 
   public static reset():void {
     MockFamily.instances = [];

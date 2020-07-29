@@ -24,7 +24,7 @@
 import { ClassType } from '@ash.ts/core';
 
 export class ComponentPool {
-  private static pools:Map<ClassType<any>, any[]> = new Map<ClassType<any>, any[]>();
+  private static pools:Map<ClassType<any>, any[]> = new Map();
 
   private static getPool<T>(componentClass:ClassType<T>):T[] {
     if (ComponentPool.pools.has(componentClass)) {
@@ -69,6 +69,6 @@ export class ComponentPool {
    * Dispose of all pooled resources, freeing them for garbage collection.
    */
   public static empty():void {
-    ComponentPool.pools = new Map<ClassType<any>, any[]>();
+    ComponentPool.pools = new Map();
   }
 }

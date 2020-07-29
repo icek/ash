@@ -30,14 +30,14 @@ export abstract class ListIteratingSystem<TNode extends Node> extends System {
 
   protected nodeRemoved?:(node:TNode) => void;
 
-  public constructor(nodeClass:NodeClassType<TNode>) {
+  protected constructor(nodeClass:NodeClassType<TNode>) {
     super();
 
     this.nodeClass = nodeClass;
   }
 
   public addToEngine(engine:Engine):void {
-    this.nodeList = engine.getNodeList<TNode>(this.nodeClass);
+    this.nodeList = engine.getNodeList(this.nodeClass);
     if (this.nodeAdded) {
       for (let node:TNode | null = this.nodeList.head; node; node = node.next) {
         this.nodeAdded(node);

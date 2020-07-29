@@ -26,8 +26,8 @@ export abstract class SignalBase<TListener extends (...args:any[]) => void> {
   private _numListeners = 0;
 
   public constructor() {
-    this.nodes = new Map<TListener, ListenerNode<TListener>>();
-    this.listenerNodePool = new ListenerNodePool<TListener>();
+    this.nodes = new Map();
+    this.listenerNodePool = new ListenerNodePool();
   }
 
   protected startDispatch():void {

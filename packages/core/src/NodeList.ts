@@ -45,8 +45,8 @@ export class NodeList<TNode extends Node> {
   public nodeRemoved:Signal1<TNode>;
 
   public constructor() {
-    this.nodeAdded = new Signal1<TNode>();
-    this.nodeRemoved = new Signal1<TNode>();
+    this.nodeAdded = new Signal1();
+    this.nodeRemoved = new Signal1();
   }
 
   public add(node:TNode):void {

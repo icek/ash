@@ -8,7 +8,7 @@ describe('NodeList tests', () => {
   const sortFunction = (node1:MockNode, node2:MockNode):number => node1.component.x - node2.component.x;
 
   beforeEach(() => {
-    nodes = new NodeList<MockNode>();
+    nodes = new NodeList();
   });
 
   afterEach(() => {
@@ -94,8 +94,8 @@ describe('NodeList tests', () => {
   });
 
   it('NodePoll works', () => {
-    const cmps = new Map<{ new():any }, string>();
-    const poll = new NodePool<MockNode>(MockNode, cmps);
+    const cmps = new Map();
+    const poll = new NodePool(MockNode, cmps);
     const m = poll.get();
     expect(m).toBeInstanceOf(MockNode);
   });

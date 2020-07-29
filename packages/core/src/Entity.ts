@@ -62,7 +62,7 @@ export class Entity {
     this.componentAdded = new Signal2();
     this.componentRemoved = new Signal2();
     this.nameChanged = new Signal2();
-    this.components = new Map<ClassType<any>, any>();
+    this.components = new Map();
     if (name) {
       this._name = name;
     } else {
@@ -102,8 +102,8 @@ export class Entity {
    * ```typescript
    *
    * const entity:Entity = new Entity()
-   *   .add<Position>(new Position(100, 200)
-   *   .add<Display>(new Display(new PlayerClip());
+   *   .add(new Position(100, 200)
+   *   .add(new Display(new PlayerClip());
    * ```
    */
 

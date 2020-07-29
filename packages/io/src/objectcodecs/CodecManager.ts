@@ -21,7 +21,7 @@ export class CodecManager {
     classMap.set('string', String);
     classMap.set('boolean', Boolean);
     this.stringToClassMap = classMap;
-    const classToStringMap = new Map<ClassType<any>, string>();
+    const classToStringMap = new Map();
     for (const [className, classType] of classMap) {
       classToStringMap.set(classType, className);
     }
@@ -29,7 +29,7 @@ export class CodecManager {
     ObjectReflectionFactory.classMap = classToStringMap;
     this.classToStringMap = classToStringMap;
 
-    this.codecs = new Map<ClassType<any>, ObjectCodec<any>>();
+    this.codecs = new Map();
     this.reflectionCodec = new ReflectionObjectCodec();
 
     const nativeCodec:NativeObjectCodec = new NativeObjectCodec();

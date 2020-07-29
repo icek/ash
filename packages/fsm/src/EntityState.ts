@@ -10,7 +10,7 @@ export class EntityState {
   /**
    * @private
    */
-  public providers:Map<ClassType<any>, ComponentProvider<any>> = new Map<ClassType<any>, ComponentProvider<any>>();
+  public providers:Map<ClassType<any>, ComponentProvider<any>> = new Map();
 
   /**
    * Add a new ComponentMapping to this state. The mapping is a utility class that is used to
@@ -20,7 +20,7 @@ export class EntityState {
    * @return The component mapping to use when setting the provider for the component
    */
   public add<TComponent>(type:ClassType<TComponent>):StateComponentMapping<TComponent> {
-    return new StateComponentMapping<TComponent>(this, type);
+    return new StateComponentMapping(this, type);
   }
 
   /**

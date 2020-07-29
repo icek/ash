@@ -18,7 +18,7 @@ export class ListenerNodePool<TListener extends (...args:any[]) => void> {
       return node;
     }
 
-    return new ListenerNode<TListener>();
+    return new ListenerNode();
   }
 
   public dispose(node:ListenerNode<TListener>):void {

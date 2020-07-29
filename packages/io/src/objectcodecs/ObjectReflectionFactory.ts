@@ -2,9 +2,9 @@ import { ClassType } from '@ash.ts/core';
 import { ObjectReflection } from './ObjectReflection';
 
 export class ObjectReflectionFactory {
-  public static classMap:Map<ClassType<any>, string> = new Map<ClassType<any>, string>();
+  public static classMap:Map<ClassType<any>, string> = new Map();
 
-  private static reflections:Map<ClassType<any>, ObjectReflection> = new Map<ClassType<any>, ObjectReflection>();
+  private static reflections:Map<ClassType<any>, ObjectReflection> = new Map();
 
   public static reflection(component:Record<string, any>):ObjectReflection | null {
     const type:ClassType<any> = component.constructor.prototype.constructor;
