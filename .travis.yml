@@ -10,11 +10,15 @@ cache:
     - node_modules
 
 script:
+  - npm run typecheck
   - npm run lint
-  - npm run coveralls
+  - npm run test:coverage
   - npm run docs
   - touch docs/.nojekyll
   - cp .npmrc-publish .npmrc
+
+after_script:
+  - npm run coveralls
 
 deploy:
   - provider: pages

@@ -45,7 +45,7 @@
     "test:watch:changed": "jest --watch",
     "test:coverage": "jest --coverage",
     "coverage:clean": "rimraf coverage",
-    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "coveralls": "coveralls < coverage/lcov.info",
     "prepack": "rimraf packages/**/*.tgz",
     "clean": "run-p lerna:clean build:clean docs:clean coverage:clean",
     "preversion": "run-s lerna:version commit-release",
