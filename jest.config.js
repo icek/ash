@@ -4,9 +4,7 @@ module.exports = {
       `<rootDir>/packages/${dir}/src`,
       `<rootDir>/packages/${dir}/tests`,
     ],
-    transform: { '^.+\.ts$': 'ts-jest' },
-    testRegex: '/tests/.*\.spec\.ts$',
-    moduleFileExtensions: ['ts', 'js'],
+    preset: 'ts-jest',
   })),
   collectCoverageFrom: ['packages/**/src/**/*.ts'],
 };
