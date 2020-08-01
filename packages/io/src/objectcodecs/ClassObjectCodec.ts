@@ -9,7 +9,7 @@ export class ClassObjectCodec implements ObjectCodec<ClassType<any>> {
   }
 
   public decode(object:EncodedObject, codecManager:CodecManager):ClassType<any> | null {
-    return codecManager.stringToClassMap.get(object.value) || null;
+    return codecManager.stringToClassMap[object.value] || null;
   }
 
   public decodeIntoObject(target:ClassType<any>, object:EncodedObject, codecManager:CodecManager):void {

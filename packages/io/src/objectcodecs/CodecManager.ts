@@ -8,7 +8,7 @@ import { ObjectReflectionFactory } from './ObjectReflectionFactory';
 import { ReflectionObjectCodec } from './ReflectionObjectCodec';
 
 export class CodecManager {
-  public stringToClassMap:Map<string, ClassType<any>>;
+  public stringToClassMap:Record<string, ClassType<any>>;
 
   public classToStringMap:Map<ClassType<any>, string>;
 
@@ -16,14 +16,15 @@ export class CodecManager {
 
   private reflectionCodec:ReflectionObjectCodec;
 
-  public constructor(classMap:Map<string, ClassType<any>>) {
-    classMap.set('number', Number);
-    classMap.set('string', String);
-    classMap.set('boolean', Boolean);
+  public constructor(classMap:Record<string, ClassType<any>>) {
+    classMap.number = Number;
+    classMap.string = String;
+    classMap.boolean = Boolean;
     this.stringToClassMap = classMap;
     const classToStringMap = new Map();
-    for (const [className, classType] of classMap) {
-      classToStringMap.set(classType, className);
+    const classNames = Object.keys(classMap);
+    for (const className of classNames) {
+      classToStringMap.set(classMap[className], className);
     }
 
     ObjectReflectionFactory.classMap = classToStringMap;
@@ -41,7 +42,7 @@ export class CodecManager {
   }
 
   public getCodecForObject(object:any):ObjectCodec<any> | null {
-    const nativeTypes:{ [key:string]:ClassType<any> } = {
+    const nativeTypes:Record<string, ClassType<any>> = {
       number: Number,
       string: String,
       boolean: Boolean,
@@ -89,10 +90,10 @@ export class CodecManager {
     this.codecs.set(type, codec);
   }
 
-  public encodeComponent(object:any):EncodedObject | null {
-    const codec:ObjectCodec<any> = this.getCodecForComponent(object);
+  public encodeComponent(component:any):EncodedObject | null {
+    const codec:ObjectCodec<any> = this.getCodecForComponent(component);
     if (codec) {
-      return codec.encode(object, this);
+      return codec.encode(component, this);
     }
 
     return null;
@@ -115,7 +116,7 @@ export class CodecManager {
       return null;
     }
 
-    const type = this.stringToClassMap.get(object.type);
+    const type = this.stringToClassMap[object.type];
     const codec:ObjectCodec<any> | null = type ? this.getCodecForComponentType(type) : null;
     if (codec) {
       return codec.decode(object, this);
@@ -129,7 +130,7 @@ export class CodecManager {
       return null;
     }
 
-    const type = this.stringToClassMap.get(object.type);
+    const type = this.stringToClassMap[object.type];
     const codec:ObjectCodec<any> | null = type ? this.getCodecForType(type) : null;
     if (codec) {
       return codec.decode(object, this);
@@ -143,7 +144,7 @@ export class CodecManager {
       return;
     }
 
-    const type = this.stringToClassMap.get(encoded.type);
+    const type = this.stringToClassMap[encoded.type];
     const codec:ObjectCodec<any> | null = type ? this.getCodecForComponentType(type) : null;
     if (codec) {
       codec.decodeIntoObject(target, encoded, this);
@@ -155,7 +156,7 @@ export class CodecManager {
       return;
     }
 
-    const type = this.stringToClassMap.get(encoded.type);
+    const type = this.stringToClassMap[encoded.type];
     const codec:ObjectCodec<any> | null = type ? this.getCodecForType(type) : null;
     if (codec) {
       codec.decodeIntoProperty(parent, property, encoded, this);

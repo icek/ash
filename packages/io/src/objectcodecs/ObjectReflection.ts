@@ -1,21 +1,22 @@
 import { ClassType } from '@ash.ts/core';
 
 export class ObjectReflection {
-  private _propertyTypes:Map<string, string> = new Map();
+  private _propertyTypes:Record<string, string> = {};
 
   private _type:string;
 
   public constructor(component:Record<string, any>, type?:string) {
     this._type = type || component.constructor.name;
     const { _propertyTypes } = this;
-    const filter = (descs:{ [key:string]:PropertyDescriptor }) => (key:string):boolean => {
+    const filter = (descs:Record<string, PropertyDescriptor>) => (key:string):boolean => {
       const desc = descs[key];
       return !!desc.enumerable || (!!desc.get && !!desc.set);
     };
     const ownKeys = Object.getOwnPropertyDescriptors(component);
     const protoDescriptor = Object.getOwnPropertyDescriptors(Object.getPrototypeOf(component));
-    let keys = Object.keys(ownKeys).filter(filter(ownKeys));
-    keys = keys.concat(Object.keys(protoDescriptor).filter(filter(protoDescriptor)));
+    const keys = Object.keys(ownKeys)
+      .filter(filter(ownKeys))
+      .concat(Object.keys(protoDescriptor).filter(filter(protoDescriptor)));
 
     for (const key of keys) {
       const cmp = component[key];
@@ -23,31 +24,32 @@ export class ObjectReflection {
       switch (name.toLowerCase()) {
         case 'object':
           if (cmp === null) {
-            _propertyTypes.set(key, 'null');
+            _propertyTypes[key] = 'null';
           } else {
-            _propertyTypes.set(key, cmp.constructor.name);
+            _propertyTypes[key] = cmp.constructor.name;
           }
           break;
         case 'undefined':
         case 'null':
           break;
         default:
-          _propertyTypes.set(key, name);
+          _propertyTypes[key] = name;
       }
     }
 
-    const types:Map<string, ClassType<any>> = (component.constructor as any).__ash_types__;
+    const types:Record<string, ClassType<any>> = (component.constructor as any).__ash_types__;
     if (!types) return;
 
-    for (const [key, componentType] of types) {
-      const { name }:{ name:string } = componentType;
-      if (!_propertyTypes.has(key)) {
-        _propertyTypes.set(key, name);
+    const typesKeys = Object.keys(types);
+    for (const key of typesKeys) {
+      const { name } = types[key];
+      if (!_propertyTypes[key]) {
+        _propertyTypes[key] = name;
       }
     }
   }
 
-  public get propertyTypes():Map<string, string> {
+  public get propertyTypes():Record<string, string> {
     return this._propertyTypes;
   }
 

@@ -10,7 +10,7 @@ export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
     const reflection:ObjectReflection | null = ObjectReflectionFactory.reflection(object);
     if (!reflection) return null;
     const properties:Record<string, any> = {};
-    const keys = reflection.propertyTypes.keys();
+    const keys = Object.keys(reflection.propertyTypes);
     for (const name of keys) {
       properties[name] = codecManager.encodeObject(object[name]);
     }
@@ -19,7 +19,7 @@ export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
   }
 
   public decode(object:EncodedObject, codecManager:CodecManager):Record<string, any> | null {
-    const Type:ClassType<any> | null = codecManager.stringToClassMap.get(object.type) || null;
+    const Type:ClassType<any> | null = codecManager.stringToClassMap[object.type] || null;
     if (!Type) {
       return null;
     }

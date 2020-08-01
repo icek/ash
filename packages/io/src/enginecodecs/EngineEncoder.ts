@@ -5,30 +5,31 @@ import { EncodedComponent, EncodedData, EncodedEntity, EncodedObject } from './E
 export class EngineEncoder {
   private codecManager:CodecManager;
 
-  private componentEncodingMap!:Map<any, EncodedComponent>;
+  private componentEncodingMap:Map<any, EncodedComponent> = new Map();
 
-  private encodedEntities!:EncodedEntity[];
+  private encodedEntities:EncodedEntity[] = [];
 
-  private encodedComponents!:EncodedComponent[];
+  private encodedComponents:EncodedComponent[] = [];
 
-  private nextComponentId!:number;
+  private nextComponentId = 1;
 
-  private encoded!:EncodedData;
+  private encoded:EncodedData;
 
   public constructor(codecManager:CodecManager) {
     this.codecManager = codecManager;
+    this.encoded = { entities: this.encodedEntities, components: this.encodedComponents };
     this.reset();
   }
 
   public reset():void {
     this.nextComponentId = 1;
-    this.encodedEntities = [];
-    this.encodedComponents = [];
-    this.componentEncodingMap = new Map();
-    this.encoded = { entities: this.encodedEntities, components: this.encodedComponents };
+    this.encodedEntities.length = 0;
+    this.encodedComponents.length = 0;
+    this.componentEncodingMap.clear();
   }
 
   public encodeEngine(engine:Engine):EncodedData {
+    this.reset();
     for (const entity of engine.entities) {
       this.encodeEntity(entity);
     }

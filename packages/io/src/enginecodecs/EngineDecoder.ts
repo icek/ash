@@ -6,14 +6,12 @@ import { EncodedComponent, EncodedData, EncodedEntity, EncodedObject } from './E
 export class EngineDecoder {
   private codecManager:CodecManager;
 
-  private componentMap:any[];
+  private componentMap:any[] = [];
 
-  private encodedComponentMap:EncodedObject[];
+  private encodedComponentMap:EncodedObject[] = [];
 
   public constructor(codecManager:CodecManager) {
     this.codecManager = codecManager;
-    this.componentMap = [];
-    this.encodedComponentMap = [];
   }
 
   public reset():void {
@@ -22,6 +20,7 @@ export class EngineDecoder {
   }
 
   public decodeEngine(encodedData:EncodedData, engine:Engine):void {
+    this.reset();
     for (const encodedComponent of encodedData.components) {
       this.decodeComponent(encodedComponent);
     }
@@ -32,6 +31,7 @@ export class EngineDecoder {
   }
 
   public decodeOverEngine(encodedData:EncodedData, engine:Engine):void {
+    this.reset();
     for (const encodedComponent of encodedData.components) {
       this.encodedComponentMap[encodedComponent.id] = encodedComponent;
       this.decodeComponent(encodedComponent);
@@ -84,7 +84,7 @@ export class EngineDecoder {
   }
 
   private decodeComponent(encodedComponent:EncodedComponent):void {
-    const type = this.codecManager.stringToClassMap.get(encodedComponent.type);
+    const type = this.codecManager.stringToClassMap[encodedComponent.type];
     if (!type) return;
     const codec:ObjectCodec<any> = this.codecManager.getCodecForComponent(type);
     if (!codec) return;

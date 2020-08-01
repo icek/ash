@@ -32,7 +32,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@ash.ts/core": "file:../core",
-    "@ash.ts/signals": "file:../signals"
+    "@ash.ts/core": "file:../core"
   }
 }

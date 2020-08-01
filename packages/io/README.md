@@ -23,11 +23,9 @@ TypeDoc generated [API docs](https://icek.github.io/ash/modules/_ash_ts_io.html)
 
 ```typescript
 import { JsonEngineCodec } from '@ash.ts/io';
-import { Position } from '../components';
+import { Position, Display, Health } from '../components';
 
-const classMap = new Map();
-classMap.set('Position', Position);
-// add other classes
+const classMap = { Position, Display, Health };
 
 const codec = new JsonEngineCodec(classMap);
 const serialized = codec.encodeEngine(engine);
@@ -37,11 +35,9 @@ LocalStorage.setItem('game-state', serialized);
 ```typescript
 import { Engine } from '@ash.ts/core';
 import { JsonEngineCodec } from '@ash.ts/io';
-import { Position } from '../components';
+import { Position, Display, Health } from '../components';
 
-const classMap = new Map();
-classMap.set('Position', Position);
-// add other classes
+const classMap = { Position, Display, Health };
 
 const codec = new JsonEngineCodec(classMap);
 const serialized = LocalStorage.getItem('game-state');
@@ -144,22 +140,6 @@ function addCustomCodec(codec:ObjectCodec, ...types):void;
 
 Adds a custom ObjectCodec to the EngineCodec for encoding/decoding objects of 
 a specific type. See the section on the Object Codecs for more info.
-
-An engine codec also provides two signals
-
-```typescript
-encodeComplete:Signal1;
-```
-
-This signal is dispatched when the encoding is finished. The payload in the 
-signal is the encoded data.
-
-```typescript
-decodeComplete:Signal1;
-```
-
-This signal is dispatched when the decoding is finished. The payload in the 
-signal is the engine the data was decoded into.
 
 ## The Object Codecs
 
