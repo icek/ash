@@ -46,10 +46,11 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
 
-    const types:Map<string, ClassType<any>> = (dummyNode.constructor as any)[ashProp];
+    const types:Record<string, ClassType<any>> = (dummyNode.constructor as any)[ashProp];
 
-    for (const [className, classType] of types) {
-      this.components.set(classType, className);
+    const classNames = Object.keys(types);
+    for (const className of classNames) {
+      this.components.set(types[className], className);
     }
   }
 
@@ -162,18 +163,18 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
 export function keep(type:ClassType<any>):PropertyDecorator {
   return (target:Record<string, any>, propertyKey:string | symbol):void => {
     const ctor = target.constructor;
-    let map:Map<string | symbol, ClassType<any>>;
+    let map:Record<string, ClassType<any>>;
     // eslint-disable-next-line no-prototype-builtins
     if (ctor.hasOwnProperty(ashProp)) {
       map = (ctor as any)[ashProp];
     } else {
-      map = new Map();
+      map = {};
       Object.defineProperty(ctor, ashProp, {
         enumerable: true,
         get: () => map,
       });
     }
 
-    map.set(propertyKey, type);
+    map[propertyKey as string] = type;
   };
 }

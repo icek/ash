@@ -19,15 +19,10 @@ type RecordToNodeClass<T extends Record<string, ClassType<any>>> =
  */
 export function defineNode<T extends Record<string, ClassType<any>>>(props:T, name = ''):RecordToNodeClass<T> {
   const Cls = { [name]: class extends Node {} }[name];
-  const map:Map<string | symbol, ClassType<any>> = new Map();
   Object.defineProperty(Cls, ashProp, {
     enumerable: true,
-    get: () => map,
+    get: () => props,
   });
-
-  for (const prop of Object.keys(props)) {
-    map.set(prop, props[prop]);
-  }
 
   return Cls as RecordToNodeClass<T>;
 }
