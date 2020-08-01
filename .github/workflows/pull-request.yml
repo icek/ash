@@ -1,0 +1,24 @@
+name: Pull request
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Installation
+        run: npm ci
+      - name: Type checking
+        run: npm run typecheck
+      - name: Linting code
+        run: npm run lint
+      - name: Build library
+        run: npm run build
+      - name: Test library
+        run: npm run test

@@ -1,5 +1,5 @@
 # @ash.ts monorepo
-[![Build Status](https://travis-ci.com/icek/ash.svg?branch=master)](https://travis-ci.com/icek/ash)
+![Build Status](https://github.com/icek/ash/workflows/Publish/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/icek/ash/badge.svg?branch=master)](https://coveralls.io/github/icek/ash?branch=master)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
@@ -16,9 +16,10 @@
 - [tools](./packages/tools/README.md) - Optional tools for use with Ash.  
 
 ## Development
-First install (build is automatically executed):
+First install:
 ```bash
 $ npm i
+$ npm run build
 ```
 
 One time test:
@@ -41,7 +42,7 @@ Test watch changes files only:
 $ npm run test:watch:changed
 ```
 
-Coverage report:
+Test and create coverage report:
 ```bash
 $ npm run test:coverage
 ```
@@ -51,9 +52,19 @@ Build docs:
 $ npm run docs
 ```
 
+Typecheck files:
+```bash
+$ npm run typecheck
+```
+
 Lint files:
 ```bash
 $ npm run lint
+```
+
+Lint files and fix:
+```bash
+$ npm run lint-fix
 ```
 
 Clean everything:

@@ -20,7 +20,7 @@
     "access": "public"
   },
   "scripts": {
-    "prepare": "run-s lerna:bootstrap build",
+    "prepare": "run-s lerna:bootstrap",
     "lerna:bootstrap": "run-s lerna:clean lerna:install lerna:link",
     "lerna:clean": "lerna clean -y",
     "lerna:install": "lerna exec -- npm i --no-package-lock",
@@ -45,7 +45,6 @@
     "test:watch:changed": "jest --watch",
     "test:coverage": "jest --coverage",
     "coverage:clean": "rimraf coverage",
-    "coveralls": "coveralls < coverage/lcov.info",
     "prepack": "rimraf packages/**/*.tgz",
     "clean": "run-p lerna:clean build:clean docs:clean coverage:clean",
     "preversion": "run-s lerna:version commit-release",
@@ -57,7 +56,6 @@
     "@types/jest": "^26.0.8",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
-    "coveralls": "^3.1.0",
     "dts-bundle-generator": "^5.3.0",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
