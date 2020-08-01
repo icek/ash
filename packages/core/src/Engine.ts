@@ -9,7 +9,6 @@ import { NodeList } from './NodeList';
 import { System } from './System';
 import { SystemList } from './SystemList';
 
-
 /**
  * The Engine class is the central point for creating and managing your game state. Add
  * entities and systems to the engine, and fetch families of nodes from the engine.

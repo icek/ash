@@ -6,7 +6,6 @@ import { NativeObjectCodec } from '../../src/objectcodecs/NativeObjectCodec';
 import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCodec';
 import { MockCodec, MockComponent } from '../__mocks__';
 
-
 describe('CodecManager tests', () => {
   let classMap:Map<string, ClassType<any>>;
   let codecManager:CodecManager;

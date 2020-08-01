@@ -32,7 +32,7 @@ export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
     return decoded;
   }
 
-  public decodeIntoObject(target:any, object:EncodedObject, codecManager:CodecManager):void {
+  public decodeIntoObject(target:Record<string, any>, object:EncodedObject, codecManager:CodecManager):void {
     const keys = Object.keys(object.value);
     for (const name of keys) {
       if (target[name]) {
@@ -43,7 +43,12 @@ export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
     }
   }
 
-  public decodeIntoProperty(parent:any, property:string, object:EncodedObject, codecManager:CodecManager):void {
+  public decodeIntoProperty(
+    parent:Record<string, any>,
+    property:string,
+    object:EncodedObject,
+    codecManager:CodecManager,
+  ):void {
     this.decodeIntoObject(parent[property], object, codecManager);
   }
 }

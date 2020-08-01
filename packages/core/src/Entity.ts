@@ -107,7 +107,7 @@ export class Entity {
    * ```
    */
 
-  public add<T extends object>(component:T, componentClass:ClassType<T> | null = null):this {
+  public add<T extends Record<string, any>>(component:T, componentClass:ClassType<T> | null = null):this {
     let cClass = componentClass;
     if (!componentClass) {
       cClass = component.constructor.prototype.constructor;

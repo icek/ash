@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { Signal0, Signal1, Signal2, Signal3 } from '../src';
 
 describe('Signals tests', () => {
@@ -13,8 +12,7 @@ describe('Signals tests', () => {
   });
 
   it('new signal has null head', () => {
-    // @ts-ignore
-    expect(signal.head).toBeNull();
+    expect((signal as any).head).toBeNull();
   });
 
   it('new Signal has listeners count zero', () => {
@@ -182,8 +180,7 @@ describe('Signals tests', () => {
     signal.add(jest.fn());
     signal.add(jest.fn());
     signal.removeAll();
-    // @ts-ignore
-    expect(signal.head).toBeNull();
+    expect((signal as any).head).toBeNull();
   });
 
   it('add listener then remove all then add again should add listener', () => {
@@ -223,8 +220,7 @@ describe('Signals tests', () => {
   it('addOnce listener should be removed after dispatch', () => {
     signal.addOnce(jest.fn());
     signal.dispatch();
-    // @ts-ignore
-    expect(signal.head).toBeNull();
+    expect((signal as any).head).toBeNull();
   });
 
   it('addOnce listener should be called just once', () => {

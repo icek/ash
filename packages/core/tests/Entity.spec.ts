@@ -38,7 +38,6 @@ describe('Entity tests', () => {
     expect(entity.get(MockComponent2)).toBe(component2);
   });
 
-
   it('can replace Component', () => {
     const component1:MockComponent = new MockComponent();
     entity.add(component1);
@@ -93,7 +92,6 @@ describe('Entity tests', () => {
     entity.remove(MockComponent);
     expect(entity.has(MockComponent)).toBe(false);
   });
-
 
   it('storing Component triggers added Signal', () => {
     const component:MockComponent = new MockComponent();

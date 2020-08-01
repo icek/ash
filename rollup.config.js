@@ -14,6 +14,7 @@ export default packages.reduce((config, packageName) => {
   const name = isBundle ? ashGlobal : `${ashGlobal}.${packageName}`;
   const globals = isBundle ? undefined : pkg => pkg.replace(/^@ash\.ts\/(.*)$/g, `${ashGlobal}.$1`);
   const external = isBundle ? undefined : pkg => pkg.startsWith('@ash.ts/');
+  const minifier = terser({ keep_classnames: true, keep_fnames: true });
 
   return [
     ...config,
@@ -33,14 +34,13 @@ export default packages.reduce((config, packageName) => {
             },
           },
         }),
-        terser({ keep_classnames: true, keep_fnames: true, include: [/^.+\.min\.m?js$/] }),
       ],
       external,
       output: [
         { format: 'umd', file: `${filePath}.js`, globals, name },
-        { format: 'umd', file: `${filePath}.min.js`, globals, name },
+        { format: 'umd', file: `${filePath}.min.js`, globals, name, plugins: [minifier] },
         { format: 'es', file: `${filePath}.mjs` },
-        { format: 'es', file: `${filePath}.min.mjs` },
+        { format: 'es', file: `${filePath}.min.mjs`, plugins: [minifier] },
       ],
     }, {
       input: `${root}/dist/types/index.d.ts`,
