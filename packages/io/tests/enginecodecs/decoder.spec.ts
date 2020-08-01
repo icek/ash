@@ -4,7 +4,7 @@ import { ObjectEngineCodec } from '../../src';
 import { MockComponent1, MockComponent2 } from '../__mocks__';
 
 describe('Decoder tests', () => {
-  let classMap:Map<string, ClassType<any>>;
+  let classMap:Record<string, ClassType<any>>;
   let endec:ObjectEngineCodec;
   let original:Engine;
   let encodedData:EncodedData;
@@ -14,9 +14,7 @@ describe('Decoder tests', () => {
   let onlyComponent2:MockComponent2;
 
   beforeEach(() => {
-    classMap = new Map();
-    classMap.set('MockComponent1', MockComponent1);
-    classMap.set('MockComponent2', MockComponent2);
+    classMap = { MockComponent1, MockComponent2 };
     endec = new ObjectEngineCodec(classMap);
     original = new Engine();
     firstComponent1 = new MockComponent1(1);
@@ -38,10 +36,6 @@ describe('Decoder tests', () => {
     encodedData = endec.encodeEngine(original);
     engine = new Engine();
     endec.decodeEngine(encodedData, engine);
-  });
-
-  afterEach(() => {
-    endec.decodeComplete.removeAll();
   });
 
   it('decoded has correct number of entities', () => {
@@ -107,13 +101,5 @@ describe('Decoder tests', () => {
     const third = engine.entities.find((entity) => entity.name === 'third')!;
     const component = third.get(MockComponent1)!;
     expect(component.x).toEqual(secondComponent1.x);
-  });
-
-  it('decoding triggers complete signal', () => {
-    const onComplete = jest.fn();
-    endec.decodeComplete.add(onComplete);
-    engine = new Engine();
-    endec.decodeEngine(encodedData, engine);
-    expect(onComplete).toBeCalled();
   });
 });

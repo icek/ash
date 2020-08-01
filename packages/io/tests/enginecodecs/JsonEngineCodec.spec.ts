@@ -4,19 +4,17 @@ import { EncodedData } from '../../src/enginecodecs/EncodedData';
 import { MockComponent1, MockComponent2 } from '../__mocks__';
 
 describe('JsonEngineCodec tests', () => {
-  let classMap:Map<string, ClassType<any>>;
+  let classMap:Record<string, ClassType<any>>;
   let endec:JsonEngineCodec;
   let original:Engine;
   let engine:Engine;
   let firstComponent1:MockComponent1;
   let secondComponent1:MockComponent1;
   let onlyComponent2:MockComponent2;
-  let encodedData:EncodedData;
+  let encodedData:string;
 
   beforeEach(() => {
-    classMap = new Map();
-    classMap.set('MockComponent1', MockComponent1);
-    classMap.set('MockComponent2', MockComponent2);
+    classMap = { MockComponent1, MockComponent2 };
     endec = new JsonEngineCodec(classMap);
     original = new Engine();
     firstComponent1 = new MockComponent1(1);

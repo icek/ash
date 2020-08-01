@@ -4,7 +4,7 @@ import { ObjectEngineCodec } from '../../src';
 import { MockComponent, MockComponentExtended } from '../__mocks__';
 
 describe('Encoder tests', () => {
-  let classMap:Map<string, ClassType<any>>;
+  let classMap:Record<string, ClassType<any>>;
   let endec:ObjectEngineCodec;
   let engine:Engine;
   let firstPoint:MockComponent;
@@ -13,9 +13,7 @@ describe('Encoder tests', () => {
   let encodedData:EncodedData;
 
   beforeEach(() => {
-    classMap = new Map();
-    classMap.set('MockComponent', MockComponent);
-    classMap.set('MockComponentExtended', MockComponentExtended);
+    classMap = { MockComponent, MockComponentExtended };
     endec = new ObjectEngineCodec(classMap);
     engine = new Engine();
     firstPoint = new MockComponent(1, 2);
@@ -139,12 +137,5 @@ describe('Encoder tests', () => {
     expect(pointEncoded.type).toEqual('MockComponent');
     expect(pointEncoded.value.x.value).toEqual(secondPoint.x);
     expect(pointEncoded.value.y.value).toEqual(secondPoint.y);
-  });
-
-  it('encoding triggers complete Signal', () => {
-    const onComplete = jest.fn();
-    endec.encodeComplete.add(onComplete);
-    encodedData = endec.encodeEngine(engine);
-    expect(onComplete).toBeCalled();
   });
 });

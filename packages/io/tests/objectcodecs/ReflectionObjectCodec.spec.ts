@@ -5,16 +5,13 @@ import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCo
 import { MockComponent, MockComponentExtended, MockReflectionObject } from '../__mocks__';
 
 describe('ReflectionObjectCodec tests', () => {
-  let classMap:Map<string, ClassType<any>>;
+  let classMap:Record<string, ClassType<any>>;
   let object:MockReflectionObject;
   let encoded:EncodedObject | null;
   let decoded:any;
 
   beforeEach(() => {
-    classMap = new Map();
-    classMap.set('MockComponent', MockComponent);
-    classMap.set('MockComponentExtended', MockComponentExtended);
-    classMap.set('MockReflectionObject', MockReflectionObject);
+    classMap = { MockComponent, MockComponentExtended, MockReflectionObject };
     object = new MockReflectionObject();
     object.numberVariable = 23.678;
     object.stringVariable = 'A test string';

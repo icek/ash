@@ -17,31 +17,31 @@ describe('ObjectReflection tests', () => {
   });
 
   it('reflection returns number variable', () => {
-    expect(reflection.propertyTypes.get('numberVariable')).toBe('number');
+    expect(reflection.propertyTypes.numberVariable).toBe('number');
   });
 
   it('reflection returns boolean variable', () => {
-    expect(reflection.propertyTypes.get('booleanVariable')).toBe('boolean');
+    expect(reflection.propertyTypes.booleanVariable).toBe('boolean');
   });
 
   it('reflection returns string variable', () => {
-    expect(reflection.propertyTypes.get('stringVariable')).toBe('string');
+    expect(reflection.propertyTypes.stringVariable).toBe('string');
   });
 
   it('reflection returns object variable', () => {
-    expect(reflection.propertyTypes.get('pointVariable')).toBe('MockComponent');
+    expect(reflection.propertyTypes.pointVariable).toBe('MockComponent');
   });
 
   it('reflection returns full accessor', () => {
-    expect(reflection.propertyTypes.get('fullAccessor')).toBe('number');
+    expect(reflection.propertyTypes.fullAccessor).toBe('number');
   });
 
   it('reflection doesnt returns get only accessor', () => {
-    expect(reflection.propertyTypes.get('getOnlyAccessor')).toBeUndefined();
+    expect(reflection.propertyTypes.getOnlyAccessor).toBeUndefined();
   });
 
   it('reflection doesnt returns set only accessor', () => {
-    expect(reflection.propertyTypes.get('setOnlyAccessor')).toBeUndefined();
+    expect(reflection.propertyTypes.setOnlyAccessor).toBeUndefined();
   });
 
   it('factory caches reflection', () => {
