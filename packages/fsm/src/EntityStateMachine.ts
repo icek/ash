@@ -8,7 +8,7 @@ import { ComponentProvider } from './ComponentProvider';
  * components associated with the previous state and adds components associated with the new state.
  */
 export class EntityStateMachine {
-  private states:Map<string, EntityState>;
+  private states:Record<string, EntityState>;
 
   /**
    * The current state of the state machine.
@@ -25,7 +25,7 @@ export class EntityStateMachine {
    */
   public constructor(entity:Entity) {
     this.entity = entity;
-    this.states = new Map();
+    this.states = {};
   }
 
   /**
@@ -36,7 +36,7 @@ export class EntityStateMachine {
    * @return This state machine, so methods can be chained.
    */
   public addState(name:string, state:EntityState):this {
-    this.states.set(name, state);
+    this.states[name] = state;
 
     return this;
   }
@@ -50,7 +50,7 @@ export class EntityStateMachine {
    */
   public createState(name:string):EntityState {
     const state:EntityState = new EntityState();
-    this.states.set(name, state);
+    this.states[name] = state;
 
     return state;
   }
@@ -62,7 +62,7 @@ export class EntityStateMachine {
    * @param name The name of the state to change to.
    */
   public changeState(name:string):void {
-    const newState:EntityState | undefined = this.states.get(name);
+    const newState:EntityState | undefined = this.states[name];
     if (!newState) {
       throw new Error(`Entity state ${name} doesn't exist`);
     }

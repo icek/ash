@@ -10,7 +10,7 @@ import { SystemProvider } from './SystemProvider';
 export class EngineStateMachine {
   public engine:Engine;
 
-  private states:Map<string, EngineState>;
+  private states:Record<string, EngineState>;
 
   private currentState?:EngineState;
 
@@ -19,7 +19,7 @@ export class EngineStateMachine {
    */
   public constructor(engine:Engine) {
     this.engine = engine;
-    this.states = new Map();
+    this.states = {};
   }
 
   /**
@@ -30,7 +30,7 @@ export class EngineStateMachine {
    * @return This state machine, so methods can be chained.
    */
   public addState(name:string, state:EngineState):this {
-    this.states.set(name, state);
+    this.states[name] = state;
 
     return this;
   }
@@ -44,7 +44,7 @@ export class EngineStateMachine {
    */
   public createState(name:string):EngineState {
     const state:EngineState = new EngineState();
-    this.states.set(name, state);
+    this.states[name] = state;
 
     return state;
   }
@@ -56,7 +56,7 @@ export class EngineStateMachine {
    * @param name The name of the state to change to.
    */
   public changeState(name:string):void {
-    const newState:EngineState | undefined = this.states.get(name);
+    const newState:EngineState | undefined = this.states[name];
     if (!newState) {
       throw new Error(`Engine state ${name} doesn't exist`);
     }
