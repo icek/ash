@@ -74,7 +74,7 @@
     "ts-jest": "^26.1.4",
     "tslib": "^2.0.0",
     "typedoc": "^0.17.8",
-    "typedoc-plugin-lerna-packages": "^0.3.1",
+    "typedoc-plugin-lerna-packages": "^0.3.0",
     "typedoc-plugin-linkrewriter": "github:icek/typedoc-plugin-linkrewriter#develop",
     "typescript": "^3.9.7"
   },
@@ -87,5 +87,6 @@
     "node": ">=12",
     "npm": ">=6",
     "yarn": "Please use npm >= 6"
-  }
+  },
+  "dependencies": {}
 }
