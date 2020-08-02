@@ -64,6 +64,98 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<a href="#ashtscore" id="ashtscore" style="color: inherit; text-decoration: none;">
+						<h1>@ash.ts/core</h1>
+					</a>
+					<p>Core part of ash.ts - a Typescript port of <a href="https://github.com/richardlord/Ash">Ash Framework</a>,
+					an entity framework for game development by <a href="https://www.richardlord.net">Richard Lord</a></p>
+					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+						<h2>Instalation</h2>
+					</a>
+					<p>Using npm:</p>
+					<p><code>npm i @ash.ts/core</code></p>
+					<p>Using yarn:</p>
+					<p><code>yarn add @ash.ts/core</code></p>
+					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+						<h2>Documentation</h2>
+					</a>
+					<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_core.html">API docs</a></p>
+					<a href="#differences-between-typescript-and-as3-version" id="differences-between-typescript-and-as3-version" style="color: inherit; text-decoration: none;">
+						<h2>Differences between typescript and AS3 version</h2>
+					</a>
+					<p>As this is a port to a different language there are some changes to the API.</p>
+					<a href="#nodes" id="nodes" style="color: inherit; text-decoration: none;">
+						<h3>Nodes</h3>
+					</a>
+					<p>Javascript which is a language that typescript is compiling to, is dynamic.
+						Variables that are declared but not yet instantiated doesn&#39;t have a type.
+						In AS3 when Node fields are null but they are declared as some type, that
+						information is kept at runtime.
+						Adding typescript to javascript gave us code completion and type checking,
+						but information about type is dropped as soon as code is compiled to javascript
+						and not available at runtime. All you need to add is <code>@keep(Class)</code> to each
+						field of your node. This way type information is available in compile and
+					runtime. Example:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Node, keep } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
+<span class="hljs-keyword">import</span> { Motion, Position } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MovementNode <span class="hljs-keyword">extends</span> Node {
+
+  <span class="hljs-meta">@keep</span>(Position)
+  <span class="hljs-keyword">public</span> position!:Position;
+
+  <span class="hljs-meta">@keep</span>(Motion)
+  <span class="hljs-keyword">public</span> motion!:Motion;
+
+}
+</code></pre>
+					<p>Exclamation mark used in this example is a non-null assertion operator.
+						If you use <code>&quot;strict&quot;: true</code> or <code>&quot;strictNullChecks&quot;: true</code> flags in your
+						<code>tsconfig.json</code> file, it&#39;s the way to silent compiler. You as a developer
+						can guarantee that these values will never be null, because as soon as they
+					are created by the Engine they are filled with components.</p>
+					<a href="#systems" id="systems" style="color: inherit; text-decoration: none;">
+						<h3>Systems</h3>
+					</a>
+					<p>Base System class is declared as abstract class with these methods marked as
+					required to be declared in an inherited class.</p>
+					<ul>
+						<li><code>public abstract addToEngine(engine:Engine):void;</code></li>
+						<li><code>public abstract removeFromEngine(engine:Engine):void;</code></li>
+						<li><code>public abstract update(time:number):void;</code>  </li>
+					</ul>
+					<p>Example usage:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Engine, NodeList, System } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
+<span class="hljs-keyword">import</span> { RenderNode } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../nodes&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> RenderSystem <span class="hljs-keyword">extends</span> System {
+  <span class="hljs-keyword">private</span> nodes:NodeList&lt;RenderNode&gt; | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> container:HTMLElement</span>) {
+    <span class="hljs-built_in">super</span>();
+  }
+
+  <span class="hljs-keyword">public</span> addToEngine(engine:Engine):<span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.nodes = engine.getNodeList(RenderNode);
+    <span class="hljs-comment">// some more logic</span>
+  }
+
+  <span class="hljs-keyword">public</span> update(time:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.nodes!.head; node; node = node.next) {
+      <span class="hljs-comment">// update logic</span>
+    }
+  }
+
+  <span class="hljs-keyword">public</span> removeFromEngine(engine:Engine):<span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.nodes = <span class="hljs-literal">null</span>;
+    <span class="hljs-comment">// some more logic</span>
+  }
+}
+</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">

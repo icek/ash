@@ -64,6 +64,47 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<a href="#ashtstick" id="ashtstick" style="color: inherit; text-decoration: none;">
+						<h1>@ash.ts/tick</h1>
+					</a>
+					<p>This package contains tick providers for use with Ash - an entity component
+					system framework for game development.</p>
+					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+						<h2>Instalation</h2>
+					</a>
+					<p>Using npm:</p>
+					<p><code>npm i @ash.ts/tick</code></p>
+					<p>Using yarn:</p>
+					<p><code>yarn add @ash.ts/tick</code></p>
+					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+						<h2>Usage</h2>
+					</a>
+					<p>There are two tickProviders included by default:</p>
+					<ul>
+						<li><code>IntervalTickProvider</code> which uses setTimeout under the hood and can be used
+						with static FPS,</li>
+						<li><code>RAFTickProvider</code> which uses requestAnimationFrame and provide as many FPS
+						as used browser and your environment can provide.</li>
+					</ul>
+					<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+						<h3>Example</h3>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Engine } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { RAFTickProvider } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/tick&#x27;</span>;
+
+<span class="hljs-keyword">const</span> engine = <span class="hljs-keyword">new</span> Engine();
+<span class="hljs-keyword">const</span> tickProvider = <span class="hljs-keyword">new</span> RAFTickProvider();
+tickProvider.add(<span class="hljs-function"><span class="hljs-params">delta</span> =&gt;</span> engine.update(delta));
+tickProvider.start();</code></pre>
+					<a href="#custom-tickproviders" id="custom-tickproviders" style="color: inherit; text-decoration: none;">
+						<h2>Custom TickProviders</h2>
+					</a>
+					<p>You can also build your own by creating a class that implements <code>TickProvider</code>
+					interface.</p>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">

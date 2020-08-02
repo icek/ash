@@ -64,6 +64,63 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<a href="#ashtstools" id="ashtstools" style="color: inherit; text-decoration: none;">
+						<h1>@ash.ts/tools</h1>
+					</a>
+					<p>This package contains various tools for use with Ash - an entity component
+					system framework for game development.</p>
+					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+						<h2>Instalation</h2>
+					</a>
+					<p>Using npm:</p>
+					<p><code>npm i @ash.ts/tools</code></p>
+					<p>Using yarn:</p>
+					<p><code>yarn add @ash.ts/tools</code></p>
+					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+						<h2>Usage</h2>
+					</a>
+					<a href="#listiteratingsystem" id="listiteratingsystem" style="color: inherit; text-decoration: none;">
+						<h3>ListIteratingSystem</h3>
+					</a>
+					<p>Utility class declared as abstract class with <code>updateNode</code> method marked as required. There are also 2 optional callback
+					methods that can be declared in an inherited class:</p>
+					<ul>
+						<li><code>protected nodeAdded?:(node:Node) =&gt; void;</code></li>
+						<li><code>protected nodeRemoved?:(node:Node) =&gt; void;</code></li>
+					</ul>
+					<p>Example usage:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ListIteratingSystem } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
+<span class="hljs-keyword">import</span> { MovementNode } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../nodes&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MovementSystem <span class="hljs-keyword">extends</span> ListIteratingSystem&lt;MovementNode&gt; {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">super</span>(MovementNode);
+  }
+
+  <span class="hljs-comment">// required</span>
+  <span class="hljs-keyword">public</span> updateNode(node:MovementNode, time:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// update logic</span>
+  }
+
+  <span class="hljs-comment">// optional</span>
+  <span class="hljs-keyword">public</span> nodeAdded = <span class="hljs-function">(<span class="hljs-params">node:MovementNode</span>) =&gt;</span> {
+    <span class="hljs-comment">// logic to execute when new node is added to the system</span>
+  };
+
+  <span class="hljs-comment">// optional</span>
+  <span class="hljs-keyword">public</span> nodeRemoved = <span class="hljs-function">(<span class="hljs-params">node:MovementNode</span>) =&gt;</span> {
+    <span class="hljs-comment">// logic to execute when new node is removed from the system</span>
+  };
+}
+</code></pre>
+					<a href="#componentpool" id="componentpool" style="color: inherit; text-decoration: none;">
+						<h3>ComponentPool</h3>
+					</a>
+					<p>TBD</p>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">

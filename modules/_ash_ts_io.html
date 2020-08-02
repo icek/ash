@@ -64,6 +64,155 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<a href="#ashtsio" id="ashtsio" style="color: inherit; text-decoration: none;">
+						<h1>@ash.ts/io</h1>
+					</a>
+					<p>This package contains classes for serializing and deserializing the entities in
+						an Ash game. This lets you save the entire game state by serializing all the
+					entities in the engine, and restore the game by deserializing them again.</p>
+					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+						<h2>Instalation</h2>
+					</a>
+					<p>Using npm:</p>
+					<p><code>npm i @ash.ts/tools</code></p>
+					<p>Using yarn:</p>
+					<p><code>yarn add @ash.ts/tools</code></p>
+					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+						<h2>Documentation</h2>
+					</a>
+					<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_io.html">API docs</a></p>
+					<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+						<h2>Examples</h2>
+					</a>
+					<a href="#the-basics" id="the-basics" style="color: inherit; text-decoration: none;">
+						<h3>The basics</h3>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+<span class="hljs-keyword">import</span> { Position, Display, Health } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components&#x27;</span>;
+
+<span class="hljs-keyword">const</span> classMap = { Position, Display, Health };
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);
+<span class="hljs-keyword">const</span> serialized = codec.encodeEngine(engine);
+LocalStorage.setItem(<span class="hljs-string">&#x27;game-state&#x27;</span>, serialized);</code></pre>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Engine } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+<span class="hljs-keyword">import</span> { Position, Display, Health } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components&#x27;</span>;
+
+<span class="hljs-keyword">const</span> classMap = { Position, Display, Health };
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);
+<span class="hljs-keyword">const</span> serialized = LocalStorage.getItem(<span class="hljs-string">&#x27;game-state&#x27;</span>);
+<span class="hljs-keyword">const</span> engine:Engine = <span class="hljs-keyword">new</span> Engine();
+codec.decodeEngine(serialized, engine);</code></pre>
+					<a href="#custom-codecs" id="custom-codecs" style="color: inherit; text-decoration: none;">
+						<h3>Custom codecs</h3>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);
+<span class="hljs-keyword">const</span> animationCodec = <span class="hljs-keyword">new</span> AnimationObjectCodec();
+codec.addCustomCodec(animationCodec, Animation);
+<span class="hljs-keyword">const</span> serialized = codec.encodeEngine(engine);
+LocalStorage.setItem(<span class="hljs-string">&#x27;game-state&#x27;</span>, serialized);</code></pre>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Engine } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);
+<span class="hljs-keyword">const</span> animationCodec = <span class="hljs-keyword">new</span> AnimationObjectCodec();
+codec.addCustomCodec(animationCodec, Animation);
+<span class="hljs-keyword">const</span> serialized = LocalStorage.getItem(<span class="hljs-string">&#x27;game-state&#x27;</span>);
+<span class="hljs-keyword">const</span> engine = <span class="hljs-keyword">new</span> Engine();
+codec.decodeEngine(serialized, engine);</code></pre>
+					<p>This lets you write custom code to handle complex objects that the core code
+					provided can&#39;t handle.</p>
+					<a href="#overlaying-the-save" id="overlaying-the-save" style="color: inherit; text-decoration: none;">
+						<h3>Overlaying the save</h3>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);
+<span class="hljs-keyword">const</span> serialized = codec.encodeEngine(engine);
+LocalStorage.setItem(<span class="hljs-string">&#x27;game-state&#x27;</span>, serialized);</code></pre>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);
+<span class="hljs-keyword">const</span> serialized = LocalStorage.getItem(<span class="hljs-string">&#x27;game-state&#x27;</span>);
+codec.decodeOverEngine(serialized, engine);</code></pre>
+					<p>This will replace data in the engine with the saved data, and leave untouched
+						any data that exists in the engine but not in the save. This lets you ignore
+						complex objects that don&#39;t change, like animations, but store the simple data
+						that does change, like the name of the current running animation and what frame
+					it is on.</p>
+					<a href="#the-engine-codecs" id="the-engine-codecs" style="color: inherit; text-decoration: none;">
+						<h2>The Engine Codecs</h2>
+					</a>
+					<p>There are two levels to the serialization/deserialization. At the top level is
+						the engine codecs. These can be found in the enginecodecs package. There are two
+						codecs in this package, the JsonEngineCodec encodes and decodes the engine as
+						a Json string, and the ObjectEngineCodec encodes and decodes the engine as an
+					anonymous object, which could be further serialized into another format.</p>
+					<p>An engine codec implements the EngineCodec interface, and has four methods and
+						two properties. If you wish to write your own engine codecs to serialize in
+						a form other than Json, you should implement this interface. The methods in the
+					interface are</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encodeEngine</span>(<span class="hljs-params">engine:Engine</span>):<span class="hljs-title">any</span></span>;</code></pre>
+					<p>To encode the entities in an engine. The returned object is the encoded data.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decodeEngine</span>(<span class="hljs-params">encodedData:EncodedData, engine:Engine</span>):<span class="hljs-title">void</span></span>;</code></pre>
+					<p>To decode the entities back into the provided engine.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decodeOverEngine</span>(<span class="hljs-params">encodedData:<span class="hljs-built_in">any</span>, engine:Engine</span>):<span class="hljs-title">void</span></span>;</code></pre>
+					<p>To decode the entities over the top of the entities already in the provided
+						engine. Entities in the decoded data are matched to entities already in the
+						engine based on their names, and components are then matched based on their
+						type. Where a matching entity and component are found, non-null properties in
+						the decoded data are applied to the existing component in the entity. If no
+						matching component is found a new component is created. When no matching entity
+						is found a new entity is created. This lets you save only part of the engine
+					state and restore it later.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addCustomCodec</span>(<span class="hljs-params">codec:ObjectCodec, ...types</span>):<span class="hljs-title">void</span></span>;</code></pre>
+					<p>Adds a custom ObjectCodec to the EngineCodec for encoding/decoding objects of
+					a specific type. See the section on the Object Codecs for more info.</p>
+					<a href="#the-object-codecs" id="the-object-codecs" style="color: inherit; text-decoration: none;">
+						<h2>The Object Codecs</h2>
+					</a>
+					<p>The object codecs are in the objectcodecs package. Object codecs convert objects
+						of particular types to/from an anonymous object form. Object codecs are used by
+					engine codecs to encode/decode each specific object.</p>
+					<p>An object codec implements the ObjectCodec interface, and has four methods.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encode</span>(<span class="hljs-params"><span class="hljs-built_in">object</span>:T, codecManager:CodecManager</span>):<span class="hljs-title">EncodedObject</span></span>;</code></pre>
+					<p>To encode from one of the types handled by the codec into an anonymous object.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decode</span>(<span class="hljs-params"><span class="hljs-built_in">object</span>:EncodedObject, codecManager:CodecManager</span>):<span class="hljs-title">T</span></span>;</code></pre>
+					<p>To decode from an anonymous object into the type handled by the codec.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decodeIntoObject</span>(<span class="hljs-params">target:T, <span class="hljs-built_in">object</span>:EncodedObject, codecManager:CodecManager</span>):<span class="hljs-title">void</span></span>;</code></pre>
+					<p>To decode from an anonymous object into the given target object of a type
+						handled by the codec. This is used when overlaying a saved game state over the
+					current game state.</p>
+					<pre><code class="language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decodeIntoProperty</span>(<span class="hljs-params">parent:<span class="hljs-built_in">any</span>, property:<span class="hljs-built_in">string</span>, <span class="hljs-built_in">object</span>:EncodedObject, codecManager:CodecManager</span>):<span class="hljs-title">void</span></span>;</code></pre>
+					<p>To decode from an anonymous object into the given property of another object.
+					This is used when overlaying a saved game state over the current game state.</p>
+					<a href="#included-object-codecs" id="included-object-codecs" style="color: inherit; text-decoration: none;">
+						<h2>Included object codecs</h2>
+					</a>
+					<p>There are four ObjectCodecs included.</p>
+					<ul>
+						<li>NativeObjectCodec handles types number, string and boolean.</li>
+						<li>ArrayObjectCodec handles typee Array.</li>
+						<li>ClassObjectCodec handles objects of type Class.</li>
+						<li>ReflectionObjectCodec uses reflection to handle any property types.
+							By default, it handles all components in the engine but does not handle any
+							properties of those components. You can add it as a handler for more object
+						types using the EngineCodec&#39;s addCustomCodec method.</li>
+					</ul>
+					<p>With these four ObjectCodecs, the EngineCodecs can save and restore all
+						components and all properties of those components that are of type number,
+						string, boolean, Class, and Arrays of these types. This is the default behaviour
+						and requires no configuration. If you want to save and restore other more
+						complex types you need to make a custom ObjectCodec for each of those types and
+					add it to the EngineCodec using its addCustomCodec method.</p>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">

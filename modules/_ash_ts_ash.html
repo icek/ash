@@ -1,0 +1,316 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@ash.ts/ash | ash</title>
+	<meta name="description" content="Documentation for ash">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">ash</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_ash_ts_ash.html">@ash.ts/ash</a>
+				</li>
+			</ul>
+			<h1>Module @ash.ts/ash</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<a href="#ashtsash" id="ashtsash" style="color: inherit; text-decoration: none;">
+						<h1>@ash.ts/ash</h1>
+					</a>
+					<p>A Typescript port of <a href="https://github.com/richardlord/Ash">Ash Framework</a>, an entity framework for game development
+					by <a href="https://www.richardlord.net">Richard Lord</a>. This is the bundle package containing the following packages:</p>
+					<ul>
+						<li><a href="modules/_ash_ts_core.html">core</a> - Core module.</li>
+						<li><a href="modules/_ash_ts_fsm.html">fsm</a> - Finite State Machine for Engine and Entities.</li>
+						<li><a href="modules/_ash_ts_io.html">io</a> - Serialization/Deserialization for Engine.</li>
+						<li><a href="modules/_ash_ts_signals.html">signals</a> - Signals used for internal communication.</li>
+						<li><a href="modules/_ash_ts_tick.html">tick</a> - Tick providers.</li>
+						<li><a href="modules/_ash_ts_tools.html">tools</a> - Optional tools for use with Ash.  </li>
+					</ul>
+					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+						<h2>Instalation</h2>
+					</a>
+					<p>Using npm:</p>
+					<p><code>npm i @ash.ts/ash</code></p>
+					<p>Using yarn:</p>
+					<p><code>yarn add @ash.ts/ash</code></p>
+					<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+						<h2>Examples</h2>
+					</a>
+					<ul>
+						<li>Asteroids (SVG version): <a href="http://icek.github.io/asteroids">Demo</a> <a href="https://github.com/icek/asteroids">Source</a></li>
+						<li>Asteroids (PIXI.js version): <a href="http://icek.github.io/asteroids-pixi">Demo</a> <a href="https://github.com/icek/asteroids-pixi">Source</a></li>
+					</ul>
+					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+						<h2>Documentation</h2>
+					</a>
+					<p>TypeDoc generated <a href="https://icek.github.io/ash">API docs</a></p>
+					<p>Richard Lord also written a few blog posts explaining how Ash works.</p>
+					<ul>
+						<li><a href="http://www.richardlord.net/blog/ecs/introducing-ash.html">Ash - a new entity framework for Actionscript games.</a></li>
+						<li><a href="http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html">What is an entity framework for game development.</a></li>
+						<li><a href="http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html">Why use an entity framework for game development.</a></li>
+					</ul>
+					<a href="#join-the-discussion-for-as3-version" id="join-the-discussion-for-as3-version" style="color: inherit; text-decoration: none;">
+						<h2>Join the discussion (for AS3 version)</h2>
+					</a>
+					<p>There is a <a href="https://groups.google.com/forum/?fromgroups=#!forum/ash-framework">Google group for discussing Ash</a>,
+						how to use it and how to make it better.
+					Everyone who uses Ash or is interested in using Ash is welcome.</p>
+					<a href="#differences-between-typescript-and-as3-version" id="differences-between-typescript-and-as3-version" style="color: inherit; text-decoration: none;">
+						<h2>Differences between typescript and AS3 version</h2>
+					</a>
+					<p>As this is a port to a different language there are some changes to the API.</p>
+					<a href="#nodes" id="nodes" style="color: inherit; text-decoration: none;">
+						<h3>Nodes</h3>
+					</a>
+					<p>Javascript which is a language that typescript is compiling to, is dynamic.
+						Variables that are declared but not yet instantiated doesn&#39;t have a type.
+						In AS3 when Node fields are null but they are declared as some type, that
+						information is kept at runtime.
+						Adding typescript to javascript gave us code completion and type checking,
+						but information about type is dropped as soon as code is compiled to javascript
+						and not available at runtime. All you need to add is <code>@keep(Class)</code> to each
+						field of your node. This way type information is available in compile and
+					runtime. Example:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Node, keep } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
+<span class="hljs-keyword">import</span> { Motion, Position } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MovementNode <span class="hljs-keyword">extends</span> Node {
+
+  <span class="hljs-meta">@keep</span>(Position)
+  <span class="hljs-keyword">public</span> position!:Position;
+
+  <span class="hljs-meta">@keep</span>(Motion)
+  <span class="hljs-keyword">public</span> motion!:Motion;
+
+}
+</code></pre>
+					<p>Exclamation mark used in this example is a non-null assertion operator.
+						If you use <code>&quot;strict&quot;: true</code> or <code>&quot;strictNullChecks&quot;: true</code> flags in your
+						<code>tsconfig.json</code> file, it&#39;s the way to silent compiler. You as a developer
+						can guarantee that these values will never be null, because as soon as they
+					are created by the Engine they are filled with components.</p>
+					<a href="#systems" id="systems" style="color: inherit; text-decoration: none;">
+						<h3>Systems</h3>
+					</a>
+					<p>Base System class is declared as abstract class with these methods marked as
+					required to be declared in an inherited class.</p>
+					<ul>
+						<li><code>public abstract addToEngine(engine:Engine):void;</code></li>
+						<li><code>public abstract removeFromEngine(engine:Engine):void;</code></li>
+						<li><code>public abstract update(time:number):void;</code>  </li>
+					</ul>
+					<p>Example usage:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Engine, NodeList, System } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
+<span class="hljs-keyword">import</span> { RenderNode } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../nodes&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> RenderSystem <span class="hljs-keyword">extends</span> System {
+  <span class="hljs-keyword">private</span> nodes:NodeList&lt;RenderNode&gt; | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> container:HTMLElement</span>) {
+    <span class="hljs-built_in">super</span>();
+  }
+
+  <span class="hljs-keyword">public</span> addToEngine(engine:Engine):<span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.nodes = engine.getNodeList(RenderNode);
+    <span class="hljs-comment">// some more logic</span>
+  }
+
+  <span class="hljs-keyword">public</span> update(time:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.nodes!.head; node; node = node.next) {
+      <span class="hljs-comment">// update logic</span>
+    }
+  }
+
+  <span class="hljs-keyword">public</span> removeFromEngine(engine:Engine):<span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.nodes = <span class="hljs-literal">null</span>;
+    <span class="hljs-comment">// some more logic</span>
+  }
+}
+</code></pre>
+					<a href="#io" id="io" style="color: inherit; text-decoration: none;">
+						<h3>IO</h3>
+					</a>
+					<p>This package provides (de)serialization of Engine. Because of how js handle
+					types, you need to provide additional string to ClassType map. Eg.:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { JsonEngineCodec } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/io&#x27;</span>;
+<span class="hljs-keyword">import</span> { Display, Position } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components&#x27;</span>;
+
+<span class="hljs-keyword">const</span> classMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+classMap.set(<span class="hljs-string">&#x27;Position&#x27;</span>, Position);
+classMap.set(<span class="hljs-string">&#x27;Display&#x27;</span>, Display);
+<span class="hljs-comment">// ... add other classes</span>
+
+<span class="hljs-keyword">const</span> codec = <span class="hljs-keyword">new</span> JsonEngineCodec(classMap);</code></pre>
+					<p>Other way to create Map (array of [string, ClassType] tuples):</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">const</span> classMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([
+  [<span class="hljs-string">&#x27;Position&#x27;</span>, Position],
+  [<span class="hljs-string">&#x27;Display&#x27;</span>, Display],
+  <span class="hljs-comment">// ... other classes</span>
+]);</code></pre>
+					<p>If you export all components in one file, you can use this method:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> components <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components&#x27;</span>;
+
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(
+  <span class="hljs-built_in">Object</span>
+    .keys(components)
+    .map(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> [key, components[key <span class="hljs-keyword">as</span> keyof <span class="hljs-keyword">typeof</span> components]])
+);</code></pre>
+					<p>If your components are more complex objects, remember to also add all used
+					Classes. Eg. if you use PIXI you might want to add DisplayObject class.</p>
+					<pre><code class="language-typescript">map.set(<span class="hljs-string">&#x27;PIXI.DisplayObject&#x27;</span>, PIXI.DisplayObject);</code></pre>
+					<p>Second important difference is exported JSON format. It&#39;s similar but not the
+						same. All object codecs return object that implements EncodedObject interface.
+						All use the same &quot;value&quot; key. AS3 version use different keys for different
+					types.</p>
+					<p>Typescript exported json example:</p>
+					<pre><code class="language-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;Position&quot;</span>,
+  <span class="hljs-attr">&quot;value&quot;</span>: ...
+}</code></pre>
+					<p>value can be any valid json, eg. array in ArrayObjectCodec, number, boolean or
+					string in NativeObjectCodec or object in most other codecs.</p>
+					<a href="#listiteratingsystem" id="listiteratingsystem" style="color: inherit; text-decoration: none;">
+						<h3>ListIteratingSystem</h3>
+					</a>
+					<p>This utility class is also declared as abstract class with <code>updateNode</code> method
+						marked as required. There are also 2 optional callback methods that can be
+					declared in an inherited class:</p>
+					<ul>
+						<li><code>protected nodeAdded?:(node:Node) =&gt; void;</code></li>
+						<li><code>protected nodeRemoved?:(node:Node) =&gt; void;</code></li>
+					</ul>
+					<p>Example usage:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ListIteratingSystem } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
+<span class="hljs-keyword">import</span> { MovementNode } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../nodes&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MovementSystem <span class="hljs-keyword">extends</span> ListIteratingSystem&lt;MovementNode&gt; {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">super</span>(MovementNode);
+  }
+
+  <span class="hljs-comment">// required</span>
+  <span class="hljs-keyword">public</span> updateNode(node:MovementNode, time:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// update logic</span>
+  }
+
+  <span class="hljs-comment">// optional</span>
+  <span class="hljs-keyword">public</span> nodeAdded = <span class="hljs-function">(<span class="hljs-params">node:MovementNode</span>) =&gt;</span> {
+    <span class="hljs-comment">// logic to execute when new node is added to the system</span>
+  };
+
+  <span class="hljs-comment">// optional</span>
+  <span class="hljs-keyword">public</span> nodeRemoved = <span class="hljs-function">(<span class="hljs-params">node:MovementNode</span>) =&gt;</span> {
+    <span class="hljs-comment">// logic to execute when new node is removed from the system</span>
+  };
+}
+</code></pre>
+					<a href="#alternatives" id="alternatives" style="color: inherit; text-decoration: none;">
+						<h2>Alternatives</h2>
+					</a>
+					<p>These are alternative typescript ports you can find:</p>
+					<ul>
+						<li><a href="https://www.npmjs.com/package/ash-ts">ash-ts</a> - Private source code.
+							No docs, no examples, only core module. Components must inherit from the
+						AshComponent class.</li>
+						<li><a href="https://github.com/MikeMnD/AshTS">AshTS</a> - Not a node module, core package
+						only.</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
