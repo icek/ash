@@ -1,14 +1,14 @@
-import { Signal0, Signal1, Signal2, Signal3 } from '../src';
+import { Signal } from '../src';
 
 describe('Signals tests', () => {
-  let signal:Signal0;
+  let signal:Signal;
 
   beforeEach(() => {
-    signal = new Signal0();
+    signal = new Signal();
   });
 
   afterEach(() => {
-    (signal as Signal0 | null) = null;
+    (signal as Signal | null) = null;
   });
 
   it('new signal has null head', () => {
@@ -231,9 +231,9 @@ describe('Signals tests', () => {
     expect(callback).toBeCalledTimes(1);
   });
 
-  it('Signal1 should dispatch 1 parameter', () => {
+  it('Signal should dispatch 1 parameter', () => {
     const param = 'test';
-    const signal1 = new Signal1();
+    const signal1 = new Signal<[string]>();
     const callback = jest.fn();
     signal1.add(callback);
     signal1.dispatch(param);
@@ -242,7 +242,7 @@ describe('Signals tests', () => {
 
   it('Signal1 addOnce should dispatch 1 parameter just once', () => {
     const param = 'test';
-    const signal1 = new Signal1();
+    const signal1 = new Signal<[string]>();
     const callback = jest.fn();
     signal1.addOnce(callback);
     signal1.dispatch(param);
@@ -253,7 +253,7 @@ describe('Signals tests', () => {
   it('Signal2 should dispatch 2 parameters', () => {
     const param1 = 'test';
     const param2 = 13.75;
-    const signal2 = new Signal2();
+    const signal2 = new Signal<[string, number]>();
     const callback = jest.fn();
     signal2.add(callback);
     signal2.dispatch(param1, param2);
@@ -263,7 +263,7 @@ describe('Signals tests', () => {
   it('Signal2 addOnce should dispatch just once', () => {
     const param1 = 'test';
     const param2 = 13.75;
-    const signal2 = new Signal2();
+    const signal2 = new Signal<[string, number]>();
     const callback = jest.fn();
     signal2.addOnce(callback);
     signal2.dispatch(param1, param2);
@@ -275,7 +275,7 @@ describe('Signals tests', () => {
     const param1 = 'test';
     const param2 = 13.75;
     const param3 = { test: 123 };
-    const signal3 = new Signal3();
+    const signal3 = new Signal<[string, number, { test:number }]>();
     const callback = jest.fn();
     signal3.add(callback);
     signal3.dispatch(param1, param2, param3);
@@ -286,7 +286,7 @@ describe('Signals tests', () => {
     const param1 = 'test';
     const param2 = 13.75;
     const param3 = { test: 123 };
-    const signal3 = new Signal3();
+    const signal3 = new Signal<[string, number, { test:number }]>();
     const callback = jest.fn();
     signal3.addOnce(callback);
     signal3.dispatch(param1, param2, param3);

@@ -1,4 +1,4 @@
-import { Signal1 } from '@ash.ts/signals';
+import { Signal } from '@ash.ts/signals';
 import { Node } from './Node';
 
 /**
@@ -35,18 +35,18 @@ export class NodeList<TNode extends Node> {
    *
    * <p>The signal will pass a single parameter to the listeners - the node that was added.</p>
    */
-  public nodeAdded:Signal1<TNode>;
+  public nodeAdded:Signal<[TNode]>;
 
   /**
    * A signal that is dispatched whenever a node is removed from the node list.
    *
    * <p>The signal will pass a single parameter to the listeners - the node that was removed.</p>
    */
-  public nodeRemoved:Signal1<TNode>;
+  public nodeRemoved:Signal<[TNode]>;
 
   public constructor() {
-    this.nodeAdded = new Signal1();
-    this.nodeRemoved = new Signal1();
+    this.nodeAdded = new Signal();
+    this.nodeRemoved = new Signal();
   }
 
   public add(node:TNode):void {

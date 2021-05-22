@@ -8,18 +8,18 @@ import { ListenerNodePool } from './ListenerNodePool';
 /**
  * The base class for all the signal classes.
  */
-export abstract class SignalBase<TListener extends (...args:any[]) => void> {
-  protected head:ListenerNode<TListener> | null = null;
+export class Signal<TArgs extends any[] = []> {
+  protected head:ListenerNode<TArgs> | null = null;
 
-  protected tail:ListenerNode<TListener> | null = null;
+  protected tail:ListenerNode<TArgs> | null = null;
 
-  private nodes:Map<TListener, ListenerNode<TListener>>;
+  private nodes:Map<(...args:TArgs) => void, ListenerNode<TArgs>>;
 
-  private listenerNodePool:ListenerNodePool<TListener>;
+  private listenerNodePool:ListenerNodePool<TArgs>;
 
-  private toAddHead:ListenerNode<TListener> | null = null;
+  private toAddHead:ListenerNode<TArgs> | null = null;
 
-  private toAddTail:ListenerNode<TListener> | null = null;
+  private toAddTail:ListenerNode<TArgs> | null = null;
 
   private dispatching = false;
 
@@ -30,12 +30,18 @@ export abstract class SignalBase<TListener extends (...args:any[]) => void> {
     this.listenerNodePool = new ListenerNodePool();
   }
 
-  protected startDispatch():void {
+  public dispatch(...args:TArgs):void {
     this.dispatching = true;
-  }
 
-  protected endDispatch():void {
+    for (let node = this.head; node; node = node.next) {
+      node.listener(...args);
+      if (node.once) {
+        this.remove(node.listener);
+      }
+    }
+
     this.dispatching = false;
+
     if (this.toAddHead) {
       if (!this.head) {
         this.head = this.toAddHead;
@@ -55,30 +61,30 @@ export abstract class SignalBase<TListener extends (...args:any[]) => void> {
     return this._numListeners;
   }
 
-  public add(listener:TListener):void {
+  public add(listener:(...args:TArgs) => void):void {
     if (this.nodes.has(listener)) {
       return;
     }
 
-    const node:ListenerNode<TListener> = this.listenerNodePool.get();
+    const node:ListenerNode<TArgs> = this.listenerNodePool.get();
     node.listener = listener;
     this.nodes.set(listener, node);
     this.addNode(node);
   }
 
-  public addOnce(listener:TListener):void {
+  public addOnce(listener:(...args:TArgs) => void):void {
     if (this.nodes.has(listener)) {
       return;
     }
 
-    const node:ListenerNode<TListener> = this.listenerNodePool.get();
+    const node:ListenerNode<TArgs> = this.listenerNodePool.get();
     node.listener = listener;
     node.once = true;
     this.nodes.set(listener, node);
     this.addNode(node);
   }
 
-  protected addNode(node:ListenerNode<TListener>):void {
+  protected addNode(node:ListenerNode<TArgs>):void {
     if (this.dispatching) {
       if (!this.toAddHead) {
         this.toAddHead = node;
@@ -100,8 +106,8 @@ export abstract class SignalBase<TListener extends (...args:any[]) => void> {
     this._numListeners += 1;
   }
 
-  public remove(listener:TListener):void {
-    const node:ListenerNode<TListener> | null = this.nodes.get(listener) || null;
+  public remove(listener:(...args:TArgs) => void):void {
+    const node:ListenerNode<TArgs> | null = this.nodes.get(listener) || null;
     if (node) {
       if (this.head === node) {
         this.head = this.head.next;
@@ -133,7 +139,7 @@ export abstract class SignalBase<TListener extends (...args:any[]) => void> {
 
   public removeAll():void {
     while (this.head) {
-      const node:ListenerNode<TListener> = this.head;
+      const node:ListenerNode<TArgs> = this.head;
       this.head = this.head.next;
       this.nodes.delete(node.listener);
       this.listenerNodePool.dispose(node);

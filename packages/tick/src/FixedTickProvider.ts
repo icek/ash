@@ -1,11 +1,11 @@
-import { Signal1 } from '@ash.ts/signals';
+import { Signal } from '@ash.ts/signals';
 import { TickProvider } from './TickProvider';
 
 /**
  * Uses the enter frame event to provide a frame tick with a fixed frame duration. This tick ignores the length of
  * the frame and dispatches the same time period for each tick.
  */
-export class FixedTickProvider extends Signal1<number> implements TickProvider {
+export class FixedTickProvider extends Signal<[number]> implements TickProvider {
   private frameTime:number;
 
   private rafId = 0;

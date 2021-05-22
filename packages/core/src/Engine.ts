@@ -1,4 +1,4 @@
-import { Signal0 } from '@ash.ts/signals';
+import { Signal } from '@ash.ts/signals';
 import { ClassType, NodeClassType } from './types';
 import { ComponentMatchingFamily } from './ComponentMatchingFamily';
 import { Entity } from './Entity';
@@ -32,7 +32,7 @@ export class Engine {
    * engine it is usually best not to do so during the update loop. To avoid this you can
    * listen for this signal and make the change when the signal is dispatched.
    */
-  public updateComplete:Signal0;
+  public updateComplete:Signal;
 
   /**
    * The class used to manage node lists. In most cases the default class is sufficient
@@ -48,7 +48,7 @@ export class Engine {
     this.entityNames = {};
     this.systemList = new SystemList();
     this.families = new Map();
-    this.updateComplete = new Signal0();
+    this.updateComplete = new Signal();
   }
 
   /**

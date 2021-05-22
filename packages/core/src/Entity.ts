@@ -1,4 +1,4 @@
-import { Signal2 } from '@ash.ts/signals';
+import { Signal } from '@ash.ts/signals';
 import { ClassType } from './types';
 
 /**
@@ -33,18 +33,18 @@ export class Entity {
   /**
    * This signal is dispatched when a component is added to the entity.
    */
-  public componentAdded:Signal2<Entity, ClassType<any>>;
+  public componentAdded:Signal<[Entity, ClassType<any>]>;
 
   /**
    * This signal is dispatched when a component is removed from the entity.
    */
-  public componentRemoved:Signal2<Entity, ClassType<any>>;
+  public componentRemoved:Signal<[Entity, ClassType<any>]>;
 
   /**
    * Dispatched when the name of the entity changes.
    * Used internally by the engine to track entities based on their names.
    */
-  public nameChanged:Signal2<Entity, string>;
+  public nameChanged:Signal<[Entity, string]>;
 
   public previous:Entity | null = null;
 
@@ -59,9 +59,9 @@ export class Entity {
    * assigned with the form _entityN where N is an integer.
    */
   public constructor(name = '') {
-    this.componentAdded = new Signal2();
-    this.componentRemoved = new Signal2();
-    this.nameChanged = new Signal2();
+    this.componentAdded = new Signal();
+    this.componentRemoved = new Signal();
+    this.nameChanged = new Signal();
     this.components = new Map();
     if (name) {
       this._name = name;

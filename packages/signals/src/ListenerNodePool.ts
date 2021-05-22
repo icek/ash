@@ -4,14 +4,14 @@ import { ListenerNode } from './ListenerNode';
  * This internal class maintains a pool of deleted listener nodes for reuse by framework. This reduces
  * the overhead from object creation and garbage collection.
  */
-export class ListenerNodePool<TListener extends (...args:any[]) => void> {
-  private tail:ListenerNode<TListener> | null = null;
+export class ListenerNodePool<TArgs extends any[]> {
+  private tail:ListenerNode<TArgs> | null = null;
 
-  private cacheTail:ListenerNode<TListener> | null = null;
+  private cacheTail:ListenerNode<TArgs> | null = null;
 
-  public get():ListenerNode<TListener> {
+  public get():ListenerNode<TArgs> {
     if (this.tail) {
-      const node:ListenerNode<TListener> = this.tail;
+      const node:ListenerNode<TArgs> = this.tail;
       this.tail = this.tail.previous;
       node.previous = null;
 
@@ -21,7 +21,7 @@ export class ListenerNodePool<TListener extends (...args:any[]) => void> {
     return new ListenerNode();
   }
 
-  public dispose(node:ListenerNode<TListener>):void {
+  public dispose(node:ListenerNode<TArgs>):void {
     (node.listener as any) = null;
     node.once = false;
     node.next = null;
@@ -29,7 +29,7 @@ export class ListenerNodePool<TListener extends (...args:any[]) => void> {
     this.tail = node;
   }
 
-  public cache(node:ListenerNode<TListener>):void {
+  public cache(node:ListenerNode<TArgs>):void {
     (node.listener as any) = null;
     node.previous = this.cacheTail;
     this.cacheTail = node;
@@ -37,7 +37,7 @@ export class ListenerNodePool<TListener extends (...args:any[]) => void> {
 
   public releaseCache():void {
     while (this.cacheTail) {
-      const node:ListenerNode<TListener> = this.cacheTail;
+      const node:ListenerNode<TArgs> = this.cacheTail;
       this.cacheTail = node.previous;
       node.next = null;
       node.previous = this.tail;

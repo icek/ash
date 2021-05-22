@@ -1,4 +1,4 @@
-import { Signal1 } from '@ash.ts/signals';
+import { Signal } from '@ash.ts/signals';
 import { TickProvider } from './TickProvider';
 
 /**
@@ -6,7 +6,7 @@ import { TickProvider } from './TickProvider';
  * There is a maximum frame time parameter in the constructor that can be used to limit
  * the longest period a frame can be.
  */
-export class FrameTickProvider extends Signal1<number> implements TickProvider {
+export class FrameTickProvider extends Signal<[number]> implements TickProvider {
   private rafId = 0;
 
   private previousTime = 0;
