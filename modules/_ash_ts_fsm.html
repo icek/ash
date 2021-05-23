@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for ash">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -38,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,7 +50,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">ash</a>
 				</li>
 				<li>
 					<a href="_ash_ts_fsm.html">@ash.ts/fsm</a>
@@ -66,82 +65,91 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<a href="#ashtsfsm" id="ashtsfsm" style="color: inherit; text-decoration: none;">
-						<h1>@ash.ts/fsm</h1>
-					</a>
-					<p>This package contains classes for creating and using finite state machines with Ash. Specifically, it contains
-					classes for creating states based on the components on an entity, and for switching between those states.</p>
-					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
-						<h2>Instalation</h2>
-					</a>
-					<p>Using npm:</p>
-					<p><code>npm i @ash.ts/fsm</code></p>
-					<p>Using yarn:</p>
-					<p><code>yarn add @ash.ts/fsm</code></p>
-					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-						<h2>Documentation</h2>
-					</a>
-					<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_fsm.html">API docs</a></p>
-					<a href="#an-example" id="an-example" style="color: inherit; text-decoration: none;">
-						<h2>An example</h2>
-					</a>
-					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { EntityStateMachine } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/fsm&#x27;</span>;
+					<div class="lead">
+						<a href="#ashtsfsm" id="ashtsfsm" style="color: inherit; text-decoration: none;">
+							<h1>@ash.ts/fsm</h1>
+						</a>
+						<p>This package contains classes for creating and using finite state machines with Ash. Specifically, it contains
+						classes for creating states based on the components on an entity, and for switching between those states.</p>
+						<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+							<h2>Instalation</h2>
+						</a>
+						<p>Using npm:</p>
+						<p><code>npm i @ash.ts/fsm</code></p>
+						<p>Using yarn:</p>
+						<p><code>yarn add @ash.ts/fsm</code></p>
+						<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+							<h2>Documentation</h2>
+						</a>
+						<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_fsm.html">API docs</a></p>
+						<a href="#an-example" id="an-example" style="color: inherit; text-decoration: none;">
+							<h2>An example</h2>
+						</a>
+						<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">EntityStateMachine</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@ash.ts/fsm&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> fsm:EntityStateMachine = <span class="hljs-keyword">new</span> EntityStateMachine(entity);
-fsm.createState(<span class="hljs-string">&#x27;guard&#x27;</span>).add(Patrol).withInstance(<span class="hljs-keyword">new</span> Patrol(guardPath));
-fsm.createState(<span class="hljs-string">&#x27;investigate&#x27;</span>).add(Investigate);
-fsm.createState(<span class="hljs-string">&#x27;defend&#x27;</span>).add(Defend);
-fsm.changeState(<span class="hljs-string">&#x27;guard&#x27;</span>);</code></pre>
-					<a href="#the-methods" id="the-methods" style="color: inherit; text-decoration: none;">
-						<h2>The methods</h2>
-					</a>
-					<p>A finite state machine is an instance of the EntityStateMachine class. You pass it a reference to the entity it will
-						manage when constructing it. You will usually store the state machine in a component on the entity so it can be
-					recovered from within any system that is operating on the entity.</p>
-					<p>A state machine is configured with states, and the state can be changed by calling the state machine&#39;s <code>changeState()</code>
-						method. States are identified by a string, which is assigned when the state is created and used to identify the state
-					when calling the <code>changeState()</code> method.</p>
-					<p>States are instances of the EntityState class. They may be added to the EntityStateMachine using the
-						<code>EntityStateMachine.addState()</code> method, or they may be created and added in one call using the
-					<code>EntityStateMachine.createState()</code> method.</p>
-					<p>A state is a set of components that should be added to the entity when that state is entered, and removed when that
-					state exits (unless they are also required for the next state).</p>
-					<p>States within the state machine are configured with component providers. A component provider has a method to
-						provide a component to the entity, and a second method to identify if two component providers are equivalent -
-					i.e. if they would provide an equivalent component.</p>
-					<p>A component provider implements the <code>ComponentProvider</code> interface.</p>
-					<p>The standard method for adding a component provider to a state is</p>
-					<pre><code class="language-typescript">state.add(componentType:ClassType&lt;<span class="hljs-built_in">any</span>&gt;).withProvider(provider:ComponentProvider);</code></pre>
-					<p>There are shortcuts for using the standard component providers</p>
-					<pre><code class="language-typescript">state.add(componentType:ClassType&lt;<span class="hljs-built_in">any</span>&gt;).withType(instanceType:Class);</code></pre>
-					<p>uses the ComponentTypeProvider to provide a new instance of instanceType. instanceType should be the same as or componentType of a type that extends
-					componentType.</p>
-					<pre><code class="language-typescript">state.add(componentType:ClassType&lt;<span class="hljs-built_in">any</span>&gt;);</code></pre>
-					<p>If instanceType is the same as componentType then it may be omitted.</p>
-					<pre><code class="language-typescript">state.add(componentType:ClassType&lt;<span class="hljs-built_in">any</span>&gt;).withInstance(component:<span class="hljs-built_in">any</span>);</code></pre>
-					<p>uses the ComponentInstanceProvider to provide the same instance every time it is called.</p>
-					<pre><code class="language-typescript">state.add(componentType:Class).withSingleton(instanceType:ClassType&lt;<span class="hljs-built_in">any</span>&gt;);</code></pre>
-					<p>uses the ComponentSingletonProvider to create a new instance of instanceType and provide that same instance every
-					time it is called. The instance is not created until it is first required.</p>
-					<a href="#chaining" id="chaining" style="color: inherit; text-decoration: none;">
-						<h2>Chaining</h2>
-					</a>
-					<p>The methods can be chained together to create a fluent interface. For example</p>
-					<pre><code class="language-typescript"><span class="hljs-keyword">const</span> fsm:EntityStateMachine = <span class="hljs-keyword">new</span> EntityStateMachine(entity);
-fsm.createState(<span class="hljs-string">&#x27;playing&#x27;</span>)
-   .add(Motion).withInstance(<span class="hljs-keyword">new</span> Motion(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">15</span>))
-   .add(MotionControls).withInstance(<span class="hljs-keyword">new</span> MotionControls(Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, <span class="hljs-number">100</span>, <span class="hljs-number">3</span>))
-   .add(Gun).withInstance(<span class="hljs-keyword">new</span> Gun(<span class="hljs-number">8</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">2</span>))
-   .add(GunControls).withInstance(<span class="hljs-keyword">new</span> GunControls(Keyboard.SPACE))
-   .add(Collision).withInstance(<span class="hljs-keyword">new</span> Collision(<span class="hljs-number">9</span>))
-   .add(Display).withInstance(<span class="hljs-keyword">new</span> Display(<span class="hljs-keyword">new</span> SpaceshipView()));
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fsm</span><span style="color: #000000">:</span><span style="color: #267F99">EntityStateMachine</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">EntityStateMachine</span><span style="color: #000000">(</span><span style="color: #001080">entity</span><span style="color: #000000">);</span>
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">createState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;guard&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Patrol</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Patrol</span><span style="color: #000000">(</span><span style="color: #001080">guardPath</span><span style="color: #000000">));</span>
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">createState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;investigate&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Investigate</span><span style="color: #000000">);</span>
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">createState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;defend&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Defend</span><span style="color: #000000">);</span>
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">changeState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;guard&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+						<a href="#the-methods" id="the-methods" style="color: inherit; text-decoration: none;">
+							<h2>The methods</h2>
+						</a>
+						<p>A finite state machine is an instance of the EntityStateMachine class. You pass it a reference to the entity it will
+							manage when constructing it. You will usually store the state machine in a component on the entity so it can be
+						recovered from within any system that is operating on the entity.</p>
+						<p>A state machine is configured with states, and the state can be changed by calling the state machine&#39;s <code>changeState()</code>
+							method. States are identified by a string, which is assigned when the state is created and used to identify the state
+						when calling the <code>changeState()</code> method.</p>
+						<p>States are instances of the EntityState class. They may be added to the EntityStateMachine using the
+							<code>EntityStateMachine.addState()</code> method, or they may be created and added in one call using the
+						<code>EntityStateMachine.createState()</code> method.</p>
+						<p>A state is a set of components that should be added to the entity when that state is entered, and removed when that
+						state exits (unless they are also required for the next state).</p>
+						<p>States within the state machine are configured with component providers. A component provider has a method to
+							provide a component to the entity, and a second method to identify if two component providers are equivalent -
+						i.e. if they would provide an equivalent component.</p>
+						<p>A component provider implements the <code>ComponentProvider</code> interface.</p>
+						<p>The standard method for adding a component provider to a state is</p>
+						<pre><code class="language-typescript"><span style="color: #001080">state</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">componentType</span><span style="color: #000000">:</span><span style="color: #001080">ClassType</span><span style="color: #000000">&lt;</span><span style="color: #001080">any</span><span style="color: #000000">&gt;).</span><span style="color: #795E26">withProvider</span><span style="color: #000000">(</span><span style="color: #001080">provider</span><span style="color: #000000">:</span><span style="color: #001080">ComponentProvider</span><span style="color: #000000">);</span>
+</code></pre>
+						<p>There are shortcuts for using the standard component providers</p>
+						<pre><code class="language-typescript"><span style="color: #001080">state</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">componentType</span><span style="color: #000000">:</span><span style="color: #001080">ClassType</span><span style="color: #000000">&lt;</span><span style="color: #001080">any</span><span style="color: #000000">&gt;).</span><span style="color: #795E26">withType</span><span style="color: #000000">(</span><span style="color: #001080">instanceType</span><span style="color: #000000">:</span><span style="color: #001080">Class</span><span style="color: #000000">);</span>
+</code></pre>
+						<p>uses the ComponentTypeProvider to provide a new instance of instanceType. instanceType should be the same as or componentType of a type that extends
+						componentType.</p>
+						<pre><code class="language-typescript"><span style="color: #001080">state</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">componentType</span><span style="color: #000000">:</span><span style="color: #001080">ClassType</span><span style="color: #000000">&lt;</span><span style="color: #001080">any</span><span style="color: #000000">&gt;);</span>
+</code></pre>
+						<p>If instanceType is the same as componentType then it may be omitted.</p>
+						<pre><code class="language-typescript"><span style="color: #001080">state</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">componentType</span><span style="color: #000000">:</span><span style="color: #001080">ClassType</span><span style="color: #000000">&lt;</span><span style="color: #001080">any</span><span style="color: #000000">&gt;).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #001080">component</span><span style="color: #000000">:</span><span style="color: #001080">any</span><span style="color: #000000">);</span>
+</code></pre>
+						<p>uses the ComponentInstanceProvider to provide the same instance every time it is called.</p>
+						<pre><code class="language-typescript"><span style="color: #001080">state</span><span style="color: #000000">.</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">componentType</span><span style="color: #000000">:</span><span style="color: #001080">Class</span><span style="color: #000000">).</span><span style="color: #795E26">withSingleton</span><span style="color: #000000">(</span><span style="color: #001080">instanceType</span><span style="color: #000000">:</span><span style="color: #001080">ClassType</span><span style="color: #000000">&lt;</span><span style="color: #001080">any</span><span style="color: #000000">&gt;);</span>
+</code></pre>
+						<p>uses the ComponentSingletonProvider to create a new instance of instanceType and provide that same instance every
+						time it is called. The instance is not created until it is first required.</p>
+						<a href="#chaining" id="chaining" style="color: inherit; text-decoration: none;">
+							<h2>Chaining</h2>
+						</a>
+						<p>The methods can be chained together to create a fluent interface. For example</p>
+						<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fsm</span><span style="color: #000000">:</span><span style="color: #267F99">EntityStateMachine</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">EntityStateMachine</span><span style="color: #000000">(</span><span style="color: #001080">entity</span><span style="color: #000000">);</span>
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">createState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;playing&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Motion</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Motion</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">15</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">MotionControls</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MotionControls</span><span style="color: #000000">(</span><span style="color: #001080">Keyboard</span><span style="color: #000000">.</span><span style="color: #0070C1">LEFT</span><span style="color: #000000">, </span><span style="color: #001080">Keyboard</span><span style="color: #000000">.</span><span style="color: #0070C1">RIGHT</span><span style="color: #000000">, </span><span style="color: #001080">Keyboard</span><span style="color: #000000">.</span><span style="color: #0070C1">UP</span><span style="color: #000000">, </span><span style="color: #098658">100</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Gun</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Gun</span><span style="color: #000000">(</span><span style="color: #098658">8</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0.3</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">GunControls</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">GunControls</span><span style="color: #000000">(</span><span style="color: #001080">Keyboard</span><span style="color: #000000">.</span><span style="color: #0070C1">SPACE</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Collision</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Collision</span><span style="color: #000000">(</span><span style="color: #098658">9</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Display</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Display</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SpaceshipView</span><span style="color: #000000">()));</span>
 
-fsm.createState(<span class="hljs-string">&#x27;destroyed&#x27;</span>)
-   .add(DeathThroes).withInstance(<span class="hljs-keyword">new</span> DeathThroes(<span class="hljs-number">5</span>))
-   .add(Display).withInstance(<span class="hljs-keyword">new</span> Display(deathView))
-   .add(Animation).withInstance(<span class="hljs-keyword">new</span> Animation(deathView));
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">createState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;destroyed&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">DeathThroes</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DeathThroes</span><span style="color: #000000">(</span><span style="color: #098658">5</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Display</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Display</span><span style="color: #000000">(</span><span style="color: #001080">deathView</span><span style="color: #000000">))</span>
+<span style="color: #000000">   .</span><span style="color: #795E26">add</span><span style="color: #000000">(</span><span style="color: #001080">Animation</span><span style="color: #000000">).</span><span style="color: #795E26">withInstance</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Animation</span><span style="color: #000000">(</span><span style="color: #001080">deathView</span><span style="color: #000000">));</span>
 
-fsm.changeState(<span class="hljs-string">&#x27;playing&#x27;</span>);</code></pre>
+<span style="color: #001080">fsm</span><span style="color: #000000">.</span><span style="color: #795E26">changeState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;playing&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -149,59 +157,24 @@ fsm.changeState(<span class="hljs-string">&#x27;playing&#x27;</span>);</code></p
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>References</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_fsm.html#enginestatemachine" class="tsd-kind-icon">Engine<wbr>State<wbr>Machine</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_fsm.html#entitystatemachine" class="tsd-kind-icon">Entity<wbr>State<wbr>Machine</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.componentinstanceprovider.html" class="tsd-kind-icon">Component<wbr>Instance<wbr>Provider</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.componentsingletonprovider.html" class="tsd-kind-icon">Component<wbr>Singleton<wbr>Provider</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.componenttypeprovider.html" class="tsd-kind-icon">Component<wbr>Type<wbr>Provider</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.dynamiccomponentprovider.html" class="tsd-kind-icon">Dynamic<wbr>Component<wbr>Provider</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.dynamicsystemprovider.html" class="tsd-kind-icon">Dynamic<wbr>System<wbr>Provider</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_fsm.enginestate.html" class="tsd-kind-icon">Engine<wbr>State</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_fsm.enginestatemachine-1.html" class="tsd-kind-icon">Engine<wbr>State<wbr>Machine</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_fsm.entitystate.html" class="tsd-kind-icon">Entity<wbr>State</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_fsm.entitystatemachine-1.html" class="tsd-kind-icon">Entity<wbr>State<wbr>Machine</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.statecomponentmapping.html" class="tsd-kind-icon">State<wbr>Component<wbr>Mapping</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.statesystemmapping.html" class="tsd-kind-icon">State<wbr>System<wbr>Mapping</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.systeminstanceprovider.html" class="tsd-kind-icon">System<wbr>Instance<wbr>Provider</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_fsm.systemsingletonprovider.html" class="tsd-kind-icon">System<wbr>Singleton<wbr>Provider</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_fsm.componentprovider.html" class="tsd-kind-icon">Component<wbr>Provider</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_fsm.systemprovider.html" class="tsd-kind-icon">System<wbr>Provider</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_fsm.enginestatemachine.html" class="tsd-kind-icon">Engine<wbr>State<wbr>Machine</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_fsm.entitystatemachine.html" class="tsd-kind-icon">Entity<wbr>State<wbr>Machine</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>References</h2>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="enginestatemachine" class="tsd-anchor"></a>
-					<h3>Engine<wbr>State<wbr>Machine</h3>
-					Re-exports <a href="../classes/_ash_ts_fsm.enginestatemachine-1.html">EngineStateMachine</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="entitystatemachine" class="tsd-anchor"></a>
-					<h3>Entity<wbr>State<wbr>Machine</h3>
-					Re-exports <a href="../classes/_ash_ts_fsm.entitystatemachine-1.html">EntityStateMachine</a>
 				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_ash_ts_ash.html">@ash.ts/ash</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_ash_ts_core.html">@ash.ts/core</a>
@@ -225,56 +198,11 @@ fsm.changeState(<span class="hljs-string">&#x27;playing&#x27;</span>);</code></p
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_fsm.html#enginestatemachine" class="tsd-kind-icon">Engine<wbr>State<wbr>Machine</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_fsm.html#entitystatemachine" class="tsd-kind-icon">Entity<wbr>State<wbr>Machine</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.componentinstanceprovider.html" class="tsd-kind-icon">Component<wbr>Instance<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.componentsingletonprovider.html" class="tsd-kind-icon">Component<wbr>Singleton<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.componenttypeprovider.html" class="tsd-kind-icon">Component<wbr>Type<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.dynamiccomponentprovider.html" class="tsd-kind-icon">Dynamic<wbr>Component<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.dynamicsystemprovider.html" class="tsd-kind-icon">Dynamic<wbr>System<wbr>Provider</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_ash_ts_fsm.enginestatemachine.html" class="tsd-kind-icon">Engine<wbr>State<wbr>Machine</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_fsm.enginestate.html" class="tsd-kind-icon">Engine<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_fsm.enginestatemachine-1.html" class="tsd-kind-icon">Engine<wbr>State<wbr>Machine</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_fsm.entitystate.html" class="tsd-kind-icon">Entity<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_fsm.entitystatemachine-1.html" class="tsd-kind-icon">Entity<wbr>State<wbr>Machine</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.statecomponentmapping.html" class="tsd-kind-icon">State<wbr>Component<wbr>Mapping</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.statesystemmapping.html" class="tsd-kind-icon">State<wbr>System<wbr>Mapping</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.systeminstanceprovider.html" class="tsd-kind-icon">System<wbr>Instance<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_fsm.systemsingletonprovider.html" class="tsd-kind-icon">System<wbr>Singleton<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../interfaces/_ash_ts_fsm.componentprovider.html" class="tsd-kind-icon">Component<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../interfaces/_ash_ts_fsm.systemprovider.html" class="tsd-kind-icon">System<wbr>Provider</a>
+						<a href="../classes/_ash_ts_fsm.entitystatemachine.html" class="tsd-kind-icon">Entity<wbr>State<wbr>Machine</a>
 					</li>
 				</ul>
 			</nav>

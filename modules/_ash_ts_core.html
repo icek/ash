@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for ash">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -38,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,7 +50,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">ash</a>
 				</li>
 				<li>
 					<a href="_ash_ts_core.html">@ash.ts/core</a>
@@ -66,94 +65,98 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<a href="#ashtscore" id="ashtscore" style="color: inherit; text-decoration: none;">
-						<h1>@ash.ts/core</h1>
-					</a>
-					<p>Core part of ash.ts - a Typescript port of <a href="https://github.com/richardlord/Ash">Ash Framework</a>,
-					an entity framework for game development by <a href="https://www.richardlord.net">Richard Lord</a></p>
-					<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
-						<h2>Instalation</h2>
-					</a>
-					<p>Using npm:</p>
-					<p><code>npm i @ash.ts/core</code></p>
-					<p>Using yarn:</p>
-					<p><code>yarn add @ash.ts/core</code></p>
-					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-						<h2>Documentation</h2>
-					</a>
-					<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_core.html">API docs</a></p>
-					<a href="#differences-between-typescript-and-as3-version" id="differences-between-typescript-and-as3-version" style="color: inherit; text-decoration: none;">
-						<h2>Differences between typescript and AS3 version</h2>
-					</a>
-					<p>As this is a port to a different language there are some changes to the API.</p>
-					<a href="#nodes" id="nodes" style="color: inherit; text-decoration: none;">
-						<h3>Nodes</h3>
-					</a>
-					<p>Javascript which is a language that typescript is compiling to, is dynamic.
-						Variables that are declared but not yet instantiated doesn&#39;t have a type.
-						In AS3 when Node fields are null but they are declared as some type, that
-						information is kept at runtime.
-						Adding typescript to javascript gave us code completion and type checking,
-						but information about type is dropped as soon as code is compiled to javascript
-						and not available at runtime. All you need to add is <code>@keep(Class)</code> to each
-						field of your node. This way type information is available in compile and
-					runtime. Example:</p>
-					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Node, keep } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
-<span class="hljs-keyword">import</span> { Motion, Position } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components&#x27;</span>;
+					<div class="lead">
+						<a href="#ashtscore" id="ashtscore" style="color: inherit; text-decoration: none;">
+							<h1>@ash.ts/core</h1>
+						</a>
+						<p>Core part of ash.ts - a Typescript port of <a href="https://github.com/richardlord/Ash">Ash Framework</a>,
+						an entity framework for game development by <a href="https://www.richardlord.net">Richard Lord</a></p>
+						<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+							<h2>Instalation</h2>
+						</a>
+						<p>Using npm:</p>
+						<p><code>npm i @ash.ts/core</code></p>
+						<p>Using yarn:</p>
+						<p><code>yarn add @ash.ts/core</code></p>
+						<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+							<h2>Documentation</h2>
+						</a>
+						<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_core.html">API docs</a></p>
+						<a href="#differences-between-typescript-and-as3-version" id="differences-between-typescript-and-as3-version" style="color: inherit; text-decoration: none;">
+							<h2>Differences between typescript and AS3 version</h2>
+						</a>
+						<p>As this is a port to a different language there are some changes to the API.</p>
+						<a href="#nodes" id="nodes" style="color: inherit; text-decoration: none;">
+							<h3>Nodes</h3>
+						</a>
+						<p>Javascript which is a language that typescript is compiling to, is dynamic.
+							Variables that are declared but not yet instantiated doesn&#39;t have a type.
+							In AS3 when Node fields are null but they are declared as some type, that
+							information is kept at runtime.
+							Adding typescript to javascript gave us code completion and type checking,
+							but information about type is dropped as soon as code is compiled to javascript
+							and not available at runtime. All you need to add is <code>@keep(Class)</code> to each
+							field of your node. This way type information is available in compile and
+						runtime. Example:</p>
+						<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Node</span><span style="color: #000000">, </span><span style="color: #001080">keep</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@ash.ts/ash&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Motion</span><span style="color: #000000">, </span><span style="color: #001080">Position</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../components&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MovementNode <span class="hljs-keyword">extends</span> Node {
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">MovementNode</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Node</span><span style="color: #000000"> {</span>
+<span style="color: #000000"> </span>
+<span style="color: #000000"> @</span><span style="color: #795E26">keep</span><span style="color: #000000">(</span><span style="color: #001080">Position</span><span style="color: #000000">)</span>
+<span style="color: #000000"> </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">position</span><span style="color: #000000">!:</span><span style="color: #267F99">Position</span><span style="color: #000000">;</span>
+<span style="color: #000000"> </span>
+<span style="color: #000000"> @</span><span style="color: #795E26">keep</span><span style="color: #000000">(</span><span style="color: #001080">Motion</span><span style="color: #000000">)</span>
+<span style="color: #000000"> </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">motion</span><span style="color: #000000">!:</span><span style="color: #267F99">Motion</span><span style="color: #000000">;</span>
+<span style="color: #000000"> </span>
+<span style="color: #000000">}</span>
 
-  <span class="hljs-meta">@keep</span>(Position)
-  <span class="hljs-keyword">public</span> position!:Position;
-
-  <span class="hljs-meta">@keep</span>(Motion)
-  <span class="hljs-keyword">public</span> motion!:Motion;
-
-}
 </code></pre>
-					<p>Exclamation mark used in this example is a non-null assertion operator.
-						If you use <code>&quot;strict&quot;: true</code> or <code>&quot;strictNullChecks&quot;: true</code> flags in your
-						<code>tsconfig.json</code> file, it&#39;s the way to silent compiler. You as a developer
-						can guarantee that these values will never be null, because as soon as they
-					are created by the Engine they are filled with components.</p>
-					<a href="#systems" id="systems" style="color: inherit; text-decoration: none;">
-						<h3>Systems</h3>
-					</a>
-					<p>Base System class is declared as abstract class with these methods marked as
-					required to be declared in an inherited class.</p>
-					<ul>
-						<li><code>public abstract addToEngine(engine:Engine):void;</code></li>
-						<li><code>public abstract removeFromEngine(engine:Engine):void;</code></li>
-						<li><code>public abstract update(time:number):void;</code>  </li>
-					</ul>
-					<p>Example usage:</p>
-					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Engine, NodeList, System } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@ash.ts/ash&#x27;</span>;
-<span class="hljs-keyword">import</span> { RenderNode } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../nodes&#x27;</span>;
+						<p>Exclamation mark used in this example is a non-null assertion operator.
+							If you use <code>&quot;strict&quot;: true</code> or <code>&quot;strictNullChecks&quot;: true</code> flags in your
+							<code>tsconfig.json</code> file, it&#39;s the way to silent compiler. You as a developer
+							can guarantee that these values will never be null, because as soon as they
+						are created by the Engine they are filled with components.</p>
+						<a href="#systems" id="systems" style="color: inherit; text-decoration: none;">
+							<h3>Systems</h3>
+						</a>
+						<p>Base System class is declared as abstract class with these methods marked as
+						required to be declared in an inherited class.</p>
+						<ul>
+							<li><code>public abstract addToEngine(engine:Engine):void;</code></li>
+							<li><code>public abstract removeFromEngine(engine:Engine):void;</code></li>
+							<li><code>public abstract update(time:number):void;</code>  </li>
+						</ul>
+						<p>Example usage:</p>
+						<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Engine</span><span style="color: #000000">, </span><span style="color: #001080">NodeList</span><span style="color: #000000">, </span><span style="color: #001080">System</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@ash.ts/ash&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">RenderNode</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../nodes&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> RenderSystem <span class="hljs-keyword">extends</span> System {
-  <span class="hljs-keyword">private</span> nodes:NodeList&lt;RenderNode&gt; | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">RenderSystem</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">System</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">nodes</span><span style="color: #000000">:</span><span style="color: #267F99">NodeList</span><span style="color: #000000">&lt;</span><span style="color: #267F99">RenderNode</span><span style="color: #000000">&gt; | </span><span style="color: #267F99">null</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
 
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> container:HTMLElement</span>) {
-    <span class="hljs-built_in">super</span>();
-  }
+<span style="color: #000000">  </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">container</span><span style="color: #000000">:</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">super</span><span style="color: #000000">();</span>
+<span style="color: #000000">  }</span>
 
-  <span class="hljs-keyword">public</span> addToEngine(engine:Engine):<span class="hljs-built_in">void</span> {
-    <span class="hljs-built_in">this</span>.nodes = engine.getNodeList(RenderNode);
-    <span class="hljs-comment">// some more logic</span>
-  }
+<span style="color: #000000">  </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #795E26">addToEngine</span><span style="color: #000000">(</span><span style="color: #001080">engine</span><span style="color: #000000">:</span><span style="color: #267F99">Engine</span><span style="color: #000000">):</span><span style="color: #267F99">void</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">nodes</span><span style="color: #000000"> = </span><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">getNodeList</span><span style="color: #000000">(</span><span style="color: #001080">RenderNode</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #008000">// some more logic</span>
+<span style="color: #000000">  }</span>
 
-  <span class="hljs-keyword">public</span> update(time:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span> {
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.nodes!.head; node; node = node.next) {
-      <span class="hljs-comment">// update logic</span>
-    }
-  }
+<span style="color: #000000">  </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">time</span><span style="color: #000000">:</span><span style="color: #267F99">number</span><span style="color: #000000">):</span><span style="color: #267F99">void</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">node</span><span style="color: #000000"> = </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">nodes</span><span style="color: #000000">!.</span><span style="color: #001080">head</span><span style="color: #000000">; </span><span style="color: #001080">node</span><span style="color: #000000">; </span><span style="color: #001080">node</span><span style="color: #000000"> = </span><span style="color: #001080">node</span><span style="color: #000000">.</span><span style="color: #001080">next</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #008000">// update logic</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
 
-  <span class="hljs-keyword">public</span> removeFromEngine(engine:Engine):<span class="hljs-built_in">void</span> {
-    <span class="hljs-built_in">this</span>.nodes = <span class="hljs-literal">null</span>;
-    <span class="hljs-comment">// some more logic</span>
-  }
-}
+<span style="color: #000000">  </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #795E26">removeFromEngine</span><span style="color: #000000">(</span><span style="color: #001080">engine</span><span style="color: #000000">:</span><span style="color: #267F99">Engine</span><span style="color: #000000">):</span><span style="color: #267F99">void</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">nodes</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #008000">// some more logic</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
 </code></pre>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -161,117 +164,41 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>References</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#classtype" class="tsd-kind-icon">Class<wbr>Type</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#componentmatchingfamily" class="tsd-kind-icon">Component<wbr>Matching<wbr>Family</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#engine" class="tsd-kind-icon">Engine</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#entity" class="tsd-kind-icon">Entity</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#family" class="tsd-kind-icon">Family</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#node" class="tsd-kind-icon">Node</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#nodeclasstype" class="tsd-kind-icon">Node<wbr>Class<wbr>Type</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#nodelist" class="tsd-kind-icon">Node<wbr>List</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#nodepool" class="tsd-kind-icon">Node<wbr>Pool</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#system" class="tsd-kind-icon">System</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_core.html#keep" class="tsd-kind-icon">keep</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_core.componentmatchingfamily-1.html" class="tsd-kind-icon">Component<wbr>Matching<wbr>Family</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.engine-1.html" class="tsd-kind-icon">Engine</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.entity-1.html" class="tsd-kind-icon">Entity</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.entitylist.html" class="tsd-kind-icon">Entity<wbr>List</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.node-1.html" class="tsd-kind-icon">Node</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_core.nodelist-1.html" class="tsd-kind-icon">Node<wbr>List</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_core.nodepool-1.html" class="tsd-kind-icon">Node<wbr>Pool</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.system-1.html" class="tsd-kind-icon">System</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.systemlist.html" class="tsd-kind-icon">System<wbr>List</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_core.componentmatchingfamily.html" class="tsd-kind-icon">Component<wbr>Matching<wbr>Family</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.engine.html" class="tsd-kind-icon">Engine</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.entity.html" class="tsd-kind-icon">Entity</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.node.html" class="tsd-kind-icon">Node</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_core.nodelist.html" class="tsd-kind-icon">Node<wbr>List</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ash_ts_core.nodepool.html" class="tsd-kind-icon">Node<wbr>Pool</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ash_ts_core.system.html" class="tsd-kind-icon">System</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_core.classtype-1.html" class="tsd-kind-icon">Class<wbr>Type</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_core.family-1.html" class="tsd-kind-icon">Family</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_core.nodeclasstype-1.html" class="tsd-kind-icon">Node<wbr>Class<wbr>Type</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_core.classtype.html" class="tsd-kind-icon">Class<wbr>Type</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_core.family.html" class="tsd-kind-icon">Family</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/_ash_ts_core.nodeclasstype.html" class="tsd-kind-icon">Node<wbr>Class<wbr>Type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ash_ts_core.html#keep-1" class="tsd-kind-icon">keep</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ash_ts_core.html#keep" class="tsd-kind-icon">keep</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>References</h2>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="classtype" class="tsd-anchor"></a>
-					<h3>Class<wbr>Type</h3>
-					Re-exports <a href="../interfaces/_ash_ts_core.classtype-1.html">ClassType</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="componentmatchingfamily" class="tsd-anchor"></a>
-					<h3>Component<wbr>Matching<wbr>Family</h3>
-					Re-exports <a href="../classes/_ash_ts_core.componentmatchingfamily-1.html">ComponentMatchingFamily</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="engine" class="tsd-anchor"></a>
-					<h3>Engine</h3>
-					Re-exports <a href="../classes/_ash_ts_core.engine-1.html">Engine</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="entity" class="tsd-anchor"></a>
-					<h3>Entity</h3>
-					Re-exports <a href="../classes/_ash_ts_core.entity-1.html">Entity</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="family" class="tsd-anchor"></a>
-					<h3>Family</h3>
-					Re-exports <a href="../interfaces/_ash_ts_core.family-1.html">Family</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="node" class="tsd-anchor"></a>
-					<h3>Node</h3>
-					Re-exports <a href="../classes/_ash_ts_core.node-1.html">Node</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="nodeclasstype" class="tsd-anchor"></a>
-					<h3>Node<wbr>Class<wbr>Type</h3>
-					Re-exports <a href="../interfaces/_ash_ts_core.nodeclasstype-1.html">NodeClassType</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="nodelist" class="tsd-anchor"></a>
-					<h3>Node<wbr>List</h3>
-					Re-exports <a href="../classes/_ash_ts_core.nodelist-1.html">NodeList</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="nodepool" class="tsd-anchor"></a>
-					<h3>Node<wbr>Pool</h3>
-					Re-exports <a href="../classes/_ash_ts_core.nodepool-1.html">NodePool</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="system" class="tsd-anchor"></a>
-					<h3>System</h3>
-					Re-exports <a href="../classes/_ash_ts_core.system-1.html">System</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="keep" class="tsd-anchor"></a>
-					<h3>keep</h3>
-					Re-exports <a href="_ash_ts_core.html#keep-1">keep</a>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="keep-1" class="tsd-anchor"></a>
+					<a name="keep" class="tsd-anchor"></a>
 					<h3>keep</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">keep<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ash_ts_core.classtype-1.html" class="tsd-signature-type">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
+						<li class="tsd-signature tsd-kind-icon">keep<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ash_ts_core.classtype.html" class="tsd-signature-type" data-tsd-kind="Interface">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -283,7 +210,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <a href="../interfaces/_ash_ts_core.classtype-1.html" class="tsd-signature-type">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>type: <a href="../interfaces/_ash_ts_core.classtype.html" class="tsd-signature-type" data-tsd-kind="Interface">ClassType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PropertyDecorator</span></h4>
@@ -295,8 +222,11 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_ash_ts_ash.html">@ash.ts/ash</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="_ash_ts_core.html">@ash.ts/core</a>
@@ -320,77 +250,38 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#classtype" class="tsd-kind-icon">Class<wbr>Type</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/_ash_ts_core.componentmatchingfamily.html" class="tsd-kind-icon">Component<wbr>Matching<wbr>Family</a>
 					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#componentmatchingfamily" class="tsd-kind-icon">Component<wbr>Matching<wbr>Family</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_ash_ts_core.engine.html" class="tsd-kind-icon">Engine</a>
 					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#engine" class="tsd-kind-icon">Engine</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_ash_ts_core.entity.html" class="tsd-kind-icon">Entity</a>
 					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#entity" class="tsd-kind-icon">Entity</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#family" class="tsd-kind-icon">Family</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#node" class="tsd-kind-icon">Node</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#nodeclasstype" class="tsd-kind-icon">Node<wbr>Class<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#nodelist" class="tsd-kind-icon">Node<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#nodepool" class="tsd-kind-icon">Node<wbr>Pool</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#system" class="tsd-kind-icon">System</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#keep" class="tsd-kind-icon">keep</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_ash_ts_core.node.html" class="tsd-kind-icon">Node</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_core.componentmatchingfamily-1.html" class="tsd-kind-icon">Component<wbr>Matching<wbr>Family</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_core.engine-1.html" class="tsd-kind-icon">Engine</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_core.entity-1.html" class="tsd-kind-icon">Entity</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_core.entitylist.html" class="tsd-kind-icon">Entity<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_core.node-1.html" class="tsd-kind-icon">Node</a>
+						<a href="../classes/_ash_ts_core.nodelist.html" class="tsd-kind-icon">Node<wbr>List</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_core.nodelist-1.html" class="tsd-kind-icon">Node<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ash_ts_core.nodepool-1.html" class="tsd-kind-icon">Node<wbr>Pool</a>
+						<a href="../classes/_ash_ts_core.nodepool.html" class="tsd-kind-icon">Node<wbr>Pool</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_core.system-1.html" class="tsd-kind-icon">System</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_ash_ts_core.systemlist.html" class="tsd-kind-icon">System<wbr>List</a>
+						<a href="../classes/_ash_ts_core.system.html" class="tsd-kind-icon">System</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../interfaces/_ash_ts_core.classtype-1.html" class="tsd-kind-icon">Class<wbr>Type</a>
+						<a href="../interfaces/_ash_ts_core.classtype.html" class="tsd-kind-icon">Class<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../interfaces/_ash_ts_core.family-1.html" class="tsd-kind-icon">Family</a>
+						<a href="../interfaces/_ash_ts_core.family.html" class="tsd-kind-icon">Family</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../interfaces/_ash_ts_core.nodeclasstype-1.html" class="tsd-kind-icon">Node<wbr>Class<wbr>Type</a>
+						<a href="../interfaces/_ash_ts_core.nodeclasstype.html" class="tsd-kind-icon">Node<wbr>Class<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_ash_ts_core.html#keep-1" class="tsd-kind-icon">keep</a>
+						<a href="_ash_ts_core.html#keep" class="tsd-kind-icon">keep</a>
 					</li>
 				</ul>
 			</nav>
