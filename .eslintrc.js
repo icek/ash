@@ -39,6 +39,7 @@ module.exports = {
     }],
     'import/prefer-default-export': 'off',
     'import/extensions': ['error', 'ignorePackages', { 'ts': 'never', 'js': 'never' }],
+    'import/no-extraneous-dependencies': 'off',
 
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/type-annotation-spacing': ['error', { before: false, after: false, overrides: { arrow: { before: true, after: true } } }],

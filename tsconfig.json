@@ -16,22 +16,23 @@
     }
   },
   "typedocOptions": {
+    "entryPoints": [
+      "./packages/core/src/index.ts",
+      "./packages/fsm/src/index.ts",
+      "./packages/io/src/index.ts",
+      "./packages/signals/src/index.ts",
+      "./packages/tick/src/index.ts",
+      "./packages/tools/src/index.ts",
+      "./packages/ash/src/index.ts"
+    ],
     "name": "ash",
-    "mode": "modules",
-    "module": "es6",
-    "target": "es6",
     "out": "docs",
     "exclude": ["packages/**/tests/**/*", "packages/**/node_modules/**/*"],
-    "readme": "packages/ash/README.md",
-    "theme": "default",
-    "ignoreCompilerErrors": true,
+    "excludeExternals": true,
     "excludePrivate": true,
-    "excludeNotExported": true,
-    "preserveConstEnums": true,
-    "stripInternal": true,
-    "gitRevision": "master",
-    "rewriteLinks": {
-      "^\\.\\./([^/]+)(?:#readme|/README.md)": "modules/_ash_ts_$1.html"
-    }
+    "includes": "./includes",
+    "theme": "default",
+    "readme": "packages/ash/README.md",
+    "gitRevision": "master"
   }
 }

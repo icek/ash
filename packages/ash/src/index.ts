@@ -1,3 +1,7 @@
+/**
+ * [[include:ash.md]]
+ * @module @ash.ts/ash
+ */
 import { ClassType, ComponentMatchingFamily, Engine, Entity, Family, keep, Node, NodeClassType, NodeList, NodePool, System } from '@ash.ts/core';
 import { EngineStateMachine, EntityStateMachine } from '@ash.ts/fsm';
 import {

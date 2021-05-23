@@ -1,3 +1,7 @@
+/**
+ * [[include:io.md]]
+ * @module @ash.ts/io
+ */
 export { BaseEngineCodec } from './enginecodecs/BaseEngineCodec';
 export { ObjectCodec } from './objectcodecs/ObjectCodec';
 export { JsonEngineCodec } from './enginecodecs/JsonEngineCodec';
