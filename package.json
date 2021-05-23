@@ -19,13 +19,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "workspaces": [
+    "./packages/*"
+  ],
   "scripts": {
-    "prepare": "run-s lerna:bootstrap",
-    "lerna:bootstrap": "run-s lerna:clean lerna:install lerna:link",
-    "lerna:clean": "lerna clean -y",
-    "lerna:install": "lerna exec -- npm i --no-package-lock",
-    "lerna:link": "lerna link",
-    "lerna:publish": "lerna publish -y from-package",
     "build": "run-s build:clean build:rollup build:dts",
     "build:clean": "rimraf dist packages/**/dist",
     "build:rollup": "rollup -c",
@@ -34,6 +31,7 @@
     "docs": "run-s docs:clean docs:typedoc",
     "docs:clean": "rimraf docs",
     "docs:typedoc": "typedoc",
+    "docs:watch": "typedoc --watch",
     "docs:json": "typedoc --json typedocs.json",
     "typecheck": "tsc --noEmit -P tsconfig.json",
     "lint": "eslint './packages/**/*.ts'",
@@ -46,9 +44,8 @@
     "test:coverage": "jest --coverage",
     "coverage:clean": "rimraf coverage",
     "prepack": "rimraf packages/**/*.tgz",
-    "clean": "run-p lerna:clean build:clean docs:clean coverage:clean",
-    "preversion": "run-s lerna:version commit-release",
-    "lerna:version": "lerna version",
+    "clean": "run-p build:clean docs:clean coverage:clean",
+    "preversion": "run-s commit-release",
     "commit-release": "git commit -a -m \"Release\""
   },
   "devDependencies": {
@@ -64,7 +61,6 @@
     "eslint-plugin-import": "^2.23.3",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
-    "lerna": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "rollup": "^2.48.0",
@@ -82,9 +78,8 @@
     }
   },
   "engines": {
-    "node": ">=12",
-    "npm": ">=6",
-    "yarn": "Please use npm >= 6"
-  },
-  "dependencies": {}
+    "node": ">=16",
+    "npm": ">=7",
+    "yarn": "Please use npm >= 7"
+  }
 }
