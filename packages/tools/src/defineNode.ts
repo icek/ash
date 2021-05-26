@@ -1,6 +1,6 @@
 import { ClassType, Node, NodeClassType } from '@ash.ts/core';
 
-const ashProp = '__ash_types__';
+const propTypes = '__prop_types__';
 
 type RecordToNodeClass<T extends Record<string, ClassType<any>>> =
   NodeClassType<Node & { [P in keyof T]:InstanceType<T[P]> }>;
@@ -19,7 +19,7 @@ type RecordToNodeClass<T extends Record<string, ClassType<any>>> =
  */
 export function defineNode<T extends Record<string, ClassType<any>>>(props:T, name = ''):RecordToNodeClass<T> {
   const Cls = { [name]: class extends Node {} }[name];
-  Object.defineProperty(Cls, ashProp, {
+  Object.defineProperty(Cls, propTypes, {
     enumerable: true,
     get: () => props,
   });

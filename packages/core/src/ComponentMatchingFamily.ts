@@ -6,7 +6,7 @@ import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
 import { ClassType, NodeClassType } from './types';
 
-const ashProp = '__ash_types__';
+const propTypes = '__prop_types__';
 
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
@@ -46,7 +46,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
 
-    const types:Record<string, ClassType<any>> = (dummyNode.constructor as any)[ashProp];
+    const types:Record<string, ClassType<any>> = (dummyNode.constructor as any)[propTypes];
 
     const classNames = Object.keys(types);
     for (const className of classNames) {
@@ -165,11 +165,11 @@ export function keep(type:ClassType<any>):PropertyDecorator {
     const ctor = target.constructor;
     let map:Record<string, ClassType<any>>;
     // eslint-disable-next-line no-prototype-builtins
-    if (ctor.hasOwnProperty(ashProp)) {
-      map = (ctor as any)[ashProp];
+    if (ctor.hasOwnProperty(propTypes)) {
+      map = (ctor as any)[propTypes];
     } else {
       map = {};
-      Object.defineProperty(ctor, ashProp, {
+      Object.defineProperty(ctor, propTypes, {
         enumerable: true,
         get: () => map,
       });
