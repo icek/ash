@@ -2,7 +2,21 @@
  * [[include:ash.md]]
  * @module @ash.ts/ash
  */
-import { ClassType, ComponentMatchingFamily, Engine, Entity, Family, keep, Node, NodeClassType, NodeList, NodePool, System } from '@ash.ts/core';
+import {
+  ClassType,
+  ComponentMatchingFamily,
+  defineNode,
+  Engine,
+  Entity,
+  Family,
+  keep,
+  Node,
+  NodeClassType,
+  NodeClassWithProps,
+  NodeList,
+  NodePool,
+  System,
+} from '@ash.ts/core';
 import { EngineStateMachine, EntityStateMachine } from '@ash.ts/fsm';
 import {
   CodecManager,
@@ -17,7 +31,7 @@ import {
 } from '@ash.ts/io';
 import { Signal } from '@ash.ts/signals';
 import { FixedTickProvider, FrameTickProvider, TickProvider } from '@ash.ts/tick';
-import { ComponentPool, defineNode, ListIteratingSystem } from '@ash.ts/tools';
+import { ComponentPool, ListIteratingSystem } from '@ash.ts/tools';
 
 export {
   Signal,
@@ -49,4 +63,5 @@ export {
   ComponentPool,
   ListIteratingSystem,
   defineNode,
+  NodeClassWithProps,
 };

@@ -2,7 +2,8 @@
  * [[include:core.md]]
  * @module @ash.ts/core
  */
-export { ClassType, NodeClassType } from './types';
+export { ClassType, NodeClassType, NodeClassWithProps } from './types';
+export { defineNode } from './defineNode';
 export { ComponentMatchingFamily, keep } from './ComponentMatchingFamily';
 export { Engine } from './Engine';
 export { Entity } from './Entity';

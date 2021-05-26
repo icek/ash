@@ -161,6 +161,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
 }
 
 export function keep(type:ClassType<any>):PropertyDecorator {
+  console.warn('Deprecated. Please use defineNode helper instead.');
   return (target:Record<string, any>, propertyKey:string | symbol):void => {
     const ctor = target.constructor;
     let map:Record<string, ClassType<any>>;
