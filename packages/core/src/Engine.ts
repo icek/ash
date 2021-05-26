@@ -1,5 +1,5 @@
 import { Signal } from '@ash.ts/signals';
-import { ClassType, NodeClassType } from './types';
+import { Class, NodeClass } from './types';
 import { ComponentMatchingFamily } from './ComponentMatchingFamily';
 import { Entity } from './Entity';
 import { EntityList } from './EntityList';
@@ -20,7 +20,7 @@ export class Engine {
 
   private systemList:SystemList;
 
-  private families:Map<NodeClassType<any>, Family<any>>;
+  private families:Map<NodeClass<any>, Family<any>>;
 
   /**
    * Indicates if the engine is currently in its update loop.
@@ -41,7 +41,7 @@ export class Engine {
    *
    * The class must implement the Family interface.
    */
-  public FamilyClass:ClassType<Family<any>> = ComponentMatchingFamily;
+  public FamilyClass:Class<Family<any>> = ComponentMatchingFamily;
 
   public constructor() {
     this.entityList = new EntityList();
@@ -127,7 +127,7 @@ export class Engine {
   /**
    * @private
    */
-  private componentAdded = (entity:Entity, componentClass:ClassType<any>):void => {
+  private componentAdded = (entity:Entity, componentClass:Class<any>):void => {
     for (const family of this.families.values()) {
       family.componentAddedToEntity(entity, componentClass);
     }
@@ -136,7 +136,7 @@ export class Engine {
   /**
    * @private
    */
-  private componentRemoved = (entity:Entity, componentClass:ClassType<any>):void => {
+  private componentRemoved = (entity:Entity, componentClass:Class<any>):void => {
     for (const family of this.families.values()) {
       family.componentRemovedFromEntity(entity, componentClass);
     }
@@ -154,7 +154,7 @@ export class Engine {
    * @param nodeClass The type of node required.
    * @return A linked list of all nodes of this type from all entities in the engine.
    */
-  public getNodeList<TNode extends Node>(nodeClass:NodeClassType<TNode>):NodeList<TNode> {
+  public getNodeList<TNode extends Node>(nodeClass:NodeClass<TNode>):NodeList<TNode> {
     if (this.families.has(nodeClass)) {
       return this.families.get(nodeClass)!.nodeList;
     }
@@ -177,7 +177,7 @@ export class Engine {
    *
    * @param nodeClass The type of the node class if the list to be released.
    */
-  public releaseNodeList<TNode extends Node>(nodeClass:NodeClassType<TNode>):void {
+  public releaseNodeList<TNode extends Node>(nodeClass:NodeClass<TNode>):void {
     if (this.families.has(nodeClass)) {
       this.families.get(nodeClass)!.cleanUp();
     }
@@ -209,7 +209,7 @@ export class Engine {
    * @return The instance of the system type that is in the engine, or
    * null if no systems of this type are in the engine.
    */
-  public getSystem<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
+  public getSystem<TSystem extends System>(type:Class<TSystem>):TSystem | null {
     return this.systemList.get(type);
   }
 

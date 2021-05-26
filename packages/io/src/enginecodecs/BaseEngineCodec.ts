@@ -1,4 +1,4 @@
-import { ClassType, Engine } from '@ash.ts/core';
+import { Class, Engine } from '@ash.ts/core';
 import { CodecManager } from '../objectcodecs/CodecManager';
 import { ObjectCodec } from '../objectcodecs/ObjectCodec';
 import { EngineDecoder } from './EngineDecoder';
@@ -11,7 +11,7 @@ export abstract class BaseEngineCodec<T> {
 
   protected decoder:EngineDecoder;
 
-  public constructor(classMap:Record<string, ClassType<any>>) {
+  public constructor(classMap:Record<string, Class<any>>) {
     this.codecManager = new CodecManager(classMap);
     this.encoder = new EngineEncoder(this.codecManager);
     this.decoder = new EngineDecoder(this.codecManager);

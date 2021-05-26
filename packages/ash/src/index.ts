@@ -3,7 +3,7 @@
  * @module @ash.ts/ash
  */
 import {
-  ClassType,
+  Class,
   ComponentMatchingFamily,
   defineNode,
   Engine,
@@ -11,7 +11,7 @@ import {
   Family,
   keep,
   Node,
-  NodeClassType,
+  NodeClass,
   NodeClassWithProps,
   NodeList,
   NodePool,
@@ -35,8 +35,8 @@ import { ComponentPool, ListIteratingSystem } from '@ash.ts/tools';
 
 export {
   Signal,
-  ClassType,
-  NodeClassType,
+  Class,
+  NodeClass,
   ComponentMatchingFamily,
   keep,
   Engine,

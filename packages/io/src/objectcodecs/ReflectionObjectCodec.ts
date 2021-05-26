@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { EncodedObject } from '../enginecodecs/EncodedData';
 import { CodecManager } from './CodecManager';
 import { ObjectCodec } from './ObjectCodec';
@@ -19,7 +19,7 @@ export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
   }
 
   public decode(object:EncodedObject, codecManager:CodecManager):Record<string, any> | null {
-    const Type:ClassType<any> | null = codecManager.stringToClassMap[object.type] || null;
+    const Type:Class<any> | null = codecManager.stringToClassMap[object.type] || null;
     if (!Type) {
       return null;
     }

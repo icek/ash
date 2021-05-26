@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { EncodedObject } from '../enginecodecs/EncodedData';
 import { ArrayObjectCodec } from './ArrayObjectCodec';
 import { ClassObjectCodec } from './ClassObjectCodec';
@@ -8,15 +8,15 @@ import { ObjectReflectionFactory } from './ObjectReflectionFactory';
 import { ReflectionObjectCodec } from './ReflectionObjectCodec';
 
 export class CodecManager {
-  public stringToClassMap:Record<string, ClassType<any>>;
+  public stringToClassMap:Record<string, Class<any>>;
 
-  public classToStringMap:Map<ClassType<any>, string>;
+  public classToStringMap:Map<Class<any>, string>;
 
-  private codecs:Map<ClassType<any>, ObjectCodec<any>>;
+  private codecs:Map<Class<any>, ObjectCodec<any>>;
 
   private reflectionCodec:ReflectionObjectCodec;
 
-  public constructor(classMap:Record<string, ClassType<any>>) {
+  public constructor(classMap:Record<string, Class<any>>) {
     classMap.number = Number;
     classMap.string = String;
     classMap.boolean = Boolean;
@@ -42,7 +42,7 @@ export class CodecManager {
   }
 
   public getCodecForObject(object:any):ObjectCodec<any> | null {
-    const nativeTypes:Record<string, ClassType<any>> = {
+    const nativeTypes:Record<string, Class<any>> = {
       number: Number,
       string: String,
       boolean: Boolean,
@@ -60,7 +60,7 @@ export class CodecManager {
     return null;
   }
 
-  public getCodecForType(type:ClassType<any>):ObjectCodec<any> | null {
+  public getCodecForType(type:Class<any>):ObjectCodec<any> | null {
     if (this.codecs.has(type)) {
       return this.codecs.get(type)!;
     }
@@ -77,7 +77,7 @@ export class CodecManager {
     return codec;
   }
 
-  public getCodecForComponentType(type:ClassType<any>):ObjectCodec<any> {
+  public getCodecForComponentType(type:Class<any>):ObjectCodec<any> {
     const codec:ObjectCodec<any> | null = this.getCodecForType(type);
     if (codec === null) {
       return this.reflectionCodec;
@@ -86,7 +86,7 @@ export class CodecManager {
     return codec;
   }
 
-  public addCustomCodec(codec:ObjectCodec<any>, type:ClassType<any>):void {
+  public addCustomCodec(codec:ObjectCodec<any>, type:Class<any>):void {
     this.codecs.set(type, codec);
   }
 

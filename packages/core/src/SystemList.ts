@@ -1,4 +1,4 @@
-import { ClassType } from './types';
+import { Class } from './types';
 import { System } from './System';
 
 /**
@@ -60,7 +60,7 @@ export class SystemList {
     // that will break the list iteration if node is the current node in the iteration.
   }
 
-  public get<TSystem extends System>(type:ClassType<TSystem>):TSystem | null {
+  public get<TSystem extends System>(type:Class<TSystem>):TSystem | null {
     for (let system:System | null = this.head; system; system = system.next) {
       if (system instanceof type) {
         return system as TSystem;

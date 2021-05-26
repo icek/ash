@@ -1,4 +1,4 @@
-import { System, ClassType } from '@ash.ts/core';
+import { System, Class } from '@ash.ts/core';
 import { DynamicSystemProvider } from './DynamicSystemProvider';
 import { SystemProvider } from './SystemProvider';
 import { StateSystemMapping } from './StateSystemMapping';
@@ -33,7 +33,7 @@ export class EngineState {
    * mapping is used.
    * @return This StateSystemMapping, so more modifications can be applied
    */
-  public addSingleton<TSystem extends System>(type:ClassType<TSystem>):StateSystemMapping<TSystem> {
+  public addSingleton<TSystem extends System>(type:Class<TSystem>):StateSystemMapping<TSystem> {
     return this.addProvider(new SystemSingletonProvider(type));
   }
 

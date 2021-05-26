@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 
 export class ObjectReflection {
   private _propertyTypes:Record<string, string> = {};
@@ -37,7 +37,7 @@ export class ObjectReflection {
       }
     }
 
-    const types:Record<string, ClassType<any>> = (component.constructor as any).__ash_types__;
+    const types:Record<string, Class<any>> = (component.constructor as any).__ash_types__;
     if (!types) return;
 
     const typesKeys = Object.keys(types);

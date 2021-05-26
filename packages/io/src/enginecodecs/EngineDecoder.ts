@@ -1,4 +1,4 @@
-import { ClassType, Engine, Entity } from '@ash.ts/core';
+import { Class, Engine, Entity } from '@ash.ts/core';
 import { CodecManager } from '../objectcodecs/CodecManager';
 import { ObjectCodec } from '../objectcodecs/ObjectCodec';
 import { EncodedComponent, EncodedData, EncodedEntity, EncodedObject } from './EncodedData';
@@ -57,7 +57,7 @@ export class EngineDecoder {
       if (this.componentMap[componentId]) {
         const newComponent:any = this.componentMap[componentId];
         if (newComponent) {
-          const type:ClassType<any> = newComponent.constructor.prototype.constructor;
+          const type:Class<any> = newComponent.constructor.prototype.constructor;
           const existingComponent:any = entity.get(type);
           if (existingComponent) {
             this.codecManager.decodeIntoComponent(existingComponent, this.encodedComponentMap[componentId]);

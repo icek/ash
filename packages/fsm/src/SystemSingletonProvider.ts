@@ -1,4 +1,4 @@
-import { System, ClassType } from '@ash.ts/core';
+import { System, Class } from '@ash.ts/core';
 import { SystemProvider } from './SystemProvider';
 
 /**
@@ -6,7 +6,7 @@ import { SystemProvider } from './SystemProvider';
  * is created when first required and is of the type passed in to the constructor.
  */
 export class SystemSingletonProvider<TSystem extends System> implements SystemProvider<TSystem> {
-  private ComponentType:ClassType<TSystem>;
+  private ComponentType:Class<TSystem>;
 
   private instance?:TSystem;
 
@@ -17,7 +17,7 @@ export class SystemSingletonProvider<TSystem extends System> implements SystemPr
    *
    * @param ComponentType The type of the single System instance
    */
-  public constructor(ComponentType:ClassType<TSystem>) {
+  public constructor(ComponentType:Class<TSystem>) {
     this.ComponentType = ComponentType;
   }
 

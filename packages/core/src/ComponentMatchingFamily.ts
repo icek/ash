@@ -4,7 +4,7 @@ import { Family } from './Family';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
-import { ClassType, NodeClassType } from './types';
+import { Class, NodeClass } from './types';
 
 const propTypes = '__prop_types__';
 
@@ -20,9 +20,9 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
 
   private entities:Map<Entity, TNode>;
 
-  private nodeClass:NodeClassType<TNode>;
+  private nodeClass:NodeClass<TNode>;
 
-  public components:Map<ClassType<any>, string>;
+  public components:Map<Class<any>, string>;
 
   private nodePool:NodePool<TNode>;
 
@@ -35,7 +35,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
    * @param nodeClass The type of node to create and manage a NodeList for.
    * @param engine The engine that this family is managing teh NodeList for.
    */
-  public constructor(nodeClass:NodeClassType<TNode>, engine:Engine) {
+  public constructor(nodeClass:NodeClass<TNode>, engine:Engine) {
     this.nodeClass = nodeClass;
     this.engine = engine;
     this.nodes = new NodeList();
@@ -46,7 +46,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
     const dummyNode:TNode = this.nodePool.get();
     this.nodePool.dispose(dummyNode);
 
-    const types:Record<string, ClassType<any>> = (dummyNode.constructor as any)[propTypes];
+    const types:Record<string, Class<any>> = (dummyNode.constructor as any)[propTypes];
 
     const classNames = Object.keys(types);
     for (const className of classNames) {
@@ -75,7 +75,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
    * Called by the engine when a component has been added to an entity. We check if the entity is not in
    * this family's NodeList and should be, and add it if appropriate.
    */
-  public componentAddedToEntity(entity:Entity, componentClass:ClassType<any>):void {
+  public componentAddedToEntity(entity:Entity, componentClass:Class<any>):void {
     this.addIfMatch(entity);
   }
 
@@ -84,7 +84,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
    * is required by this family's NodeList and if so, we check if the entity is in this this NodeList and
    * remove it if so.
    */
-  public componentRemovedFromEntity(entity:Entity, componentClass:ClassType<any>):void {
+  public componentRemovedFromEntity(entity:Entity, componentClass:Class<any>):void {
     if (this.components.has(componentClass)) {
       this.removeIfMatch(entity);
     }
@@ -160,11 +160,12 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
   }
 }
 
-export function keep(type:ClassType<any>):PropertyDecorator {
+export function keep(type:Class<any>):PropertyDecorator {
+  // eslint-disable-next-line no-console
   console.warn('Deprecated. Please use defineNode helper instead.');
   return (target:Record<string, any>, propertyKey:string | symbol):void => {
     const ctor = target.constructor;
-    let map:Record<string, ClassType<any>>;
+    let map:Record<string, Class<any>>;
     // eslint-disable-next-line no-prototype-builtins
     if (ctor.hasOwnProperty(propTypes)) {
       map = (ctor as any)[propTypes];

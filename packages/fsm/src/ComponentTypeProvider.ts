@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { ComponentProvider } from './ComponentProvider';
 
 /**
@@ -6,14 +6,14 @@ import { ComponentProvider } from './ComponentProvider';
  * is created when requested and is of the type passed in to the constructor.
  */
 export class ComponentTypeProvider<TComponent> implements ComponentProvider<TComponent> {
-  private ComponentType:ClassType<TComponent>;
+  private ComponentType:Class<TComponent>;
 
   /**
    * Constructor
    *
    * @param ComponentType The type of the instances to be created
    */
-  public constructor(ComponentType:ClassType<TComponent>) {
+  public constructor(ComponentType:Class<TComponent>) {
     this.ComponentType = ComponentType;
   }
 

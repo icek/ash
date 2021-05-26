@@ -1,10 +1,10 @@
-import { ClassType, Engine, Entity } from '@ash.ts/core';
+import { Class, Engine, Entity } from '@ash.ts/core';
 import { JsonEngineCodec } from '../../src';
 import { EncodedData } from '../../src/enginecodecs/EncodedData';
 import { MockComponent1, MockComponent2 } from '../__mocks__';
 
 describe('JsonEngineCodec tests', () => {
-  let classMap:Record<string, ClassType<any>>;
+  let classMap:Record<string, Class<any>>;
   let endec:JsonEngineCodec;
   let original:Engine;
   let engine:Engine;

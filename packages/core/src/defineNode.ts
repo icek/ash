@@ -1,5 +1,5 @@
 import { Node } from './Node';
-import { ClassType, NodeClassWithProps } from './types';
+import { Class, NodeClassWithProps } from './types';
 
 const propTypes = '__prop_types__';
 
@@ -15,7 +15,7 @@ const propTypes = '__prop_types__';
  * @param props string to ClassType record
  * @param name returned class name
  */
-export function defineNode<T extends Record<string, ClassType<any>>>(props:T, name = ''):NodeClassWithProps<T> {
+export function defineNode<T extends Record<string, Class<any>>>(props:T, name = ''):NodeClassWithProps<T> {
   const Cls = {
     [name]: class extends Node {
     },

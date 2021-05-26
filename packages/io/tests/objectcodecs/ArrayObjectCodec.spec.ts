@@ -1,10 +1,10 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { ArrayObjectCodec } from '../../src/objectcodecs/ArrayObjectCodec';
 import { CodecManager } from '../../src/objectcodecs/CodecManager';
 import { MockComponent } from '../__mocks__';
 
 describe('ArrayObjectCodec tests', () => {
-  let classMap:Record<string, ClassType<any>>;
+  let classMap:Record<string, Class<any>>;
   let codec:ArrayObjectCodec;
   let codecManager:CodecManager;
 

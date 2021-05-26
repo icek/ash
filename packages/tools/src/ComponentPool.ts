@@ -21,12 +21,12 @@
  *
  * <p>ComponentPool.dispose( entity.remove( component ) );</p>
  */
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 
 export class ComponentPool {
-  private static pools:Map<ClassType<any>, any[]> = new Map();
+  private static pools:Map<Class<any>, any[]> = new Map();
 
-  private static getPool<T>(componentClass:ClassType<T>):T[] {
+  private static getPool<T>(componentClass:Class<T>):T[] {
     if (ComponentPool.pools.has(componentClass)) {
       return ComponentPool.pools.get(componentClass)!;
     }
@@ -43,7 +43,7 @@ export class ComponentPool {
    * @param ComponentClass The type of component wanted.
    * @return The component.
    */
-  public static get<T>(ComponentClass:ClassType<T>):T {
+  public static get<T>(ComponentClass:Class<T>):T {
     const pool:T[] = ComponentPool.getPool(ComponentClass);
     if (pool.length > 0) {
       return pool.pop()!;
@@ -59,7 +59,7 @@ export class ComponentPool {
    */
   public static dispose<T extends Record<string, any>>(component:T):void {
     if (component) {
-      const type:ClassType<T> = component.constructor.prototype.constructor;
+      const type:Class<T> = component.constructor.prototype.constructor;
       const pool:T[] = ComponentPool.getPool(type);
       pool[pool.length] = component;
     }

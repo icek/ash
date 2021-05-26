@@ -1,4 +1,4 @@
-import { System, ClassType } from '@ash.ts/core';
+import { System, Class } from '@ash.ts/core';
 import { EngineState } from './EngineState';
 import { SystemProvider } from './SystemProvider';
 
@@ -53,7 +53,7 @@ export class StateSystemMapping<TSystem extends System> {
    * mapping is used.
    * @return This StateSystemMapping, so more modifications can be applied
    */
-  public addSingleton<TNextSystem extends System>(type:ClassType<TNextSystem>):StateSystemMapping<TNextSystem> {
+  public addSingleton<TNextSystem extends System>(type:Class<TNextSystem>):StateSystemMapping<TNextSystem> {
     return this.creatingState.addSingleton(type);
   }
 

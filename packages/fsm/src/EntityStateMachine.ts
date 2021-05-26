@@ -1,4 +1,4 @@
-import { Entity, ClassType } from '@ash.ts/core';
+import { Entity, Class } from '@ash.ts/core';
 import { EntityState } from './EntityState';
 import { ComponentProvider } from './ComponentProvider';
 
@@ -69,7 +69,7 @@ export class EntityStateMachine {
     if (newState === this.currentState) {
       return;
     }
-    let toAdd:Map<ClassType<any>, ComponentProvider<any>>;
+    let toAdd:Map<Class<any>, ComponentProvider<any>>;
 
     if (this.currentState) {
       toAdd = new Map();

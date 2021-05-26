@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { ComponentInstanceProvider } from './ComponentInstanceProvider';
 import { ComponentSingletonProvider } from './ComponentSingletonProvider';
 import { ComponentTypeProvider } from './ComponentTypeProvider';
@@ -10,7 +10,7 @@ import { ComponentProvider } from './ComponentProvider';
  * Used by the EntityState class to create the mappings of components to providers via a fluent interface.
  */
 export class StateComponentMapping<TComponent> {
-  private componentType:ClassType<TComponent>;
+  private componentType:Class<TComponent>;
 
   private creatingState:EntityState;
 
@@ -24,7 +24,7 @@ export class StateComponentMapping<TComponent> {
    * @param creatingState The EntityState that the mapping will belong to
    * @param type The component type for the mapping
    */
-  public constructor(creatingState:EntityState, type:ClassType<TComponent>) {
+  public constructor(creatingState:EntityState, type:Class<TComponent>) {
     this.creatingState = creatingState;
     this.componentType = type;
     this.withType(type);
@@ -51,7 +51,7 @@ export class StateComponentMapping<TComponent> {
    * @param type The type of components to be created by this mapping
    * @return This ComponentMapping, so more modifications can be applied
    */
-  public withType(type:ClassType<TComponent>):this {
+  public withType(type:Class<TComponent>):this {
     this.setProvider(new ComponentTypeProvider(type));
 
     return this;
@@ -67,7 +67,7 @@ export class StateComponentMapping<TComponent> {
    * mapping is used.
    * @return This ComponentMapping, so more modifications can be applied
    */
-  public withSingleton(type:ClassType<any> = this.componentType):this {
+  public withSingleton(type:Class<any> = this.componentType):this {
     this.setProvider(new ComponentSingletonProvider(type));
 
     return this;
@@ -105,7 +105,7 @@ export class StateComponentMapping<TComponent> {
    * @param type The type of component to add a mapping to the state for
    * @return The new ComponentMapping for that type
    */
-  public add<TNextComponent>(type:ClassType<TNextComponent>):StateComponentMapping<TNextComponent> {
+  public add<TNextComponent>(type:Class<TNextComponent>):StateComponentMapping<TNextComponent> {
     return this.creatingState.add(type);
   }
 

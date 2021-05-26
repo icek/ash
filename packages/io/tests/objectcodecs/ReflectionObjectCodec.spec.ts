@@ -1,11 +1,11 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { EncodedObject } from '../../src/enginecodecs/EncodedData';
 import { CodecManager } from '../../src/objectcodecs/CodecManager';
 import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCodec';
 import { MockComponent, MockComponentExtended, MockReflectionObject } from '../__mocks__';
 
 describe('ReflectionObjectCodec tests', () => {
-  let classMap:Record<string, ClassType<any>>;
+  let classMap:Record<string, Class<any>>;
   let object:MockReflectionObject;
   let encoded:EncodedObject | null;
   let decoded:any;

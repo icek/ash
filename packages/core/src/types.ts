@@ -1,12 +1,12 @@
 import { Node } from './Node';
 
-export interface ClassType<T> {
+export interface Class<T> {
   new(...args:any[]):T;
 }
 
-export interface NodeClassType<TNode extends Node> {
+export interface NodeClass<TNode extends Node> {
   new():TNode;
 }
 
-export type NodeClassWithProps<TProps extends Record<string, ClassType<any>>> =
-  NodeClassType<Node & { [K in keyof TProps]:InstanceType<TProps[K]> }>;
+export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
+  NodeClass<Node & { [K in keyof TProps]:InstanceType<TProps[K]> }>;

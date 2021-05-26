@@ -1,4 +1,4 @@
-import { Engine, Node, NodeClassType, NodeList, System } from '@ash.ts/core';
+import { Engine, Node, NodeClass, NodeList, System } from '@ash.ts/core';
 
 /**
  * A useful class for systems which simply iterate over a set of nodes, performing the same action on each node. This
@@ -24,13 +24,13 @@ import { Engine, Node, NodeClassType, NodeList, System } from '@ash.ts/core';
 export abstract class ListIteratingSystem<TNode extends Node> extends System {
   protected nodeList:NodeList<TNode> | null = null;
 
-  protected nodeClass:NodeClassType<TNode>;
+  protected nodeClass:NodeClass<TNode>;
 
   protected nodeAdded?:(node:TNode) => void;
 
   protected nodeRemoved?:(node:TNode) => void;
 
-  protected constructor(nodeClass:NodeClassType<TNode>) {
+  protected constructor(nodeClass:NodeClass<TNode>) {
     super();
 
     this.nodeClass = nodeClass;

@@ -1,4 +1,4 @@
-import { ClassType, Engine, Entity, Family, NodeList } from '../../src';
+import { Class, Engine, Entity, Family, NodeList } from '../../src';
 import { MockNode } from './MockNode';
 
 export class MockFamily implements Family<MockNode> {
@@ -20,7 +20,7 @@ export class MockFamily implements Family<MockNode> {
     MockFamily.instances = [];
   }
 
-  public constructor(nodeClass:ClassType<any>, engine:Engine) {
+  public constructor(nodeClass:Class<any>, engine:Engine) {
     MockFamily.instances.push(this);
   }
 
@@ -36,11 +36,11 @@ export class MockFamily implements Family<MockNode> {
     this.removeEntityCalls += 1;
   }
 
-  public componentAddedToEntity(entity:Entity, componentClass:ClassType<any>):void {
+  public componentAddedToEntity(entity:Entity, componentClass:Class<any>):void {
     this.componentAddedCalls += 1;
   }
 
-  public componentRemovedFromEntity(entity:Entity, componentClass:ClassType<any>):void {
+  public componentRemovedFromEntity(entity:Entity, componentClass:Class<any>):void {
     this.componentRemovedCalls += 1;
   }
 

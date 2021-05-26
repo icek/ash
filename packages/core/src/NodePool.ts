@@ -1,4 +1,4 @@
-import { ClassType, NodeClassType } from './types';
+import { Class, NodeClass } from './types';
 import { Entity } from './Entity';
 import { Node } from './Node';
 
@@ -13,17 +13,17 @@ import { Node } from './Node';
 export class NodePool<TNode extends Node> {
   private tail:TNode | null = null;
 
-  private NodeClass:NodeClassType<TNode>;
+  private NodeClass:NodeClass<TNode>;
 
   private cacheTail:TNode | null = null;
 
-  private components:Map<ClassType<any>, string>;
+  private components:Map<Class<any>, string>;
 
   /**
    * Creates a pool for the given node class.
    */
-  public constructor(NodeClass:NodeClassType<TNode>, components:Map<ClassType<any>, string>) {
-    this.NodeClass = NodeClass;
+  public constructor(nodeClass:NodeClass<TNode>, components:Map<Class<any>, string>) {
+    this.NodeClass = nodeClass;
     this.components = components;
   }
 

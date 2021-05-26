@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { ArrayObjectCodec } from '../../src/objectcodecs/ArrayObjectCodec';
 import { ClassObjectCodec } from '../../src/objectcodecs/ClassObjectCodec';
 import { CodecManager } from '../../src/objectcodecs/CodecManager';
@@ -7,7 +7,7 @@ import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCo
 import { MockCodec, MockComponent } from '../__mocks__';
 
 describe('CodecManager tests', () => {
-  let classMap:Record<string, ClassType<any>>;
+  let classMap:Record<string, Class<any>>;
   let codecManager:CodecManager;
 
   beforeEach(() => {

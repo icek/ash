@@ -1,5 +1,5 @@
 import { Signal } from '@ash.ts/signals';
-import { ClassType } from './types';
+import { Class } from './types';
 
 /**
  * An entity is composed from components. As such, it is essentially a collection object for components.
@@ -33,12 +33,12 @@ export class Entity {
   /**
    * This signal is dispatched when a component is added to the entity.
    */
-  public componentAdded:Signal<[Entity, ClassType<any>]>;
+  public componentAdded:Signal<[Entity, Class<any>]>;
 
   /**
    * This signal is dispatched when a component is removed from the entity.
    */
-  public componentRemoved:Signal<[Entity, ClassType<any>]>;
+  public componentRemoved:Signal<[Entity, Class<any>]>;
 
   /**
    * Dispatched when the name of the entity changes.
@@ -50,7 +50,7 @@ export class Entity {
 
   public next:Entity | null = null;
 
-  public components:Map<ClassType<any>, any>;
+  public components:Map<Class<any>, any>;
 
   /**
    * The constructor
@@ -107,7 +107,7 @@ export class Entity {
    * ```
    */
 
-  public add<T extends Record<string, any>>(component:T, componentClass:ClassType<T> | null = null):this {
+  public add<T extends Record<string, any>>(component:T, componentClass:Class<T> | null = null):this {
     let cClass = componentClass;
     if (!componentClass) {
       cClass = component.constructor.prototype.constructor;
@@ -133,7 +133,7 @@ export class Entity {
    * @param componentClass The class of the component to be removed.
    * @return the component, or null if the component doesn't exist in the entity
    */
-  public remove<T>(componentClass:ClassType<T>):T | null {
+  public remove<T>(componentClass:Class<T>):T | null {
     const component:any = this.components.get(componentClass);
     if (component) {
       this.components.delete(componentClass);
@@ -151,7 +151,7 @@ export class Entity {
    * @param componentClass The class of the component requested.
    * @return The component, or null if none was found.
    */
-  public get<T>(componentClass:ClassType<T>):T | null {
+  public get<T>(componentClass:Class<T>):T | null {
     return this.components.get(componentClass) || null;
   }
 
@@ -175,7 +175,7 @@ export class Entity {
    * @param componentClass The class of the component sought.
    * @return true if the entity has a component of the type, false if not.
    */
-  public has<T>(componentClass:ClassType<T>):boolean {
+  public has<T>(componentClass:Class<T>):boolean {
     return this.components.has(componentClass);
   }
 }

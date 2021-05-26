@@ -1,4 +1,4 @@
-import { ClassType } from './types';
+import { Class } from './types';
 import { Entity } from './Entity';
 import { Node } from './Node';
 import { NodeList } from './NodeList';
@@ -31,13 +31,13 @@ export interface Family<TNode extends Node> {
    * A component has been added to an entity. Test whether the entity's inclusion in this family's
    * NodeList should be modified.
    */
-  componentAddedToEntity(entity:Entity, componentClass:ClassType<any>):void;
+  componentAddedToEntity(entity:Entity, componentClass:Class<any>):void;
 
   /**
    * A component has been removed from an entity. Test whether the entity's inclusion in this family's
    * NodeList should be modified.
    */
-  componentRemovedFromEntity(entity:Entity, componentClass:ClassType<any>):void;
+  componentRemovedFromEntity(entity:Entity, componentClass:Class<any>):void;
 
   /**
    * The family is about to be discarded. Clean up all properties as necessary. Usually, you will

@@ -1,4 +1,4 @@
-import { ClassType } from '@ash.ts/core';
+import { Class } from '@ash.ts/core';
 import { ComponentProvider } from './ComponentProvider';
 import { StateComponentMapping } from './StateComponentMapping';
 
@@ -10,7 +10,7 @@ export class EntityState {
   /**
    * @private
    */
-  public providers:Map<ClassType<any>, ComponentProvider<any>> = new Map();
+  public providers:Map<Class<any>, ComponentProvider<any>> = new Map();
 
   /**
    * Add a new ComponentMapping to this state. The mapping is a utility class that is used to
@@ -19,7 +19,7 @@ export class EntityState {
    * @param type The type of component to be mapped
    * @return The component mapping to use when setting the provider for the component
    */
-  public add<TComponent>(type:ClassType<TComponent>):StateComponentMapping<TComponent> {
+  public add<TComponent>(type:Class<TComponent>):StateComponentMapping<TComponent> {
     return new StateComponentMapping(this, type);
   }
 
@@ -29,7 +29,7 @@ export class EntityState {
    * @param type The type of component to get the provider for
    * @return The ComponentProvider
    */
-  public get<TComponent>(type:ClassType<TComponent>):ComponentProvider<TComponent> | null {
+  public get<TComponent>(type:Class<TComponent>):ComponentProvider<TComponent> | null {
     return this.providers.get(type) || null;
   }
 
@@ -39,7 +39,7 @@ export class EntityState {
    * @param type The type of component to look for a provider for
    * @return true if there is a provider for the given type, false otherwise
    */
-  public has<TComponent>(type:ClassType<TComponent>):boolean {
+  public has<TComponent>(type:Class<TComponent>):boolean {
     return this.providers.has(type);
   }
 }
