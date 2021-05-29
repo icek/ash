@@ -23,6 +23,7 @@
     "./packages/*"
   ],
   "scripts": {
+    "prepare": "husky install",
     "build": "run-s build:clean build:rollup build:dts",
     "build:clean": "rimraf dist packages/**/dist",
     "build:rollup": "rollup -c",
@@ -71,11 +72,6 @@
     "tslib": "^2.2.0",
     "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "run-s typecheck lint"
-    }
   },
   "engines": {
     "node": ">=16",

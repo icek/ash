@@ -16,35 +16,33 @@ export default packages.reduce((config, packageName) => {
   const external = isBundle ? undefined : pkg => pkg.startsWith('@ash.ts/');
   const minifier = terser({ keep_classnames: true, keep_fnames: true });
 
-  return [
-    ...config,
-    {
-      input: `${root}/src/index.ts`,
-      plugins: [
-        resolve({ modulesOnly: true }),
-        typescript({
-          useTsconfigDeclarationDir: true,
-          clean: true,
-          verbosity: 1,
-          tsconfigOverride: {
-            include: [`${root}/src/`],
-            compilerOptions: {
-              baseUrl: root,
-              declarationDir: `${root}/dist/types`,
-            },
+  return [...config, {
+    input: `${root}/src/index.ts`,
+    plugins: [
+      resolve({ modulesOnly: true }),
+      typescript({
+        useTsconfigDeclarationDir: true,
+        clean: true,
+        verbosity: 1,
+        tsconfigOverride: {
+          include: [`${root}/src/`],
+          compilerOptions: {
+            baseUrl: root,
+            declarationDir: `${root}/dist/types`,
           },
-        }),
-      ],
-      external,
-      output: [
-        { format: 'umd', file: `${filePath}.js`, globals, name },
-        { format: 'umd', file: `${filePath}.min.js`, globals, name, plugins: [minifier] },
-        { format: 'es', file: `${filePath}.mjs` },
-        { format: 'es', file: `${filePath}.min.mjs`, plugins: [minifier] },
-      ],
-    }, {
-      input: `${root}/dist/types/index.d.ts`,
-      plugins: [dts()],
-      output: { format: 'es', file: `${filePath}.d.ts` },
-    }];
+        },
+      }),
+    ],
+    external,
+    output: [
+      { format: 'umd', file: `${filePath}.js`, globals, name },
+      { format: 'umd', file: `${filePath}.min.js`, globals, name, plugins: [minifier] },
+      { format: 'es', file: `${filePath}.mjs` },
+      { format: 'es', file: `${filePath}.min.mjs`, plugins: [minifier] },
+    ],
+  }, {
+    input: `${root}/dist/types/index.d.ts`,
+    plugins: [dts()],
+    output: { format: 'es', file: `${filePath}.d.ts` },
+  }];
 }, []);
