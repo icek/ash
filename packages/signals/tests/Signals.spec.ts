@@ -8,7 +8,7 @@ describe('Signals tests', () => {
   });
 
   afterEach(() => {
-    (signal as Signal | null) = null;
+    signal = null!;
   });
 
   it('new signal has null head', () => {

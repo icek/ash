@@ -57,7 +57,7 @@ export class EngineDecoder {
       if (this.componentMap[componentId]) {
         const newComponent:any = this.componentMap[componentId];
         if (newComponent) {
-          const type:Class<any> = newComponent.constructor.prototype.constructor;
+          const type = newComponent.constructor as Class<any>;
           const existingComponent:any = entity.get(type);
           if (existingComponent) {
             this.codecManager.decodeIntoComponent(existingComponent, this.encodedComponentMap[componentId]);

@@ -22,7 +22,7 @@ export class ListenerNodePool<TArgs extends any[]> {
   }
 
   public dispose(node:ListenerNode<TArgs>):void {
-    (node.listener as any) = null;
+    node.listener = null!;
     node.once = false;
     node.next = null;
     node.previous = this.tail;
@@ -30,7 +30,7 @@ export class ListenerNodePool<TArgs extends any[]> {
   }
 
   public cache(node:ListenerNode<TArgs>):void {
-    (node.listener as any) = null;
+    node.listener = null!;
     node.previous = this.cacheTail;
     this.cacheTail = node;
   }

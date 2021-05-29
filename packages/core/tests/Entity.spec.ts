@@ -14,7 +14,7 @@ describe('Entity tests', () => {
   });
 
   afterEach(() => {
-    (entity as Entity | null) = null;
+    entity = null!;
   });
 
   it('add returns reference to Entity', () => {

@@ -47,10 +47,9 @@ export class NodePool<TNode extends Node> {
    */
   public dispose(node:TNode):void {
     for (const val of this.components.values()) {
-      (node as any)[val] = null;
+      node[val as keyof TNode] = null!;
     }
-    (node.entity as Entity | null) = null;
-
+    node.entity = null!;
     node.next = null;
     node.previous = this.tail;
     this.tail = node;

@@ -16,8 +16,8 @@ describe('ComponentMatchingFamily tests', () => {
   });
 
   afterEach(() => {
-    (engine as Engine | null) = null;
-    (family as ComponentMatchingFamily<MockNode> | null) = null;
+    engine = null!;
+    family = null!;
   });
 
   it('NodeList is initially empty', () => {

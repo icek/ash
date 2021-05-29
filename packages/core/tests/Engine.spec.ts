@@ -16,7 +16,7 @@ describe('Engine tests', () => {
   });
 
   afterEach(() => {
-    (engine as Engine | null) = null;
+    engine = null!;
   });
 
   it('entities getter should return all the Entities', () => {

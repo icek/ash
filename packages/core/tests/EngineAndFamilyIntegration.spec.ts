@@ -9,7 +9,7 @@ describe('Engine and Family integration tests', () => {
   });
 
   afterEach(() => {
-    (engine as Engine | null) = null;
+    engine = null!;
   });
 
   it('Family is initially empty', () => {

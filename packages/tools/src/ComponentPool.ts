@@ -58,11 +58,9 @@ export class ComponentPool {
    * @param component The component to return to the pool.
    */
   public static dispose<T extends Record<string, any>>(component:T):void {
-    if (component) {
-      const type:Class<T> = component.constructor.prototype.constructor;
-      const pool:T[] = ComponentPool.getPool(type);
-      pool[pool.length] = component;
-    }
+    const type = component.constructor as Class<T>;
+    const pool:T[] = ComponentPool.getPool(type);
+    pool[pool.length] = component;
   }
 
   /**

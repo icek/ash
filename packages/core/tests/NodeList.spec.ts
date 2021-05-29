@@ -12,7 +12,7 @@ describe('NodeList tests', () => {
   });
 
   afterEach(() => {
-    (nodes as NodeList<MockNode> | null) = null;
+    nodes = null!;
   });
 
   it('adding Node triggers added Signal', () => {
