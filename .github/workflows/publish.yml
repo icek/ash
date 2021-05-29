@@ -14,10 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Read .nvmrc
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
 
       - name: Installation
         run: npm ci
