@@ -1,14 +1,10 @@
 import { Engine, System } from '../src';
-import { MockSystem, MockSystem2 } from './__mocks__';
-
-interface MockObject {
-  asyncCallback:((system:System, action:string, payload:any) => void) | null;
-}
+import { AsyncCallback, MockSystem, MockSystem2 } from './__mocks__';
 
 describe('System tests', () => {
   let engine:Engine;
-  const mockObject:MockObject = {
-    asyncCallback: null,
+  const mockObject:AsyncCallback = {
+    asyncCallback: null!,
   };
 
   beforeEach(() => {
@@ -16,7 +12,7 @@ describe('System tests', () => {
   });
 
   afterEach(() => {
-    mockObject.asyncCallback = null;
+    mockObject.asyncCallback = null!;
   });
 
   function assertsUpdatingIsTrue(system:System, action:string, payload:any):void {

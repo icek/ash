@@ -22,7 +22,7 @@ import { Engine, Node, NodeClass, NodeList, System } from '@ash.ts/core';
  */
 
 export abstract class ListIteratingSystem<TNode extends Node> extends System {
-  protected nodeList:NodeList<TNode> | null = null;
+  protected nodeList!:NodeList<TNode>;
 
   protected nodeClass:NodeClass<TNode>;
 
@@ -51,16 +51,16 @@ export abstract class ListIteratingSystem<TNode extends Node> extends System {
 
   public removeFromEngine():void {
     if (this.nodeAdded) {
-      this.nodeList!.nodeAdded.remove(this.nodeAdded);
+      this.nodeList.nodeAdded.remove(this.nodeAdded);
     }
     if (this.nodeRemoved) {
-      this.nodeList!.nodeRemoved.remove(this.nodeRemoved);
+      this.nodeList.nodeRemoved.remove(this.nodeRemoved);
     }
-    this.nodeList = null;
+    this.nodeList = null!;
   }
 
   public update(time:number):void {
-    for (let node:TNode | null = this.nodeList!.head; node; node = node.next) {
+    for (let node:TNode | null = this.nodeList.head; node; node = node.next) {
       this.updateNode(node, time);
     }
   }

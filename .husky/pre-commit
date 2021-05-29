@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-run-s typecheck lint
+run-s typecheck lint test:changed

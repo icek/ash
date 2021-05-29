@@ -117,7 +117,7 @@ export class NodeList<TNode extends Node> {
       node1.next = node2.next;
       node2.next = node1;
     } else {
-      let temp:TNode | null = node1.previous;
+      let temp = node1.previous;
       node1.previous = node2.previous;
       node2.previous = temp;
       temp = node1.next;
@@ -168,7 +168,7 @@ export class NodeList<TNode extends Node> {
     if (!this.head || !this.tail || this.head === this.tail) {
       return;
     }
-    let remains:TNode | null = this.head.next;
+    let remains = this.head.next;
     for (let node = remains; node; node = remains) {
       let other:TNode | null;
       remains = node.next;

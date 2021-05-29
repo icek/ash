@@ -9,9 +9,9 @@ import { ListenerNodePool } from './ListenerNodePool';
  * The base class for all the signal classes.
  */
 export class Signal<TArgs extends any[] = []> {
-  protected head:ListenerNode<TArgs> | null = null;
+  private head:ListenerNode<TArgs> | null = null;
 
-  protected tail:ListenerNode<TArgs> | null = null;
+  private tail:ListenerNode<TArgs> | null = null;
 
   private nodes:Map<(...args:TArgs) => void, ListenerNode<TArgs>>;
 
@@ -84,7 +84,7 @@ export class Signal<TArgs extends any[] = []> {
     this.addNode(node);
   }
 
-  protected addNode(node:ListenerNode<TArgs>):void {
+  private addNode(node:ListenerNode<TArgs>):void {
     if (this.dispatching) {
       if (!this.toAddHead) {
         this.toAddHead = node;

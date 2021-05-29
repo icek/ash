@@ -107,22 +107,20 @@ export class Entity {
    * ```
    */
 
-  public add<T extends Record<string, any>>(component:T, componentClass:Class<T> | null = null):this {
-    let cClass = componentClass;
+  public add<T extends Record<string, any>>(
+    component:T,
+    componentClass:Class<T> = component.constructor as Class<any>,
+  ):this {
     if (!componentClass) {
-      cClass = component.constructor as Class<any>;
-    }
-
-    if (!cClass) {
       throw new Error(`Unable to get type of component: ${component}`);
     }
 
-    if (this.components.has(cClass)) {
-      this.remove(cClass);
+    if (this.components.has(componentClass)) {
+      this.remove(componentClass);
     }
 
-    this.components.set(cClass, component);
-    this.componentAdded.dispatch(this, cClass);
+    this.components.set(componentClass, component);
+    this.componentAdded.dispatch(this, componentClass);
 
     return this;
   }
@@ -134,7 +132,7 @@ export class Entity {
    * @return the component, or null if the component doesn't exist in the entity
    */
   public remove<T>(componentClass:Class<T>):T | null {
-    const component:any = this.components.get(componentClass);
+    const component:T = this.components.get(componentClass);
     if (component) {
       this.components.delete(componentClass);
       this.componentRemoved.dispatch(this, componentClass);

@@ -1,9 +1,10 @@
 import { Engine, System } from '../../src';
+import { AsyncCallback } from './AsyncCallback';
 
 export class MockSystem2 extends System {
-  private mockObject:any;
+  private mockObject:AsyncCallback;
 
-  public constructor(mockObject:any) {
+  public constructor(mockObject:AsyncCallback) {
     super();
     this.mockObject = mockObject;
   }
