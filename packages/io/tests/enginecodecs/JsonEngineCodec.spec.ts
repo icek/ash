@@ -1,6 +1,5 @@
 import { Class, Engine, Entity } from '@ash.ts/core';
 import { JsonEngineCodec } from '../../src';
-import { EncodedData } from '../../src/enginecodecs/EncodedData';
 import { MockComponent1, MockComponent2 } from '../__mocks__';
 
 describe('JsonEngineCodec tests', () => {

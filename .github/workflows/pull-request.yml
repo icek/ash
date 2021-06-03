@@ -8,20 +8,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Read .nvmrc
         id: node_version
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+
       - name: Installation
         run: npm ci
+
       - name: Type checking
         run: npm run typecheck
+
       - name: Linting code
         run: npm run lint
+
       - name: Build library
         run: npm run build
+
       - name: Test library
         run: npm run test

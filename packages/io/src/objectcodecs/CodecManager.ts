@@ -51,7 +51,7 @@ export class CodecManager {
     let type = nativeTypes[typeof object];
 
     if (!type && object instanceof Array) type = Array;
-    if (!type && object instanceof Object) type = object.constructor;
+    if (!type && object instanceof Object) type = object.constructor as Class<typeof object>;
 
     if (this.codecs.has(type)) {
       return this.codecs.get(type)!;
@@ -101,14 +101,20 @@ export class CodecManager {
 
   public encodeObject(object:any):EncodedObject | null {
     if (object === null) {
-      return { type: 'null', value: null };
+      return {
+        type: 'null',
+        value: null,
+      };
     }
     const codec:ObjectCodec<any> | null = this.getCodecForObject(object);
     if (codec) {
       return codec.encode(object, this);
     }
 
-    return { type: 'null', value: null };
+    return {
+      type: 'null',
+      value: null,
+    };
   }
 
   public decodeComponent(object:EncodedObject):any | null {

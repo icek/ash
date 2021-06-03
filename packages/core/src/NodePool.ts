@@ -1,5 +1,4 @@
 import { Class, NodeClass } from './types';
-import { Entity } from './Entity';
 import { Node } from './Node';
 
 /**
