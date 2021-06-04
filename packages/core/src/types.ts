@@ -6,6 +6,8 @@ export interface Class<T> {
 
 export interface NodeClass<TNode extends Node> {
   new():TNode;
+
+  propTypes:Record<string, Class<any>>;
 }
 
 export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =

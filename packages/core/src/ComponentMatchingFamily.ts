@@ -6,8 +6,6 @@ import { NodeList } from './NodeList';
 import { NodePool } from './NodePool';
 import { Class, NodeClass } from './types';
 
-const propTypes = '__prop_types__';
-
 /**
  * The default class for managing a NodeList. This class creates the NodeList and adds and removes
  * nodes to/from the list as the entities and the components in the engine change.
@@ -41,13 +39,9 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
     this.nodes = new NodeList();
     this.entities = new Map();
     this.components = new Map();
-    this.nodePool = new NodePool(this.nodeClass, this.components);
+    this.nodePool = new NodePool(nodeClass, this.components);
 
-    const dummyNode:TNode = this.nodePool.get();
-    this.nodePool.dispose(dummyNode);
-
-    const types:Record<string, Class<any>> = (dummyNode.constructor as any)[propTypes];
-
+    const types:Record<string, Class<any>> = nodeClass.propTypes;
     const classNames = Object.keys(types);
     for (const className of classNames) {
       this.components.set(types[className], className);
@@ -158,25 +152,4 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
     }
     this.nodes.removeAll();
   }
-}
-
-export function keep(type:Class<any>):PropertyDecorator {
-  // eslint-disable-next-line no-console
-  console.warn('Deprecated. Please use defineNode helper instead.');
-  return (target:Record<string, any>, propertyKey:string | symbol):void => {
-    const ctor = target.constructor;
-    let map:Record<string, Class<any>>;
-    // eslint-disable-next-line no-prototype-builtins
-    if (ctor.hasOwnProperty(propTypes)) {
-      map = (ctor as any)[propTypes];
-    } else {
-      map = {};
-      Object.defineProperty(ctor, propTypes, {
-        enumerable: true,
-        get: () => map,
-      });
-    }
-
-    map[propertyKey as string] = type;
-  };
 }

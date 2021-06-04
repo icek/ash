@@ -1,4 +1,5 @@
 import { Entity } from './Entity';
+import { Class } from './types';
 
 /**
  * The base class for a node.
@@ -24,4 +25,6 @@ export abstract class Node {
    * Used by the NodeList class. The next node in a node list.
    */
   public next:this | null = null;
+
+  static propTypes:Record<string, Class<any>>;
 }
