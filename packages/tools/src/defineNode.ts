@@ -20,22 +20,10 @@ import { Class, Node, NodeClassWithProps } from '@ash.ts/core';
  * @param props string to ClassType record
  * @param name returned class name
  */
-export function defineNode<K extends string, T extends Record<K, Class<any>>>(props:T, name = ''):NodeClassWithProps<T> {
-  const Cls = {
+export function defineNode<T extends Record<string, Class<any>>>(props:T, name = ''):NodeClassWithProps<T> {
+  return {
     [name]: class extends Node {
+      static propTypes:Record<string, Class<any>> = props;
     },
-  }[name];
-
-  const keys = Object.keys(props);
-  for (let i = 0; i < keys.length; i += 1) {
-    Object.defineProperty(Cls.prototype, keys[i], {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-    });
-  }
-
-  Cls.propTypes = props;
-
-  return Cls as NodeClassWithProps<T>;
+  }[name] as NodeClassWithProps<T>;
 }

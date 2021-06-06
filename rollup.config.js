@@ -34,7 +34,8 @@ export default packages.reduce((config, packageName) => {
         clean: true,
         verbosity: 1,
         tsconfigOverride: {
-          include: [`${root}/src/`], compilerOptions: { baseUrl: root, declarationDir: `${root}/dist/types` },
+          include: [`${root}/src/`],
+          compilerOptions: { baseUrl: root, declarationDir: `${root}/dist/types` },
         },
       }),
     ],

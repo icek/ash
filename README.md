@@ -1,7 +1,7 @@
 # @ash.ts monorepo
 ![Build Status](https://github.com/icek/ash/workflows/Publish/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/icek/ash/badge.svg?branch=master)](https://coveralls.io/github/icek/ash?branch=master)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+![License](https://img.shields.io/npm/l/@ash.ts/ash)
 
 ## [Installation, usage & documentation](./packages/ash/README.md)
 
