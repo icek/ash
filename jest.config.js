@@ -8,6 +8,7 @@ module.exports = {
       '^@ash\.ts/(.*)': '<rootDir>/packages/$1',
     },
     preset: 'ts-jest',
+    testEnvironment: 'jsdom',
   })),
   collectCoverageFrom: ['packages/**/src/**/*.ts'],
 };
