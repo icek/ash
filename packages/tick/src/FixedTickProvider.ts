@@ -22,16 +22,16 @@ export class FixedTickProvider extends Signal<[number]> implements TickProvider 
   }
 
   public start():void {
-    this.rafId = requestAnimationFrame(this.dispatchTick);
+    this.rafId = window.requestAnimationFrame(this.dispatchTick);
   }
 
   public stop():void {
-    cancelAnimationFrame(this.rafId);
+    window.cancelAnimationFrame(this.rafId);
     this.rafId = 0;
   }
 
   private dispatchTick = ():void => {
-    this.rafId = requestAnimationFrame(this.dispatchTick);
+    this.rafId = window.requestAnimationFrame(this.dispatchTick);
     this.dispatch(this.frameTime * this.timeAdjustment);
   };
 

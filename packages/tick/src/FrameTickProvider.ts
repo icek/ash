@@ -25,17 +25,17 @@ export class FrameTickProvider extends Signal<[number]> implements TickProvider 
   }
 
   public start():void {
-    this.rafId = requestAnimationFrame(this.dispatchTick);
+    this.rafId = window.requestAnimationFrame(this.dispatchTick);
     this.previousTime = performance.now();
   }
 
   public stop():void {
-    cancelAnimationFrame(this.rafId);
+    window.cancelAnimationFrame(this.rafId);
     this.rafId = 0;
   }
 
   private dispatchTick = ():void => {
-    this.rafId = requestAnimationFrame(this.dispatchTick);
+    this.rafId = window.requestAnimationFrame(this.dispatchTick);
     const temp = this.previousTime;
     this.previousTime = performance.now();
     let frameTime = (this.previousTime - temp) / 1000;
