@@ -7,4 +7,4 @@ export { MockNode } from './MockNode';
 export { MockNode2 } from './MockNode2';
 export { MockSystem } from './MockSystem';
 export { MockSystem2 } from './MockSystem2';
-export { AsyncCallback } from './AsyncCallback';
+export type { AsyncCallback } from './AsyncCallback';
