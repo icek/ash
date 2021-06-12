@@ -7,10 +7,7 @@
     "sourceMap": true,
     "strict": true,
     "isolatedModules": true,
-    "experimentalDecorators": true,
     "lib": ["dom", "es6"],
-    "pretty": true,
-    "esModuleInterop": true,
     "baseUrl": "./packages",
     "paths": {
       "@ash.ts/*": ["./*/src"]
