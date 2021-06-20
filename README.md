@@ -3,17 +3,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/icek/ash/badge.svg?branch=master)](https://coveralls.io/github/icek/ash?branch=master)
 ![License](https://img.shields.io/npm/l/@ash.ts/ash)
 
-## [Installation, usage & documentation](./packages/ash/README.md)
+## [Installation, usage & documentation](./packages/ash)
 
 ## Packages
-- [ash](./packages/ash/README.md) - Full bundle containing all other modules.
-- [core](./packages/core/README.md) - Core module. [required]
-- [fsm](./packages/fsm/README.md) - Finite State Machine for Engine and Entities.
-- [io](./packages/io/README.md) - Serialization/Deserialization for Engine.
-- [signals](./packages/signals/README.md) - Signals used for internal communication. 
+- [ash](./packages/ash) - Full bundle containing all other modules.
+- [core](./packages/core) - Core module. [required]
+- [fsm](./packages/fsm) - Finite State Machine for Engine and Entities.
+- [io](./packages/io) - Serialization/Deserialization for Engine.
+- [signals](./packages/signals) - Signals used for internal communication. 
 [This package is required and installed by core]
-- [tick](./packages/tick/README.md) - Tick providers. [recommended]
-- [tools](./packages/tools/README.md) - Optional tools for use with Ash.  
+- [tick](./packages/tick) - Tick providers. [recommended]
+- [tools](./packages/tools) - Optional tools for use with Ash.  
 
 ## Development
 First install:

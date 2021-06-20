@@ -14,6 +14,7 @@
     }
   },
   "typedocOptions": {
+    "name": "ash",
     "entryPoints": [
       "./packages/core/src/index.ts",
       "./packages/fsm/src/index.ts",
@@ -23,15 +24,21 @@
       "./packages/tools/src/index.ts",
       "./packages/ash/src/index.ts"
     ],
-    "name": "ash",
     "out": "docs",
     "excludeExternals": true,
     "excludePrivate": true,
     "excludeProtected": false,
     "excludeInternal": true,
-    "includes": "./includes",
     "theme": "default",
-    "readme": "packages/ash/README.md",
-    "gitRevision": "master"
+    "gitRevision": "master",
+    "includes": "./includes",
+    "readme": "includes/index.md",
+    "rewriteLinks": {
+      "^\\.\\./([^/]+)(?:#readme|/README.md)": "_ash_ts_$1.html",
+      "^\\.\\/packages\\/([^/]+)(?:#readme|\\/README.md)": "modules/_ash_ts_$1.html"
+    },
+    "versionsMapping": {
+      "__version__/(.+)": "@ash.ts/$1"
+    }
   }
 }

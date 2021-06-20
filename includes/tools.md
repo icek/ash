@@ -3,15 +3,9 @@
 This package contains various tools for use with Ash - an entity component 
 system framework for game development.
 
-## Instalation
-
-Using npm:
+## Installation
 
 `npm i @ash.ts/tools`
-
-Using yarn:
- 
-`yarn add @ash.ts/tools`
 
 ## Usage
 

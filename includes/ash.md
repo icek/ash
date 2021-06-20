@@ -9,15 +9,9 @@ by [Richard Lord]. This is the bundle package containing the following packages:
 - [tick](../tick/README.md) - Tick providers.
 - [tools](../tools/README.md) - Optional tools for use with Ash.  
 
-## Instalation
-
-Using npm:
+## Installation
 
 `npm i @ash.ts/ash`
-
-Using yarn:
- 
-`yarn add @ash.ts/ash`
 
 ## Examples
 
