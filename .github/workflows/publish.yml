@@ -52,12 +52,12 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: docs
 
       - name: Publish to Github Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
         with:
-          path: wiki
+          path: markdown/wiki
         env:
           GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 

@@ -31,8 +31,8 @@
     "excludeInternal": true,
     "theme": "default",
     "gitRevision": "master",
-    "includes": "./includes",
-    "readme": "includes/index.md",
+    "includes": "./markdown/typedoc",
+    "readme": "./markdown/includes/index.md",
     "rewriteLinks": {
       "^\\.\\./([^/]+)(?:#readme|/README.md)": "_ash_ts_$1.html",
       "^\\.\\/packages\\/([^/]+)(?:#readme|\\/README.md)": "modules/_ash_ts_$1.html"
