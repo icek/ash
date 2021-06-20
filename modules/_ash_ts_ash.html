@@ -79,37 +79,10 @@
 							<li><a href="_ash_ts_tick.html">tick</a> - Tick providers.</li>
 							<li><a href="_ash_ts_tools.html">tools</a> - Optional tools for use with Ash.  </li>
 						</ul>
-						<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-							<h2>Installation</h2>
-						</a>
-						<p><code>npm i @ash.ts/ash</code></p>
-						<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
-							<h2>Examples</h2>
-						</a>
-						<ul>
-							<li>Asteroids (SVG version): <a href="http://icek.github.io/asteroids">Demo</a> <a href="https://github.com/icek/asteroids">Source</a></li>
-							<li>Asteroids (PIXI.js version): <a href="http://icek.github.io/asteroids-pixi">Demo</a> <a href="https://github.com/icek/asteroids-pixi">Source</a></li>
-						</ul>
-						<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-							<h2>Documentation</h2>
-						</a>
-						<p>TypeDoc generated <a href="https://icek.github.io/ash">API docs</a></p>
-						<p>Richard Lord also written a few blog posts explaining how Ash works.</p>
-						<ul>
-							<li><a href="http://www.richardlord.net/blog/ecs/introducing-ash.html">Ash - a new entity framework for Actionscript games.</a></li>
-							<li><a href="http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html">What is an entity framework for game development.</a></li>
-							<li><a href="http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html">Why use an entity framework for game development.</a></li>
-						</ul>
-						<a href="#join-the-discussion-for-as3-version" id="join-the-discussion-for-as3-version" style="color: inherit; text-decoration: none;">
-							<h2>Join the discussion (for AS3 version)</h2>
-						</a>
-						<p>There is a <a href="https://groups.google.com/forum/?fromgroups=#!forum/ash-framework">Google group for discussing Ash</a>,
-							how to use it and how to make it better.
-						Everyone who uses Ash or is interested in using Ash is welcome.</p>
 						<a href="#differences-between-typescript-and-as3-version" id="differences-between-typescript-and-as3-version" style="color: inherit; text-decoration: none;">
 							<h2>Differences between typescript and AS3 version</h2>
 						</a>
-						<p>As this is a port to a different language there are some changes to the API.</p>
+						<p>As this is a port to a different language, there are some changes to the API.</p>
 						<a href="#nodes" id="nodes" style="color: inherit; text-decoration: none;">
 							<h3>Nodes</h3>
 						</a>
@@ -183,8 +156,8 @@
 						<a href="#io" id="io" style="color: inherit; text-decoration: none;">
 							<h3>IO</h3>
 						</a>
-						<p>This package provides (de)serialization of Engine. Because of how js handle
-						types, you need to provide additional string to ClassType map. Eg.:</p>
+						<p>This package provides (de)serialization of the Engine. Because of how js handle
+						types, you need to provide additional string to Class map. Eg.:</p>
 						<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">JsonEngineCodec</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@ash.ts/io&#039;</span><span style="color: #000000">;</span>
 <span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Display</span><span style="color: #000000">, </span><span style="color: #001080">Position</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../components&#039;</span><span style="color: #000000">;</span>
 
@@ -195,7 +168,7 @@
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">codec</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">JsonEngineCodec</span><span style="color: #000000">(</span><span style="color: #001080">classMap</span><span style="color: #000000">);</span>
 </code></pre>
-						<p>Other way to create Map (array of [string, ClassType] tuples):</p>
+						<p>Other way to create Map (array of [string, Class] tuples):</p>
 						<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">classMap</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Map</span><span style="color: #000000">([</span>
 <span style="color: #000000">  [</span><span style="color: #A31515">&#039;Position&#039;</span><span style="color: #000000">, </span><span style="color: #001080">Position</span><span style="color: #000000">],</span>
 <span style="color: #000000">  [</span><span style="color: #A31515">&#039;Display&#039;</span><span style="color: #000000">, </span><span style="color: #001080">Display</span><span style="color: #000000">],</span>
@@ -264,17 +237,6 @@
 <span style="color: #000000">}</span>
 
 </code></pre>
-						<a href="#alternatives" id="alternatives" style="color: inherit; text-decoration: none;">
-							<h2>Alternatives</h2>
-						</a>
-						<p>These are alternative typescript ports you can find:</p>
-						<ul>
-							<li><a href="https://www.npmjs.com/package/ash-ts">ash-ts</a> - Private source code.
-								No docs, no examples, only core module. Components must inherit from the
-							AshComponent class.</li>
-							<li><a href="https://github.com/MikeMnD/AshTS">AshTS</a> - Not a node module, core package
-							only.</li>
-						</ul>
 					</div>
 				</div>
 			</section>
@@ -306,6 +268,7 @@
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#io_version" class="tsd-kind-icon">IO_<wbr>VERSION</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#jsonenginecodec" class="tsd-kind-icon">Json<wbr>Engine<wbr>Codec</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#listiteratingsystem" class="tsd-kind-icon">List<wbr>Iterating<wbr>System</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#listener" class="tsd-kind-icon">Listener</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#node" class="tsd-kind-icon">Node</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#nodeclass" class="tsd-kind-icon">Node<wbr>Class</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_ash_ts_ash.html#nodeclasswithprops" class="tsd-kind-icon">Node<wbr>Class<wbr>With<wbr>Props</a></li>
@@ -441,6 +404,11 @@
 					Re-exports <a href="../classes/_ash_ts_tools.listiteratingsystem.html">ListIteratingSystem</a>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="listener" class="tsd-anchor"></a>
+					<h3>Listener</h3>
+					Re-exports <a href="_ash_ts_signals.html#listener">Listener</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
 					<a name="node" class="tsd-anchor"></a>
 					<h3>Node</h3>
 					Re-exports <a href="../classes/_ash_ts_core.node.html">Node</a>
@@ -513,7 +481,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
 					<a name="keep" class="tsd-anchor"></a>
 					<h3>keep</h3>
-					Re-exports <a href="_ash_ts_core.html#keep">keep</a>
+					Re-exports <a href="_ash_ts_tools.html#keep">keep</a>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -633,6 +601,9 @@
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="_ash_ts_ash.html#listiteratingsystem" class="tsd-kind-icon">List<wbr>Iterating<wbr>System</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_ash_ts_ash.html#listener" class="tsd-kind-icon">Listener</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="_ash_ts_ash.html#node" class="tsd-kind-icon">Node</a>
