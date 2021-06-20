@@ -54,10 +54,10 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
-      - name: Upload Documentation to Wiki
+      - name: Publish to Github Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
         with:
-          path: "./wiki"
+          path: "wiki"
         env:
           GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
