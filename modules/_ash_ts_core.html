@@ -71,13 +71,10 @@
 						</a>
 						<p>Core part of ash.ts - a Typescript port of <a href="https://github.com/richardlord/Ash">Ash Framework</a>,
 						an entity framework for game development by <a href="https://www.richardlord.net">Richard Lord</a></p>
-						<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
-							<h2>Instalation</h2>
+						<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+							<h2>Installation</h2>
 						</a>
-						<p>Using npm:</p>
 						<p><code>npm i @ash.ts/core</code></p>
-						<p>Using yarn:</p>
-						<p><code>yarn add @ash.ts/core</code></p>
 						<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 							<h2>Documentation</h2>
 						</a>
@@ -184,37 +181,18 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Type aliases</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="_ash_ts_core.html#nodeclasswithprops" class="tsd-kind-icon">Node<wbr>Class<wbr>With<wbr>Props</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_ash_ts_core.html#core_version" class="tsd-kind-icon">CORE_<wbr>VERSION</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ash_ts_core.html#keep" class="tsd-kind-icon">keep</a></li>
+							</ul>
+						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-					<a name="nodeclasswithprops" class="tsd-anchor"></a>
-					<h3>Node<wbr>Class<wbr>With<wbr>Props</h3>
-					<div class="tsd-signature tsd-kind-icon">Node<wbr>Class<wbr>With<wbr>Props&lt;TProps&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_ash_ts_core.nodeclass.html" class="tsd-signature-type" data-tsd-kind="Interface">NodeClass</a><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_ash_ts_core.node.html" class="tsd-signature-type" data-tsd-kind="Class">Node</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">TProps</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InstanceType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TProps</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/core/src/types.ts#L13">core/src/types.ts:13</a></li>
-						</ul>
-					</aside>
-					<h4 class="tsd-type-parameters-title">Type parameters</h4>
-					<ul class="tsd-type-parameters">
-						<li>
-							<h4>TProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/_ash_ts_core.class.html" class="tsd-signature-type" data-tsd-kind="Interface">Class</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -222,12 +200,38 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
 					<a name="core_version" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> CORE_<wbr>VERSION</h3>
-					<div class="tsd-signature tsd-kind-icon">CORE_<wbr>VERSION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;__version__/core&quot;</span><span class="tsd-signature-symbol"> = &#x27;__version__/core&#x27;</span></div>
+					<div class="tsd-signature tsd-kind-icon">CORE_<wbr>VERSION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x27;1.1.5&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/core/src/index.ts#L14">core/src/index.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/core/src/index.ts#L15">core/src/index.ts:15</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="keep" class="tsd-anchor"></a>
+					<h3>keep</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">keep<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ash_ts_core.class.html" class="tsd-signature-type" data-tsd-kind="Interface">Class</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/core/src/ComponentMatchingFamily.ts#L157">core/src/ComponentMatchingFamily.ts:157</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <a href="../interfaces/_ash_ts_core.class.html" class="tsd-signature-type" data-tsd-kind="Interface">Class</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PropertyDecorator</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -292,11 +296,11 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="../interfaces/_ash_ts_core.nodeclass.html" class="tsd-kind-icon">Node<wbr>Class</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="_ash_ts_core.html#nodeclasswithprops" class="tsd-kind-icon">Node<wbr>Class<wbr>With<wbr>Props</a>
-					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="_ash_ts_core.html#core_version" class="tsd-kind-icon">CORE_<wbr>VERSION</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_ash_ts_core.html#keep" class="tsd-kind-icon">keep</a>
 					</li>
 				</ul>
 			</nav>
@@ -309,6 +313,7 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>

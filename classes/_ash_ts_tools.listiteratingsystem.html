@@ -329,6 +329,12 @@
 									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/ListIteratingSystem.ts#L39">tools/src/ListIteratingSystem.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called just after the system is added to the engine, before any calls to the update method.
+									Override this method to add your own functionality.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -353,6 +359,12 @@
 									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/ListIteratingSystem.ts#L52">tools/src/ListIteratingSystem.ts:52</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called just after the system is removed from the engine, after all calls to the update method.
+									Override this method to add your own functionality.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -371,6 +383,15 @@
 									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/ListIteratingSystem.ts#L62">tools/src/ListIteratingSystem.ts:62</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>After the system is added to the engine, this method is called every frame until the system
+									is removed from the engine. Override this method to add your own functionality.</p>
+								</div>
+								<p>If you need to perform an action outside of the update loop (e.g. you need to change the
+									systems in the engine and you don't want to do it while they're updating) add a listener to
+								the engine's updateComplete signal to be notified when the update loop completes.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -488,6 +509,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_ash_ts_tools.html#nodeclasswithprops" class="tsd-kind-icon">Node<wbr>Class<wbr>With<wbr>Props</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_ash_ts_tools.html#tools_version" class="tsd-kind-icon">TOOLS_<wbr>VERSION</a>
 					</li>
@@ -505,6 +529,7 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
