@@ -1,6 +1,7 @@
 # ash.ts Entity-Component-System Framework
 
 ## Articles by Richard Lord:
+
 - [Ash - a new entity framework for Actionscript games][intro]
 - [What is an entity framework for game development?][what]
 - [Why use an entity framework for game development?][why]
@@ -12,4 +13,6 @@
 [fsm]: https://www.richardlord.net/blog/ecs/finite-state-machines-with-ash.html
 
 ## Articles with examples updated to Typescript.
+
 - [[What is an entity framework for game development? (typescript examples version)|What-is-an-Entity-Component-System-architecture-for-game-development?]]
+- [[Finite State Machines with Ash entity component system framework (typescript examples version)|Finite-State-Machines-with-Ash-entity-component-system-framework]]
