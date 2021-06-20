@@ -6,9 +6,9 @@
 - [Why use an entity framework for game development?][why]
 - [Finite State Machines with Ash entity component system framework][fsm]
 
-[intro]: http://www.richardlord.net/blog/ecs/introducing-ash.html
-[what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
-[why]: http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
+[intro]: https://www.richardlord.net/blog/ecs/introducing-ash.html
+[what]: https://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
+[why]: https://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
 [fsm]: https://www.richardlord.net/blog/ecs/finite-state-machines-with-ash.html
 
 ## Articles with examples updated to Typescript.

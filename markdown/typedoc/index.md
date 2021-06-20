@@ -37,8 +37,8 @@ These are alternative typescript ports you can find:
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
-[demo-svg]: http://icek.github.io/asteroids
-[demo-pixi]: http://icek.github.io/asteroids-pixi
+[demo-svg]: https://icek.github.io/asteroids
+[demo-pixi]: https://icek.github.io/asteroids-pixi
 [source-svg]: https://github.com/icek/asteroids
 [source-pixi]: https://github.com/icek/asteroids-pixi
 [ash-ts]: https://www.npmjs.com/package/ash-ts

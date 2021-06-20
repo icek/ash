@@ -224,12 +224,12 @@ only.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
-[demo-svg]: http://icek.github.io/asteroids
-[demo-pixi]: http://icek.github.io/asteroids-pixi
+[demo-svg]: https://icek.github.io/asteroids
+[demo-pixi]: https://icek.github.io/asteroids-pixi
 [source-svg]: https://github.com/icek/asteroids
 [source-pixi]: https://github.com/icek/asteroids-pixi
 [api]: https://icek.github.io/ash
-[intro]: http://www.richardlord.net/blog/ecs/introducing-ash.html
-[what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
-[why]: http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
+[intro]: https://www.richardlord.net/blog/ecs/introducing-ash.html
+[what]: https://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
+[why]: https://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
 [group]: https://groups.google.com/forum/?fromgroups=#!forum/ash-framework
