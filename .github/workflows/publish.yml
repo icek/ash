@@ -46,12 +46,12 @@ jobs:
       - name: Publish to Coveralls
         uses: coverallsapp/github-action@master
         with:
-          github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
       - name: Publish to Github Wiki
@@ -80,4 +80,4 @@ jobs:
         with:
           files: packages/*/dist/*
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
