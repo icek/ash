@@ -46,20 +46,20 @@ jobs:
       - name: Publish to Coveralls
         uses: coverallsapp/github-action@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
           publish_dir: ./docs
 
       - name: Publish to Github Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
         with:
-          path: "wiki"
+          path: wiki
         env:
-          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
       - name: Publish to npm
         if: startsWith(github.ref, 'refs/tags/v')
@@ -80,4 +80,4 @@ jobs:
         with:
           files: packages/*/dist/*
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
