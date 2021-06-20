@@ -9,9 +9,9 @@ import {
   Engine,
   Entity,
   Family,
+  keep,
   Node,
   NodeClass,
-  NodeClassWithProps,
   NodeList,
   NodePool,
   System,
@@ -31,7 +31,7 @@ import {
 } from '@ash.ts/io';
 import { Signal, SIGNALS_VERSION } from '@ash.ts/signals';
 import { FixedTickProvider, FrameTickProvider, TICK_VERSION, TickProvider } from '@ash.ts/tick';
-import { ComponentPool, defineNode, ListIteratingSystem, TOOLS_VERSION } from '@ash.ts/tools';
+import { ComponentPool, defineNode, ListIteratingSystem, NodeClassWithProps, TOOLS_VERSION } from '@ash.ts/tools';
 
 export {
   Signal,
@@ -42,6 +42,7 @@ export {
   NodePool,
   NodeList,
   System,
+  keep,
   BaseEngineCodec,
   JsonEngineCodec,
   ObjectEngineCodec,
@@ -74,5 +75,7 @@ export type {
   NodeClassWithProps,
 };
 
-export const ASH_VERSION = '__version__/ash';
-export const VERSION = '__version__/ash';
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const ASH_VERSION:string = '__version__/ash';
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const VERSION:string = '__version__/ash';

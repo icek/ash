@@ -5,4 +5,5 @@
 export type { TickProvider } from './TickProvider';
 export { FrameTickProvider } from './FrameTickProvider';
 export { FixedTickProvider } from './FixedTickProvider';
-export const TICK_VERSION = '__version__/tick';
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const TICK_VERSION:string = '__version__/tick';

@@ -1,4 +1,10 @@
-import { Class, Node, NodeClassWithProps } from '@ash.ts/core';
+import { Class, Node, NodeClass } from '@ash.ts/core';
+
+/**
+ * Type helping in converting of propTypes to actual class properties.
+ */
+export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
+  NodeClass<Node & { [K in keyof TProps]:InstanceType<TProps[K]> }>;
 
 /**
  * A tool for simpler creating node classes.

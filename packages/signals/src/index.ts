@@ -3,4 +3,5 @@
  * @module @ash.ts/signals
  */
 export { Signal } from './Signal';
-export const SIGNALS_VERSION = '__version__/signals';
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const SIGNALS_VERSION:string = '__version__/signals';

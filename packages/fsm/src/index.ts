@@ -4,4 +4,5 @@
  */
 export { EntityStateMachine } from './EntityStateMachine';
 export { EngineStateMachine } from './EngineStateMachine';
-export const FSM_VERSION = '__version__/fsm';
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const FSM_VERSION:string = '__version__/fsm';

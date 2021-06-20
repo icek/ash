@@ -8,4 +8,5 @@ export { JsonEngineCodec } from './enginecodecs/JsonEngineCodec';
 export { ObjectEngineCodec } from './enginecodecs/ObjectEngineCodec';
 export type { EncodedData, EncodedEntity, EncodedComponent, EncodedObject } from './enginecodecs/EncodedData';
 export { CodecManager } from './objectcodecs/CodecManager';
-export const IO_VERSION = '__version__/io';
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const IO_VERSION:string = '__version__/io';
