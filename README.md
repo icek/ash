@@ -42,7 +42,7 @@ Test watch changes files only:
 $ npm run test:watch:changed
 ```
 
-Test and create coverage report:
+One time test and create coverage report:
 ```bash
 $ npm run test:coverage
 ```

@@ -43,6 +43,13 @@ jobs:
           npm run docs
           touch docs/.nojekyll
 
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "wiki"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish to Coveralls
         uses: coverallsapp/github-action@master
         with:

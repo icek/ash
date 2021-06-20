@@ -3,7 +3,7 @@
  * @module @ash.ts/core
  */
 export type { Class, NodeClass } from './types';
-export { ComponentMatchingFamily, keep } from './ComponentMatchingFamily';
+export { ComponentMatchingFamily } from './ComponentMatchingFamily';
 export { Engine } from './Engine';
 export { Entity } from './Entity';
 export type { Family } from './Family';

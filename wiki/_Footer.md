@@ -1,0 +1,1 @@
+Copyright &copy; 2016-2021 Grzegorz Michlicki

@@ -9,34 +9,9 @@ by [Richard Lord]. This is the bundle package containing the following packages:
 - [tick](../tick/README.md) - Tick providers.
 - [tools](../tools/README.md) - Optional tools for use with Ash.  
 
-## Installation
-
-`npm i @ash.ts/ash`
-
-## Examples
-
-- Asteroids (SVG version): [Demo][demo-svg] [Source][source-svg]
-- Asteroids (PIXI.js version): [Demo][demo-pixi] [Source][source-pixi]
-
-## Documentation
-
-TypeDoc generated [API docs][api]
-
-Richard Lord also written a few blog posts explaining how Ash works.
-
-- [Ash - a new entity framework for Actionscript games.][intro]
-- [What is an entity framework for game development.][what]
-- [Why use an entity framework for game development.][why]
-
-## Join the discussion (for AS3 version)
-
-There is a [Google group for discussing Ash][group],
-how to use it and how to make it better. 
-Everyone who uses Ash or is interested in using Ash is welcome.
-
 ## Differences between typescript and AS3 version
 
-As this is a port to a different language there are some changes to the API.
+As this is a port to a different language, there are some changes to the API.
 
 ### Nodes
 
@@ -113,8 +88,8 @@ export class RenderSystem extends System {
 
 ### IO
 
-This package provides (de)serialization of Engine. Because of how js handle 
-types, you need to provide additional string to ClassType map. Eg.:
+This package provides (de)serialization of the Engine. Because of how js handle 
+types, you need to provide additional string to Class map. Eg.:
 
 ```typescript
 import { JsonEngineCodec } from '@ash.ts/io';
@@ -128,7 +103,7 @@ classMap.set('Display', Display);
 const codec = new JsonEngineCodec(classMap);
 ```
 
-Other way to create Map (array of [string, ClassType] tuples):
+Other way to create Map (array of [string, Class] tuples):
 
 ```typescript
 const classMap = new Map([
@@ -212,24 +187,6 @@ export class MovementSystem extends ListIteratingSystem<MovementNode> {
 
 ```
 
-## Alternatives
-
-These are alternative typescript ports you can find:
-
-- [ash-ts](https://www.npmjs.com/package/ash-ts) - Private source code. 
-No docs, no examples, only core module. Components must inherit from the 
-AshComponent class.
-- [AshTS](https://github.com/MikeMnD/AshTS) - Not a node module, core package 
-only.
 
 [Ash Framework]: https://github.com/richardlord/Ash
 [Richard Lord]: https://www.richardlord.net
-[demo-svg]: http://icek.github.io/asteroids
-[demo-pixi]: http://icek.github.io/asteroids-pixi
-[source-svg]: https://github.com/icek/asteroids
-[source-pixi]: https://github.com/icek/asteroids-pixi
-[api]: https://icek.github.io/ash
-[intro]: http://www.richardlord.net/blog/ecs/introducing-ash.html
-[what]: http://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
-[why]: http://www.richardlord.net/blog/ecs/why-use-an-entity-framework.html
-[group]: https://groups.google.com/forum/?fromgroups=#!forum/ash-framework

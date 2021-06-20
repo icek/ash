@@ -114,7 +114,7 @@ export class RenderSystem extends System {
 ### IO
 
 This package provides (de)serialization of Engine. Because of how js handle 
-types, you need to provide additional string to ClassType map. Eg.:
+types, you need to provide additional string to Class map. Eg.:
 
 ```typescript
 import { JsonEngineCodec } from '@ash.ts/io';
@@ -128,7 +128,7 @@ classMap.set('Display', Display);
 const codec = new JsonEngineCodec(classMap);
 ```
 
-Other way to create Map (array of [string, ClassType] tuples):
+Other way to create Map (array of [string, Class] tuples):
 
 ```typescript
 const classMap = new Map([

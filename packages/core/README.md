@@ -23,30 +23,31 @@ In AS3 when Node fields are null but they are declared as some type, that
 information is kept at runtime.
 Adding typescript to javascript gave us code completion and type checking, 
 but information about type is dropped as soon as code is compiled to javascript
-and not available at runtime. All you need to add is `@keep(Class)` to each 
-field of your node. This way type information is available in compile and 
-runtime. Example:
+and not available at runtime.
+To keep that information you have to define static property propTypes on a Node.
+Example:
  
  ```typescript
 import { Node, keep } from '@ash.ts/ash';
 import { Motion, Position } from '../components';
 
 export class MovementNode extends Node {
-  
-  @keep(Position)
   public position!:Position;
   
-  @keep(Motion)
   public motion!:Motion;
   
+  public static propTypes = {
+    position: Position,
+    motion: Motion,
+  };
 }
 
 ```
-Exclamation mark used in this example is a non-null assertion operator.
-If you use `"strict": true` or `"strictNullChecks": true` flags in your
-`tsconfig.json` file, it's the way to silent compiler. You as a developer 
-can guarantee that these values will never be null, because as soon as they
-are created by the Engine they are filled with components.
+There are also 2 helpers that simplifying this process:
+- @keep that works as a decorator
+- defineNode which is a Node class factory 
+
+Both of these tools and their documentation are available in the @ash.ts/tools package.
 
 ### Systems
 

@@ -4,6 +4,7 @@
  */
 export { ComponentPool } from './ComponentPool';
 export { defineNode } from './defineNode';
+export { keep } from './keep';
 export type { NodeClassWithProps } from './defineNode';
 export { ListIteratingSystem } from './ListIteratingSystem';
 // eslint-disable-next-line @typescript-eslint/no-inferrable-types

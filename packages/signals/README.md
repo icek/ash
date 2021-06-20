@@ -10,4 +10,19 @@ system framework for game development.
 
 ## Usage
 
-TDB
+```typescript
+import { Signal } from './Signal';
+
+const signal:Signal<[string]> = new Signal();
+const listener = (result:string):void => {
+  // do something with result
+};
+signal.add(listener);
+// Add listener once
+signal.addOnce((result:string) => {/* */});
+// Remove listener
+signal.remove(listener);
+
+// dispatch data
+signal.dispatch('some string');
+```

@@ -47,3 +47,31 @@ export class MovementSystem extends ListIteratingSystem<MovementNode> {
 
 ### ComponentPool
 TBD
+
+### @keep
+TBD
+
+### defineNode
+A tool for simpler creating node classes.
+It can be used in two ways. 
+
+'const/type' way
+
+```typescript
+export const RenderNode = defineNode({ 
+  position: Position, 
+  display: Display,
+}, 'RenderNode');
+export type RenderNode = InstanceType<typeof RenderNode>;
+```
+
+or 'inheritance' way: 
+
+```typescript
+export class RenderNode extends defineNode({ 
+  position: Position, 
+  display: Display, 
+}) {}
+```
+
+That last way requires the least boilerplate code, so it is the recommended way. 

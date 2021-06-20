@@ -9,7 +9,6 @@ import {
   Engine,
   Entity,
   Family,
-  keep,
   Node,
   NodeClass,
   NodeList,
@@ -29,9 +28,9 @@ import {
   ObjectCodec,
   ObjectEngineCodec,
 } from '@ash.ts/io';
-import { Signal, SIGNALS_VERSION } from '@ash.ts/signals';
+import { Listener, Signal, SIGNALS_VERSION } from '@ash.ts/signals';
 import { FixedTickProvider, FrameTickProvider, TICK_VERSION, TickProvider } from '@ash.ts/tick';
-import { ComponentPool, defineNode, ListIteratingSystem, NodeClassWithProps, TOOLS_VERSION } from '@ash.ts/tools';
+import { ComponentPool, defineNode, keep, ListIteratingSystem, NodeClassWithProps, TOOLS_VERSION } from '@ash.ts/tools';
 
 export {
   Signal,
@@ -42,7 +41,6 @@ export {
   NodePool,
   NodeList,
   System,
-  keep,
   BaseEngineCodec,
   JsonEngineCodec,
   ObjectEngineCodec,
@@ -54,6 +52,7 @@ export {
   ComponentPool,
   ListIteratingSystem,
   defineNode,
+  keep,
   CORE_VERSION,
   FSM_VERSION,
   IO_VERSION,
@@ -63,6 +62,7 @@ export {
 };
 
 export type {
+  Listener,
   Class,
   NodeClass,
   Family,

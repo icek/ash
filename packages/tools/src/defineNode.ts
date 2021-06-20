@@ -23,7 +23,7 @@ export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
  * export class RenderNode extends defineNode({ position: Position, display: Display }) {}
  * ```
  *
- * @param props string to ClassType record
+ * @param props string to Class record
  * @param name returned class name
  */
 export function defineNode<T extends Record<string, Class<any>>>(props:T, name = ''):NodeClassWithProps<T> {

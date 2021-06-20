@@ -5,6 +5,8 @@
 import { ListenerNode } from './ListenerNode';
 import { ListenerNodePool } from './ListenerNodePool';
 
+export type Listener<TArgs extends any[]> = (...args:TArgs) => void;
+
 /**
  * The base class for all the signal classes.
  */
@@ -13,7 +15,7 @@ export class Signal<TArgs extends any[] = []> {
 
   private tail:ListenerNode<TArgs> | null = null;
 
-  private nodes:Map<(...args:TArgs) => void, ListenerNode<TArgs>>;
+  private nodes:Map<Listener<TArgs>, ListenerNode<TArgs>>;
 
   private listenerNodePool:ListenerNodePool<TArgs>;
 
@@ -61,7 +63,7 @@ export class Signal<TArgs extends any[] = []> {
     return this._numListeners;
   }
 
-  public add(listener:(...args:TArgs) => void):void {
+  public add(listener:Listener<TArgs>):void {
     if (this.nodes.has(listener)) {
       return;
     }
@@ -72,7 +74,7 @@ export class Signal<TArgs extends any[] = []> {
     this.addNode(node);
   }
 
-  public addOnce(listener:(...args:TArgs) => void):void {
+  public addOnce(listener:Listener<TArgs>):void {
     if (this.nodes.has(listener)) {
       return;
     }
@@ -106,7 +108,7 @@ export class Signal<TArgs extends any[] = []> {
     this._numListeners += 1;
   }
 
-  public remove(listener:(...args:TArgs) => void):void {
+  public remove(listener:Listener<TArgs>):void {
     const node:ListenerNode<TArgs> | null = this.nodes.get(listener) || null;
     if (node) {
       if (this.head === node) {
