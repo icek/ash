@@ -1,5 +1,20 @@
 import { Class, NodeClass } from '@ash.ts/core';
 
+/**
+ * Decorator used to keep Class information in Nodes
+ *
+ * @example
+ * ```typescript
+ * export class Position extends Node {
+ *   @keep(Position)
+ *   position:Position;
+ *   @keep(Display)
+ *   display:Display;
+ * }
+ * ```
+ * @param {Class<any>} type
+ * @returns {PropertyDecorator}
+ */
 export function keep(type:Class<any>):PropertyDecorator {
   return (target, propertyKey) => {
     if (typeof propertyKey === 'symbol') {

@@ -6,21 +6,20 @@ import { Class } from './types';
  * Sometimes, the entities in a game will mirror the actual characters and objects in the game, but this
  * is not necessary.
  *
- * <p>Components are simple value objects that contain data relevant to the entity. Entities
+ * Components are simple value objects that contain data relevant to the entity. Entities
  * with similar functionality will have instances of the same components. So we might have
- * a position component</p>
+ * a position component
  *
  * @example
  * ```typescript
- *
  * class PositionComponent {
  *   public x:number;
  *   public y:number;
  * }
  * ```
  *
- * <p>All entities that have a position in the game world, will have an instance of the
- * position component. Systems operate on entities based on the components they have.</p>
+ * All entities that have a position in the game world, will have an instance of the
+ * position component. Systems operate on entities based on the components they have.
  */
 export class Entity {
   private static nameCount = 0;
@@ -100,7 +99,6 @@ export class Entity {
    *
    * @example
    * ```typescript
-   *
    * const entity:Entity = new Entity()
    *   .add(new Position(100, 200)
    *   .add(new Display(new PlayerClip());

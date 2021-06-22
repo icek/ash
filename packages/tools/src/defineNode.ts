@@ -10,8 +10,10 @@ export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
  * A tool for simpler creating node classes.
  * @example
  * ```typescript
- *
- * export const RenderNode = defineNode({ position: Position, display: Display }, 'RenderNode');
+ * export const RenderNode = defineNode({
+ *   position: Position,
+ *   display: Display
+ * }, 'RenderNode');
  * export type RenderNode = InstanceType<typeof RenderNode>;
  * ```
  *
@@ -19,8 +21,10 @@ export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
  *
  * @example
  * ```typescript
- *
- * export class RenderNode extends defineNode({ position: Position, display: Display }) {}
+ * export class RenderNode extends defineNode({
+ *   position: Position,
+ *   display: Display,
+ * }) {}
  * ```
  *
  * @param props string to Class record

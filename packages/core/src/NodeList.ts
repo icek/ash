@@ -4,20 +4,20 @@ import { Node } from './Node';
 /**
  * A collection of nodes.
  *
- * <p>Systems within the engine access the components of entities via NodeLists. A NodeList contains
+ * Systems within the engine access the components of entities via NodeLists. A NodeList contains
  * a node for each Entity in the engine that has all the components required by the node. To iterate
  * over a NodeList, start from the head and step to the next on each loop, until the returned value
- * is null.</p>
+ * is null.
  *
  * ```typescript
- * for(let node:Node = nodeList.head; node; node = node.next) {
+ * for (let node:Node = nodeList.head; node; node = node.next) {
  *   // do stuff
  * }
  * ```
  *
- * <p>It is safe to remove items from a nodelist during the loop. When a Node is removed form the
+ * It is safe to remove items from a nodelist during the loop. When a Node is removed form the
  * NodeList it's previous and next properties still point to the nodes that were before and after
- * it in the NodeList just before it was removed.</p>
+ * it in the NodeList just before it was removed.
  */
 export class NodeList<TNode extends Node> {
   /**
@@ -33,14 +33,14 @@ export class NodeList<TNode extends Node> {
   /**
    * A signal that is dispatched whenever a node is added to the node list.
    *
-   * <p>The signal will pass a single parameter to the listeners - the node that was added.</p>
+   * The signal will pass a single parameter to the listeners - the node that was added.
    */
   public nodeAdded:Signal<[TNode]>;
 
   /**
    * A signal that is dispatched whenever a node is removed from the node list.
    *
-   * <p>The signal will pass a single parameter to the listeners - the node that was removed.</p>
+   * The signal will pass a single parameter to the listeners - the node that was removed.
    */
   public nodeRemoved:Signal<[TNode]>;
 
@@ -152,17 +152,17 @@ export class NodeList<TNode extends Node> {
    * Performs an insertion sort on the node list. In general, insertion sort is very efficient with short lists
    * and with lists that are mostly sorted, but is inefficient with large lists that are randomly ordered.
    *
-   * <p>The sort function takes two nodes and returns a Number.</p>
+   * The sort function takes two nodes and returns a Number.
    *
    * ```typescript
    * function sortFunction(node1:MockNode, node2:MockNode):number
    * ```
    *
-   * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
+   * If the returned number is less than zero, the first node should be before the second. If it is greater
    * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter
-   * and the original order will be retained.</p>
+   * and the original order will be retained.
    *
-   * <p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
+   * This insertion sort implementation runs in place so no objects are created during the sort.
    */
   public insertionSort(sortFunction:(a:TNode, b:TNode) => number):void {
     if (!this.head || !this.tail || this.head === this.tail) {
@@ -215,16 +215,16 @@ export class NodeList<TNode extends Node> {
    * Performs a merge sort on the node list. In general, merge sort is more efficient than insertion sort
    * with long lists that are very unsorted.
    *
-   * <p>The sort function takes two nodes and returns a Number.</p>
+   * The sort function takes two nodes and returns a Number.
    *
    * ```typescript
    * function sortFunction(node1:MockNode, node2:MockNode):number
    * ```
    *
-   * <p>If the returned number is less than zero, the first node should be before the second. If it is greater
-   * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
+   * If the returned number is less than zero, the first node should be before the second. If it is greater
+   * than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.
    *
-   * <p>This merge sort implementation creates and uses a single array during the sort operation.</p>
+   * This merge sort implementation creates and uses a single array during the sort operation.
    */
   public mergeSort(sortFunction:(a:TNode, b:TNode) => number):void {
     if (this.head === this.tail) {

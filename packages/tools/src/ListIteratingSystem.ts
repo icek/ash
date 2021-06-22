@@ -8,7 +8,6 @@ import { Engine, Node, NodeClass, NodeList, System } from '@ash.ts/core';
  *
  * @example
  * ```typescript
- *
  * export class MySystem extends ListIteratingSystem<MyNode> {
  *   constructor() {
  *     super(MyNode);
