@@ -56,65 +56,47 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#ashts-monorepo" id="ashts-monorepo" style="color: inherit; text-decoration: none;">
-					<h1>@ash.ts monorepo</h1>
+				<a href="#ashts" id="ashts" style="color: inherit; text-decoration: none;">
+					<h1>@ash.ts</h1>
 				</a>
-				<p><img src="https://github.com/icek/ash/workflows/Publish/badge.svg" alt="Build Status">
-					<a href="https://coveralls.io/github/icek/ash?branch=master"><img src="https://coveralls.io/repos/github/icek/ash/badge.svg?branch=master" alt="Coverage Status"></a>
-				<img src="https://img.shields.io/npm/l/@ash.ts/ash" alt="License"></p>
-				<a href="#installation-usage--documentation" id="installation-usage--documentation" style="color: inherit; text-decoration: none;">
-					<h2>Installation, usage  documentation</h2>
-				</a>
+				<p>A Typescript port of <a href="https://github.com/richardlord/Ash">Ash Framework</a>, an entity framework for game development
+				by <a href="https://www.richardlord.net">Richard Lord</a>. </p>
 				<a href="#packages" id="packages" style="color: inherit; text-decoration: none;">
 					<h2>Packages</h2>
 				</a>
 				<ul>
-					<li><a href="./packages/ash">ash</a> - Full bundle containing all other modules.</li>
-					<li><a href="./packages/core">core</a> - Core module. [required]</li>
-					<li><a href="./packages/fsm">fsm</a> - Finite State Machine for Engine and Entities.</li>
-					<li><a href="./packages/io">io</a> - Serialization/Deserialization for Engine.</li>
-					<li><a href="./packages/signals">signals</a> - Signals used for internal communication.
+					<li><a href="modules/_ash_ts_ash.html">ash</a> - Full bundle containing all other modules.</li>
+					<li><a href="modules/_ash_ts_core.html">core</a> - Core module. [required]</li>
+					<li><a href="modules/_ash_ts_fsm.html">fsm</a> - Finite State Machine for Engine and Entities.</li>
+					<li><a href="modules/_ash_ts_io.html">io</a> - Serialization/Deserialization for Engine.</li>
+					<li><a href="modules/_ash_ts_signals.html">signals</a> - Signals used for internal communication.
 					[This package is required and installed by core]</li>
-					<li><a href="./packages/tick">tick</a> - Tick providers. [recommended]</li>
-					<li><a href="./packages/tools">tools</a> - Optional tools for use with Ash.  </li>
+					<li><a href="modules/_ash_ts_tick.html">tick</a> - Tick providers. [recommended]</li>
+					<li><a href="modules/_ash_ts_tools.html">tools</a> - Optional tools for use with Ash.</li>
 				</ul>
-				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
-					<h2>Development</h2>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
 				</a>
-				<p>First install:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm i</span>
-<span style="color: #000000">$ npm run build</span>
-</code></pre>
-				<p>One time test:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run </span><span style="color: #795E26">test</span>
-</code></pre>
-				<p>One time test changes files only:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run test:changed</span>
-</code></pre>
-				<p>Test watch mode:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run test:watch</span>
-</code></pre>
-				<p>Test watch changes files only:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run test:watch:changed</span>
-</code></pre>
-				<p>One time test and create coverage report:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run test:coverage</span>
-</code></pre>
-				<p>Build docs:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run docs</span>
-</code></pre>
-				<p>Typecheck files:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run typecheck</span>
-</code></pre>
-				<p>Lint files:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run lint</span>
-</code></pre>
-				<p>Lint files and fix:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run lint-fix</span>
-</code></pre>
-				<p>Clean everything:</p>
-				<pre><code class="language-bash"><span style="color: #000000">$ npm run clean</span>
-</code></pre>
+				<p>Recommended way:</p>
+				<p><code>npm i -S @ash.ts/ash</code></p>
+				<p>or install only needed packages (minimal example):</p>
+				<p><code>npm i -S @ash.ts/signals @ash.ts/core</code></p>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<ul>
+					<li>Asteroids (SVG version): <a href="https://icek.github.io/asteroids">Demo</a> <a href="https://github.com/icek/asteroids">Source</a></li>
+					<li>Asteroids (PIXI.js version): <a href="https://icek.github.io/asteroids-pixi">Demo</a> <a href="https://github.com/icek/asteroids-pixi">Source</a></li>
+				</ul>
+				<a href="#alternatives" id="alternatives" style="color: inherit; text-decoration: none;">
+					<h2>Alternatives</h2>
+				</a>
+				<p>These are alternative typescript ports you can find:</p>
+				<ul>
+					<li><a href="https://www.npmjs.com/package/ash-ts">ash-ts</a> - Private source code. No docs, no examples, only core module.
+					Components must inherit from the AshComponent class.</li>
+					<li><a href="https://github.com/MikeMnD/AshTS">AshTS</a> - Not a node module, core package only.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

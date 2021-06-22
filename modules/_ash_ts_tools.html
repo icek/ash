@@ -202,7 +202,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/defineNode.ts#L29">tools/src/defineNode.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/defineNode.ts#L33">tools/src/defineNode.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -211,15 +211,19 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><pre><code class="language-typescript">
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">RenderNode</span><span style="color: #000000"> = </span><span style="color: #795E26">defineNode</span><span style="color: #000000">({ </span><span style="color: #001080">position:</span><span style="color: #000000"> </span><span style="color: #001080">Position</span><span style="color: #000000">, </span><span style="color: #001080">display:</span><span style="color: #000000"> </span><span style="color: #001080">Display</span><span style="color: #000000"> }, </span><span style="color: #A31515">&#039;RenderNode&#039;</span><span style="color: #000000">);</span>
+									<dd><pre><code class="language-typescript"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">RenderNode</span><span style="color: #000000"> = </span><span style="color: #795E26">defineNode</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">position:</span><span style="color: #000000"> </span><span style="color: #001080">Position</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">display:</span><span style="color: #000000"> </span><span style="color: #001080">Display</span>
+<span style="color: #000000">}, </span><span style="color: #A31515">&#039;RenderNode&#039;</span><span style="color: #000000">);</span>
 <span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">RenderNode</span><span style="color: #000000"> = </span><span style="color: #267F99">InstanceType</span><span style="color: #000000">&lt;</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">RenderNode</span><span style="color: #000000">&gt;;</span>
 </code></pre>
 										<p>or</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-typescript">
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">RenderNode</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #795E26">defineNode</span><span style="color: #000000">({ </span><span style="color: #001080">position:</span><span style="color: #000000"> </span><span style="color: #001080">Position</span><span style="color: #000000">, </span><span style="color: #001080">display:</span><span style="color: #000000"> </span><span style="color: #001080">Display</span><span style="color: #000000"> }) {}</span>
+									<dd><pre><code class="language-typescript"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">RenderNode</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #795E26">defineNode</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">position:</span><span style="color: #000000"> </span><span style="color: #001080">Position</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">display:</span><span style="color: #000000"> </span><span style="color: #001080">Display</span><span style="color: #000000">,</span>
+<span style="color: #000000">}) {}</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -259,9 +263,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/keep.ts#L3">tools/src/keep.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/tools/src/keep.ts#L18">tools/src/keep.ts:18</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decorator used to keep Class information in Nodes</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Position</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Node</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">keep</span><span style="color: #000000">(</span><span style="color: #001080">Position</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #001080">position</span><span style="color: #000000">:</span><span style="color: #267F99">Position</span><span style="color: #000000">;</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">keep</span><span style="color: #000000">(</span><span style="color: #001080">Display</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #001080">display</span><span style="color: #000000">:</span><span style="color: #267F99">Display</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

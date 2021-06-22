@@ -75,12 +75,12 @@
 						a node for each Entity in the engine that has all the components required by the node. To iterate
 						over a NodeList, start from the head and step to the next on each loop, until the returned value
 					is null.</p>
-					<pre><code class="language-typescript"><span style="color: #AF00DB">for</span><span style="color: #000000">(</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">node</span><span style="color: #000000">:</span><span style="color: #267F99">Node</span><span style="color: #000000"> = </span><span style="color: #001080">nodeList</span><span style="color: #000000">.</span><span style="color: #001080">head</span><span style="color: #000000">; </span><span style="color: #001080">node</span><span style="color: #000000">; </span><span style="color: #001080">node</span><span style="color: #000000"> = </span><span style="color: #001080">node</span><span style="color: #000000">.</span><span style="color: #001080">next</span><span style="color: #000000">) {</span>
+					<pre><code class="language-typescript"><span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">node</span><span style="color: #000000">:</span><span style="color: #267F99">Node</span><span style="color: #000000"> = </span><span style="color: #001080">nodeList</span><span style="color: #000000">.</span><span style="color: #001080">head</span><span style="color: #000000">; </span><span style="color: #001080">node</span><span style="color: #000000">; </span><span style="color: #001080">node</span><span style="color: #000000"> = </span><span style="color: #001080">node</span><span style="color: #000000">.</span><span style="color: #001080">next</span><span style="color: #000000">) {</span>
 <span style="color: #000000">  </span><span style="color: #008000">// do stuff</span>
 <span style="color: #000000">}</span>
 </code></pre>
 					<p>It is safe to remove items from a nodelist during the loop. When a Node is removed form the
-						NodeList it's previous and next properties still point to the nodes that were before and after
+						NodeList it&#39;s previous and next properties still point to the nodes that were before and after
 					it in the NodeList just before it was removed.</p>
 				</div>
 			</section>
@@ -302,7 +302,7 @@
 								<pre><code class="language-typescript"><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">sortFunction</span><span style="color: #000000">(</span><span style="color: #001080">node1</span><span style="color: #000000">:</span><span style="color: #267F99">MockNode</span><span style="color: #000000">, </span><span style="color: #001080">node2</span><span style="color: #000000">:</span><span style="color: #267F99">MockNode</span><span style="color: #000000">):</span><span style="color: #267F99">number</span>
 </code></pre>
 								<p>If the returned number is less than zero, the first node should be before the second. If it is greater
-									than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter
+									than zero the second node should be before the first. If it is zero the order of the nodes doesn&#39;t matter
 								and the original order will be retained.</p>
 								<p>This insertion sort implementation runs in place so no objects are created during the sort.</p>
 							</div>
@@ -359,7 +359,7 @@
 								<pre><code class="language-typescript"><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">sortFunction</span><span style="color: #000000">(</span><span style="color: #001080">node1</span><span style="color: #000000">:</span><span style="color: #267F99">MockNode</span><span style="color: #000000">, </span><span style="color: #001080">node2</span><span style="color: #000000">:</span><span style="color: #267F99">MockNode</span><span style="color: #000000">):</span><span style="color: #267F99">number</span>
 </code></pre>
 								<p>If the returned number is less than zero, the first node should be before the second. If it is greater
-								than zero the second node should be before the first. If it is zero the order of the nodes doesn't matter.</p>
+								than zero the second node should be before the first. If it is zero the order of the nodes doesn&#39;t matter.</p>
 								<p>This merge sort implementation creates and uses a single array during the sort operation.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
