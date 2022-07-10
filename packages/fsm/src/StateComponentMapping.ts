@@ -67,7 +67,7 @@ export class StateComponentMapping<TComponent> {
    * mapping is used.
    * @return This ComponentMapping, so more modifications can be applied
    */
-  public withSingleton(type:Class<any> = this.componentType):this {
+  public withSingleton(type:Class = this.componentType):this {
     this.setProvider(new ComponentSingletonProvider(type));
 
     return this;

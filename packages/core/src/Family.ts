@@ -31,13 +31,13 @@ export interface Family<TNode extends Node> {
    * A component has been added to an entity. Test whether the entity's inclusion in this family's
    * NodeList should be modified.
    */
-  componentAddedToEntity(entity:Entity, componentClass:Class<any>):void;
+  componentAddedToEntity(entity:Entity, componentClass:Class):void;
 
   /**
    * A component has been removed from an entity. Test whether the entity's inclusion in this family's
    * NodeList should be modified.
    */
-  componentRemovedFromEntity(entity:Entity, componentClass:Class<any>):void;
+  componentRemovedFromEntity(entity:Entity, componentClass:Class):void;
 
   /**
    * The family is about to be discarded. Clean up all properties as necessary. Usually, you will

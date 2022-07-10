@@ -5,7 +5,7 @@ import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCo
 import { MockComponent, MockComponentExtended, MockReflectionObject } from '../__mocks__';
 
 describe('ReflectionObjectCodec tests', () => {
-  let classMap:Record<string, Class<any>>;
+  let classMap:Record<string, Class>;
   let object:MockReflectionObject;
   let encoded:EncodedObject | null;
   let decoded:any;

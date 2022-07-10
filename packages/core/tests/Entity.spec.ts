@@ -95,7 +95,7 @@ describe('Entity tests', () => {
 
   it('storing Component triggers added Signal', () => {
     const component:MockComponent = new MockComponent();
-    entity.componentAdded.add((signalEntity:Entity, componentClass:Class<any>) => {
+    entity.componentAdded.add((signalEntity:Entity, componentClass:Class) => {
       expect(signalEntity).toBe(entity);
       expect(componentClass).toBe(MockComponent);
     });
@@ -104,7 +104,7 @@ describe('Entity tests', () => {
 
   it('removing Component triggers removed Signal', () => {
     const component:MockComponent = new MockComponent();
-    entity.componentRemoved.add((signalEntity:Entity, componentClass:Class<any>) => {
+    entity.componentRemoved.add((signalEntity:Entity, componentClass:Class) => {
       expect(signalEntity).toBe(entity);
       expect(componentClass).toBe(MockComponent);
     });
@@ -114,7 +114,7 @@ describe('Entity tests', () => {
 
   it('removing Component triggers removed Signal', () => {
     const component:MockComponent = new MockComponent();
-    entity.componentRemoved.add((signalEntity:Entity, componentClass:Class<any>) => {
+    entity.componentRemoved.add((signalEntity:Entity, componentClass:Class) => {
       expect(signalEntity).toBe(entity);
       expect(componentClass).toBe(MockComponent);
     });
@@ -124,7 +124,7 @@ describe('Entity tests', () => {
 
   it('ComponentAddedSignal contains correct parameters', (done) => {
     const component:MockComponent = new MockComponent();
-    entity.componentAdded.add((signalEntity:Entity, componentClass:Class<any>) => {
+    entity.componentAdded.add((signalEntity:Entity, componentClass:Class) => {
       // sameInstance
       setTimeout(() => {
         expect(signalEntity).toBe(entity);
@@ -138,7 +138,7 @@ describe('Entity tests', () => {
   it('componentRemovedSignalContainsCorrectParameters', (done) => {
     const component:MockComponent = new MockComponent();
     entity.add(component);
-    entity.componentRemoved.add((signalEntity:Entity, componentClass:Class<any>) => {
+    entity.componentRemoved.add((signalEntity:Entity, componentClass:Class) => {
       // sameInstance
       setTimeout(() => {
         expect(signalEntity).toBe(entity);

@@ -7,7 +7,7 @@ import { ReflectionObjectCodec } from '../../src/objectcodecs/ReflectionObjectCo
 import { MockCodec, MockComponent } from '../__mocks__';
 
 describe('CodecManager tests', () => {
-  let classMap:Record<string, Class<any>>;
+  let classMap:Record<string, Class>;
   let codecManager:CodecManager;
 
   beforeEach(() => {

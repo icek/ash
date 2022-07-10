@@ -26,5 +26,5 @@ export abstract class Node {
    */
   public next:this | null = null;
 
-  static propTypes:Record<string, Class<any>>;
+  static propTypes:Record<string, Class>;
 }

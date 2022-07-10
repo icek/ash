@@ -11,7 +11,7 @@ export abstract class BaseEngineCodec<T> {
 
   protected decoder:EngineDecoder;
 
-  public constructor(classMap:Record<string, Class<any>>) {
+  public constructor(classMap:Record<string, Class>) {
     this.codecManager = new CodecManager(classMap);
     this.encoder = new EngineEncoder(this.codecManager);
     this.decoder = new EngineDecoder(this.codecManager);

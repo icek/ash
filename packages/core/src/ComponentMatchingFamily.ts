@@ -20,7 +20,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
 
   private nodeClass:NodeClass<TNode>;
 
-  public components:Map<Class<any>, string>;
+  public components:Map<Class, string>;
 
   private nodePool:NodePool<TNode>;
 
@@ -41,7 +41,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
     this.components = new Map();
     this.nodePool = new NodePool(nodeClass, this.components);
 
-    const types:Record<string, Class<any>> = nodeClass.propTypes;
+    const types:Record<string, Class> = nodeClass.propTypes;
     const classNames = Object.keys(types);
     for (const className of classNames) {
       this.components.set(types[className], className);
@@ -69,7 +69,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
    * Called by the engine when a component has been added to an entity. We check if the entity is not in
    * this family's NodeList and should be, and add it if appropriate.
    */
-  public componentAddedToEntity(entity:Entity, componentClass:Class<any>):void {
+  public componentAddedToEntity(entity:Entity, componentClass:Class):void {
     this.addIfMatch(entity);
   }
 
@@ -78,7 +78,7 @@ export class ComponentMatchingFamily<TNode extends Node> implements Family<TNode
    * is required by this family's NodeList and if so, we check if the entity is in this this NodeList and
    * remove it if so.
    */
-  public componentRemovedFromEntity(entity:Entity, componentClass:Class<any>):void {
+  public componentRemovedFromEntity(entity:Entity, componentClass:Class):void {
     if (this.components.has(componentClass)) {
       this.removeIfMatch(entity);
     }

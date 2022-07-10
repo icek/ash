@@ -37,7 +37,7 @@ export class ObjectReflection {
       }
     }
 
-    const types:Record<string, Class<any>> = (component.constructor as any).__ash_types__;
+    const types:Record<string, Class> = (component.constructor as any).__ash_types__;
     if (!types) return;
 
     const typesKeys = Object.keys(types);

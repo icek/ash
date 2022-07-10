@@ -48,31 +48,31 @@ A component provider implements the `ComponentProvider` interface.
 The standard method for adding a component provider to a state is
 
 ```typescript 
-state.add(componentType:Class<any>).withProvider(provider:ComponentProvider);
+state.add(componentType:Class).withProvider(provider:ComponentProvider);
 ```
 There are shortcuts for using the standard component providers
 
 ```typescript 
-state.add(componentType:Class<any>).withType(instanceType:Class);
+state.add(componentType:Class).withType(instanceType:Class);
 ```
 
 uses the ComponentTypeProvider to provide a new instance of instanceType. instanceType should be the same as or componentType of a type that extends 
 componentType.
 
 ```typescript 
-state.add(componentType:Class<any>);
+state.add(componentType:Class);
 ```
 
 If instanceType is the same as componentType then it may be omitted.
 
 ```typescript 
-state.add(componentType:Class<any>).withInstance(component:any);
+state.add(componentType:Class).withInstance(component:any);
 ```
 
 uses the ComponentInstanceProvider to provide the same instance every time it is called.
 
 ```typescript 
-state.add(componentType:Class).withSingleton(instanceType:Class<any>);
+state.add(componentType:Class).withSingleton(instanceType:Class);
 ```
 
 uses the ComponentSingletonProvider to create a new instance of instanceType and provide that same instance every 

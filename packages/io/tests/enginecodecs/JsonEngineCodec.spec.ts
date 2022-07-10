@@ -3,7 +3,7 @@ import { JsonEngineCodec } from '../../src';
 import { MockComponent1, MockComponent2 } from '../__mocks__';
 
 describe('JsonEngineCodec tests', () => {
-  let classMap:Record<string, Class<any>>;
+  let classMap:Record<string, Class>;
   let endec:JsonEngineCodec;
   let original:Engine;
   let engine:Engine;

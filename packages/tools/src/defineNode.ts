@@ -3,7 +3,7 @@ import { Class, Node, NodeClass } from '@ash.ts/core';
 /**
  * Type helping in converting of propTypes to actual class properties.
  */
-export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
+export type NodeClassWithProps<TProps extends Record<string, Class>> =
   NodeClass<Node & { [K in keyof TProps]:InstanceType<TProps[K]> }>;
 
 /**
@@ -30,10 +30,10 @@ export type NodeClassWithProps<TProps extends Record<string, Class<any>>> =
  * @param props string to Class record
  * @param name returned class name
  */
-export function defineNode<T extends Record<string, Class<any>>>(props:T, name = ''):NodeClassWithProps<T> {
+export function defineNode<T extends Record<string, Class>>(props:T, name = ''):NodeClassWithProps<T> {
   return {
     [name]: class extends Node {
-      static propTypes:Record<string, Class<any>> = props;
+      static propTypes:Record<string, Class> = props;
     },
   }[name] as NodeClassWithProps<T>;
 }

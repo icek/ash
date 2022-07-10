@@ -32,12 +32,12 @@ export class Entity {
   /**
    * This signal is dispatched when a component is added to the entity.
    */
-  public componentAdded:Signal<[Entity, Class<any>]>;
+  public componentAdded:Signal<[Entity, Class]>;
 
   /**
    * This signal is dispatched when a component is removed from the entity.
    */
-  public componentRemoved:Signal<[Entity, Class<any>]>;
+  public componentRemoved:Signal<[Entity, Class]>;
 
   /**
    * Dispatched when the name of the entity changes.
@@ -49,7 +49,7 @@ export class Entity {
 
   public next:Entity | null = null;
 
-  public components:Map<Class<any>, any>;
+  public components:Map<Class, any>;
 
   /**
    * The constructor
@@ -107,7 +107,7 @@ export class Entity {
 
   public add<T extends Record<string, any>>(
     component:T,
-    componentClass:Class<T> = component.constructor as Class<any>,
+    componentClass:Class<T> = component.constructor as Class,
   ):this {
     if (!componentClass) {
       throw new Error(`Unable to get type of component: ${component}`);

@@ -16,12 +16,12 @@ export class NodePool<TNode extends Node> {
 
   private cacheTail:TNode | null = null;
 
-  private components:Map<Class<any>, string>;
+  private components:Map<Class, string>;
 
   /**
    * Creates a pool for the given node class.
    */
-  public constructor(nodeClass:NodeClass<TNode>, components:Map<Class<any>, string>) {
+  public constructor(nodeClass:NodeClass<TNode>, components:Map<Class, string>) {
     this.NodeClass = nodeClass;
     this.components = components;
   }

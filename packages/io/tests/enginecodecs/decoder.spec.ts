@@ -4,7 +4,7 @@ import { ObjectEngineCodec } from '../../src';
 import { MockComponent1, MockComponent2 } from '../__mocks__';
 
 describe('Decoder tests', () => {
-  let classMap:Record<string, Class<any>>;
+  let classMap:Record<string, Class>;
   let endec:ObjectEngineCodec;
   let original:Engine;
   let encodedData:EncodedData;

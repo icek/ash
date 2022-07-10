@@ -12,10 +12,10 @@ import { Class, NodeClass } from '@ash.ts/core';
  *   display:Display;
  * }
  * ```
- * @param {Class<any>} type
+ * @param {Class} type
  * @returns {PropertyDecorator}
  */
-export function keep(type:Class<any>):PropertyDecorator {
+export function keep(type:Class):PropertyDecorator {
   return (target, propertyKey) => {
     if (typeof propertyKey === 'symbol') {
       throw new Error('Cannot use @keep on Symbols');

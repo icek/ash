@@ -4,7 +4,7 @@ import { CodecManager } from '../../src/objectcodecs/CodecManager';
 import { MockComponent } from '../__mocks__';
 
 describe('ClassObjectCodec tests', () => {
-  let classMap:Record<string, Class<any>>;
+  let classMap:Record<string, Class>;
   let codec:ClassObjectCodec;
   let codecManager:CodecManager;
 

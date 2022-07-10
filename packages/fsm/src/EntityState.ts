@@ -10,7 +10,7 @@ export class EntityState {
   /**
    * @private
    */
-  public providers:Map<Class<any>, ComponentProvider<any>> = new Map();
+  public providers:Map<Class, ComponentProvider<any>> = new Map();
 
   /**
    * Add a new ComponentMapping to this state. The mapping is a utility class that is used to

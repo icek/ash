@@ -19,7 +19,7 @@ export class ReflectionObjectCodec implements ObjectCodec<Record<string, any>> {
   }
 
   public decode(object:EncodedObject, codecManager:CodecManager):Record<string, any> | null {
-    const Type:Class<any> | null = codecManager.stringToClassMap[object.type] || null;
+    const Type:Class | null = codecManager.stringToClassMap[object.type] || null;
     if (!Type) {
       return null;
     }

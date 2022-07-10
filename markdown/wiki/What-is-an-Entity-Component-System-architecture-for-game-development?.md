@@ -949,7 +949,7 @@ of components. We'll access those components based on their class type.
 
 ```typescript
 class Entity {
-  private components:Map<Class<any>, any> = new Map();
+  private components:Map<Class, any> = new Map();
 
   public add<T>(component:T):void {
     const componentClass:Class<T> = component.constructor;
@@ -1056,7 +1056,7 @@ class Engine {
     this.systems.remove(system);
   }
 
-  public getNodeList(nodeClass:Class<any>):NodeList {
+  public getNodeList(nodeClass:Class):NodeList {
     const nodes:NodeList = new NodeList();
     this.nodeLists.set(nodeClass, nodes);
     // create the nodes from the current set of entities

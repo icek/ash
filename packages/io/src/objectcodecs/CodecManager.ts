@@ -8,15 +8,15 @@ import { ObjectReflectionFactory } from './ObjectReflectionFactory';
 import { ReflectionObjectCodec } from './ReflectionObjectCodec';
 
 export class CodecManager {
-  public stringToClassMap:Record<string, Class<any>>;
+  public stringToClassMap:Record<string, Class>;
 
-  public classToStringMap:Map<Class<any>, string>;
+  public classToStringMap:Map<Class, string>;
 
-  private codecs:Map<Class<any>, ObjectCodec<any>>;
+  private codecs:Map<Class, ObjectCodec<any>>;
 
   private reflectionCodec:ReflectionObjectCodec;
 
-  public constructor(classMap:Record<string, Class<any>>) {
+  public constructor(classMap:Record<string, Class>) {
     classMap.number = Number;
     classMap.string = String;
     classMap.boolean = Boolean;
@@ -42,7 +42,7 @@ export class CodecManager {
   }
 
   public getCodecForObject(object:any):ObjectCodec<any> | null {
-    const nativeTypes:Record<string, Class<any>> = {
+    const nativeTypes:Record<string, Class> = {
       number: Number,
       string: String,
       boolean: Boolean,
@@ -60,7 +60,7 @@ export class CodecManager {
     return null;
   }
 
-  public getCodecForType(type:Class<any>):ObjectCodec<any> | null {
+  public getCodecForType(type:Class):ObjectCodec<any> | null {
     if (this.codecs.has(type)) {
       return this.codecs.get(type)!;
     }
@@ -77,7 +77,7 @@ export class CodecManager {
     return codec;
   }
 
-  public getCodecForComponentType(type:Class<any>):ObjectCodec<any> {
+  public getCodecForComponentType(type:Class):ObjectCodec<any> {
     const codec:ObjectCodec<any> | null = this.getCodecForType(type);
     if (codec === null) {
       return this.reflectionCodec;
@@ -86,7 +86,7 @@ export class CodecManager {
     return codec;
   }
 
-  public addCustomCodec(codec:ObjectCodec<any>, type:Class<any>):void {
+  public addCustomCodec(codec:ObjectCodec<any>, type:Class):void {
     this.codecs.set(type, codec);
   }
 

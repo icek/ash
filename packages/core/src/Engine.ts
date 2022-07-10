@@ -127,7 +127,7 @@ export class Engine {
   /**
    * @private
    */
-  private componentAdded = (entity:Entity, componentClass:Class<any>):void => {
+  private componentAdded = (entity:Entity, componentClass:Class):void => {
     for (const family of this.families.values()) {
       family.componentAddedToEntity(entity, componentClass);
     }
@@ -136,7 +136,7 @@ export class Engine {
   /**
    * @private
    */
-  private componentRemoved = (entity:Entity, componentClass:Class<any>):void => {
+  private componentRemoved = (entity:Entity, componentClass:Class):void => {
     for (const family of this.families.values()) {
       family.componentRemovedFromEntity(entity, componentClass);
     }

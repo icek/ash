@@ -69,7 +69,7 @@ export class EntityStateMachine {
     if (newState === this.currentState) {
       return;
     }
-    let toAdd:Map<Class<any>, ComponentProvider<any>>;
+    let toAdd:Map<Class, ComponentProvider<any>>;
 
     if (this.currentState) {
       toAdd = new Map();

@@ -2,6 +2,7 @@ import { Class, Engine, Entity, Family, NodeList } from '../../src';
 import { MockNode } from './MockNode';
 
 export class MockFamily implements Family<MockNode> {
+  // eslint-disable-next-line no-use-before-define
   public static instances:MockFamily[] = [];
 
   public newEntityCalls = 0;
@@ -20,7 +21,7 @@ export class MockFamily implements Family<MockNode> {
     MockFamily.instances = [];
   }
 
-  public constructor(nodeClass:Class<any>, engine:Engine) {
+  public constructor(nodeClass:Class, engine:Engine) {
     MockFamily.instances.push(this);
   }
 
@@ -36,11 +37,11 @@ export class MockFamily implements Family<MockNode> {
     this.removeEntityCalls += 1;
   }
 
-  public componentAddedToEntity(entity:Entity, componentClass:Class<any>):void {
+  public componentAddedToEntity(entity:Entity, componentClass:Class):void {
     this.componentAddedCalls += 1;
   }
 
-  public componentRemovedFromEntity(entity:Entity, componentClass:Class<any>):void {
+  public componentRemovedFromEntity(entity:Entity, componentClass:Class):void {
     this.componentRemovedCalls += 1;
   }
 

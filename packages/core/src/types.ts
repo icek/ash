@@ -4,7 +4,7 @@ import { Node } from './Node';
  * Interface representing a Class
  * @typeParam T type of an object created by a Class
  */
-export interface Class<T> {
+export interface Class<T = any> {
   new(...args:any[]):T;
 }
 
@@ -18,5 +18,5 @@ export interface NodeClass<TNode extends Node> {
   /**
    * Record holding mapping of property names to component classes.
    */
-  propTypes:Record<string, Class<any>>;
+  propTypes:Record<string, Class>;
 }

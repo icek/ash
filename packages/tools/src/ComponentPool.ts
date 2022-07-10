@@ -33,7 +33,7 @@
 import { Class } from '@ash.ts/core';
 
 export class ComponentPool {
-  private static pools:Map<Class<any>, any[]> = new Map();
+  private static pools:Map<Class, any[]> = new Map();
 
   private static getPool<T>(componentClass:Class<T>):T[] {
     if (ComponentPool.pools.has(componentClass)) {
