@@ -1,6 +1,6 @@
 /**
  * [[include:tools.md]]
- * @module @ash.ts/tools
+ * @module
  */
 export { ComponentPool } from './ComponentPool';
 export { defineNode } from './defineNode';

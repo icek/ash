@@ -14,31 +14,16 @@
     }
   },
   "typedocOptions": {
-    "name": "ash",
-    "entryPoints": [
-      "./packages/core/src/index.ts",
-      "./packages/fsm/src/index.ts",
-      "./packages/io/src/index.ts",
-      "./packages/signals/src/index.ts",
-      "./packages/tick/src/index.ts",
-      "./packages/tools/src/index.ts",
-      "./packages/ash/src/index.ts"
-    ],
+    "name": "@ash.ts",
+    "entryPointStrategy": "packages",
+    "entryPoints": ["."],
     "out": "docs",
     "excludeExternals": true,
     "excludePrivate": true,
     "excludeProtected": false,
     "excludeInternal": true,
-    "theme": "default",
     "gitRevision": "master",
     "includes": "./markdown/typedoc",
-    "readme": "./markdown/typedoc/index.md",
-    "rewriteLinks": {
-      "^\\.\\./([^/]+)(?:#readme|/README.md)": "_ash_ts_$1.html",
-      "^\\.\\/packages\\/([^/]+)(?:#readme|\\/README.md)": "modules/_ash_ts_$1.html"
-    },
-    "versionsMapping": {
-      "__version__/(.+)": "@ash.ts/$1"
-    }
+    "readme": "./markdown/typedoc/index.md"
   }
 }

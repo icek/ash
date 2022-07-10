@@ -1,6 +1,6 @@
 /**
  * [[include:tick.md]]
- * @module @ash.ts/tick
+ * @module
  */
 export { FixedTickProvider } from './FixedTickProvider';
 export { FrameTickProvider } from './FrameTickProvider';

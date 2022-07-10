@@ -32,22 +32,22 @@ export class Entity {
   /**
    * This signal is dispatched when a component is added to the entity.
    */
-  public componentAdded:Signal<[Entity, Class<any>]>;
+  public componentAdded:Signal<[this, Class<any>]>;
 
   /**
    * This signal is dispatched when a component is removed from the entity.
    */
-  public componentRemoved:Signal<[Entity, Class<any>]>;
+  public componentRemoved:Signal<[this, Class<any>]>;
 
   /**
    * Dispatched when the name of the entity changes.
    * Used internally by the engine to track entities based on their names.
    */
-  public nameChanged:Signal<[Entity, string]>;
+  public nameChanged:Signal<[this, string]>;
 
-  public previous:Entity | null = null;
+  public previous:this | null = null;
 
-  public next:Entity | null = null;
+  public next:this | null = null;
 
   public components:Map<Class<any>, any>;
 

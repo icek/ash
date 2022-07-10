@@ -1,6 +1,6 @@
 /**
  * [[include:io.md]]
- * @module @ash.ts/io
+ * @module
  */
 export { BaseEngineCodec } from './enginecodecs/BaseEngineCodec';
 export type { EncodedData, EncodedEntity, EncodedComponent, EncodedObject } from './enginecodecs/EncodedData';

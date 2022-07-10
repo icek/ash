@@ -2,7 +2,7 @@ import { Node } from './Node';
 
 /**
  * Interface representing a Class
- * @typeParam T type of an object created by a Class
+ * @typeParam T type of object created by a Class
  */
 export interface Class<T> {
   new(...args:any[]):T;
@@ -10,7 +10,7 @@ export interface Class<T> {
 
 /**
  * Interface representing a NodeClass
- * @typeParam TNode type of a node
+ * @typeParam TNode type of node
  */
 export interface NodeClass<TNode extends Node> {
   new():TNode;

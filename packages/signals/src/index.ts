@@ -1,6 +1,6 @@
 /**
  * [[include:signals.md]]
- * @module @ash.ts/signals
+ * @module
  */
 export type { ListenerNode } from './ListenerNode';
 export type { ListenerNodePool } from './ListenerNodePool';

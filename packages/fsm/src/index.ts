@@ -1,6 +1,6 @@
 /**
  * [[include:fsm.md]]
- * @module @ash.ts/fsm
+ * @module
  */
 export type { ComponentInstanceProvider } from './ComponentInstanceProvider';
 export type { ComponentProvider } from './ComponentProvider';

@@ -6,6 +6,11 @@
   "browser": "dist/signals.min.js",
   "module": "dist/signals.mjs",
   "types": "dist/signals.d.ts",
+  "typedoc": {
+    "entryPoint": "./src/index.ts",
+    "readmeFile": "./README.md",
+    "displayName": "signals"
+  },
   "keywords": [
     "ash",
     "typescript",

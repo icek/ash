@@ -1,6 +1,5 @@
 /**
  * [[include:core.md]]
- * @module @ash.ts/core
  */
 export { ComponentMatchingFamily } from './ComponentMatchingFamily';
 export { Engine } from './Engine';

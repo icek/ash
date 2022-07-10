@@ -1,6 +1,5 @@
 /**
  * [[include:ash.md]]
- * @module @ash.ts/ash
  */
 import {
   Class,
