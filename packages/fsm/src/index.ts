@@ -1,6 +1,6 @@
 /**
  * [[include:fsm.md]]
- * @module
+ * @module fsm
  */
 export type { ComponentInstanceProvider } from './ComponentInstanceProvider';
 export type { ComponentProvider } from './ComponentProvider';

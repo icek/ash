@@ -1,5 +1,6 @@
 /**
  * [[include:core.md]]
+ * @module core
  */
 export { ComponentMatchingFamily } from './ComponentMatchingFamily';
 export { Engine } from './Engine';

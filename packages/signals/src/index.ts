@@ -1,6 +1,6 @@
 /**
  * [[include:signals.md]]
- * @module
+ * @module signals
  */
 export type { ListenerNode } from './ListenerNode';
 export type { ListenerNodePool } from './ListenerNodePool';

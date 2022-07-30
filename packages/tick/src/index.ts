@@ -1,6 +1,6 @@
 /**
  * [[include:tick.md]]
- * @module
+ * @module tick
  */
 export { FixedTickProvider } from './FixedTickProvider';
 export { FrameTickProvider } from './FrameTickProvider';

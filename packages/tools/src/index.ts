@@ -1,6 +1,6 @@
 /**
  * [[include:tools.md]]
- * @module
+ * @module tools
  */
 export { ComponentPool } from './ComponentPool';
 export { defineNode } from './defineNode';

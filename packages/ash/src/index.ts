@@ -1,5 +1,6 @@
 /**
  * [[include:ash.md]]
+ * @module ash
  */
 import {
   Class,
