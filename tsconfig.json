@@ -15,8 +15,15 @@
   },
   "typedocOptions": {
     "name": "@ash.ts",
-    "entryPointStrategy": "packages",
-    "entryPoints": ["."],
+    "entryPoints": [
+      "./packages/core/src/index.ts",
+      "./packages/fsm/src/index.ts",
+      "./packages/io/src/index.ts",
+      "./packages/signals/src/index.ts",
+      "./packages/tick/src/index.ts",
+      "./packages/tools/src/index.ts",
+      "./packages/ash/src/index.ts"
+    ],
     "out": "docs",
     "excludeExternals": true,
     "excludePrivate": true,
