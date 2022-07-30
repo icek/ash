@@ -16,12 +16,12 @@ export abstract class System {
   /**
    * Used internally to manage the list of systems within the engine. The previous system in the list.
    */
-  public previous:System | null = null;
+  public previous:this | null = null;
 
   /**
    * Used internally to manage the list of systems within the engine. The next system in the list.
    */
-  public next:System | null = null;
+  public next:this | null = null;
 
   /**
    * Used internally to hold the priority of this system within the system list. This is

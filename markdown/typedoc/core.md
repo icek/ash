@@ -3,14 +3,6 @@
 Core part of ash.ts - a Typescript port of [Ash Framework], 
 an entity framework for game development by [Richard Lord]
 
-## Installation
-
-`npm i @ash.ts/core`
-
-## Documentation
-
-TypeDoc generated [API docs][api]
-
 ## Differences between typescript and AS3 version
 
 As this is a port to a different language there are some changes to the API.
@@ -27,7 +19,7 @@ and not available at runtime. All you need to add is `@keep(Class)` to each
 field of your node. This way type information is available in compile and 
 runtime. Example:
  
- ```typescript
+```typescript
 import { Node, keep } from '@ash.ts/ash';
 import { Motion, Position } from '../components';
 

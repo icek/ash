@@ -6,6 +6,11 @@
   "browser": "dist/core.min.js",
   "module": "dist/core.mjs",
   "types": "dist/core.d.ts",
+  "typedoc": {
+    "entryPoint": "./src/index.ts",
+    "readmeFile": "./README.md",
+    "displayName": "core"
+  },
   "keywords": [
     "ash",
     "typescript",

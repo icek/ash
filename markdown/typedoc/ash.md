@@ -2,12 +2,12 @@
 A Typescript port of [Ash Framework], an entity framework for game development 
 by [Richard Lord]. This is the bundle package containing the following packages:
 
-- [core](../core/README.md) - Core module.
-- [fsm](../fsm/README.md) - Finite State Machine for Engine and Entities.
-- [io](../io/README.md) - Serialization/Deserialization for Engine.
-- [signals](../signals/README.md) - Signals used for internal communication.
-- [tick](../tick/README.md) - Tick providers.
-- [tools](../tools/README.md) - Optional tools for use with Ash.  
+- [core](../modules/core.html) - Core module.
+- [fsm](../modules/fsm.html) - Finite State Machine for Engine and Entities.
+- [io](../modules/io.html) - Serialization/Deserialization for Engine.
+- [signals](../modules/signals.html) - Signals used internally for communication.
+- [tick](../modules/tick.html) - Tick providers.
+- [tools](../modules/tools.html) - Optional tools for use with Ash.  
 
 ## Differences between typescript and AS3 version
 
@@ -16,35 +16,71 @@ As this is a port to a different language, there are some changes to the API.
 ### Nodes
 
 Javascript which is a language that typescript is compiling to, is dynamic. 
-Variables that are declared but not yet instantiated doesn't have a type. 
-In AS3 when Node fields are null but they are declared as some type, that
+Class properties that are declared but not yet instantiated doesn't have a type. 
+In AS3 when Node fields are null, but they are declared as some type, that
 information is kept at runtime.
 Adding typescript to javascript gave us code completion and type checking, 
 but information about type is dropped as soon as code is compiled to javascript
-and not available at runtime. All you need to add is `@keep(Class)` to each 
-field of your node. This way type information is available in compile and 
-runtime. Example:
+and not available at runtime. To overcome that issue there is a need to provide
+type information. To do that you have to add a static `propTypes` field. This 
+way type information is available in compile and runtime. Example:
  
  ```typescript
+import { Node } from '@ash.ts/ash';
+import { Motion, Position } from '../components';
+
+export class MovementNode extends Node {
+  public position!:Position;
+  public motion!:Motion;
+  
+  public static propTypes = {
+    position: Position,
+    motion: Motion,
+  }
+}
+```
+
+As you can see there is some code duplication here. To avoid that there are 
+2 solutions available to choose from in `@ash.ts/tools` package - `@keep` decorator
+and `defineNode` helper.
+
+Using `@keep` decorator:
+```typescript
 import { Node, keep } from '@ash.ts/ash';
 import { Motion, Position } from '../components';
 
 export class MovementNode extends Node {
-  
   @keep(Position)
   public position!:Position;
   
   @keep(Motion)
   public motion!:Motion;
-  
 }
-
 ```
-Exclamation mark used in this example is a non-null assertion operator.
-If you use `"strict": true` or `"strictNullChecks": true` flags in your
-`tsconfig.json` file, it's the way to silent compiler. You as a developer 
-can guarantee that these values will never be null, because as soon as they
-are created by the Engine they are filled with components.
+
+Using `defineNode` helper:
+```typescript
+import { defineNode } from '@ash.ts/ash';
+import { Motion, Position } from '../components';
+
+export const MovementNode = defineNode({
+  position: Position,
+  motion: Motion,
+}, 'MovementNode');
+export type MovementNode = InstanceType<typeof MovementNode>;
+```
+
+or shortest and recommended method:
+
+```typescript
+import { defineNode } from '@ash.ts/ash';
+import { Motion, Position } from '../components';
+
+export class MovementNode extends defineNode({
+  position: Position,
+  motion: Motion,
+}) {}
+```
 
 ### Systems
 
@@ -69,7 +105,6 @@ export class RenderSystem extends System {
 
   public addToEngine(engine:Engine):void {
     this.nodes = engine.getNodeList(RenderNode);
-    // some more logic
   }
 
   public update(time:number):void {
@@ -80,10 +115,8 @@ export class RenderSystem extends System {
 
   public removeFromEngine(engine:Engine):void {
     this.nodes = null;
-    // some more logic
   }
 }
-
 ```
 
 ### IO
@@ -143,7 +176,7 @@ Typescript exported json example:
 {
   "id": 1,
   "type": "Position",
-  "value": ...
+  "value": {"x": 0, "y": 0}
 }
 ```
 

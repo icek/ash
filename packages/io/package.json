@@ -6,6 +6,11 @@
   "browser": "dist/io.min.js",
   "module": "dist/io.mjs",
   "types": "dist/io.d.ts",
+  "typedoc": {
+    "entryPoint": "./src/index.ts",
+    "readmeFile": "./README.md",
+    "displayName": "io"
+  },
   "keywords": [
     "ash",
     "typescript",

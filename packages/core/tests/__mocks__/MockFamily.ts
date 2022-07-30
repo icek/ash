@@ -2,6 +2,7 @@ import { Class, Engine, Entity, Family, NodeList } from '../../src';
 import { MockNode } from './MockNode';
 
 export class MockFamily implements Family<MockNode> {
+  // eslint-disable-next-line no-use-before-define
   public static instances:MockFamily[] = [];
 
   public newEntityCalls = 0;
