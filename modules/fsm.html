@@ -1,0 +1,162 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>fsm | @ash.ts</title><meta name="description" content="Documentation for @ash.ts"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base="..">
+<div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="../index.html" class="title">@ash.ts</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb">
+<li><a href="../modules.html">@ash.ts</a></li>
+<li><a href="fsm.html">fsm</a></li></ul>
+<h1>Module fsm</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography">
+<a href="#ashtsfsm" id="ashtsfsm" style="color: inherit; text-decoration: none;">
+  <h1>@ash.ts/fsm</h1>
+</a>
+<p>This package contains classes for creating and using finite state machines with Ash. Specifically, it contains
+classes for creating states based on the components on an entity, and for switching between those states.</p>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<p><code>npm i @ash.ts/fsm</code></p>
+
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h2>Documentation</h2>
+</a>
+<p>TypeDoc generated <a href="https://icek.github.io/ash/modules/_ash_ts_fsm.html">API docs</a></p>
+
+<a href="#an-example" id="an-example" style="color: inherit; text-decoration: none;">
+  <h2>An example</h2>
+</a>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">EntityStateMachine</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@ash.ts/fsm&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-7">fsm</span><span class="hl-1">:</span><span class="hl-5">EntityStateMachine</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">EntityStateMachine</span><span class="hl-1">(</span><span class="hl-2">entity</span><span class="hl-1">);</span><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">createState</span><span class="hl-1">(</span><span class="hl-3">&#39;guard&#39;</span><span class="hl-1">).</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Patrol</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Patrol</span><span class="hl-1">(</span><span class="hl-2">guardPath</span><span class="hl-1">));</span><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">createState</span><span class="hl-1">(</span><span class="hl-3">&#39;investigate&#39;</span><span class="hl-1">).</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Investigate</span><span class="hl-1">);</span><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">createState</span><span class="hl-1">(</span><span class="hl-3">&#39;defend&#39;</span><span class="hl-1">).</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Defend</span><span class="hl-1">);</span><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">changeState</span><span class="hl-1">(</span><span class="hl-3">&#39;guard&#39;</span><span class="hl-1">);</span>
+</code></pre>
+
+<a href="#the-methods" id="the-methods" style="color: inherit; text-decoration: none;">
+  <h2>The methods</h2>
+</a>
+<p>A finite state machine is an instance of the EntityStateMachine class. You pass it a reference to the entity it will
+manage when constructing it. You will usually store the state machine in a component on the entity so it can be
+recovered from within any system that is operating on the entity.</p>
+<p>A state machine is configured with states, and the state can be changed by calling the state machine&#39;s <code>changeState()</code> 
+method. States are identified by a string, which is assigned when the state is created and used to identify the state 
+when calling the <code>changeState()</code> method.</p>
+<p>States are instances of the EntityState class. They may be added to the EntityStateMachine using the 
+<code>EntityStateMachine.addState()</code> method, or they may be created and added in one call using the 
+<code>EntityStateMachine.createState()</code> method.</p>
+<p>A state is a set of components that should be added to the entity when that state is entered, and removed when that
+state exits (unless they are also required for the next state).</p>
+<p>States within the state machine are configured with component providers. A component provider has a method to
+provide a component to the entity, and a second method to identify if two component providers are equivalent -
+i.e. if they would provide an equivalent component.</p>
+<p>A component provider implements the <code>ComponentProvider</code> interface.</p>
+<p>The standard method for adding a component provider to a state is</p>
+<pre><code class="language-typescript"><span class="hl-2">state</span><span class="hl-1">.</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">componentType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">&lt;</span><span class="hl-2">any</span><span class="hl-1">&gt;).</span><span class="hl-6">withProvider</span><span class="hl-1">(</span><span class="hl-2">provider</span><span class="hl-1">:</span><span class="hl-2">ComponentProvider</span><span class="hl-1">);</span>
+</code></pre>
+<p>There are shortcuts for using the standard component providers</p>
+<pre><code class="language-typescript"><span class="hl-2">state</span><span class="hl-1">.</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">componentType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">&lt;</span><span class="hl-2">any</span><span class="hl-1">&gt;).</span><span class="hl-6">withType</span><span class="hl-1">(</span><span class="hl-2">instanceType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">);</span>
+</code></pre>
+<p>uses the ComponentTypeProvider to provide a new instance of instanceType. instanceType should be the same as or componentType of a type that extends 
+componentType.</p>
+<pre><code class="language-typescript"><span class="hl-2">state</span><span class="hl-1">.</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">componentType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">&lt;</span><span class="hl-2">any</span><span class="hl-1">&gt;);</span>
+</code></pre>
+<p>If instanceType is the same as componentType then it may be omitted.</p>
+<pre><code class="language-typescript"><span class="hl-2">state</span><span class="hl-1">.</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">componentType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">&lt;</span><span class="hl-2">any</span><span class="hl-1">&gt;).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-2">component</span><span class="hl-1">:</span><span class="hl-2">any</span><span class="hl-1">);</span>
+</code></pre>
+<p>uses the ComponentInstanceProvider to provide the same instance every time it is called.</p>
+<pre><code class="language-typescript"><span class="hl-2">state</span><span class="hl-1">.</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">componentType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">).</span><span class="hl-6">withSingleton</span><span class="hl-1">(</span><span class="hl-2">instanceType</span><span class="hl-1">:</span><span class="hl-2">Class</span><span class="hl-1">&lt;</span><span class="hl-2">any</span><span class="hl-1">&gt;);</span>
+</code></pre>
+<p>uses the ComponentSingletonProvider to create a new instance of instanceType and provide that same instance every 
+time it is called. The instance is not created until it is first required.</p>
+
+<a href="#chaining" id="chaining" style="color: inherit; text-decoration: none;">
+  <h2>Chaining</h2>
+</a>
+<p>The methods can be chained together to create a fluent interface. For example</p>
+<pre><code class="language-typescript"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-7">fsm</span><span class="hl-1">:</span><span class="hl-5">EntityStateMachine</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">EntityStateMachine</span><span class="hl-1">(</span><span class="hl-2">entity</span><span class="hl-1">);</span><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">createState</span><span class="hl-1">(</span><span class="hl-3">&#39;playing&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Motion</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Motion</span><span class="hl-1">(</span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-10">15</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">MotionControls</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">MotionControls</span><span class="hl-1">(</span><span class="hl-2">Keyboard</span><span class="hl-1">.</span><span class="hl-7">LEFT</span><span class="hl-1">, </span><span class="hl-2">Keyboard</span><span class="hl-1">.</span><span class="hl-7">RIGHT</span><span class="hl-1">, </span><span class="hl-2">Keyboard</span><span class="hl-1">.</span><span class="hl-7">UP</span><span class="hl-1">, </span><span class="hl-10">100</span><span class="hl-1">, </span><span class="hl-10">3</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Gun</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Gun</span><span class="hl-1">(</span><span class="hl-10">8</span><span class="hl-1">, </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-10">0.3</span><span class="hl-1">, </span><span class="hl-10">2</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">GunControls</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">GunControls</span><span class="hl-1">(</span><span class="hl-2">Keyboard</span><span class="hl-1">.</span><span class="hl-7">SPACE</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Collision</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Collision</span><span class="hl-1">(</span><span class="hl-10">9</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Display</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Display</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">SpaceshipView</span><span class="hl-1">()));</span><br/><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">createState</span><span class="hl-1">(</span><span class="hl-3">&#39;destroyed&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">DeathThroes</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">DeathThroes</span><span class="hl-1">(</span><span class="hl-10">5</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Display</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Display</span><span class="hl-1">(</span><span class="hl-2">deathView</span><span class="hl-1">))</span><br/><span class="hl-1">   .</span><span class="hl-6">add</span><span class="hl-1">(</span><span class="hl-2">Animation</span><span class="hl-1">).</span><span class="hl-6">withInstance</span><span class="hl-1">(</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Animation</span><span class="hl-1">(</span><span class="hl-2">deathView</span><span class="hl-1">));</span><br/><br/><span class="hl-2">fsm</span><span class="hl-1">.</span><span class="hl-6">changeState</span><span class="hl-1">(</span><span class="hl-3">&#39;playing&#39;</span><span class="hl-1">);</span>
+</code></pre>
+</div></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/icek/ash/blob/master/packages/fsm/src/index.ts#L5">fsm/src/index.ts:5</a></li></ul></aside>
+<section class="tsd-panel-group">
+<section class="tsd-panel tsd-typography"></section></section>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<h3 class="tsd-index-heading uppercase">Index</h3>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Classes</h3>
+<div class="tsd-index-list"><a href="../classes/fsm.ComponentInstanceProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-128-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-128-text"></path></svg><span>Component<wbr/>Instance<wbr/>Provider</span></a>
+<a href="../classes/fsm.ComponentSingletonProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Component<wbr/>Singleton<wbr/>Provider</span></a>
+<a href="../classes/fsm.ComponentTypeProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Component<wbr/>Type<wbr/>Provider</span></a>
+<a href="../classes/fsm.DynamicComponentProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Dynamic<wbr/>Component<wbr/>Provider</span></a>
+<a href="../classes/fsm.DynamicSystemProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Dynamic<wbr/>System<wbr/>Provider</span></a>
+<a href="../classes/fsm.EngineState.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Engine<wbr/>State</span></a>
+<a href="../classes/fsm.EngineStateMachine.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Engine<wbr/>State<wbr/>Machine</span></a>
+<a href="../classes/fsm.EntityState.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Entity<wbr/>State</span></a>
+<a href="../classes/fsm.EntityStateMachine.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Entity<wbr/>State<wbr/>Machine</span></a>
+<a href="../classes/fsm.StateComponentMapping.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>State<wbr/>Component<wbr/>Mapping</span></a>
+<a href="../classes/fsm.StateSystemMapping.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>State<wbr/>System<wbr/>Mapping</span></a>
+<a href="../classes/fsm.SystemInstanceProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>System<wbr/>Instance<wbr/>Provider</span></a>
+<a href="../classes/fsm.SystemSingletonProvider.html" class="tsd-index-link tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>System<wbr/>Singleton<wbr/>Provider</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Interfaces</h3>
+<div class="tsd-index-list"><a href="../interfaces/fsm.ComponentProvider.html" class="tsd-index-link tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg><span>Component<wbr/>Provider</span></a>
+<a href="../interfaces/fsm.SystemProvider.html" class="tsd-index-link tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>System<wbr/>Provider</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Variables</h3>
+<div class="tsd-index-list"><a href="../variables/fsm.FSM_VERSION.html" class="tsd-index-link tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-variable)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-32-path"></rect><path d="M11.106 16L8.85 7.24H9.966L11.454 13.192C11.558 13.608 11.646 13.996 11.718 14.356C11.79 14.708 11.842 14.976 11.874 15.16C11.906 14.976 11.954 14.708 12.018 14.356C12.09 13.996 12.178 13.608 12.282 13.192L13.758 7.24H14.85L12.582 16H11.106Z" fill="var(--color-text)" id="icon-32-text"></path></svg><span>FSM_<wbr/>VERSION</span></a>
+</div></section></section></section></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current"><a href="../modules.html">@ash.ts</a>
+<ul>
+<li class="tsd-kind-module"><a href="ash.html">ash</a></li>
+<li class="tsd-kind-module"><a href="core.html">core</a></li>
+<li class="current selected tsd-kind-module"><a href="fsm.html">fsm</a></li>
+<li class="tsd-kind-module"><a href="io.html">io</a></li>
+<li class="tsd-kind-module"><a href="signals.html">signals</a></li>
+<li class="tsd-kind-module"><a href="tick.html">tick</a></li>
+<li class="tsd-kind-module"><a href="tools.html">tools</a></li></ul></li></ul></div></details></nav>
+<nav class="tsd-navigation secondary menu-sticky">
+<ul>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.ComponentInstanceProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Component<wbr/>Instance<wbr/>Provider</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.ComponentSingletonProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Component<wbr/>Singleton<wbr/>Provider</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.ComponentTypeProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Component<wbr/>Type<wbr/>Provider</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.DynamicComponentProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Dynamic<wbr/>Component<wbr/>Provider</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.DynamicSystemProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Dynamic<wbr/>System<wbr/>Provider</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.EngineState.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Engine<wbr/>State</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.EngineStateMachine.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Engine<wbr/>State<wbr/>Machine</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.EntityState.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Entity<wbr/>State</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.EntityStateMachine.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Entity<wbr/>State<wbr/>Machine</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.StateComponentMapping.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>State<wbr/>Component<wbr/>Mapping</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.StateSystemMapping.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>State<wbr/>System<wbr/>Mapping</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.SystemInstanceProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>System<wbr/>Instance<wbr/>Provider</a></li>
+<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/fsm.SystemSingletonProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>System<wbr/>Singleton<wbr/>Provider</a></li>
+<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/fsm.ComponentProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Component<wbr/>Provider</a></li>
+<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/fsm.SystemProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>System<wbr/>Provider</a></li>
+<li class="tsd-kind-variable tsd-parent-kind-module"><a href="../variables/fsm.FSM_VERSION.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>FSM_<wbr/>VERSION</a></li></ul></nav></div></div>
+<div class="container tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="../assets/main.js"></script></body></html>
