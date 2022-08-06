@@ -1,5 +1,3 @@
-# @ash.ts/tools
-
 This package contains various tools for use with Ash - an entity component 
 system framework for game development.
 

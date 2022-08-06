@@ -1,5 +1,3 @@
-# @ash.ts/tick
-
 This package contains tick providers for use with Ash - an entity component 
 system framework for game development.
 

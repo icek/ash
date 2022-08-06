@@ -1,4 +1,3 @@
-# @ash.ts/ash
 A Typescript port of [Ash Framework], an entity framework for game development 
 by [Richard Lord]. This is the bundle package containing the following packages:
 

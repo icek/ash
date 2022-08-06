@@ -1,5 +1,3 @@
-# @ash.ts/io
-
 This package contains classes for serializing and deserializing the entities in 
 an Ash game. This lets you save the entire game state by serializing all the 
 entities in the engine, and restore the game by deserializing them again.

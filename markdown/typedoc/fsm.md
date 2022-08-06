@@ -1,5 +1,3 @@
-# @ash.ts/fsm
-
 This package contains classes for creating and using finite state machines with Ash. Specifically, it contains
 classes for creating states based on the components on an entity, and for switching between those states.
 

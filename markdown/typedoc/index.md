@@ -1,4 +1,3 @@
-# @ash.ts
 A Typescript port of [Ash Framework], an entity framework for game development
 by [Richard Lord]. 
 

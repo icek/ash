@@ -1,5 +1,3 @@
-# @ash.ts/core
-
 Core part of ash.ts - a Typescript port of [Ash Framework], 
 an entity framework for game development by [Richard Lord]
 
