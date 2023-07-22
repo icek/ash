@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import terser from '@rollup/plugin-terser';
 import dts from 'rollup-plugin-dts';
-import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import * as fs from 'fs';
 
@@ -19,10 +19,10 @@ export default packages.reduce((config, packageName) => {
   const filePath = `${root}/dist/${packageName}`;
   const isBundle = packageName === bundlePackageName;
   const name = isBundle ? ashGlobal : `${ashGlobal}.${packageName}`;
-  const globals = isBundle ? undefined : pkg => pkg.replace(/^@ash\.ts\/(.*)$/g, `${ashGlobal}.$1`);
-  const external = isBundle ? undefined : pkg => pkg.startsWith('@ash.ts/');
+  const globals = isBundle ? undefined : (pkg) => pkg.replace(/^@ash\.ts\/(.*)$/g, `${ashGlobal}.$1`);
+  const external = isBundle ? undefined : (pkg) => pkg.startsWith('@ash.ts/');
   const minifier = terser({ keep_classnames: true, keep_fnames: true });
-  const replacements = { preventAssignment: true, values: { ...versionMap, __env__: 'production' }};
+  const replacements = { preventAssignment: true, values: { ...versionMap, __env__: 'production' } };
 
   return [...config, {
     input: `${root}/src/index.ts`,

@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Read .nvmrc
         id: node_version
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
 
@@ -44,7 +44,7 @@ jobs:
           touch docs/.nojekyll
 
       - name: Publish to Coveralls
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -54,12 +54,12 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs
 
-      - name: Publish to Github Wiki
-        uses: SwiftDocOrg/github-wiki-publish-action@v1
-        with:
-          path: markdown/wiki
-        env:
-          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      # - name: Publish to Github Wiki
+      #   uses: SwiftDocOrg/github-wiki-publish-action@v1
+      #   with:
+      #     path: markdown/wiki
+      #   env:
+      #     GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
       - name: Publish to npm
         if: startsWith(github.ref, 'refs/tags/v')
